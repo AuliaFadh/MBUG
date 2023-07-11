@@ -15,8 +15,8 @@ $routes = Services::routes();
 
 
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
+//$routes->setDefaultController('Home');
+//$routes->setDefaultMethod('index');
 $routes->get('/dashboard', 'frontend::dashboard');
 $routes->get('/beasiswa', 'frontend::beasiswa');
 $routes->get('/penerima', 'frontend::penerima');
@@ -25,12 +25,11 @@ $routes->get('/mbkm', 'frontend::mbkm');
 $routes->get('/prestasi', 'frontend::prestasi');
 $routes->get('/log-aktivitas', 'frontend::log_aktivitas');
 $routes->get('/manajemen', 'frontend::manajemen');
-$routes->get('/tambah-beasiswa', 'frontend::tambah_data');
+$routes->get('/tambah-beasiswa', 'Masuk::input_beasiswa');
 $routes->get('/tambah-user', 'frontend::tambah_user');
 $routes->get('/beasiswa/edit', 'frontend::edit_beasiswa');
 
-$routes->get('/Masuk', 'Masuk::index');
-$routes->post('Masuk/save_beasiswa', 'Masuk::save_beasiswa');
+$routes->post('/Masuk/save_beasiswa', 'Masuk::save_beasiswa');
 
 
 // $routes->setTranslateURIDashes(false);

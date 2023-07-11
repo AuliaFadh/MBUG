@@ -34,22 +34,34 @@
                                     <?php endif; ?>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield " id="nama" name="nama" autofocus>
+                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('nama', $validation)) ? 'is-invalid' : ''; ?> " id="nama" name="nama" autofocus value="<?= old(('nama')); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('nama', $validation)) ? $validation['nama'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield " id="asal" name="asal">
+                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('asal', $validation)) ? 'is-invalid' : ''; ?> " id="asal" name="asal" value="<?= old('asal'); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('asal', $validation)) ? $validation['asal'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="tahun" class="label-form">Tahun Penerimaan</label>
-                                        <input type="text" class="form-control custom-textfield " id="tahun" name="tahun">
+                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('tahun', $validation)) ? 'is-invalid' : ''; ?> " id="tahun" name="tahun" value="<?= old('tahun'); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('tahun', $validation)) ? $validation['tahun'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Aktif</label>
-                                        <input type="text" class="form-control custom-textfield " id="status" name="status">
+                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('status', $validation)) ? 'is-invalid' : ''; ?> " id="status" name="status" value="<?= old('status'); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('status', $validation)) ? $validation['status'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
