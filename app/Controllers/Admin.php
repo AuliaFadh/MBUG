@@ -11,6 +11,9 @@ class Admin extends BaseController
     protected $laModel;
     protected $lpModel;
     protected $kaModel;
+    protected $mbkmModel;
+    protected $lgfModel;
+    protected $mnjModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -18,6 +21,9 @@ class Admin extends BaseController
         $this->laModel = new \App\Models\laModel();
         $this->lpModel = new \App\Models\lpModel();
         $this->kaModel = new \App\Models\kaModel();
+        $this->mbkmModel = new \App\Models\mbkmModel();
+        $this->lgfModel = new \App\Models\lgfModel();
+        $this->mnjModel = new \App\Models\mnjModel();
     }
 
     public function home()
@@ -34,7 +40,6 @@ class Admin extends BaseController
     public function beasiswa()
     {
         $jb = $this->jbModel->AllData();
-
         $data = [
             'title' => 'Jenis Beasiswa | MBUG',
             'jb' => $jb,
@@ -177,8 +182,10 @@ class Admin extends BaseController
     
     public function mbkm()
     {
+        $mbkm = $this->mbkmModel->AllData();
         $data = [
             'title' => 'Magang Bersertifikat Kampus Merdeka | MBUG',
+            'mbkm' => $mbkm,
         ];
         
         return view('main/laporan-mbkm',$data);
@@ -203,8 +210,10 @@ class Admin extends BaseController
     
     public function manajemen()
     {
+        $mnj = $this->mnjModel->AllData();
         $data = [
             'title' => 'User Manajemen | MBUG',
+            'mnj' => $mnj,
         ];
         
         return view('main/manajemen-pengguna',$data);
@@ -258,8 +267,10 @@ class Admin extends BaseController
 
     public function gform()
     {
+        $lgf = $this->lgfModel->AllData();
         $data = [
             'title' => 'Daftar Link Google Form |MB UG',
+            'lgf' => $lgf
         ]; 
         return view('main/gform',$data);
     }
