@@ -6,18 +6,15 @@
                
 
                     <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
-                    <ol class="breadcrumb">
-                <!-- Ubah disini -->
+                        <ol class="breadcrumb">
+                           <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
-                        Dashboard</a>
-                </li>
-                <li class="breadcrumb-item active">
-                    <a href="/manajemen">Manajemen Pengguna</a>
-                </li>
+                        Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="/gform">Link Google Form</a></li>
 
 
-            </ol>
+                        </ol>
                     
                 </div>
                 <div class="row">
@@ -27,14 +24,14 @@
                             <div class="card-header">
                                 <div class="container1">
                                     <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/beasiswa-icon.png'); ?>" alt="">
-                                    <h3>Manajemen Pengguna</h3>
+                                    <h3>Link Google Form</h3>
                                 </div>
                               
                             </div>
                             <div class="add-btn-behav-custom">
-                                <a class="add-btn-custom" href="/manajemen/add" aria-expanded="false">
+                                <a class="add-btn-custom" href="/gform/add" aria-expanded="false">
                                     <img src="<?= base_url('asset/img/cross-icon.png'); ?>">
-                                    Tambah User Baru
+                                    Tambah tautan
                                 </a>
                                     </div>
                             
@@ -46,24 +43,22 @@
                                         <thead>
                                             
                                             <tr>
-                                                <th>ID User</th>
-                                                <th>Nama User</th>
-                                                <th>Hak Akses</th>
-                                                <th>Last Login</th>
-                                                <th>Status</th>   
-                                                <th>Aksi</th>
+                                                <th class="th-nm">Nama Form</th>
+                                                <th class="th-nm">Jenis Beasiswa</th>
+                                                <th class="th-nm">Tautan</th>
+                                                <th class="th-sm">Tanggal Pembuatan</th>
+                                                <th class="th-sm">Aksi</th>
                                                 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>A001</td>
-                                                <td>User1</td>
-                                                <td>Admin</td>
-                                                <td>4 Juli 2023</td>
-                                                <td>Aktif</td>
-                                                <td>
-                                                    <a href="manajemen/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <td class="th-nm">Pendataan Peserta KIPK</td>
+                                                <td class="th-nm">KIPK</td>
+                                                <td class="th-nm">www.google.com</td>
+                                                <td class="th-sm">20 Juli 2023</td>
+                                                <td class="th-sm">
+                                                    <a href="/gform/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                     <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
                                                 </td>                                              
                                             </tr>

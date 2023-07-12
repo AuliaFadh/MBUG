@@ -8,7 +8,7 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/dashboard">
+                <li class="breadcrumb-item"><a href="/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/beasiswa">Jenis Beasiswa</a></li>
@@ -27,7 +27,7 @@
                             <h3>Daftar Jenis Beasiswa</h3>
                         </div>
                         <div>
-                            <a href="/tambah-beasiswa" class="btn btn-primary-add-data">Tambah Data</a>
+                            <a href="/beasiswa/add" class="btn btn-primary-add-data">Tambah Data</a>
                             <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
                         </div>
                     </div>
@@ -37,26 +37,26 @@
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>ID</th>
-                                        <th>Jenis Beasiswa</th>
-                                        <th>Asal Beasiswa</th>
-                                        <th>Tahun Penerimaan</th>
-                                        <th>Aktif</th>
-                                        <th>Aksi</th>
+                                        <th class="th-sm">No</th>
+                                        <th class="th-sm">ID</th>
+                                        <th class="th-nm">Jenis Beasiswa</th>
+                                        <th class="th-nm">Asal Beasiswa</th>
+                                        <th class="th-sm">Tahun Penerimaan</th>
+                                        <th class="th-sm">Status</th>
+                                        <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 0; ?>
-                                    <?php foreach ($jb as $jenis) : ?>
+                                    <?php foreach ($jb as $key => $value) : ?>
                                         <?php $no++; ?>
                                         <tr>
                                             <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $jenis['id_beasiswa']; ?></td>
-                                            <td><?= $jenis['nama_beasiswa']; ?></td>
-                                            <td><?= $jenis['asal_beasiswa']; ?></td>
-                                            <td><?= $jenis['tahun_penerimaan']; ?></td>
-                                            <td><?= $jenis['status']; ?></td>
+                                            <td><?= $value['id_beasiswa']; ?></td>
+                                            <td><?= $value['nama_beasiswa']; ?></td>
+                                            <td><?= $value['asal_beasiswa']; ?></td>
+                                            <td><?= $value['tahun_penerimaan']; ?></td>
+                                            <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
                                             <td> <a href="/beasiswa/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>

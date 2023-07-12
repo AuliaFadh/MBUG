@@ -740,6 +740,37 @@ span#counter {
 .custom-textfield{
   border: 3px solid #BEBDBD;
 }
+
+.status-green{
+  background-color: green;
+}
+.status-red{
+  background-color: red;
+}
+
+.margin-custom{
+  margin: 10px;
+}
+
+
+.th-sm{
+  min-width: 20px;
+  max-width:100px;
+  
+  
+  
+}
+.th-nm{
+  min-width: 100px;
+  max-width: 200px;
+  
+
+}
+.th-lg{
+  max-width: 300px;
+  min-width: 200px;
+  
+}
 /* 
 #example3 thead tr th ,#example3 tbody tr th{
   min-width: 200px;

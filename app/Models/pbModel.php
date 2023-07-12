@@ -11,4 +11,9 @@ class pbModel extends Model
 
     protected $returnType       = 'array';
     protected $allowedFields    = ['nama', 'npm', 'prodi', 'semester', 'alamat', 'no_hp', 'jenis_kelamin', 'tahun_penerimaan', 'status'];
+
+    public function AllData()
+    {
+        return $this->db->table('penerima_beasiswa')->Get()->getResultArray();
+    }
 }

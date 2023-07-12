@@ -5,7 +5,7 @@
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
             <!-- Ubah disini -->
-            <li><a class="ai-icon" href="/dashboard" aria-expanded="false">
+            <li><a class="ai-icon" href="/home" aria-expanded="false">
                     <!-- <i class="la la-calendar"></i> -->
                     <span class="nav-text">Dashboard</span>
                 </a>
@@ -36,12 +36,12 @@
                     <span class="nav-text">Laporan MBKM</span>
                 </a>
             </li>
-            <li><a class="ai-icon" href="keaktifan-per-semester.html" aria-expanded="false">
+            <li><a class="ai-icon" href="/keaktifan" aria-expanded="false">
                     <!-- <i class="la la-calendar"></i> -->
                     <span class="nav-text">Keaktifan per Semester</span>
                 </a>
             </li>
-            <li><a class="ai-icon" href="daftar-link-gform.html" aria-expanded="false">
+            <li><a class="ai-icon" href="/gform" aria-expanded="false">
                     <!-- <i class="la la-calendar"></i> -->
                     <span class="nav-text">Daftar Link Gform</span>
                 </a>
@@ -51,12 +51,12 @@
                     <span class="nav-text">Import</span>
                 </a>
             </li>
-            <li><a class="ai-icon" href="pengumuman.html" aria-expanded="false">
+            <li><a class="ai-icon" href="/pengumuman" aria-expanded="false">
                     <!-- <i class="la la-calendar"></i> -->
                     <span class="nav-text">Pengumuman</span>
                 </a>
             </li>
-            <li><a class="ai-icon" href="buku-panduan.html" aria-expanded="false">
+            <li><a class="ai-icon" href="/panduan" aria-expanded="false">
                     <!-- <i class="la la-calendar"></i> -->
                     <span class="nav-text">Buku Panduan</span>
                 </a>
@@ -66,7 +66,7 @@
                     <span class="nav-text">Manajemen Pengguna</span>
                 </a>
             </li>
-            <li><a class="ai-icon" href="/log-aktivitas" aria-expanded="false">
+            <li><a class="ai-icon" href="/log" aria-expanded="false">
                     <!-- <i class="la la-calendar"></i> -->
                     <span class="nav-text">Log Aktivitas Pengguna</span>
                 </a>

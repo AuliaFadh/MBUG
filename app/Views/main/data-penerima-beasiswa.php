@@ -8,10 +8,13 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/dashboard">
+                <li class="breadcrumb-item"><a href="/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
-                        Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="data-penerima-beasiswa.html">Daftar Penerima Beasiswa</a></li>
+                        Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="/penerima">Daftar Penerima Beasiswa</a>
+                </li>
 
 
             </ol>
@@ -26,42 +29,48 @@
                             <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/beasiswa-icon.png'); ?>" alt="">
                             <h3>Daftar Penerima Beasiswa</h3>
                         </div>
+                        <div>
+                            <a href="/penerima/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
+                        </div>
 
                     </div>
+
 
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>NPM</th>
-                                        <th>Prodi</th>
-                                        <th>Semester</th>
-                                        <th>Alamat</th>
-                                        <th>No.HP</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Tahun Penerimaan</th>
-                                        <th>Status</th>
-                                        <th>Keterangan</th>
+                                        <th class="th-sm">No</th>
+                                        <th class="th-nm">Nama</th>
+                                        <th class="th-sm">NPM</th>
+                                        <th class="th-nm">Prodi</th>
+                                        <th class="th-sm">Semester</th>
+                                        <th class="th-lg">Alamat</th>
+                                        <th class="th-nm">No.HP</th>
+                                        <th class="th-sm">Jenis Kelamin</th>
+                                        <th class="th-sm">Tahun Penerimaan</th>
+                                        <th class="th-sm">Status</th>
+                                        <th class="th-nm">Keterangan</th>
+                                        <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 0; ?>
-                                    <?php foreach ($pb as $p) : ?>
+                                    <?php foreach ($pb as $key => $value) : ?>
                                         <?php $no++; ?>
                                         <tr>
                                             <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $p['nama']; ?></td>
-                                            <td><?= $p['npm']; ?></td>
-                                            <td><?= $p['prodi']; ?></td>
-                                            <td><?= $p['semester']; ?></td>
-                                            <td><?= $p['alamat']; ?></td>
-                                            <td><?= $p['no_hp']; ?></td>
-                                            <td><?= $p['jenis_kelamin']; ?></td>
-                                            <td><?= $p['tahun_penerimaan']; ?></td>
-                                            <td><?= $p['status']; ?></td>
+                                            <td><?= $value['nama']; ?></td>
+                                            <td><?= $value['npm']; ?></td>
+                                            <td><?= $value['prodi']; ?></td>
+                                            <td><?= $value['semester']; ?></td>
+                                            <td><?= $value['alamat']; ?></td>
+                                            <td><?= $value['no_hp']; ?></td>
+                                            <td><?= $value['jenis_kelamin']; ?></td>
+                                            <td><?= $value['tahun_penerimaan']; ?></td>
+                                            <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
                                             <td>-</td>
                                         </tr>
                                     <?php endforeach; ?>

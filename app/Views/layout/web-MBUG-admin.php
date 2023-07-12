@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="<?= base_url('asset/css/style.css'); ?>">
     <!-- Datatable -->
     <link href="<?= base_url('asset/vendor/datatables/css/jquery.dataTables.min.css'); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('asset/vendor/pickadate/themes/default.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('asset/vendor/pickadate/themes/default.date.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/css/skin-2.css'); ?>">
 </head>
 
@@ -22,6 +24,7 @@
     <?= $this->include('layout/navbar'); ?>
     <?= $this->include('layout/sidebar'); ?>
     <?= $this->renderSection('content'); ?>
+    <?= $this->include('layout/footer'); ?>
 
 
 
@@ -49,6 +52,13 @@
     <!-- Svganimation scripts -->
     <script src="<?= base_url('asset/vendor/svganimation/vivus.min.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/svganimation/svg.animation.js'); ?>"></script>
+    <!-- pickdate -->
+    <script src="<?= base_url('asset/vendor/pickadate/picker.js'); ?>"></script>
+    <script src="<?= base_url('asset/vendor/pickadate/picker.time.js'); ?>"></script>
+    <script src="<?= base_url('asset/vendor/pickadate/picker.date.js'); ?>"></script>
+	
+	<!-- Pickdate -->
+    <script src="<?= base_url('asset/js/plugins-init/pickadate-init.js'); ?>"></script>
 
 </body>
 

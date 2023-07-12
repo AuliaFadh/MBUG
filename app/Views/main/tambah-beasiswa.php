@@ -1,4 +1,3 @@
-
 <?= $this->extend('layout/web-MBUG-admin'); ?>
 <?= $this->section('content') ?>
 <div class="content-body">
@@ -12,9 +11,7 @@
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/beasiswa">Jenis Beasiswa</a></li>
-                <li class="breadcrumb-item active"><a href="/beasiswa/edit">Edit Beasiswa</a></li>
-
-
+                <li class="breadcrumb-item active"><a href="/beasiswa/add">Tambah Beasiswa</a></li>
             </ol>
         </div>
 
@@ -25,7 +22,7 @@
                 <div class="card-header">
                         <div class="container1">
                             
-                            <h3>Edit Beasiswa</h3>
+                            <h3>Tambah Beasiswa</h3>
                         </div>
 
                     </div>
@@ -40,30 +37,28 @@
                                             <?= session()->getFlashdata('pesan'); ?>
                                         </div>
                                     <?php endif; ?>
-                                    
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus value="">
-                                        <!-- <div class="invalid-feedback">
-                                        
-                                        </div> -->
+                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('nama', $validation)) ? 'is-invalid' : ''; ?> " id="nama" name="nama" autofocus value="<?= old(('nama')); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('nama', $validation)) ? $validation['nama'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield 
-                                         " id="asal" name="asal" ">
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
+                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('asal', $validation)) ? 'is-invalid' : ''; ?> " id="asal" name="asal" value="<?= old('asal'); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('asal', $validation)) ? $validation['asal'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="tahun" class="label-form">Tahun Penerimaan</label>
-                                        <input type="number" class="form-control custom-textfield " id="tahun" name="tahun" value="">
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
+                                        <input type="number" class="form-control custom-textfield <?= (array_key_exists('tahun', $validation)) ? 'is-invalid' : ''; ?> " id="tahun" name="tahun" value="<?= old('tahun'); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('tahun', $validation)) ? $validation['tahun'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -71,13 +66,13 @@
                                         <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="0" checked> Tidak Aktif<br>
 
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
+                                        <div class="invalid-feedback">
+                                            <?= (array_key_exists('status', $validation)) ? $validation['status'] : ''; ?>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary margin-custom">Edit Data</button>
+                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
                                         <a href="/beasiswa" class="btn btn-warning margin-custom">Batal</a>
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@
                     <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <!-- Ubah disini -->
-                            <li class="breadcrumb-item"><a href="/dashboard">
+                            <li class="breadcrumb-item"><a href="/home">
                                     <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">    
                                     Dashboard</a></li>
                             <li class="breadcrumb-item active"><a href="/mbkm">Laporan MBKM</a></li>
@@ -27,7 +27,7 @@
                                     <h3>Laporan MBKM</h3>
                                 </div>
                                 <div>
-                                    <a href="/tambah-mbkm" class="btn btn-primary-add-data">Tambah Data</a>
+                                    <a href="/mbkm/add" class="btn btn-primary-add-data">Tambah Data</a>
                                     <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
                                 </div>
                             </div>
@@ -37,12 +37,27 @@
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
-                                                
+                                                <th class="th-sm">No</th>
+                                                <th class="th-nm">Nama</th>
+                                                <th class="th-nm">NPM</th>
+                                                <th class="th-nm">Program Studi</th>
+                                                <th class="th-nm">Jenis Beasiswa</th>
+                                                <th class="th-nm">Kegiatan MBKM</th>
+                                                <th class="th-sm">Periode</th>
+                                                <th class="th-nm">Keterangan</th>
+                                                <th class="th-sm">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <td></td>
+                                            <td class="th-sm">1</td>
+                                            <td class="th-nm">Isa tarmana</td>
+                                            <td class="th-nm">10120544</td>
+                                            <td class="th-nm">Sistem Informasi</td>
+                                            <td class="th-nm">KIPK</td>
+                                            <td class="th-nm">Studi Independent</td>
+                                            <td class="th-sm">2023</td>
+                                            <td class="th-nm">Keterangan</td>
+                                            <td> <a href="/mbkm/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tbody>
                                     </table>
                                 </div>

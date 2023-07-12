@@ -71,6 +71,10 @@
                                                     <option value="user">Non-Aktif</option>
                                                 </select>
                                         </div>
+                                        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
+                                        <a href="/beasiswa" class="btn btn-warning margin-custom">Batal</a>
+                                    </div>
                                         
 
 
