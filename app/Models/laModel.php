@@ -11,4 +11,9 @@ class laModel extends Model
 
     protected $returnType       = 'array';
     protected $allowedFields    = ['nama', 'npm', 'prodi', 'semester', 'alamat', 'no_hp', 'email', 'jenis_beasiswa', 'tahun_penerimaan', 'status', 'keterangan'];
+
+    public function AllData()
+    {
+        return $this->db->table('laporan_akademik')->Get()->getResultArray();
+    }
 }

@@ -55,20 +55,22 @@
                                 </thead>
                                 <tbody>
                                     <?php $no = 0; ?>
-                                    <?php foreach ($la as $p) : ?>
+                                    <?php foreach ($la as $key => $value) : ?>
+                                        <?php $no++; ?>
                                         <tr>
                                             <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $p['nama']; ?></td>
-                                            <td><?= $p['npm']; ?></td>
-                                            <td><?= $p['prodi']; ?></td>
-                                            <td><?= $p['semester']; ?></td>
-                                            <td><?= $p['alamat']; ?></td>
-                                            <td><?= $p['no_hp']; ?></td>
-                                            <td><?= $p['email']; ?></td>
-                                            <td><?= $p['jenis_beasiswa']; ?></td>
-                                            <td><?= $p['tahun_penerimaan']; ?></td>
-                                            <td><?= $p['status']; ?></td>
-                                            <td><?= $p['keterangan']; ?></td>
+                                            <td><?= $value['nama']; ?></td>
+                                            <td><?= $value['npm']; ?></td>
+                                            <td><?= $value['prodi']; ?></td>
+                                            <td><?= $value['semester']; ?></td>
+                                            <td><?= $value['alamat']; ?></td>
+                                            <td><?= $value['no_hp']; ?></td>
+                                            <td><?= $value['email']; ?></td>
+                                            <td><?= $value['jenis_beasiswa']; ?></td>
+                                            <td><?= $value['tahun_penerimaan']; ?></td>
+                                            <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
+                                            <td><?= $value['keterangan']; ?></td>
+                                            <td> <a href="/beasiswa/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

@@ -9,11 +9,13 @@ class Admin extends BaseController
     protected $jbModel;
     protected $pbModel;
     protected $laModel;
+    protected $lpModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
         $this->pbModel = new \App\Models\pbModel();
         $this->laModel = new \App\Models\laModel();
+        $this->lpModel = new \App\Models\lpModel();
     }
 
     public function home()
@@ -113,7 +115,7 @@ class Admin extends BaseController
 // V
     public function akademik()
     {
-        $la = $this->laModel->findAll();
+        $la = $this->laModel->AllData();
         $data = [
             'title' => 'Akademik | MBUG',
             'la' => $la,
@@ -145,8 +147,10 @@ class Admin extends BaseController
 
     public function prestasi()
     {
+        $lp = $this->lpModel->AllData();
         $data = [
             'title' => 'Laporan Prestasi | MBUG',
+            'lp' => $lp,
         ];
         
         return view('main/laporan-prestasi',$data);
