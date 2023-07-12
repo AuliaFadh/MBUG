@@ -19,65 +19,56 @@
             <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
-                <div class="card-header">
+                    <div class="card-header">
                         <div class="container1">
-                            
                             <h3>Tambah Beasiswa</h3>
                         </div>
-
                     </div>
                     <div class="card-body">
 
-                        <form action="/beasiswa/save" method="post">
-                            <?= csrf_field(); ?>
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <?php if(session()->getFlashdata('pesan')) : ?>
-                                        <div class="alert alert-success" role="alert">
-                                            <?= session()->getFlashdata('pesan'); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="nama" class="label-form">Nama Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('nama', $validation)) ? 'is-invalid' : ''; ?> " id="nama" name="nama" autofocus value="<?= old(('nama')); ?>">
-                                        <div class="invalid-feedback">
-                                            <?= (array_key_exists('nama', $validation)) ? $validation['nama'] : ''; ?>
-                                        </div>
+                        <!-- <form action="/Masuk/save_beasiswa" method="post"> -->
+                        <?php
+                        session();
+                        $validation = \Config\Services::validation();
+                        ?>
+                        <?php echo form_open('beasiswa/save') ?>
+                        <?= csrf_field(); ?>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <?php if (session()->getFlashdata('pesan')) : ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <?= session()->getFlashdata('pesan'); ?>
                                     </div>
+                                <?php endif; ?>
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <label for="nama" class="label-form">Nama Beasiswa</label>
+                                    <input type="text" class="form-control custom-textfield " id="nama" name="nama" autofocus value="<?= old(('nama')); ?>">
+                                </div>
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="asal" class="label-form">Asal Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield <?= (array_key_exists('asal', $validation)) ? 'is-invalid' : ''; ?> " id="asal" name="asal" value="<?= old('asal'); ?>">
-                                        <div class="invalid-feedback">
-                                            <?= (array_key_exists('asal', $validation)) ? $validation['asal'] : ''; ?>
-                                        </div>
-                                    </div>
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <label for="asal" class="label-form">Asal Beasiswa</label>
+                                    <input type="text" class="form-control custom-textfield " id="asal" name="asal" value="<?= old('asal'); ?>">
+                                </div>
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="tahun" class="label-form">Tahun Penerimaan</label>
-                                        <input type="number" class="form-control custom-textfield <?= (array_key_exists('tahun', $validation)) ? 'is-invalid' : ''; ?> " id="tahun" name="tahun" value="<?= old('tahun'); ?>">
-                                        <div class="invalid-feedback">
-                                            <?= (array_key_exists('tahun', $validation)) ? $validation['tahun'] : ''; ?>
-                                        </div>
-                                    </div>
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <label for="tahun" class="label-form">Tahun Penerimaan</label>
+                                    <input type="number" class="form-control custom-textfield " id="tahun" name="tahun" value="<?= old('tahun'); ?>">
+                                </div>
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
-                                        <input type="radio" class="margin-custom" name="nilai" value="0" checked> Tidak Aktif<br>
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <label for="status" class="label-form">Status</label>
+                                    <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
+                                    <input type="radio" class="margin-custom" name="nilai" value="0" checked> Tidak Aktif<br>
+                                </div>
 
-                                        <div class="invalid-feedback">
-                                            <?= (array_key_exists('status', $validation)) ? $validation['status'] : ''; ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
-                                        <a href="/beasiswa" class="btn btn-warning margin-custom">Batal</a>
-                                    </div>
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
+                                    <a href="/beasiswa" class="btn btn-warning margin-custom">Batal</a>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <?php echo form_close() ?>
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>

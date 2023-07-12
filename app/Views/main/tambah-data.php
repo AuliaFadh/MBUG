@@ -53,15 +53,15 @@
                                     <input type="text" class="form-control custom-textfield " id="tahun" name="tahun" value="<?= old('tahun'); ?>">
                                 </div>
 
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12 ">
-                                    <label for="status" class="label-form">Aktif</label>
-                                    <input type="text" class="form-control custom-textfield " id="status" name="status" value="<?= old('status'); ?>">
-                                </div>
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="status" class="label-form">Status</label>
+                                        <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="nilai" value="0" checked> Tidak Aktif<br>
+                                    </div>
 
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12 ">
                                     <button type="submit" class="btn btn-primary ">Tambah Data</button>
                                 </div>
-                                <?= dd($validation); ?>
                             </div>
                         </div>
                         <?php echo form_close() ?>

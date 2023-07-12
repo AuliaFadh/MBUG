@@ -46,7 +46,7 @@ class Admin extends BaseController
             'validation' => \Config\Services::validation(),
         ];
 
-        return view('/main/tambah-data', $data);
+        return view('/main/tambah-beasiswa', $data);
     }
     public function edit_beasiswa()
     {
