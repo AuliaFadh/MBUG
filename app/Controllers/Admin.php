@@ -62,14 +62,21 @@ class Admin extends BaseController
             'nama' => 'required|is_unique[jenis_beasiswa.nama_beasiswa]',
             'asal' => 'required',
             'tahun' => 'required',
-            'status' => 'required|in_list[0,1]',
         ]))
         {
             
         } else 
         {
-            session()->setFlashdata('gagal', \Config\Services::validation()->getErrors());
-            return redirect()->to(base_url('beasiswa/add'))->withInput('validation', \Config\Services::validation());
+         $session = session();
+         $session->setFlashdata('input', $this->request->getPost());
+
+         $data = [
+            'title' => 'Add User | Admin',
+            'validation' => \Config\Services::validation(),
+            'input' => $session->getFlashdata('input'),
+        ];
+
+            return view('main/tambah-beasiswa',$data);
         }
     }
 

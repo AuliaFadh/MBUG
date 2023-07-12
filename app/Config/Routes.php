@@ -21,6 +21,7 @@ $routes->get('/home', 'Admin::home');
 
 $routes->get('/beasiswa', 'Admin::beasiswa');
 $routes->get('/beasiswa/add', 'Admin::add_beasiswa');
+//$routes->post('/beasiswa/add', 'Admin::add_beasiswa');
 $routes->get('/beasiswa/edit', 'Admin::edit_beasiswa');
 $routes->post('/beasiswa/save', 'Admin::save_beasiswa');
 

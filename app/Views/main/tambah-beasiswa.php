@@ -42,17 +42,26 @@
                                 <?php endif; ?>
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label for="nama" class="label-form">Nama Beasiswa</label>
-                                    <input type="text" class="form-control custom-textfield " id="nama" name="nama" autofocus value="<?= old(('nama')); ?>">
+                                    <input type="text" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('nama'); ?>
+                                    </div>
                                 </div>
 
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label for="asal" class="label-form">Asal Beasiswa</label>
-                                    <input type="text" class="form-control custom-textfield " id="asal" name="asal" value="<?= old('asal'); ?>">
+                                    <input type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('asal'); ?>
+                                    </div>
                                 </div>
 
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label for="tahun" class="label-form">Tahun Penerimaan</label>
-                                    <input type="number" class="form-control custom-textfield " id="tahun" name="tahun" value="<?= old('tahun'); ?>">
+                                    <input type="number" class="form-control custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('tahun'); ?>
+                                    </div>
                                 </div>
 
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
