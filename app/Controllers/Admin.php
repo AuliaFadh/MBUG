@@ -68,8 +68,6 @@ class Admin extends BaseController
             
         } else 
         {
-            $validation = \Config\Services::validation();
-            dd($validation);
             session()->setFlashdata('gagal', \Config\Services::validation()->getErrors());
             return redirect()->to(base_url('beasiswa/add'))->withInput('validation', \Config\Services::validation());
         }
