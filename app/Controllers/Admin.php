@@ -10,12 +10,14 @@ class Admin extends BaseController
     protected $pbModel;
     protected $laModel;
     protected $lpModel;
+    protected $kaModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
         $this->pbModel = new \App\Models\pbModel();
         $this->laModel = new \App\Models\laModel();
         $this->lpModel = new \App\Models\lpModel();
+        $this->kaModel = new \App\Models\kaModel();
     }
 
     public function home()
@@ -229,8 +231,10 @@ class Admin extends BaseController
     
     public function keaktifan()
     {
+        $ka = $this->kaModel->AllData();
         $data = [
             'title' => 'Keaktifan per Semester | MBUG',
+            'ka' => $ka,
         ];
         
         return view('main/keaktifan',$data);

@@ -70,7 +70,7 @@
                                             <td><?= $value['tahun_penerimaan']; ?></td>
                                             <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
                                             <td><?= $value['keterangan']; ?></td>
-                                            <td> <a href="/beasiswa/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td> <a href="/akademik/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

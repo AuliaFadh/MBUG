@@ -74,7 +74,7 @@
                                             <td><?= $value['penyelenggara']; ?></td>
                                             <td><?= $value['bukti_prestasi']; ?></td>
                                             <td><?= $value['publikasi']; ?></td>
-                                            <td> <a href="/beasiswa/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td> <a href="/prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
