@@ -73,7 +73,17 @@ class Admin extends BaseController
             'tahun' => 'required',
         ]))
         {
-            
+            $data = [
+                'nama_beasiswa' => $this->request->getPost('nama'),
+                'asal_beasiswa' => $this->request->getPost('asal'),
+                'tahun_penerimaan' => $this->request->getPost('tahun'),
+                'status' => $this->request->getPost('status'),
+            ];
+
+            $this->jbModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/beasiswa'));
         } else 
         {
          $session = session();

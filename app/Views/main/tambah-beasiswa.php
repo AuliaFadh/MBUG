@@ -35,11 +35,6 @@
                         <?= csrf_field(); ?>
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success" role="alert">
-                                        <?= session()->getFlashdata('pesan'); ?>
-                                    </div>
-                                <?php endif; ?>
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label for="nama" class="label-form">Nama Beasiswa</label>
                                     <input type="text" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
@@ -66,8 +61,8 @@
 
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label for="status" class="label-form">Status</label>
-                                    <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
-                                    <input type="radio" class="margin-custom" name="nilai" value="0" checked> Tidak Aktif<br>
+                                    <input type="radio" class="margin-custom" id="status" name="status" value="1"> Aktif<br>
+                                    <input type="radio" class="margin-custom" id="status" name="status" value="0" checked> Tidak Aktif<br>
                                 </div>
 
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">

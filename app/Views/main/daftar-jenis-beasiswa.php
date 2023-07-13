@@ -31,7 +31,11 @@
                             <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
                         </div>
                     </div>
-
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
