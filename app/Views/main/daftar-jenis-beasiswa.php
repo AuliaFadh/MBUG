@@ -61,7 +61,10 @@
                                             <td><?= $value['asal_beasiswa']; ?></td>
                                             <td><?= $value['tahun_penerimaan']; ?></td>
                                             <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
-                                            <td> <a href="/beasiswa/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td>
+                                                <a href="<?= base_url('/beasiswa/edit/'.$value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <a href="<?= base_url('/beasiswa/delete/'.$value['id_beasiswa']); ?>" onclick="return confirm('Hapus data?')" class="btn btn-sm btn-danger" method="post"><i class="la la-trash"></i></a>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

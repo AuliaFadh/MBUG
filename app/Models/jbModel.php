@@ -21,4 +21,14 @@ class jbModel extends Model
     {
         $this->db->table('jenis_beasiswa')->insert(($data));
     }
+
+    public function DetailData($id_beasiswa)
+    {
+        return $this->db->table('jenis_beasiswa')->where('id_beasiswa', $id_beasiswa)->get()->getRow();
+    }
+
+    public function DeleteData($data)
+    {
+        $this->db->table('jenis_beasiswa')->where('id_beasiswa', $data['id_beasiswa'])->delete($data);
+    }
 }

@@ -57,14 +57,17 @@ class Admin extends BaseController
 
         return view('/main/tambah-beasiswa', $data);
     }
-    public function edit_beasiswa()
+
+    public function edit_beasiswa($id_beasiswa)
     {
         $data = [
             'title' => 'Form Edit Beasiswa | MBUG',
+            'mhs' => $this->jbModel->DetailData($id_beasiswa),
         ];
         
         return view('main/edit-beasiswa',$data);
     }
+
     public function save_beasiswa()
     {
         if($this->validate([
@@ -97,6 +100,16 @@ class Admin extends BaseController
 
             return view('main/tambah-beasiswa',$data);
         }
+    }
+
+    public function del_beasiswa($id_beasiswa)
+    {
+        $data = [
+            'id_beasiswa' => $id_beasiswa,
+        ];
+        
+        $this->jbModel->DeleteData($data);
+        return redirect()->to(base_url('/beasiswa'));
     }
 
     public function penerima()
