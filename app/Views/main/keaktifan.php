@@ -8,10 +8,10 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/dashboard">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/keaktifan">Keaktifan per Semester</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/keaktifan">Keaktifan per Semester</a></li>
 
 
             </ol>
@@ -27,8 +27,8 @@
                             <h3>Keaktifan per Semester</h3>
                         </div>
                         <div>
-                            <a href="/keaktifan/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
+                            <a href="/admin/keaktifan/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
                         </div>
                     </div>
 
@@ -39,37 +39,35 @@
                                     <tr>
                                         <th class="th-sm">No</th>
                                         <th class="th-nm">Nama</th>
+                                        <th class="th-sm">NPM</th>
                                         <th class="th-nm">Program Studi</th>
+                                        <th class="th-nm">Jenis Beasiswa</th>
                                         <th class="th-sm">Semester</th>
-                                        <th class="th-sm">Tahun Ajaran</th>
-                                        <th class="th-sm">Upload KRS</th>
+                                        <th class="th-nm">Tahun Ajaran</th>
+                                        <th class="th-sm">KRS</th>
                                         <th class="th-nm">Blanko Pembayaran: Jumlah ditagihkan</th>
                                         <th class="th-nm">Jumlah Potongan</th>
-                                        <th class="th-sm">Upload Blanko Pembayaran</th>
-                                        <th class="th-sm">Upload Bukti Pembayaran</th>
+                                        <th class="th-sm">Blanko Pembayaran</th>
+                                        <th class="th-sm">Bukti Pembayaran</th>
                                         <th class="th-sm">Status</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($ka as $key => $value) : ?>
-                                        <?php $no++; ?>
-                                        <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['prodi']; ?></td>
-                                            <td><?= $value['semester']; ?></td>
-                                            <td><?= $value['tahun_ajaran']; ?></td>
-                                            <td><?= $value['krs']; ?></td>
-                                            <td><?= $value['jumlah_ditagihkan']; ?></td>
-                                            <td><?= $value['jumlah_potongan']; ?></td>
-                                            <td><?= $value['blanko_pembayaran']; ?></td>
-                                            <td><?= $value['bukti_pembayaran']; ?></td>
-                                            <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
-                                            <td> <a href="/keaktifan/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <td class="th-sm"></td>
+                                    <td class="th-nm">Isa Tarmana</td>
+                                    <td class="th-sm">10120544</td>
+                                    <td class="th-nm">Sistem Informasi</td>
+                                    <td class="th-nm">KIPIK</td>
+                                    <td class="th-sm">ATA</td>
+                                    <td class="th-nm"> 2023/2024</td>
+                                    <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
+                                    <td class="th-nm">12,000,000</td>
+                                    <td class="th-nm">1,500,000</td>
+                                    <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
+                                    <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
+                                    <td class="th-sm">Aktif</td>
+                                    <td> <a href="/admin/keaktifan/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                 </tbody>
                             </table>
                         </div>

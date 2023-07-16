@@ -7,11 +7,11 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/prestasi">Laporan Prestasi</a></li>
-                <li class="breadcrumb-item active"><a href="/prestasi/edit">Edit Prestasi</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/prestasi">Laporan Prestasi</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/prestasi/edit">Edit Prestasi</a></li>
 
 
             </ol>
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            
+
                             <h3>Edit Prestasi</h3>
                         </div>
 
@@ -91,41 +91,40 @@
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-											
-												<label class="label-form">Tanggal</label>
-												<input name="datepicker" class="custom-textfield datepicker-default form-control" id="datepicker">											
-										</div>
+                                        <label class="label-form">Tanggal Pembuatan</label>
+                                        <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
+                                    </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Penyelenggara</label>
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-											<div class="form-group fallback w-100">
+
+                                        <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Bukti</label>
-												<input type="file" class="dropify" data-default-file="">
-											</div>
-										</div>
+                                            <a title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" </a>
+                                                <input type="file" class="dropify" data-default-file="">
+                                        </div>
+                                    </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan Publikasi</label>
                                         <input type="url" class="form-control custom-textfield ">
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary margin-custom">Edit Data</button>
-                                        <a href="/prestasi" class="btn btn-warning margin-custom">Batal</a>
+                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
+                                        <a href="/admin/prestasi" class="btn btn-warning margin-custom">Batal</a>
                                     </div>
 
                                 </div>
                             </div>
                         </form>
 
-
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-<?= $this->endSection('content') ?>
+    <?= $this->endSection('content') ?>

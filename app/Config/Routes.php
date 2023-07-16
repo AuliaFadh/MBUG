@@ -11,56 +11,68 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 
-
-
-
 $routes->setDefaultNamespace('App\Controllers');
 //$routes->setDefaultController('Home');
 //$routes->setDefaultMethod('index');
-$routes->get('/home', 'Admin::home');
+$routes->get('/admin/login', 'Admin::login_admin');
+$routes->get('/admin/profile', 'Admin::profile_admin');
+$routes->get('/admin/home', 'Admin::home');
 
-$routes->get('/beasiswa', 'Admin::beasiswa');
-$routes->get('/beasiswa/add', 'Admin::add_beasiswa');
-$routes->get('/beasiswa/edit/(:any)', 'Admin::edit_beasiswa/$1');
-$routes->post('/beasiswa/save', 'Admin::save_beasiswa');
-$routes->get('/beasiswa/delete/(:any)', 'Admin::del_beasiswa/$1');
 
-$routes->get('/penerima', 'Admin::penerima');
-$routes->get('/penerima/add', 'Admin::add_penerima');
-$routes->get('/penerima/edit/(:any)', 'Admin::edit_penerima/$1');
-$routes->post('/penerima/save', 'Admin::save_penerima');
+$routes->get('/admin/beasiswa', 'Admin::beasiswa');
+$routes->get('/admin/beasiswa/add', 'Admin::add_beasiswa');
+$routes->get('/admin/beasiswa/edit/(:any)', 'Admin::edit_beasiswa/$1');
+$routes->post('/admin/beasiswa/save', 'Admin::save_beasiswa');
+$routes->get('/admin/beasiswa/delete/(:any)', 'Admin::del_beasiswa/$1');
 
-$routes->get('/akademik', 'Admin::akademik');
-$routes->get('/akademik/add', 'Admin::add_akademik');
-$routes->get('/akademik/edit/(:any)', 'Admin::edit_akademik/$1');
 
-$routes->get('/prestasi', 'Admin::prestasi');
-$routes->get('/prestasi/add', 'Admin::add_prestasi');
-$routes->get('/prestasi/edit/(:any)', 'Admin::edit_prestasi/$1');
+$routes->get('/admin/penerima', 'Admin::penerima');
+$routes->get('/admin/penerima/add', 'Admin::add_penerima');
+$routes->get('/admin/penerima/edit/(:any)', 'Admin::edit_penerima/$1');
+$routes->get('/admin/penerima/import', 'Admin::import_penerima');
+$routes->post('/admin/penerima/save', 'Admin::save_penerima');
 
-$routes->get('/mbkm', 'Admin::mbkm');
-$routes->get('/mbkm/add', 'Admin::add_mbkm');
-$routes->get('/mbkm/edit/(:any)', 'Admin::edit_mbkm/$1');
+$routes->get('/admin/akademik', 'Admin::akademik');
+$routes->get('/admin/akademik/add', 'Admin::add_akademik');
+$routes->get('/admin/akademik/edit/(:any)', 'Admin::edit_akademik/$1');
 
-$routes->get('/keaktifan', 'Admin::keaktifan');
-$routes->get('/keaktifan/add', 'Admin::add_keaktifan');
-$routes->get('/keaktifan/edit/(:any)', 'Admin::edit_keaktifan/$1');
+$routes->get('/admin/prestasi', 'Admin::prestasi');
+$routes->get('/admin/prestasi/add', 'Admin::add_prestasi');
+$routes->get('/admin/prestasi/edit/(:any)', 'Admin::edit_prestasi/$1');
 
-$routes->get('/gform', 'Admin::gform');
-$routes->get('/gform/add', 'Admin::add_gform');
-$routes->get('/gform/edit/(:any)', 'Admin::edit_gform/$1');
+$routes->get('/admin/mbkm', 'Admin::mbkm');
+$routes->get('/admin/mbkm/add', 'Admin::add_mbkm');
+$routes->get('/admin/mbkm/edit/(:any)', 'Admin::edit_mbkm');
 
-$routes->get('/pengumuman', 'Admin::pengumuman');
-$routes->get('/pengumuman/add', 'Admin::add_pengumuman');
-$routes->get('/pengumuman/edit/(:any)', 'Admin::edit_pengumuman/$1');
+$routes->get('/admin/keaktifan', 'Admin::keaktifan');
+$routes->get('/admin/keaktifan/add', 'Admin::add_keaktifan');
+$routes->get('/admin/keaktifan/edit/(:any)', 'Admin::edit_keaktifan/$1');
 
-$routes->get('/panduan', 'Admin::panduan');
 
-$routes->get('/manajemen', 'Admin::manajemen');
-$routes->get('/manajemen/add', 'Admin::add_manajemen');
-$routes->get('/manajemen/edit/(:any)', 'Admin::edit_manajemen/$1');
+$routes->get('/admin/gform', 'Admin::gform');
+$routes->get('/admin/gform/add', 'Admin::add_gform');
+$routes->get('/admin/gform/edit/(:any)', 'Admin::edit_gform/$1');
 
-$routes->get('/log', 'Admin::log');
+$routes->get('/admin/pengumuman', 'Admin::pengumuman');
+$routes->get('/admin/pengumuman/add', 'Admin::add_pengumuman');
+$routes->get('/admin/pengumuman/edit/(:any)', 'Admin::edit_pengumuman/$1');
+
+$routes->get('/admin/panduan', 'Admin::panduan');
+
+$routes->get('/admin/manajemen', 'Admin::manajemen');
+$routes->get('/admin/manajemen/add', 'Admin::add_manajemen');
+$routes->get('/admin/manajemen/edit/(:any)', 'Admin::edit_manajemen/$1');
+
+$routes->get('/admin/log', 'Admin::log');
+
+
+$routes->get('/user/login', 'User::user_login');
+$routes->get('/user/keaktifan', 'User::keaktifan');
+
+
+
+
+
 
 
 // $routes->setTranslateURIDashes(false);

@@ -617,7 +617,9 @@ span#counter {
 .btn-primary-add-data:hover {
 
   background-color: #d000fa;
-  border-color: #d000fa
+  border-color: #d000fa;
+  color: white;
+
 }
 
 .btn-primary-download-excel {
@@ -630,7 +632,17 @@ span#counter {
 .btn-primary-download-excel:hover {
   background-color: #E55C00;
   border-color: #E55C00;
+  color: white;
 }
+
+.btn-primary-import {
+  
+  
+  margin: 5x;
+  border-radius: 10px;
+}
+
+
 
 .container1 {
   display: flex;
@@ -643,6 +655,26 @@ span#counter {
   max-width: 25%;
   min-width: 25%;
   
+}
+.label-form{
+  max-width: 25%;
+  min-width: 25%;
+  
+}
+
+.container1-up{
+  display: flex;
+  align-items: baseline;
+  /* Menyamakan tinggi elemen secara vertikal */
+  margin-bottom: 15px;
+}
+.container1-up .label-form{
+  max-width: 16.5%;
+  min-width: 16.5%;
+}
+.container1-up .label-form-txa{
+  max-width: 24.7%;
+  min-width: 24.7%;
 }
 
 .container1 img {
@@ -770,6 +802,33 @@ span#counter {
   max-width: 300px;
   min-width: 200px;
   
+}
+.logo-UG-login{
+  width: 15%;
+  margin-right: 1vw;
+}
+.logo-MB-login{
+  width: 80%;
+}
+.content-custom{
+  padding-top:15vh;
+  height: 100vh;
+}
+.footer-custom{
+  margin: 0;padding: 0;
+}
+#doc-search{
+  transition: 0.3s; /* Transisi untuk efek perubahan gambar */
+  width: 35px;
+}
+
+#doc-search:hover{
+  content: url(../img/doc-search-hover.png);
+}
+
+#toggle-button:hover{
+  color: #BE8ED7;
+  cursor: pointer;
 }
 /* 
 #example3 thead tr th ,#example3 tbody tr th{

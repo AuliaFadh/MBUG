@@ -7,11 +7,11 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/gform">Link Google Form</a></li>
-                <li class="breadcrumb-item active"><a href="/gform/add">Tambah Tautan</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/gform">Link Google Form</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/gform/add">Tambah Tautan</a></li>
 
 
             </ol>
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            
+
                             <h3>Tambah Tautan</h3>
                         </div>
 
@@ -37,7 +37,7 @@
                                         <label class="label-form">Nama Form</label>
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
-                                    
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <input type="text" class="form-control custom-textfield ">
@@ -47,15 +47,14 @@
                                         <input type="link" class="form-control custom-textfield ">
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-											
-                                            <label class="label-form">Tanggal Pembuatan</label>
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control" id="datepicker">											
+                                        <label class="label-form">Tanggal Pembuatan</label>
+                                        <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
                                     </div>
 
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
-                                        <a href="/gform" class="btn btn-warning margin-custom">Batal</a>
+                                        <a href="/admin/gform" class="btn btn-warning margin-custom">Batal</a>
                                     </div>
 
                                 </div>

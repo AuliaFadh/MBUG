@@ -8,10 +8,10 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/mbkm">Laporan MBKM</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/mbkm">Laporan MBKM</a></li>
 
 
             </ol>
@@ -27,8 +27,8 @@
                             <h3>Laporan MBKM</h3>
                         </div>
                         <div>
-                            <a href="/mbkm/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
+                            <a href="/admin/mbkm/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
                         </div>
                     </div>
 
@@ -49,21 +49,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($mbkm as $key => $value) : ?>
-                                        <?php $no++; ?>
-                                        <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['npm']; ?></td>
-                                            <td><?= $value['prodi']; ?></td>
-                                            <td><?= $value['jenis_beasiswa']; ?></td>
-                                            <td><?= $value['kegiatan_mbkm']; ?></td>
-                                            <td><?= $value['periode']; ?></td>
-                                            <td><?= $value['keterangan']; ?></td>
-                                            <td> <a href="/mbkm/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <td class="th-sm">1</td>
+                                    <td class="th-nm">Isa tarmana</td>
+                                    <td class="th-nm">10120544</td>
+                                    <td class="th-nm">Sistem Informasi</td>
+                                    <td class="th-nm">KIPK</td>
+                                    <td class="th-nm">Studi Independent</td>
+                                    <td class="th-sm">2023</td>
+                                    <td class="th-nm">Keterangan</td>
+                                    <td> <a href="/admin/mbkm/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                 </tbody>
                             </table>
                         </div>

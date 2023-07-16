@@ -7,11 +7,11 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/akademik">Laporan Akademik</a></li>
-                <li class="breadcrumb-item active"><a href="/akadmik/edit">Edit Akademik</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/akademik">Laporan Akademik</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/akadmik/edit">Edit Akademik</a></li>
 
 
             </ol>
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            
+
                             <h3>Edit Akademik</h3>
                         </div>
 
@@ -34,72 +34,65 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">NPM</label>
+                                        <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                    </div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">NPM</label>
-                                        <input type="text" class="form-control custom-textfield ">
-                                    </div>
+
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
-
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Semester</label>
-                                        <input type="number" class="form-control custom-textfield ">
-                                    </div>
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Alamat</label>
-                                        <input type="text" class="form-control custom-textfield ">
-                                    </div>
-
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Nomor Hp</label>
-                                        <input type="text" class="form-control custom-textfield ">
-                                    </div>
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Email</label>
-                                        <input type="email" class="form-control custom-textfield ">
-                                    </div>
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Tahun Penerimaan</label>
-                                        <select class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
-                                            <option></option>
-                                            <option value="2018">2018</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2022">2022</option>
-
-                                        </select>
-                                    </div>
-
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
-                                        <input type="radio" class="margin-custom" name="nilai" value="0"> Tidak Aktif<br>
+                                        <label for="status" class="label-form">Semester</label>
+                                        <input type="radio" class="margin-custom" name="nilai" value="1"> PTA<br>
+                                        <input type="radio" class="margin-custom" name="nilai" value="0" checked> ATA<br>
 
                                         <!-- <div class="invalid-feedback">
                                             
                                         </div> -->
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Keterangan</label>
-                                        <input type="text" class="form-control custom-textfield ">
+                                        <label class="label-form">Tahun Ajaran</label>
+                                        <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
                                     </div>
-                                    
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary margin-custom">Edit Data</button>
-                                        <a href="/akademik" class="btn btn-warning margin-custom">Batal</a>
+                                        <label class="label-form">IPK</label>
+                                        <input type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                    </div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">IPK Lokal</label>
+                                        <input type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                    </div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">IPK UU</label>
+                                        <input type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                        <div class="form-group fallback w-100">
+                                            <label class="label-form">Rangkuman Nilai</label>
+                                            <a title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
+                                            <input type="file" class="dropify" data-default-file="">
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
+                                        <a href="/admin/akademik" class="btn btn-warning margin-custom">Batal</a>
                                     </div>
 
                                 </div>

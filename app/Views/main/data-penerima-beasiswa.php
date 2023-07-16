@@ -8,12 +8,12 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">
-                    <a href="/penerima">Daftar Penerima Beasiswa</a>
+                    <a href="/admin/penerima">Daftar Penerima Beasiswa</a>
                 </li>
 
 
@@ -30,10 +30,10 @@
                             <h3>Daftar Penerima Beasiswa</h3>
                         </div>
                         <div>
-                            <a href="/penerima/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
+                            <a href="/admin/penerima/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
+                            <a href="/admin/penerima/import" class="btn btn-primary-import btn-success">Import Data</a>
                         </div>
-
                     </div>
 
 
@@ -45,8 +45,7 @@
                                         <th class="th-sm">No</th>
                                         <th class="th-nm">Nama</th>
                                         <th class="th-sm">NPM</th>
-                                        <th class="th-nm">Prodi</th>
-                                        <th class="th-sm">Semester</th>
+                                        <th class="th-nm">Program Studi</th>
                                         <th class="th-lg">Alamat</th>
                                         <th class="th-nm">No.HP</th>
                                         <th class="th-sm">Jenis Kelamin</th>
@@ -57,24 +56,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($pb as $key => $value) : ?>
-                                        <?php $no++; ?>
-                                        <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['npm']; ?></td>
-                                            <td><?= $value['prodi']; ?></td>
-                                            <td><?= $value['semester']; ?></td>
-                                            <td><?= $value['alamat']; ?></td>
-                                            <td><?= $value['no_hp']; ?></td>
-                                            <td><?= $value['jenis_kelamin']; ?></td>
-                                            <td><?= $value['tahun_penerimaan']; ?></td>
-                                            <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
-                                            <td>-</td>
-                                            <td> <a href="/penerima/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <tr>
+                                        <td class="th-sm"><strong>1</strong></td>
+                                        <td class="th-nm">Aulia</td>
+                                        <td class="th-sm">10120534</td>
+                                        <td class="th-nm">Sistem Informasi</td>
+                                        <td class="th-lg">Pondok cina</td>
+                                        <td class="th-nm">081220952593</td>
+                                        <td class="th-sm">Laki-Laki</td>
+                                        <td class="th-sm">2022</td>
+                                        <td class="th-sm">Aktif</td>
+                                        <td class="th-nm">-</td>
+                                        <td> <a href="/admin/penerima/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

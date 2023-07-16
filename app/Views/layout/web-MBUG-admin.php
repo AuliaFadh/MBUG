@@ -56,9 +56,10 @@
     <script src="<?= base_url('asset/vendor/pickadate/picker.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/pickadate/picker.time.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/pickadate/picker.date.js'); ?>"></script>
-	
+	<script src="<?= base_url('asset/js/plugins-init/chartjs-init.js'); ?>"></script>
 	<!-- Pickdate -->
     <script src="<?= base_url('asset/js/plugins-init/pickadate-init.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
 
 </body>
 

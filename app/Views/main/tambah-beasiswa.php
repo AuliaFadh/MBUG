@@ -7,11 +7,11 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/beasiswa">Jenis Beasiswa</a></li>
-                <li class="breadcrumb-item active"><a href="/beasiswa/add">Tambah Beasiswa</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/beasiswa">Jenis Beasiswa</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/beasiswa/add">Tambah Beasiswa</a></li>
             </ol>
         </div>
 
@@ -25,54 +25,47 @@
                         </div>
                     </div>
                     <div class="card-body">
-
-                        <!-- <form action="/Masuk/save_beasiswa" method="post"> -->
-                        <?php
-                        session();
-                        $validation = \Config\Services::validation();
-                        ?>
-                        <?php echo form_open('beasiswa/save') ?>
-                        <?= csrf_field(); ?>
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <label for="nama" class="label-form">Nama Beasiswa</label>
-                                    <input type="text" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('nama'); ?>
+                        <form action="/admin/beasiswa/save" method="post">
+                            <?= csrf_field(); ?>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="jenis" class="label-form">Jenis Beasiswa</label>
+                                        <input type="text" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? 'is-invalid' : ''; ?>" id="jenis" name="jenis" autofocus value="<?= old('jenis', isset($input['jenis']) ? $input['jenis'] : ''); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('jenis'); ?>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <label for="asal" class="label-form">Asal Beasiswa</label>
-                                    <input type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('asal'); ?>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="asal" class="label-form">Asal Beasiswa</label>
+                                        <input type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('asal'); ?>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <label for="tahun" class="label-form">Tahun Penerimaan</label>
-                                    <input type="number" class="form-control custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('tahun'); ?>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="tahun" class="label-form">Tahun Penerimaan</label>
+                                        <input type="number" class="form-control custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('tahun'); ?>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <label for="status" class="label-form">Status</label>
-                                    <input type="radio" class="margin-custom" id="status" name="status" value="1"> Aktif<br>
-                                    <input type="radio" class="margin-custom" id="status" name="status" value="0" checked> Tidak Aktif<br>
-                                </div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="status" class="label-form">Status</label>
+                                        <input type="radio" class="margin-custom" name="status" value="1"> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status" value="0" checked> Tidak Aktif<br>
+                                    </div>
 
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
-                                    <a href="/beasiswa" class="btn btn-warning margin-custom">Batal</a>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
+                                        <a href="/admin/beasiswa" class="btn btn-warning margin-custom">Batal</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php echo form_close() ?>
-                        <!-- </form> -->
+                        </form>
                     </div>
                 </div>
             </div>

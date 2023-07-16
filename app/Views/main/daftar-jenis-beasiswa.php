@@ -8,15 +8,14 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/beasiswa">Jenis Beasiswa</a></li>
-
-
+                <li class="breadcrumb-item active"><a href="/admin/beasiswa">Jenis Beasiswa</a></li>
             </ol>
 
         </div>
+        
         <div class="row">
             <!-- Ubah disini -->
             <div class="col-lg-12">
@@ -27,15 +26,11 @@
                             <h3>Daftar Jenis Beasiswa</h3>
                         </div>
                         <div>
-                            <a href="/beasiswa/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
+                            <a href="/admin/beasiswa/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
                         </div>
                     </div>
-                    <?php if (session()->getFlashdata('berhasil')) : ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->getFlashdata('berhasil'); ?>
-                        </div>
-                    <?php endif; ?>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -51,26 +46,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($jb as $key => $value) : ?>
-                                        <?php $no++; ?>
+                                    
                                         <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['id_beasiswa']; ?></td>
-                                            <td><?= $value['nama_beasiswa']; ?></td>
-                                            <td><?= $value['asal_beasiswa']; ?></td>
-                                            <td><?= $value['tahun_penerimaan']; ?></td>
-                                            <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
-                                            <td>
-                                                <a href="<?= base_url('/beasiswa/edit/'.$value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                                <a href="<?= base_url('/beasiswa/delete/'.$value['id_beasiswa']); ?>" onclick="return confirm('Hapus data?')" class="btn btn-sm btn-danger" method="post"><i class="la la-trash"></i></a>
-                                            </td>
+                                            <td><strong>1</strong></td>
+                                            <td>1</td>
+                                            <td>KIPK</td>
+                                            <td>Kemendikbud</td>
+                                            <td>2020</td>
+                                            <td>Aktif</td>
+                                            <td> <a href="beasiswa/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                        
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
+                    
                 </div>
 
             </div>

@@ -40436,5 +40436,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .custom-textfield{
   border: 3px solid #BEBDBD;
 }
+.footer{
+  background-color: #3E3E3E;
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -7,11 +7,11 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/prestasi">Laporan Prestasi</a></li>
-                <li class="breadcrumb-item active"><a href="/prestasi/add">Tambah Prestasi</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/prestasi">Laporan Prestasi</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/prestasi/add">Tambah Prestasi</a></li>
 
 
             </ol>
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            
+
                             <h3>Tambah Prestasi</h3>
                         </div>
 
@@ -53,7 +53,15 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tingkat</label>
-                                        <input type="text" class="form-control custom-textfield ">
+                                        <select class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-4">
+                                            <option></option>
+                                            <option value="2018">Internasional</option>
+                                            <option value="2019">Nasional</option>
+                                            <option value="2020">Provinsi</option>
+                                            <option value="2021">Wilayah</option>
+                                            <option value="2022">Internal</option>
+
+                                        </select>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Prestasi</label>
@@ -91,21 +99,20 @@
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-											
-												<label class="label-form">Tanggal</label>
-												<input name="datepicker" class="custom-textfield datepicker-default form-control" id="datepicker">											
-										</div>
+                                        <label class="label-form">Tanggal Pembuatan</label>
+                                        <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
+                                    </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Penyelenggara</label>
                                         <input type="text" class="form-control custom-textfield ">
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-											<div class="form-group fallback w-100">
+                                        <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Bukti</label>
-												<input type="file" class="dropify" data-default-file="">
-											</div>
-										</div>
+                                            <input type="file" class="dropify" data-default-file="">
+                                        </div>
+                                    </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan Publikasi</label>
                                         <input type="url" class="form-control custom-textfield ">
@@ -113,7 +120,7 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
-                                        <a href="/prestasi" class="btn btn-warning margin-custom">Batal</a>
+                                        <a href="/admin/prestasi" class="btn btn-warning margin-custom">Batal</a>
                                     </div>
 
                                 </div>

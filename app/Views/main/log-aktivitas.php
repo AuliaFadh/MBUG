@@ -9,7 +9,7 @@
                        <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <!-- Ubah disini -->
-                            <li class="breadcrumb-item"><a href="/dashboard">
+                            <li class="breadcrumb-item"><a href="/admin/home">
                                     <img class="logo-abbr logo-home" src="<?= base_url('asset/'); ?>img/Home.png" alt="">    
                                         Log Activity</a></li>
                         </ol>

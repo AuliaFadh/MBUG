@@ -8,10 +8,10 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/home">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/akademik">Laporan Akademik</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/akademik">Laporan Akademik</a></li>
 
 
             </ol>
@@ -27,8 +27,8 @@
                             <h3>Laporan Akademik</h3>
                         </div>
                         <div>
-                            <a href="/akademik/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
+                            <a href="/admin/akademik/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
                         </div>
                     </div>
 
@@ -40,39 +40,36 @@
                                         <th class="th-sm">No</th>
                                         <th class="th-nm">Nama</th>
                                         <th class="th-sm">NPM</th>
-                                        <th class="th-nm">Prodi</th>
-                                        <th class="th-sm">Semester</th>
-                                        <th class="th-lg">Alamat</th>
-                                        <th class="th-nm">No.HP</th>
-                                        <th class="th-nm">Email</th>
+                                        <th class="th-nm">Program Studi</th>
                                         <th class="th-nm">Jenis Beasiswa</th>
-                                        <th class="th-sm">Tahun Penerimaan</th>
-                                        <th class="th-sm">Status</th>
-                                        <th class="th-nm">Keterangan</th>
+                                        <th class="th-sm">Semester</th>
+                                        <th class="th-sm">Tahun Ajaran</th>
+                                        <th class="th-sm">IPK</th>
+                                        <th class="th-sm">IPK Lokal</th>
+                                        <th class="th-sm">IPK UU</th>
+                                        <th class="th-sm">Rangkuman Nilai</th>
                                         <th class="th-sm">Aksi</th>
+
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($la as $key => $value) : ?>
-                                        <?php $no++; ?>
-                                        <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['npm']; ?></td>
-                                            <td><?= $value['prodi']; ?></td>
-                                            <td><?= $value['semester']; ?></td>
-                                            <td><?= $value['alamat']; ?></td>
-                                            <td><?= $value['no_hp']; ?></td>
-                                            <td><?= $value['email']; ?></td>
-                                            <td><?= $value['jenis_beasiswa']; ?></td>
-                                            <td><?= $value['tahun_penerimaan']; ?></td>
-                                            <td><?= $value['status'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
-                                            <td><?= $value['keterangan']; ?></td>
-                                            <td> <a href="/akademik/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <tr>
+                                        <td class="th-sm">1000000</td>
+                                        <td class="th-nm">Isa Tarmana Mustopa</td>
+                                        <td class="th-sm">10120544</td>
+                                        <td class="th-nm">Sistem Informasi</td>
+                                        <td class="th-nm">Jenis Beasiswa</td>
+                                        <td class="th-sm">ATA 2022/2023</td>
+                                        <td class="th-sm">Tahun Ajaran</td>
+                                        <td class="th-sm">3.95</td>
+                                        <td class="th-sm">3.90</td>
+                                        <td class="th-sm">3.92</td>
+                                        <td class="th-sm"> <a title="Lihat File" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
+
+                                        <td> <a href="akademik/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>

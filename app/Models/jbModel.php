@@ -10,7 +10,7 @@ class jbModel extends Model
     protected $primaryKey       = 'id_beasiswa';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['nama_beasiswa', 'asal_beasiswa', 'tahun_penerimaan', 'status'];
+    protected $allowedFields    = ['jenis', 'asal', 'tahun_penerimaan', 'status_beasiswa'];
 
     public function AllData()
     {

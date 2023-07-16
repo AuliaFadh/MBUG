@@ -8,10 +8,10 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/dashboard">
+                <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/prestasi">Laporan Prestasi</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/prestasi">Laporan Prestasi</a></li>
 
 
             </ol>
@@ -27,8 +27,8 @@
                             <h3>Laporan Prestasi</h3>
                         </div>
                         <div>
-                            <a href="/prestasi/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <a href="#download" class="btn btn-primary-download-excel">Download Excel</a>
+                            <a href="/admin/prestasi/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
                         </div>
                     </div>
 
@@ -56,27 +56,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($lp as $key => $value) : ?>
-                                        <?php $no++; ?>
-                                        <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['npm']; ?></td>
-                                            <td><?= $value['prodi']; ?></td>
-                                            <td><?= $value['jenis_beasiswa']; ?></td>
-                                            <td><?= $value['tingkat']; ?></td>
-                                            <td><?= $value['jenis_prestasi'] == "1" ? "Tim" : "Individu"; ?></td>
-                                            <td><?= $value['nama_kegiatan']; ?></td>
-                                            <td><?= $value['capaian']; ?></td>
-                                            <td><?= $value['tempat']; ?></td>
-                                            <td><?= $value['tanggal']; ?></td>
-                                            <td><?= $value['penyelenggara']; ?></td>
-                                            <td><?= $value['bukti_prestasi']; ?></td>
-                                            <td><?= $value['publikasi']; ?></td>
-                                            <td> <a href="/prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <td class="th-sm">No</td>
+                                    <td class="th-nm">Nama</td>
+                                    <td class="th-sm">NPM</td>
+                                    <td class="th-nm">Program Studi</td>
+                                    <td class="th-nm">Jenis Beasiswa</td>
+                                    <td class="th-nm">Tingkat</td>
+                                    <td class="th-sm">Jenis Prestasi</td>
+                                    <td class="th-nm">Nama Kegiatan</td>
+                                    <td class="th-sm">Capaian</td>
+                                    <td class="th-nm">Tempat</td>
+                                    <td class="th-nm">Tanggal</td>
+                                    <td class="th-nm">Penyelenggara</td>
+                                    <td class="th-sm"> <a title="Lihat File" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
+                                    <td class="th-nm">Tautan Publikasi</td>
+                                    <td> <a href="prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+
                                 </tbody>
                             </table>
                         </div>
