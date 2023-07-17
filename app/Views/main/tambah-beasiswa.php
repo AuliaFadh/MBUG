@@ -35,6 +35,7 @@
                                         <label for="jenis" class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                         <input type="text" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? ' is-invalid is-test' : ''; ?>" id="jenis" name="jenis" autofocus value="<?= old('jenis', isset($input['jenis']) ? $input['jenis'] : ''); ?>">
+                                        
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('jenis'); ?>
                                         </div>
@@ -46,6 +47,7 @@
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                         <input type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
+                                        
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('asal'); ?>
                                         </div>
@@ -55,8 +57,8 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
 
                                         <label for="tahun" class="label-form">Tahun Penerimaan</label>
-                                        <div style="display: block;" class=" col-lg-8 col-md-8 col-sm-8">
-                                            <input type="number" class="form-control col-lg-4 col-md-4 col-sm-4 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input min=0 type="number" class="form-control col-lg-2 col-md-2 col-sm-2 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
                                             <div  class=" invalid-feedback">
                                                 <?= $validation->getError('tahun'); ?>
                                             </div>

@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <a href="/admin/beasiswa/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download Excel</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 

@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/admin/akademik/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download Excel</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                                         <th class="th-nm">Program Studi</th>
                                         <th class="th-lg">Jenis Beasiswa</th>
                                         <th class="th-sm">Semester</th>
-                                        <th class="th-sm">Tahun Ajaran</th>
+                                        <th class="th-nm">Tahun Ajaran</th>
                                         <th class="th-sm">IPK</th>
                                         <th class="th-sm">IPK Lokal</th>
                                         <th class="th-sm">IPK UU</th>
@@ -64,11 +64,16 @@
                                             <td class="th-nm"><?= $value['prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['semester']; ?></td>
-                                            <td class="th-sm"><?= $value['tahun_ajaran']; ?></td>
+                                            <td class="th-nm"><?= $value['tahun_ajaran']; ?></td>
                                             <td class="th-sm"><?= $value['ipk']; ?></td>
                                             <td class="th-sm"><?= $value['ipk_lokal']; ?></td>
                                             <td class="th-sm"><?= $value['ipk_uu']; ?></td>
-                                            <td class="th-sm"><?= $value['rangkuman_nilai']; ?></td>
+                                            <td class="th-sm">
+                                            <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                            </a>
+                                                
+                                            </td>
                                             <td class="th-sm"> <a href="/admin/akademik/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>

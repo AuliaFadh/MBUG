@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/admin/prestasi/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
+                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -68,7 +68,11 @@
                                     <td class="th-nm">Tempat</td>
                                     <td class="th-nm">Tanggal</td>
                                     <td class="th-nm">Penyelenggara</td>
-                                    <td class="th-sm"> <a title="Lihat File" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
+                                    <td class="th-sm"> 
+                                        <a title="Lihat File" href="pdf/pdf1.pdf">
+                                            <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                        </a>
+                                    </td>
                                     <td class="th-nm">Tautan Publikasi</td>
                                     <td> <a href="prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
 
