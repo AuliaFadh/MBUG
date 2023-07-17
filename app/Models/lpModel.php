@@ -16,4 +16,9 @@ class lpModel extends Model
     {
         return $this->db->table('laporan_prestasi')->Get()->getResultArray();
     }
+
+    public function InsertData($data)
+    {
+        $this->db->table('laporan_prestasi')->insert(($data));
+    }
 }
