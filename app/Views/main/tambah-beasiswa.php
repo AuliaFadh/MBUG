@@ -25,33 +25,45 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="/admin/beasiswa/save" method="post">
+                        <form action="/admin/beasiswa/save" class="needs-validation" novalidate method="post">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
+
+                                   
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="jenis" class="label-form">Jenis Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? 'is-invalid' : ''; ?>" id="jenis" name="jenis" autofocus value="<?= old('jenis', isset($input['jenis']) ? $input['jenis'] : ''); ?>">
+                                        <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
+                                        <input type="text" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? ' is-invalid is-test' : ''; ?>" id="jenis" name="jenis" autofocus value="<?= old('jenis', isset($input['jenis']) ? $input['jenis'] : ''); ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('jenis'); ?>
+                                        </div>
                                         </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
+                                        <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                         <input type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('asal'); ?>
                                         </div>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+
                                         <label for="tahun" class="label-form">Tahun Penerimaan</label>
-                                        <input type="number" class="form-control custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('tahun'); ?>
+                                        <div style="display: block;" class=" col-lg-8 col-md-8 col-sm-8">
+                                            <input type="number" class="form-control col-lg-4 col-md-4 col-sm-4 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
+                                            <div  class=" invalid-feedback">
+                                                <?= $validation->getError('tahun'); ?>
+                                            </div>
                                         </div>
+
                                     </div>
+
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>

@@ -53,7 +53,6 @@
                                         <th class="th-sm">Status</th>
                                         <th class="th-nm">Keterangan</th>
                                         <th class="th-sm">Aksi</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>

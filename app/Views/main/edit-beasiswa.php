@@ -38,7 +38,7 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus value="">
+                                        <input type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus value="KIPK">
                                         <!-- <div class="invalid-feedback">
                                         
                                         </div> -->
