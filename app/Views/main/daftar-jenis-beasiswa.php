@@ -40,7 +40,7 @@
                                         <th class="th-sm">ID</th>
                                         <th class="th-nm">Jenis Beasiswa</th>
                                         <th class="th-nm">Asal Beasiswa</th>
-                                        <th class="th-sm">Tahun bukan Penerimaan</th>
+                                        <th class="th-sm">Tahun Penerimaan</th>
                                         <th class="th-sm">Status</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
