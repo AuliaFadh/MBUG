@@ -43,6 +43,7 @@
                                         <th class="th-sm">Tahun Penerimaan</th>
                                         <th class="th-sm">Status</th>
                                         <th class="th-sm">Aksi</th>
+                                        <th class="th-sm">Annisa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
