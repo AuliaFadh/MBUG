@@ -31,7 +31,7 @@
                         </div>
                         <div>
                             <a href="/admin/penerima/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download Excel</button>
                             <a href="/admin/penerima/import" class="btn btn-primary-import btn-success">Import Data</a>
                         </div>
                     </div>
@@ -56,19 +56,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="th-sm"><strong>1</strong></td>
-                                        <td class="th-nm">Aulia</td>
-                                        <td class="th-sm">10120534</td>
-                                        <td class="th-nm">Sistem Informasi</td>
-                                        <td class="th-lg">Pondok cina</td>
-                                        <td class="th-nm">081220952593</td>
-                                        <td class="th-sm">Laki-Laki</td>
-                                        <td class="th-sm">2022</td>
-                                        <td class="th-sm">Aktif</td>
-                                        <td class="th-nm">-</td>
-                                        <td> <a href="/admin/penerima/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                    </tr>
+                                    <?php $no = 0; ?>
+                                    <?php foreach ($pb as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td><strong><?= $no; ?></strong></td>
+                                            <td><?= $value['nama']; ?></td>
+                                            <td><?= $value['npm']; ?></td>
+                                            <td><?= $value['prodi']; ?></td>
+                                            <td><?= $value['alamat']; ?></td>
+                                            <td><?= $value['no_hp']; ?></td>
+                                            <td><?= $value['jenis_kelamin'] == "1" ? "Laki-laki" : "Perempuan"; ?></td>
+                                            <td><?= $value['tahun_diterima']; ?></td>
+                                            <?php if($value['status_penerima'] == "1"){
+                                                $status = "Aktif";
+                                            } else if($value['status_penerima'] == "0"){
+                                                $status = "Tidak Aktif";
+                                            } else if($value['status_penerima'] == "2"){
+                                                $status = "Lulus";
+                                            };
+
+                                            ?>
+                                            <td><?= $status; ?></td>
+                                            <td><?= $value['keterangan']; ?></td>
+                                            <td>
+                                                <a href="<?= base_url('/admin/penerima/edit/' . $value['id_penerima']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <a href="<?= base_url('/admin/penerima/delete/' . $value['id_penerima']); ?>" onclick="return confirm('Hapus data?')" class="btn btn-sm btn-danger" method="post"><i class="la la-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

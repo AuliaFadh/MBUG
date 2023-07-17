@@ -15,7 +15,7 @@
             </ol>
 
         </div>
-        
+
         <div class="row">
             <!-- Ubah disini -->
             <div class="col-lg-12">
@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <a href="/admin/beasiswa/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download Excel</button>
                         </div>
                     </div>
 
@@ -46,23 +46,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    <?php $no = 0; ?>
+                                    <?php foreach ($jb as $key => $value) : ?>
+                                        <?php $no++; ?>
                                         <tr>
-                                            <td><strong>1</strong></td>
-                                            <td>1</td>
-                                            <td>KIPK</td>
-                                            <td>Kemendikbud</td>
-                                            <td>2020</td>
-                                            <td>Aktif</td>
-                                            <td> <a href="beasiswa/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td><strong><?= $no; ?></strong></td>
+                                            <td><?= $value['id_beasiswa']; ?></td>
+                                            <td><?= $value['jenis']; ?></td>
+                                            <td><?= $value['asal']; ?></td>
+                                            <td><?= $value['tahun_penerimaan']; ?></td>
+                                            <td><?= $value['status_beasiswa'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
+                                            <td>
+                                                <a href="<?= base_url('/admin/beasiswa/edit/' . $value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <a href="<?= base_url('/admin/beasiswa/delete/' . $value['id_beasiswa']); ?>" onclick="return confirm('Hapus data?')" class="btn btn-sm btn-danger" method="post"><i class="la la-trash"></i></a>
+                                            </td>
                                         </tr>
-                                        
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    
+
                 </div>
 
             </div>

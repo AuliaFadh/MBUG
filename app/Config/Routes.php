@@ -31,6 +31,7 @@ $routes->get('/admin/penerima/add', 'Admin::add_penerima');
 $routes->get('/admin/penerima/edit/(:any)', 'Admin::edit_penerima/$1');
 $routes->get('/admin/penerima/import', 'Admin::import_penerima');
 $routes->post('/admin/penerima/save', 'Admin::save_penerima');
+$routes->get('/admin/penerima/delete/(:any)', 'Admin::del_penerima/$1');
 
 $routes->get('/admin/akademik', 'Admin::akademik');
 $routes->get('/admin/akademik/add', 'Admin::add_akademik');

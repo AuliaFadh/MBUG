@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/admin/akademik/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download Excel</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download Excel</button>
                         </div>
                     </div>
 
@@ -54,22 +54,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="th-sm">1000000</td>
-                                        <td class="th-nm">Isa Tarmana Mustopa</td>
-                                        <td class="th-sm">10120544</td>
-                                        <td class="th-nm">Sistem Informasi</td>
-                                        <td class="th-nm">Jenis Beasiswa</td>
-                                        <td class="th-sm">ATA 2022/2023</td>
-                                        <td class="th-sm">Tahun Ajaran</td>
-                                        <td class="th-sm">3.95</td>
-                                        <td class="th-sm">3.90</td>
-                                        <td class="th-sm">3.92</td>
-                                        <td class="th-sm"> <a title="Lihat File" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
-
-                                        <td> <a href="akademik/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                    </tr>
-
+                                    <?php $no = 0; ?>
+                                    <?php foreach ($la as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td><strong><?= $no; ?></strong></td>
+                                            <td><?= $value['nama']; ?></td>
+                                            <td><?= $value['npm']; ?></td>
+                                            <td><?= $value['prodi']; ?></td>
+                                            <td><?= $value['jenis']; ?></td>
+                                            <td><?= $value['semester']; ?></td>
+                                            <td><?= $value['tahun_ajaran']; ?></td>
+                                            <td><?= $value['ipk']; ?></td>
+                                            <td><?= $value['ipk_lokal']; ?></td>
+                                            <td><?= $value['ipk_uu']; ?></td>
+                                            <td><?= $value['rangkuman_nilai']; ?></td>
+                                            <td> <a href="/admin/akademik/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

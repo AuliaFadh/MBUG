@@ -118,6 +118,16 @@ class Admin extends BaseController
         }
     }
 
+    public function del_beasiswa($id_beasiswa)
+    {
+        $data = [
+            'id_beasiswa' => $id_beasiswa,
+        ];
+        
+        $this->jbModel->DeleteData($data);
+        return redirect()->to(base_url('/admin/beasiswa'));
+    }
+
     public function penerima()
     {
         $pb = $this->pbModel->AllData();
@@ -128,6 +138,7 @@ class Admin extends BaseController
 
         return view('main/data-penerima-beasiswa', $data);
     }
+
     public function add_penerima()
     {
         $data = [
@@ -137,6 +148,7 @@ class Admin extends BaseController
 
         return view('main/tambah-penerima', $data);
     }
+
     public function edit_penerima()
     {
         $data = [
@@ -145,9 +157,11 @@ class Admin extends BaseController
 
         return view('main/edit-penerima', $data);
     }
+
     public function save_penerima()
     {
     }
+
     public function import_penerima()
     {
 
@@ -158,6 +172,16 @@ class Admin extends BaseController
         return view('main/import-data-peserta', $data);
     }
     // V
+
+    public function del_penerima($id_penerima)
+    {
+        $data = [
+            'id_penerima' => $id_penerima,
+        ];
+        
+        $this->pbModel->DeleteData($data);
+        return redirect()->to(base_url('/admin/penerima'));
+    }
 
     public function akademik()
     {

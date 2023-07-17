@@ -10,10 +10,30 @@ class pbModel extends Model
     protected $primaryKey       = 'id_penerima';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['nama', 'npm', 'prodi', 'semester', 'alamat', 'no_hp', 'jenis_kelamin', 'tahun_penerimaan', 'status'];
+    protected $allowedFields    = ['nama', 'npm', 'prodi', 'alamat', 'no_hp', 'jenis_kelamin', 'tahun_diterima', 'status_penerimaan', 'keterangan'];
 
     public function AllData()
     {
         return $this->db->table('penerima_beasiswa')->Get()->getResultArray();
+    }
+
+    public function InsertData($data)
+    {
+        $this->db->table('penerima_beasiswa')->insert(($data));
+    }
+
+    public function DetailData($id_penerima)
+    {
+        return $this->db->table('penerima_beasiswa')->where('id_penerima', $id_penerima)->get()->getRow();
+    }
+
+    public function UpdateData($data)
+    {
+        return $this->db->table('penerima_beasiswa')->where('id_penerima', $data['id_penerima'])->update($data);
+    }
+
+    public function DeleteData($data)
+    {
+        $this->db->table('penerima_beasiswa')->where('id_penerima', $data['id_penerima'])->delete($data);
     }
 }

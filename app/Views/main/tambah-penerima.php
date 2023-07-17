@@ -76,7 +76,7 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="nilai" value="1"> Lulus<br>
+                                        <input type="radio" class="margin-custom" name="nilai" value="2"> Lulus<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="0"> Tidak Aktif<br>
 
