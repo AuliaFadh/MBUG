@@ -53,8 +53,7 @@
                                         <th class="th-sm">Status</th>
                                         <th class="th-nm">Keterangan</th>
                                         <th class="th-sm">Aksi</th>
-                                        <th class="th-sm">Owl</th>
-                                        <th class="th-nm">Program Studiiiiii</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
