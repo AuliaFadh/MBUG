@@ -43,7 +43,8 @@
                                         <th class="th-sm">Tahun Penerimaan</th>
                                         <th class="th-sm">Status</th>
                                         <th class="th-sm">Aksi</th>
-                                        <th class="th-sm">isa git push1</th>
+                                        <th class="th-sm">isa git push2</th>
+                                        <th class="th-sm">Pak reja ganteng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
