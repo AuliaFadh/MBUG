@@ -44,7 +44,11 @@
                                         <th class="th-sm">Status</th>
                                         <th class="th-sm">Aksi</th>
                                         <th class="th-sm">isa git push2</th>
-                                        <th class="th-sm">Pak reja ganteng</th>
+                                        <th class="th-sm">Pak </th>
+                                        <th class="th-sm">Annisa</th>
+
+
+
                                     </tr>
                                 </thead>
                                 <tbody>
