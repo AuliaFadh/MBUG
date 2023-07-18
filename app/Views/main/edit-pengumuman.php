@@ -30,34 +30,52 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="#" method="post">
+                    <form action="#" method="post">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
+                                        <label class="label-form">Tanggal Diterbitkan </label>
+                                        <div style="display: block;" class=" col-lg-3 col-md-3 col-sm-3">
+                                            <input name="datepicker" class="custom-textfield datepicker-default form-control " id="datepicker">
+                                            <div class=" invalid-feedback">
 
-                                        <label class="label-form">Tanggal Terbit</label>
-                                        <input name="datepicker" class="custom-textfield datepicker-default form-control" id="datepicker">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
+                                        <label class="label-form">Batas Waktu Pengumuman </label>
+                                        <div style="display: block;" class=" col-lg-3 col-md-3 col-sm-3">
+                                            <input name="datepicker" class="custom-textfield datepicker-default form-control " id="datepicker">
+                                            <div class=" invalid-feedback">
 
-                                        <label class="label-form">Batas Terbit</label>
-                                        <input name="datepicker" class="custom-textfield datepicker-default form-control" id="datepicker">
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
                                         <label class="label-form">Judul Pengumuman</label>
-                                        <input type="text" class="form-control custom-textfield ">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield ">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Deskripsi</label>
-                                        <textarea class="form-control custom-textfield" rows="10"></textarea>
+                                        <div style="display: block;" class=" col-lg-10 col-md-10 col-sm-10">
+                                            <textarea class="form-control custom-textfield" rows="10"></textarea>
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
                                     </div>
 
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary margin-custom">Edit Data</button>
-                                        <a href="pengumuman.html" class="btn btn-warning margin-custom">Batal</a>
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+                                        <a href="/admin/pengumuman" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
                                     </div>
 
                                 </div>

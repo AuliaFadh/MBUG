@@ -38,27 +38,35 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus value="KIPK">
-                                        <!-- <div class="invalid-feedback">
-                                        
-                                        </div> -->
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus>
+                                            <div class="invalid-feedback">
+
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
-                                        <input type="text" class="form-control custom-textfield 
-                                         " id="asal" name="asal" ">
-                                        <!-- <div class=" invalid-feedback">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <input type="text" class="form-control custom-textfield" id="asal" name="asal" ">
+                                        <div class=" invalid-feedback">
 
-                                    </div> -->
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label class="label-form">Tahun Penerimaan</label>
-                                    <input type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                    <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <input type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                        <div class="invalid-feedback">
+
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label for="status" class="label-form">Status</label>
                                     <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
                                     <input type="radio" class="margin-custom" name="nilai" value="0" checked> Tidak Aktif<br>
@@ -69,8 +77,8 @@
                                 </div>
 
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <button type="submit" class="btn btn-primary margin-custom">Edit Data</button>
-                                    <a href="beasiswa.html" class="btn btn-warning margin-custom">Batal</a>
+                                    <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+                                    <a href="/admin/beasiswa" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
                                 </div>
                             </div>
                     </div>

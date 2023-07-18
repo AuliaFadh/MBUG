@@ -36,7 +36,7 @@
                                             <tr>
                                                 <th>Last Login</th>
                                                 <th>ID User</th>
-                                                <th>Nama User</th>
+                                                <th>Username</th>
                                                 <th>Hak Akses</th>
                                                 
                                                 

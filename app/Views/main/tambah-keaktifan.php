@@ -34,58 +34,90 @@
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
-                                        <input type="text" class="form-control custom-textfield ">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield ">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
-                                        <input type="text" class="form-control custom-textfield ">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield ">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="status" class="label-form">Semester</label>
-                                        <input type="radio" class="margin-custom" name="nilai" value="1"> PTA <br>
-                                        <input type="radio" class="margin-custom" name="nilai" value="0" checked> ATA <br>
+                                        <label class="label-form">Semester</label>
+                                        <div style="display: block;" class=" col-lg-2 col-md-2 col-sm-2">
+                                            <input type="number" min=1 max=14 class="form-control custom-textfield ">
+                                            <div class=" invalid-feedback">
 
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
+                                            </div>
+                                        </div>
                                     </div>
 
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Tahun Ajaran</label>
-                                        <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                    <div class=" container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form" style="margin-right: 20px;">Tahun Ajaran</label>
+
+
+                                        <select class="form-control  custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                            <option></option>
+                                            <option value="2018">ATA</option>
+                                            <option value="2018">PTA</option>
+                                        </select>
+                                        <input min="1981" required type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                        <h3>/</h3>
+                                        <input  min="1982" required type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group fallback w-100">
+
+                                        <div class="form-group fallback w-100 ">
                                             <label class="label-form">Upload KRS</label>
-                                            <input type="file" class="dropify" data-default-file="">
+
+                                            <input style=" margin-left :15px" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Blanko Pembayaran : Jumlah ditagihkan</label>
-                                        <input type="number" class="form-control custom-textfield ">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="number" min=0 step="10000" class="form-control custom-textfield ">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jumlah Potongan</label>
-                                        <input type="number" class="form-control custom-textfield ">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="number" min=0 step="10000" class="form-control custom-textfield ">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Blanko Pembayaran</label>
-                                            <input type="file" class="dropify" data-default-file="">
+                                            <input style=" margin-left :15px" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Bukti Pembayaran</label>
-                                            <input type="file" class="dropify" data-default-file="">
+                                            <input style=" margin-left :15px" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
                                         <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="0" checked> Tidak Aktif<br>
@@ -96,8 +128,8 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
-                                        <a href="/admin/keaktifan" class="btn btn-warning margin-custom">Batal</a>
+                                    <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+                                      <a href="/admin/beasiswa" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
                                     </div>
 
                                 </div>

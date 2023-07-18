@@ -30,27 +30,27 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
 
-                                   
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="jenis" class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
-                                        <input type="text" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? ' is-invalid is-test' : ''; ?>" id="jenis" name="jenis" autofocus value="<?= old('jenis', isset($input['jenis']) ? $input['jenis'] : ''); ?>">
-                                        
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('jenis'); ?>
-                                        </div>
+                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? ' is-invalid is-test' : ''; ?>" id="jenis" name="jenis" autofocus value="<?= old('jenis', isset($input['jenis']) ? $input['jenis'] : ''); ?>">
+
+                                            <div class="invalid-feedback">
+                                                <?= $validation->getError('jenis'); ?>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        
+
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
-                                        <input type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
-                                        
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('asal'); ?>
-                                        </div>
+                                            <input type="text"  class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
+
+                                            <div class="invalid-feedback">
+                                                <?= $validation->getError('asal'); ?>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -59,23 +59,25 @@
                                         <label for="tahun" class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <input min=0 type="number" class="form-control col-lg-2 col-md-2 col-sm-2 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
-                                            <div  class=" invalid-feedback">
+                                            <div class=" invalid-feedback">
                                                 <?= $validation->getError('tahun'); ?>
                                             </div>
                                         </div>
 
                                     </div>
 
+                                    
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+
+                                    <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
                                         <input type="radio" class="margin-custom" name="status" value="1"> Aktif<br>
                                         <input type="radio" class="margin-custom" name="status" value="0" checked> Tidak Aktif<br>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
-                                        <a href="/admin/beasiswa" class="btn btn-warning margin-custom">Batal</a>
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+                                        <a href="/admin/beasiswa" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
                                     </div>
                                 </div>
                             </div>

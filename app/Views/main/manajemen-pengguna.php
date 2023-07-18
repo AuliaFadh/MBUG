@@ -47,7 +47,7 @@
 
                                     <tr>
                                         <th>ID User</th>
-                                        <th>Nama User</th>
+                                        <th>Username</th>
                                         <th>Hak Akses</th>
                                         <th>Last Login</th>
                                         <th>Status</th>

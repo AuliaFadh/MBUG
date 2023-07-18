@@ -50,13 +50,13 @@
                                     <?php foreach ($jb as $key => $value) : ?>
                                         <?php $no++; ?>
                                         <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['id_beasiswa']; ?></td>
-                                            <td><?= $value['jenis']; ?></td>
-                                            <td><?= $value['asal']; ?></td>
-                                            <td><?= $value['tahun_penerimaan']; ?></td>
-                                            <td><?= $value['status_beasiswa'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
-                                            <td>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <td class="th-sm"><?= $value['id_beasiswa']; ?></td>
+                                            <td class="th-nm"><?= $value['jenis']; ?></td>
+                                            <td class="th-nm"><?= $value['asal']; ?></td>
+                                            <td class="th-sm"><?= $value['tahun_penerimaan']; ?></td>
+                                            <td class="th-sm"><?= $value['status_beasiswa'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
+                                            <td class="th-sm">
                                                 <a href="<?= base_url('/admin/beasiswa/edit/' . $value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                 <a href="<?= base_url('/admin/beasiswa/delete/' . $value['id_beasiswa']); ?>" onclick="return confirm('Hapus data?')" class="btn btn-sm btn-danger" method="post"><i class="la la-trash"></i></a>
                                             </td>

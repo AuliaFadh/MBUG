@@ -60,14 +60,14 @@
                                     <?php foreach ($pb as $key => $value) : ?>
                                         <?php $no++; ?>
                                         <tr>
-                                            <td><strong><?= $no; ?></strong></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['npm']; ?></td>
-                                            <td><?= $value['prodi']; ?></td>
-                                            <td><?= $value['alamat']; ?></td>
-                                            <td><?= $value['no_hp']; ?></td>
-                                            <td><?= $value['jenis_kelamin'] == "1" ? "Laki-laki" : "Perempuan"; ?></td>
-                                            <td><?= $value['tahun_diterima']; ?></td>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <td class="th-nm"><?= $value['nama']; ?></td>
+                                            <td class="th-sm"><?= $value['npm']; ?></td>
+                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-lg"><?= $value['alamat']; ?></td>
+                                            <td class="th-nm"><?= $value['no_hp']; ?></td>
+                                            <td class="th-sm"><?= $value['jenis_kelamin'] == "1" ? "Laki-laki" : "Perempuan"; ?></td>
+                                            <td class="th-sm"><?= $value['tahun_diterima']; ?></td>
                                             <?php if($value['status_penerima'] == "1"){
                                                 $status = "Aktif";
                                             } else if($value['status_penerima'] == "0"){
@@ -77,9 +77,9 @@
                                             };
 
                                             ?>
-                                            <td><?= $status; ?></td>
-                                            <td><?= $value['keterangan']; ?></td>
-                                            <td>
+                                            <td class="th-sm"><?= $status; ?></td>
+                                            <td class="th-nm"><?= $value['keterangan']; ?></td>
+                                            <td class="th-nm">
                                                 <a href="<?= base_url('/admin/penerima/edit/' . $value['id_penerima']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                 <a href="<?= base_url('/admin/penerima/delete/' . $value['id_penerima']); ?>" onclick="return confirm('Hapus data?')" class="btn btn-sm btn-danger" method="post"><i class="la la-trash"></i></a>
                                             </td>

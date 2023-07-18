@@ -74,7 +74,7 @@
                                             </a>
                                                 
                                             </td>
-                                            <td class="th-sm"> <a href="/admin/akademik/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td class="th-sm"> <a href="/admin/akademik/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
