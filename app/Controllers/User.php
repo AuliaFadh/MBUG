@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 
 class User extends BaseController
 {
-
+    
     public function user_login()
     {
 
@@ -16,7 +16,7 @@ class User extends BaseController
 
         return view('user-main/user-login', $data);
     }
-    public function home()
+    public function user_home()
     {
 
         $data = [
@@ -25,13 +25,130 @@ class User extends BaseController
 
         return view('user-main/dashboard', $data);
     }
-    public function keaktifan()
+    public function  user_profile_admin()
     {
 
         $data = [
-            'title' => 'Dashboard | MBUG',
+            'title' => 'Profile | MBUG',
+        ];
+
+        return view('main/admin-profile', $data);
+    }
+
+    public function user_akademik()
+    {
+        // $la = $this->laModel->AllData();
+        $data = [
+            'title' => 'Akademik | MBUG'
+            // ,
+            // 'la' => $la,
+        ];
+
+        return view('main/laporan-akademik', $data);
+    }
+    public function user_add_akademik()
+    {
+        $data = [
+            'title' => 'Form Input Akademik | MBUG',
+        ];
+
+        return view('main/tambah-akademik', $data);
+    }
+
+    public function user_edit_akademik()
+    {
+        $data = [
+            'title' => 'Form edit Akademik | MBUG',
+        ];
+
+        return view('user-main/edit-akademik', $data);
+    }
+
+    public function save_akademik()
+    {
+
+    }
+
+    public function user_mbkm()
+    {
+        // $mbkm = $this->mbkmModel->AllData();
+        $data = [
+            'title' => 'Magang Bersertifikat Kampus Merdeka | MBUG',
+            // 'mbkm' => $mbkm,
+        ];
+
+        return view('user-main/laporan-mbkm', $data);
+    }
+    public function user_add_mbkm()
+    {
+        $data = [
+            'title' => 'Form Input MBKM | MBUG',
+        ];
+
+        return view('user-main/tambah-mbkm', $data);
+    }
+
+    public function user_edit_mbkm()
+    {
+        $data = [
+            'title' => 'Form Edit MBKM | MBUG',
+        ];
+
+        return view('user-main/edit-mbkm', $data);
+    }
+
+
+    public function user_prestasi()
+    {
+        // $lp = $this->lpModel->AllData();
+        $data = [
+            'title' => 'Laporan Prestasi | MBUG',
+            // 'lp' => $lp,
+        ];
+
+        return view('user-main/laporan-prestasi', $data);
+    }
+    public function user_add_prestasi()
+    {
+        $data = [
+            'title' => 'Form Input Prestasi | MBUG',
+        ];
+
+        return view('user-main/tambah-prestasi', $data);
+    }
+    public function user_edit_prestasi()
+    {
+        $data = [
+            'title' => 'Form Edit Prestasi | MBUG',
+        ];
+
+        return view('user-main/edit-prestasi', $data);
+    }
+
+    public function user_keaktifan()
+    {
+        // $ka = $this->kaModel->AllData();
+        $data = [
+            'title' => 'Keaktifan per Semester | MBUG',
+            // 'ka' => $ka,
         ];
 
         return view('user-main/keaktifan', $data);
+    }
+    public function user_add_keaktifan()
+    {
+        $data = [
+            'title' => 'Form Input Keaktifan | MBUG',
+        ];
+
+        return view('user-main/tambah-keaktifan', $data);
+    }
+    public function user_edit_keaktifan()
+    {
+        $data = [
+            'title' => 'Form Edit Keaktifan per Semester | MBUG',
+        ];
+
+        return view('user-main/edit-keaktifan', $data);
     }
 }

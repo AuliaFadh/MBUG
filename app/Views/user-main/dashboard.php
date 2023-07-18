@@ -23,7 +23,7 @@
       </div>
       <div class="card-body">
         <p>Website Monitoring Beasiswa merupakan website yang digunakan untuk penggunaan pemantauan administrasi untuk
-          para penerima beasiswa di Universistas Gunadarma. saat ini anda berada pada halaman Admin.
+          para penerima beasiswa di Universistas Gunadarma. saat ini anda berada pada halaman Penerima Beasiswa.
         </p>
       </div>
 

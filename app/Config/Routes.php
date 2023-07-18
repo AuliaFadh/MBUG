@@ -66,9 +66,28 @@ $routes->get('/admin/manajemen/edit/(:any)', 'Admin::edit_manajemen/$1');
 
 $routes->get('/admin/log', 'Admin::log');
 
-
+//____________________________________________________________________________________________________
 $routes->get('/user/login', 'User::user_login');
-$routes->get('/user/keaktifan', 'User::keaktifan');
+$routes->get('/user/profile', 'User::user_profile_admin');
+$routes->get('/user/home', 'User::user_home');
+
+$routes->get('/user/akademik', 'User::user_akademik');
+$routes->get('/user/akademik/add', 'User::user_add_akademik');
+$routes->get('/user/akademik/edit/(:any)', 'User::user_edit_akademik/$1');
+
+
+$routes->get('/user/prestasi', 'User::user_prestasi');
+$routes->get('/user/prestasi/add', 'User::user_add_prestasi');
+$routes->get('/user/prestasi/edit/(:any)', 'User::user_edit_prestasi/$1');
+
+$routes->get('/user/mbkm', 'User::user_mbkm');
+$routes->get('/user/mbkm/add', 'User::user_add_mbkm');
+$routes->get('/user/mbkm/edit/(:any)', 'User::user_edit_mbkm');
+
+$routes->get('/user/keaktifan', 'User::user_keaktifan');
+$routes->get('/user/keaktifan/add', 'User::user_add_keaktifan');
+$routes->get('/user/keaktifan/edit/(:any)', 'User::user_edit_keaktifan/$1');
+
 
 
 

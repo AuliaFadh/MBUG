@@ -105,7 +105,7 @@
 
                         <li class="nav-item">
                             <div >
-                                <h4 style="padding: 0;margin:0;">Muhammad Aul</h4>
+                                <h4 style="padding: 0;margin:0;">{Nama User Penerima Beasiswa}</h4>
                                 <h5 style="padding: 0;margin:0;text-align: right; color:white ">Penerima Beasiswa</h5>
                             
                             
