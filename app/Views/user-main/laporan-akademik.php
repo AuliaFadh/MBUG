@@ -8,10 +8,10 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/admin/home">
+                <li class="breadcrumb-item"><a href="/user/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/admin/akademik">Laporan Akademik</a></li>
+                <li class="breadcrumb-item active"><a href="/user/akademik">Laporan Akademik</a></li>
 
 
             </ol>
@@ -27,7 +27,7 @@
                             <h3>Laporan Akademik</h3>
                         </div>
                         <div>
-                            <a href="/admin/akademik/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <a href="/user/akademik/add" class="btn btn-primary-add-data">Tambah Data</a>
                             <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
@@ -38,9 +38,9 @@
                                 <thead>
                                     <tr>
                                         <th class="th-sm">No</th>
-                                        <th class="th-nm">Nama</th>
-                                        <th class="th-sm">NPM</th>
-                                        <th class="th-nm">Program Studi</th>
+                                        
+                                        
+                                        
                                         <th class="th-lg">Jenis Beasiswa</th>
                                         <th class="th-sm">Semester</th>
                                         <th class="th-nm">Tahun Ajaran</th>
@@ -59,9 +59,9 @@
                                         <?php $no++; ?>
                                         <tr>
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
-                                            <td class="th-nm"><?= $value['nama']; ?></td>
-                                            <td class="th-sm"><?= $value['npm']; ?></td>
-                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                           
+                                           
+                                           
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['semester']; ?></td>
                                             <td class="th-nm"><?= $value['tahun_ajaran']; ?></td>
@@ -74,7 +74,7 @@
                                             </a>
                                                 
                                             </td>
-                                            <td class="th-sm"> <a href="/admin/akademik/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td class="th-sm"> <a href="/user/akademik/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

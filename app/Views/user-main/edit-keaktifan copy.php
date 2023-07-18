@@ -7,11 +7,11 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/admin/home">
+                <li class="breadcrumb-item"><a href="/user/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/admin/keaktifan">Laporan Keaktifan</a></li>
-                <li class="breadcrumb-item active"><a href="/admin/keaktifan/edit">Edit Keaktifan</a></li>
+                <li class="breadcrumb-item active"><a href="/user/keaktifan">Laporan Keaktifan</a></li>
+                <li class="breadcrumb-item active"><a href="/user/keaktifan/edit">Edit Keaktifan</a></li>
 
 
             </ol>
@@ -132,7 +132,7 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
-                                        <a href="/admin/keaktifan" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
+                                        <a href="/user/keaktifan" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
                                     </div>
 
                                 </div>

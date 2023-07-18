@@ -8,10 +8,10 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
-                <li class="breadcrumb-item"><a href="/admin/home">
+                <li class="breadcrumb-item"><a href="/user/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/admin/keaktifan">Keaktifan per Semester</a></li>
+                <li class="breadcrumb-item active"><a href="/user/keaktifan">Keaktifan per Semester</a></li>
 
 
             </ol>
@@ -27,7 +27,7 @@
                             <h3>Keaktifan per Semester</h3>
                         </div>
                         <div>
-                            <a href="/admin/keaktifan/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <a href="/user/keaktifan/add" class="btn btn-primary-add-data">Tambah Data</a>
                             <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                                     <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
                                     <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
                                     <td class="th-sm">Aktif</td>
-                                    <td> <a href="/admin/keaktifan/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                    <td> <a href="/user/keaktifan/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                 </tbody>
                             </table>
                         </div>

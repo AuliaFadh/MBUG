@@ -68,7 +68,7 @@ $routes->get('/admin/log', 'Admin::log');
 
 //____________________________________________________________________________________________________
 $routes->get('/user/login', 'User::user_login');
-$routes->get('/user/profile', 'User::user_profile_admin');
+$routes->get('/user/profile', 'User::user_profile');
 $routes->get('/user/home', 'User::user_home');
 
 $routes->get('/user/akademik', 'User::user_akademik');
@@ -87,6 +87,8 @@ $routes->get('/user/mbkm/edit/(:any)', 'User::user_edit_mbkm');
 $routes->get('/user/keaktifan', 'User::user_keaktifan');
 $routes->get('/user/keaktifan/add', 'User::user_add_keaktifan');
 $routes->get('/user/keaktifan/edit/(:any)', 'User::user_edit_keaktifan/$1');
+
+$routes->get('/user/panduan', 'User::user_panduan');
 
 
 

@@ -12,7 +12,7 @@
             Nav header start
         ***********************************-->
     <div class="nav-header nav-custome" style="background-color: #C4C4C4;">
-        <a href="/admin/home" class="brand-logo">
+        <a href="/user/home" class="brand-logo">
             <img class="logo-abbr" style="width: 100%;" src="https://gunadarma.ac.id/assets/images/logosmall.png" alt="">
 
             <img class="brand-title" src="<?= base_url('asset/img/Logo-web.png'); ?>" alt="">
@@ -104,7 +104,7 @@
                         </li> -->
 
                         <li class="nav-item">
-                            <div >
+                            <div class="nav-name-account" >
                                 <h4 style="padding: 0;margin:0;">{Nama User Penerima Beasiswa}</h4>
                                 <h5 style="padding: 0;margin:0;text-align: right; color:white ">Penerima Beasiswa</h5>
                             
@@ -113,10 +113,10 @@
                         </li>
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <img src="<?= base_url('asset/img/person-icon.png'); ?>" style="height: 50px; width: 50px;" alt="" />
+                                <img src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" style="height: 50px; width: 50px;" alt="" />
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="/admin/profile" class="dropdown-item ai-icon">
+                                <a href="/user/profile" class="dropdown-item ai-icon">
                                     <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="12" cy="7" r="4"></circle>
@@ -131,7 +131,7 @@
                                     </svg>
                                     <span class="ml-2">Inbox </span>
                                 </a> -->
-                                <a href="/admin/login" class="dropdown-item ai-icon">
+                                <a href="/user/login" class="dropdown-item ai-icon">
                                     <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
                                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                                         <polyline points="16 17 21 12 16 7"></polyline>

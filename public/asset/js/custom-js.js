@@ -100,3 +100,5 @@ function exportToCSV() {
   link.click();
   document.body.removeChild(link);
 }
+
+//Input langsung menampilkan foto
