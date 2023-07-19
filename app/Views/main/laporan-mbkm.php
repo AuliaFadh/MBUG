@@ -49,21 +49,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td class="th-sm">1</td>
-                                    <td class="th-nm">Isa tarmana</td>
-                                    <td class="th-nm">10120544</td>
-                                    <td class="th-nm">Sistem Informasi</td>
-                                    <td class="th-nm">KIPK</td>
-                                    <td class="th-nm">Studi Independent</td>
-                                    <td class="th-sm">2023</td>
-                                    <td class="th-nm">Keterangan</td>
-                                    <td> <a href="/admin/mbkm/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                <?php $no = 0; ?>
+                                    <?php foreach ($mbkm as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <td class="th-nm"><?= $value['nama']; ?></td>
+                                            <td class="th-sm"><?= $value['npm']; ?></td>
+                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-lg"><?= $value['jenis']; ?></td>
+                                            <td class="th-sm"><?= $value['kegiatan_mbkm']; ?></td>
+                                            <td class="th-nm"><?= $value['periode']; ?></td>
+                                            <td class="th-sm"><?= $value['keterangan_mbkm']; ?></td>
+                                            <td class="th-sm"><a href="/admin/mbkm/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

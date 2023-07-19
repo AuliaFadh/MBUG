@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/admin/prestasi/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -56,26 +56,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td class="th-sm">No</td>
-                                    <td class="th-nm">Nama</td>
-                                    <td class="th-sm">NPM</td>
-                                    <td class="th-nm">Program Studi</td>
-                                    <td class="th-nm">Jenis Beasiswa</td>
-                                    <td class="th-nm">Tingkat</td>
-                                    <td class="th-sm">Jenis Prestasi</td>
-                                    <td class="th-nm">Nama Kegiatan</td>
-                                    <td class="th-sm">Capaian</td>
-                                    <td class="th-nm">Tempat</td>
-                                    <td class="th-nm">Tanggal</td>
-                                    <td class="th-nm">Penyelenggara</td>
-                                    <td class="th-sm"> 
-                                        <a title="Lihat File" href="pdf/pdf1.pdf">
-                                            <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
-                                        </a>
-                                    </td>
-                                    <td class="th-nm">Tautan Publikasi</td>
-                                    <td> <a href="prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-
+                                    <?php $no = 0; ?>
+                                    <?php foreach ($lp as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <td class="th-nm"><?= $value['nama']; ?></td>
+                                            <td class="th-sm"><?= $value['npm']; ?></td>
+                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-lg"><?= $value['jenis']; ?></td>
+                                            <td class="th-sm"><?= $value['tingkat']; ?></td>
+                                            <td class="th-nm"><?= $value['jenis_prestasi']; ?></td>
+                                            <td class="th-sm"><?= $value['nama_kegiatan']; ?></td>
+                                            <td class="th-sm"><?= $value['capaian']; ?></td>
+                                            <td class="th-sm"><?= $value['tempat']; ?></td>
+                                            <td class="th-sm"><?= $value['tanggal']; ?></td>
+                                            <td class="th-sm"><?= $value['penyelenggara']; ?></td>
+                                            <td class="th-sm">
+                                                <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                                </a>                                          
+                                            </td>
+                                            <td class="th-sm"><?= $value['publikasi']; ?></td>
+                                            <td class="th-sm"> <a href="/admin/prestasi/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

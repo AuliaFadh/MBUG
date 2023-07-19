@@ -75,7 +75,6 @@
                                             } else if($value['status_penerima'] == "2"){
                                                 $status = "Lulus";
                                             };
-
                                             ?>
                                             <td class="th-sm"><?= $status; ?></td>
                                             <td class="th-nm"><?= $value['keterangan']; ?></td>

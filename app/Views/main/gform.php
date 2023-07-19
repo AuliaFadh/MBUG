@@ -43,28 +43,27 @@
                                 <thead>
 
                                     <tr>
+                                        <th class="th-nm">No</th>
                                         <th class="th-nm">Nama Form</th>
                                         <th class="th-nm">Jenis Beasiswa</th>
                                         <th class="th-nm">Tautan</th>
                                         <th class="th-sm">Tanggal Pembuatan</th>
                                         <th class="th-sm">Aksi</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="th-nm">Pendataan Peserta KIPK</td>
-                                        <td class="th-nm">KIPK</td>
-                                        <td class="th-nm"><a href="https://docs.google.com/forms" type="link">https://docs.google.com/forms</a></td>
-                                        <td class="th-sm">20 Juli 2023</td>
-                                        <td class="th-sm">
-                                            <a href="/admin/gform/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-
-
-
+                                    <?php $no = 0; ?>
+                                    <?php foreach ($lgf as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <td class="th-nm"><?= $value['nama_form']; ?></td>
+                                            <td class="th-sm"><?= $value['jenis']; ?></td>
+                                            <td class="th-nm"><a href="<?= $value['tautan']; ?>" type="link"><?= $value['tautan']; ?></a></td>
+                                            <td class="th-lg"><?= $value['tanggal_pembuatan']; ?></td>
+                                            <td class="th-sm"> <a href="/admin/gform/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

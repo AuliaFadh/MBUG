@@ -35,6 +35,7 @@ class Admin extends BaseController
 
         return view('main/admin-login', $data);
     }
+
     public function profile_admin()
     {
 
@@ -44,6 +45,7 @@ class Admin extends BaseController
 
         return view('main/admin-profile', $data);
     }
+
     public function home()
     {
 
@@ -53,7 +55,6 @@ class Admin extends BaseController
 
         return view('main/dashboard', $data);
     }
-
 
     public function beasiswa()
     {
@@ -193,6 +194,7 @@ class Admin extends BaseController
 
         return view('main/laporan-akademik', $data);
     }
+
     public function add_akademik()
     {
         $data = [
@@ -226,6 +228,7 @@ class Admin extends BaseController
 
         return view('main/laporan-prestasi', $data);
     }
+
     public function add_prestasi()
     {
         $data = [
@@ -234,6 +237,7 @@ class Admin extends BaseController
 
         return view('main/tambah-prestasi', $data);
     }
+
     public function edit_prestasi()
     {
         $data = [
@@ -242,7 +246,6 @@ class Admin extends BaseController
 
         return view('main/edit-prestasi', $data);
     }
-
 
     public function mbkm()
     {
@@ -254,6 +257,7 @@ class Admin extends BaseController
 
         return view('main/laporan-mbkm', $data);
     }
+
     public function add_mbkm()
     {
         $data = [
@@ -291,6 +295,7 @@ class Admin extends BaseController
 
         return view('main/tambah-manajemen', $data);
     }
+
     public function edit_manajemen()
     {
         $data = [
@@ -299,8 +304,6 @@ class Admin extends BaseController
 
         return view('main/edit-manajemen', $data);
     }
-
-
 
     public function keaktifan()
     {
@@ -312,6 +315,7 @@ class Admin extends BaseController
 
         return view('main/keaktifan', $data);
     }
+
     public function add_keaktifan()
     {
         $data = [
@@ -320,6 +324,7 @@ class Admin extends BaseController
 
         return view('main/tambah-keaktifan', $data);
     }
+
     public function edit_keaktifan()
     {
         $data = [
@@ -346,6 +351,7 @@ class Admin extends BaseController
         ];
         return view('main/tambah-gform', $data);
     }
+
     public function edit_gform()
     {
         $data = [
@@ -372,6 +378,7 @@ class Admin extends BaseController
 
         return view('main/tambah-pengumuman', $data);
     }
+    
     public function edit_pengumuman()
     {
         $data = [
