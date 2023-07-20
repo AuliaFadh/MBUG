@@ -68,11 +68,11 @@
                                             <td class="th-nm"><?= $value['no_hp']; ?></td>
                                             <td class="th-sm"><?= $value['jenis_kelamin'] == "1" ? "Laki-laki" : "Perempuan"; ?></td>
                                             <td class="th-sm"><?= $value['tahun_diterima']; ?></td>
-                                            <?php if($value['status_penerima'] == "1"){
+                                            <?php if ($value['status_penerima'] == "1") {
                                                 $status = "Aktif";
-                                            } else if($value['status_penerima'] == "0"){
+                                            } else if ($value['status_penerima'] == "0") {
                                                 $status = "Tidak Aktif";
-                                            } else if($value['status_penerima'] == "2"){
+                                            } else if ($value['status_penerima'] == "2") {
                                                 $status = "Lulus";
                                             };
                                             ?>

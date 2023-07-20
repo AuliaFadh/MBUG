@@ -46,7 +46,7 @@
 
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
-                                            <input type="text"  class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
+                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal" value="<?= old('asal', isset($input['asal']) ? $input['asal'] : ''); ?>">
 
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('asal'); ?>
@@ -66,7 +66,7 @@
 
                                     </div>
 
-                                    
+
 
 
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">

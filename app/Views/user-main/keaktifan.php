@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/user/keaktifan/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                                     <td class="th-nm">KIPIK</td>
                                     <td class="th-sm">ATA</td>
                                     <td class="th-nm"> 2023/2024</td>
-                                    <td class="th-sm"> <a title="Lihat Dokumen" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>""><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
+                                    <td class="th-sm"> <a title="Lihat Dokumen" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>""><img id=" doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
                                     <td class="th-nm">12,000,000</td>
                                     <td class="th-nm">1,500,000</td>
                                     <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>

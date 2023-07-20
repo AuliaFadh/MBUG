@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/user/mbkm/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                                 <thead>
                                     <tr>
                                         <th class="th-sm">No</th>
-                                        
+
                                         <th class="th-nm">Kegiatan MBKM</th>
                                         <th class="th-sm">Periode</th>
                                         <th class="th-nm">Keterangan</th>
@@ -47,7 +47,7 @@
                                 </thead>
                                 <tbody>
                                     <td class="th-sm">1</td>
-                                    
+
                                     <td class="th-nm">Studi Independent</td>
                                     <td class="th-sm">2023</td>
                                     <td class="th-nm">Keterangan</td>

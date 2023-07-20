@@ -49,7 +49,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                        <input type="text" class="form-control custom-textfield" id="asal" name="asal" ">
+                                            <input type="text" class="form-control custom-textfield" id="asal" name="asal" ">
                                         <div class=" invalid-feedback">
 
                                         </div>

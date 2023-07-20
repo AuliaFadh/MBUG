@@ -33,11 +33,11 @@
                         <form action="" method="">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                   
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                        <input  type="text" class="form-control custom-textfield ">
+                                            <input type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -78,7 +78,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Lokal</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input   min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -87,7 +87,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input   min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -97,14 +97,14 @@
 
 
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div  class="form-group fallback w-100">
+                                        <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Rangkuman Nilai(pdf)</label>
                                             <input style="padding-left : 15px;" type="file" class="dropify " data-default-file="" accept=".pdf">
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
 
-                                    <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
                                         <a href="/user/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
                                     </div>
 

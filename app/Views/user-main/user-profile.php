@@ -15,19 +15,19 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row  d-flex align-items-center ">
-                            <div  class="profile-container col-lg-3 col-sm-12 col-md-12 ">
+                            <div class="profile-container col-lg-3 col-sm-12 col-md-12 ">
                                 <div class="profile-image">
-                                    <img  src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" alt="Foto Profil">
+                                    <img src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" alt="Foto Profil">
                                     <div class="upload-overlay">
                                         <label for="file-input"> <i class="fa fa-pencil add-custom"></i> </label>
                                         <input type="file" id="file-input" style="display:none; visibility: none;">
                                     </div>
                                 </div>
                             </div>
-                            <div  class="identity col-lg-9 col-md-12 col-sm12">
-                                <div  class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                            <div class="identity col-lg-9 col-md-12 col-sm12">
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <h4 class="label-profile">NPM</h4>
-                                    <h4  class="label-profile"><span>:</span> {112024}</h4>
+                                    <h4 class="label-profile"><span>:</span> {112024}</h4>
                                 </div>
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <h4 class="label-profile">Nama</h4>

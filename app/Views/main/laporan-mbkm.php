@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/admin/mbkm/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php $no = 0; ?>
+                                    <?php $no = 0; ?>
                                     <?php foreach ($mbkm as $key => $value) : ?>
                                         <?php $no++; ?>
                                         <tr>

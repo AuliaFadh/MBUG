@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <a href="/user/prestasi/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -37,16 +37,16 @@
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                    <th class="th-sm">No.</th>
+                                        <th class="th-sm">No.</th>
                                         <th class="th-nm">Tanggal</th>
-                                        
+
                                         <th class="th-lg">Nama Kegiatan</th>
                                         <th class="th-nm">Tingkat</th>
                                         <th class="th-sm">Jenis Prestasi</th>
-                                        
+
                                         <th class="th-sm">Capaian</th>
                                         <th class="th-nm">Tempat</th>
-                                        
+
                                         <th class="th-nm">Penyelenggara</th>
                                         <th class="th-sm">Bukti Prestasi</th>
                                         <th class="th-nm">Tautan Publikasi</th>
@@ -55,17 +55,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <td class="th-sm">1</td>
-                                <td class="th-nm">Tanggal</td>
+                                    <td class="th-sm">1</td>
+                                    <td class="th-nm">Tanggal</td>
                                     <td class="th-lg">Kejuaraan Kebut Kelarin Pi</td>
                                     <td class="th-nm">Tingkat</td>
                                     <td class="th-sm">Jenis Prestasi</td>
-                                    
+
                                     <td class="th-sm">Capaian</td>
                                     <td class="th-nm">Tempat</td>
-                                    
+
                                     <td class="th-nm">Penyelenggara</td>
-                                    <td class="th-sm"> 
+                                    <td class="th-sm">
                                         <a title="Lihat File" href="<?= base_url('asset/doc/buku-panduan.pdf'); ?>">
                                             <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
                                         </a>
