@@ -66,7 +66,7 @@
                                     
                                     <td class="th-nm">Penyelenggara</td>
                                     <td class="th-sm"> 
-                                        <a title="Lihat File" href="pdf/pdf1.pdf">
+                                        <a title="Lihat File" href="<?= base_url('asset/doc/buku-panduan.pdf'); ?>">
                                             <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
                                         </a>
                                     </td>
