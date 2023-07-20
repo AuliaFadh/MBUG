@@ -41,7 +41,7 @@
                                         <th class="th-nm">Nama</th>
                                         <th class="th-sm">NPM</th>
                                         <th class="th-nm">Program Studi</th>
-                                        <th class="th-nm">Jenis Beasiswa</th>
+                                        <th class="th-lg">Jenis Beasiswa</th>
                                         <th class="th-sm">Semester</th>
                                         <th class="th-nm">Tahun Ajaran</th>
                                         <th class="th-sm">KRS</th>
