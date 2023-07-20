@@ -54,20 +54,46 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td class="th-sm"></td>
-                                    <td class="th-nm">Isa Tarmana</td>
-                                    <td class="th-sm">10120544</td>
-                                    <td class="th-nm">Sistem Informasi</td>
-                                    <td class="th-nm">KIPIK</td>
-                                    <td class="th-sm">ATA</td>
-                                    <td class="th-nm"> 2023/2024</td>
-                                    <td class="th-sm"> <a title="Lihat Dokumen" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>""><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
-                                    <td class="th-nm">12,000,000</td>
-                                    <td class="th-nm">1,500,000</td>
-                                    <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
-                                    <td class="th-sm"> <a title="Lihat Dokumen" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a></td>
-                                    <td class="th-sm">Aktif</td>
-                                    <td> <a href="/admin/keaktifan/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                <?php $no = 0; ?>
+                                    <?php foreach ($ka as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <td class="th-nm"><?= $value['nama']; ?></td>
+                                            <td class="th-sm"><?= $value['npm']; ?></td>
+                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-lg"><?= $value['jenis']; ?></td>
+                                            <td class="th-sm"><?= $value['semester']; ?></td>
+                                            <td class="th-nm"><?= $value['tahun_ajaran']; ?></td>
+                                            <td class="th-sm">
+                                            <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                            </a>                                   
+                                            </td>
+                                            <td class="th-sm"><?= $value['jumlah_ditagihkan']; ?></td>
+                                            <td class="th-sm"><?= $value['jumlah_potongan']; ?></td>
+                                            <td class="th-sm">
+                                            <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                            </a>                                   
+                                            </td>
+                                            <td class="th-sm">
+                                            <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                            </a>                                   
+                                            </td>
+                                            <?php if($value['status_keaktifan'] == "1"){
+                                                $status = "Aktif";
+                                            } else if($value['status_keaktifan'] == "0"){
+                                                $status = "Tidak Aktif";
+                                            } else if($value['status_keaktifan'] == "2"){
+                                                $status = "Lulus";
+                                            };
+                                            ?>
+                                            <td class="th-sm"><?= $status; ?></td>
+                                            <td class="th-sm"> <a href="/admin/keaktifan/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
