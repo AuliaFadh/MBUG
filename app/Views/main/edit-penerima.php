@@ -30,111 +30,111 @@
                     </div>
                     <div class="card-body">
 
-                       
-                    <form action="#" method="post">
 
-<div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label class="label-form">NPM</label>
-            <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
-                <div class="invalid-feedback">
+                        <form action="#" method="post">
 
-                </div>
-            </div>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">NPM</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                            <div class="invalid-feedback">
 
-        </div>
-        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label class="label-form">Nama</label>
-            <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                <input type="text" class="form-control custom-textfield ">
-                <div class="invalid-feedback">
+                                            </div>
+                                        </div>
 
-                </div>
-            </div>
-        </div>
+                                    </div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Nama</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield ">
+                                            <div class="invalid-feedback">
 
-        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label class="label-form">Program Studi</label>
-            <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                <input type="text" class="form-control custom-textfield ">
-                <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                </div>
-            </div>
-        </div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Program Studi</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield ">
+                                            <div class="invalid-feedback">
 
-
-        <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label class="label-form-txa">Alamat</label>
-            <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                <textarea class="form-control custom-textfield" rows="2"></textarea>
-                <div class="invalid-feedback">
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label class="label-form">Nomor Hp</label>
-            <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                <input type="text" class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
-                <div class="invalid-feedback">
-
-                </div>
-            </div>
-        </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-        <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label for="status" class="label-form">Jenis Kelamin</label>
-            <input type="radio" class="margin-custom" name="nilai" value="2"> Laki-Laki<br>
-            <input type="radio" class="margin-custom" name="nilai" value="1"> Perempuan<br>
+                                    <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form-txa">Alamat</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <textarea class="form-control custom-textfield" rows="2"></textarea>
+                                            <div class="invalid-feedback">
 
-        </div>
-        <!-- <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Nomor Hp</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
+                                            <div class="invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="status" class="label-form">Jenis Kelamin</label>
+                                        <input type="radio" class="margin-custom" name="nilai" value="2"> Laki-Laki<br>
+                                        <input type="radio" class="margin-custom" name="nilai" value="1"> Perempuan<br>
+
+                                    </div>
+                                    <!-- <div class="invalid-feedback">
             
         </div> -->
-        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label class="label-form">Tahun Penerimaan</label>
-            <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                <input type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
-                <div class="invalid-feedback">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Tahun Penerimaan</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                            <div class="invalid-feedback">
 
-                </div>
-            </div>
-        </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-        <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label for="status" class="label-form">Status</label>
-            <input type="radio" class="margin-custom" name="nilai" value="2"> Lulus<br>
-            <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
-            <input type="radio" class="margin-custom" name="nilai" value="0"> Tidak Aktif<br>
-        </div>
+                                    <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="status" class="label-form">Status</label>
+                                        <input type="radio" class="margin-custom" name="nilai" value="2"> Lulus<br>
+                                        <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="nilai" value="0"> Tidak Aktif<br>
+                                    </div>
 
-        <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <label class="label-form-txa">Keterangan</label>
-            <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                <textarea class="form-control custom-textfield" rows="2"></textarea>
-                <div class="invalid-feedback">
+                                    <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form-txa">Keterangan</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <textarea class="form-control custom-textfield" rows="2"></textarea>
+                                            <div class="invalid-feedback">
 
-                </div>
-            </div>
-        </div>
-
-
-        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-            <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
-            <a href="/admin/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
-        </div>
-    </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-</div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+                                        <a href="/admin/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
+                                    </div>
+                                </div>
 
 
-</form>
+                            </div>
+
+
+                        </form>
 
 
                     </div>

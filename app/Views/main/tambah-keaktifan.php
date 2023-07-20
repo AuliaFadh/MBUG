@@ -74,7 +74,7 @@
                                         </select>
                                         <input min="1981" required type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                         <h3>/</h3>
-                                        <input  min="1982" required type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                        <input min="1982" required type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
 
@@ -128,8 +128,8 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
-                                      <a href="/admin/beasiswa" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+                                        <a href="/admin/beasiswa" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
                                     </div>
 
                                 </div>

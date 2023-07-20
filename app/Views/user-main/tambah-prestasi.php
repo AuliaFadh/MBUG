@@ -33,8 +33,8 @@
                         <form action="#" method="post">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                    
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
@@ -78,7 +78,7 @@
                                             
                                         </div> -->
                                     </div>
-                                   
+
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Capaian</label>
@@ -111,7 +111,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Penyelenggara</label>

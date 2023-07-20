@@ -32,23 +32,24 @@
 
                         <p>Masukan File dalam bentuk CSV</p>
                         <form class="d-flex justify-content-between">
-                        <input name="csv-file-input" type="file" id="csv-file-input" accept=".csv">
-                        <div>
-                        <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
-                        <a href="/admin/penerima" class="btn btn-warning margin-custom">Batal</a></div>
+                            <input name="csv-file-input" type="file" id="csv-file-input" accept=".csv">
+                            <div>
+                                <button type="submit" class="btn btn-primary margin-custom">Tambah Data</button>
+                                <a href="/admin/penerima" class="btn btn-warning margin-custom">Batal</a>
+                            </div>
                         </form>
 
                         <div class="table-responsive">
-                        <div class="csv-container">
-                            <table id="example3" class="csv-table">
-                                <thead>
-                                    <tr class="csv-header-row"></tr>
-                                </thead>
-                                <tbody class="csv-body"></tbody>
-                            </table>
+                            <div class="csv-container">
+                                <table id="example3" class="csv-table">
+                                    <thead>
+                                        <tr class="csv-header-row"></tr>
+                                    </thead>
+                                    <tbody class="csv-body"></tbody>
+                                </table>
+                            </div>
                         </div>
-                        </div>
-                        
+
 
                     </div>
                 </div>

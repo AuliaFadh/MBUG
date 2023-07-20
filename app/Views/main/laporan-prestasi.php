@@ -75,7 +75,7 @@
                                             <td class="th-sm">
                                                 <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
                                                     <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
-                                                </a>                                          
+                                                </a>
                                             </td>
                                             <td class="th-sm"><?= $value['publikasi']; ?></td>
                                             <td class="th-sm"> <a href="/admin/prestasi/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
