@@ -19,19 +19,15 @@ $routes->group('admin', function ($routes) {
     $routes->get('profile', 'Admin::profile_admin');
     $routes->get('home', 'Admin::home');
 
-
     $routes->get('beasiswa', 'Admin::beasiswa');
     $routes->get('beasiswa/add', 'Admin::add_beasiswa');
     $routes->get('beasiswa/edit/(:any)', 'Admin::edit_beasiswa/$1');
-    $routes->post('beasiswa/save', 'Admin::save_beasiswa');
     $routes->get('beasiswa/delete/(:any)', 'Admin::del_beasiswa/$1');
-
 
     $routes->get('penerima', 'Admin::penerima');
     $routes->get('penerima/add', 'Admin::add_penerima');
     $routes->get('penerima/edit/(:any)', 'Admin::edit_penerima/$1');
     $routes->get('penerima/import', 'Admin::import_penerima');
-    $routes->post('penerima/save', 'Admin::save_penerima');
     $routes->get('penerima/delete/(:any)', 'Admin::del_penerima/$1');
 
     $routes->get('akademik', 'Admin::akademik');
@@ -50,7 +46,6 @@ $routes->group('admin', function ($routes) {
     $routes->get('keaktifan/add', 'Admin::add_keaktifan');
     $routes->get('keaktifan/edit/(:any)', 'Admin::edit_keaktifan/$1');
 
-
     $routes->get('gform', 'Admin::gform');
     $routes->get('gform/add', 'Admin::add_gform');
     $routes->get('gform/edit/(:any)', 'Admin::edit_gform/$1');
@@ -68,8 +63,10 @@ $routes->group('admin', function ($routes) {
     $routes->get('log', 'Admin::log');
 });
 
+
+//____________________________________________________________________________________________________
+
 $routes->group('user', function ($routes) {
-    //____________________________________________________________________________________________________
     $routes->get('login', 'User::user_login');
     $routes->get('profile', 'User::user_profile');
     $routes->get('home', 'User::user_home');
@@ -77,7 +74,6 @@ $routes->group('user', function ($routes) {
     $routes->get('akademik', 'User::user_akademik');
     $routes->get('akademik/add', 'User::user_add_akademik');
     $routes->get('akademik/edit/(:any)', 'User::user_edit_akademik/$1');
-
 
     $routes->get('prestasi', 'User::user_prestasi');
     $routes->get('prestasi/add', 'User::user_add_prestasi');
@@ -93,10 +89,6 @@ $routes->group('user', function ($routes) {
 
     $routes->get('panduan', 'User::user_panduan');
 });
-
-
-
-
 
 
 // $routes->setTranslateURIDashes(false);
