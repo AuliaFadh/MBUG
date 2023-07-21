@@ -64,7 +64,9 @@
                                         <td>Aktif</td>
                                         <td>
                                             <a href="manajemen/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+                                            <!-- Ul ini button Delete lu simpen url deletenya di public/asset/js/custom-js.js -->
+                                            <button onclick="deleteConfirmation_user(2)"  class="btn btn-sm btn-danger" ><i class="la la-trash-o"></i></button>
+                                            
                                         </td>
                                     </tr>
 

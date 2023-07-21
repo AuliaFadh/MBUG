@@ -41,11 +41,11 @@
                                         <th class="th-nm">Nama</th>
                                         <th class="th-sm">NPM</th>
                                         <th class="th-nm">Program Studi</th>
-                                        <th class="th-nm">Jenis Beasiswa</th>
+                                        <th class="th-lg">Jenis Beasiswa</th>
                                         <th class="th-nm">Tingkat</th>
                                         <th class="th-sm">Jenis Prestasi</th>
                                         <th class="th-nm">Nama Kegiatan</th>
-                                        <th class="th-sm">Capaian</th>
+                                        <th class="th-nm">Capaian</th>
                                         <th class="th-nm">Tempat</th>
                                         <th class="th-nm">Tanggal</th>
                                         <th class="th-nm">Penyelenggara</th>
@@ -67,8 +67,8 @@
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['tingkat']; ?></td>
                                             <td class="th-nm"><?= $value['jenis_prestasi']; ?></td>
-                                            <td class="th-sm"><?= $value['nama_kegiatan']; ?></td>
-                                            <td class="th-sm"><?= $value['capaian']; ?></td>
+                                            <td class="th-nm"><?= $value['nama_kegiatan']; ?></td>
+                                            <td class="th-nm"><?= $value['capaian']; ?></td>
                                             <td class="th-sm"><?= $value['tempat']; ?></td>
                                             <td class="th-sm"><?= $value['tanggal']; ?></td>
                                             <td class="th-sm"><?= $value['penyelenggara']; ?></td>

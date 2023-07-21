@@ -58,6 +58,8 @@
                                             <td class="th-sm"><?= $value['status_beasiswa'] == "1" ? "Aktif" : "Tidak Aktif"; ?></td>
                                             <td class="th-sm">
                                                 <a href="<?= base_url('/admin/beasiswa/edit/' . $value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <!-- ul ini yng elemen button dari adib, jadi dia confirm boxnya udah keren jadi  -->
+                                                <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_beasiswa(2)"><i class="la la-trash-o"></i></button>
                                                 <a href="<?= base_url('/admin/beasiswa/delete/' . $value['id_beasiswa']); ?>" onclick="return confirm('Hapus data?')" class="btn btn-sm btn-danger" method="post"><i class="la la-trash"></i></a>
                                             </td>
                                         </tr>

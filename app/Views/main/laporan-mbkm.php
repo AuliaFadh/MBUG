@@ -42,9 +42,10 @@
                                         <th class="th-nm">NPM</th>
                                         <th class="th-nm">Program Studi</th>
                                         <th class="th-nm">Jenis Beasiswa</th>
-                                        <th class="th-nm">Kegiatan MBKM</th>
+                                        <th class="th-lg">Nama Program MBKM</th>
+                                        <th class="th-nm">Jenis Program MBKM</th>
                                         <th class="th-sm">Periode</th>
-                                        <th class="th-nm">Keterangan</th>
+                                        <th class="th-lg">Keterangan</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
@@ -58,9 +59,10 @@
                                             <td class="th-sm"><?= $value['npm']; ?></td>
                                             <td class="th-nm"><?= $value['prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
-                                            <td class="th-sm"><?= $value['kegiatan_mbkm']; ?></td>
-                                            <td class="th-nm"><?= $value['periode']; ?></td>
-                                            <td class="th-sm"><?= $value['keterangan_mbkm']; ?></td>
+                                            <td class="th-lg">Bangkit Academy 2023 | Cloud Computing</td>
+                                            <td class="th-nm"><?= $value['kegiatan_mbkm']; ?></td>
+                                            <td class="th-sm"><?= $value['periode']; ?></td>
+                                            <td class="th-lg"><?= $value['keterangan_mbkm']; ?></td>
                                             <td class="th-sm"><a href="/admin/mbkm/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>

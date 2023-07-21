@@ -60,6 +60,7 @@
 	<!-- Pickdate -->
     <script src="<?= base_url('asset/js/plugins-init/pickadate-init.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/sweetalert2.all.min.js'); ?>"></script>
 
 </body>
 

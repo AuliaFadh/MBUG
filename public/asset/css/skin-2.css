@@ -882,8 +882,27 @@ span#counter {
   opacity: 1;
 }
 
+.how-to-import{
+  margin-bottom: 10px;
+  
+  
+}
+.how-to-import{
+  padding-left: 20px;
+}
+.how-to-import p{
+  margin: 0;
+  padding: 0;
 
+}
 
+.how-to li{
+  list-style:inherit ;
+}
+.how-to li a{
+  color: blue;
+  text-decoration: underline;
+}
 /* 
 #example3 thead tr th ,#example3 tbody tr th{
   min-width: 200px;
