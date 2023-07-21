@@ -36,7 +36,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -46,7 +46,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -56,7 +56,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -65,7 +65,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -101,7 +101,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Kegiatan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input  value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -133,7 +133,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tempat</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -142,7 +142,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal Pembuatan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
+                                            <input value="{di isi data sebelumnya dulu}" name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -152,7 +152,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Penyelenggara</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -169,7 +169,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan Publikasi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="url" class="form-control custom-textfield ">
+                                            <input value="{di isi data sebelumnya dulu}" type="url" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>

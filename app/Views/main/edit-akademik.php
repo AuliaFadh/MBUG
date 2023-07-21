@@ -36,7 +36,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -45,7 +45,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -56,7 +56,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -65,7 +65,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -74,7 +74,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Semester</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-2 col-sm-2">
-                                            <input type="number" min=1 max=14 class="form-control custom-textfield ">
+                                            <input value="-99" type="number" min=1 max=14 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -100,7 +100,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                            <input value="-99" min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -109,7 +109,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Lokal</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                            <input value="-99" min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -118,7 +118,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                            <input value="-99" min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -129,7 +129,7 @@
                                         <div class="form-group fallback w-100 ">
                                             <label class="label-form">Rangkuman Nilai</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
-                                            <input type="file" class="dropify" data-default-file="">
+                                            <input value="-99" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
 

@@ -39,7 +39,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus>
+                                            <input value="{di isi data sebelumnya dulu}"  type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus>
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -49,7 +49,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield" id="asal" name="asal" ">
+                                            <input value="{di isi data sebelumnya dulu}"  type="text" class="form-control custom-textfield" id="asal" name="asal" ">
                                         <div class=" invalid-feedback">
 
                                         </div>
@@ -59,7 +59,7 @@
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label class="label-form">Tahun Penerimaan</label>
                                     <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                        <input type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                        <input value="-99"  type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
                                         <div class="invalid-feedback">
 
                                         </div>

@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <h3>Halo, <span id="Nama-Akun">{nama Pengguna}</span> </h3>
+                            <h3>Halo, <span id="Nama-Akun">{Username}</span> </h3>
                         </div>
                     </div>
 
@@ -26,15 +26,7 @@
                             </div>
                             <div class="card-body">
                                 <form action="">
-                                    <div class="container1 custom-container-form col-lg-7 col-md-7 col-sm-7 ">
-                                        <label class="label-form">Nama</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-7 col-md-7 col-sm-7">
-                                            <div class=" invalid-feedback">
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="container1 custom-container-form col-lg-7 col-md-7 col-sm-7 ">
                                         <label class="label-form">Password Lama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">

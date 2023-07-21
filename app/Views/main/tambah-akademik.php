@@ -35,17 +35,19 @@
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                        <div style="display: block;" class=" col-lg-3 col-md-3 col-sm-3">
+                                            <input type="text" class="form-control custom-textfield col-lg-12 col-md-12 col-sm-12">
                                             <div class="invalid-feedback">
 
                                             </div>
                                         </div>
+                                        <button name="Check NPM" href="reset-pass.html" class="btn btn-sm btn-primary"><i class="mdi mdi-magnify"></i></button>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input readonly placeholder="Terisi bedasarkan NPM" value="nama bedasarkan input NPM" type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -57,7 +59,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -84,7 +86,7 @@
                                     <div class=" container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form" style="margin-right: 20px;">Tahun Ajaran</label>
 
-
+                                        
                                         <select class="form-control  custom-textfield col-lg-2 col-md-2 col-sm-2">
                                             <option></option>
                                             <option value="2018">ATA</option>

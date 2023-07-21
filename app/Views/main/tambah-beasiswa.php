@@ -58,7 +58,7 @@
 
                                         <label for="tahun" class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=0 type="number" class="form-control col-lg-2 col-md-2 col-sm-2 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
+                                            <input min=1981  type="number" class="form-control col-lg-2 col-md-2 col-sm-2 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('tahun'); ?>
                                             </div>

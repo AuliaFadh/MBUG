@@ -82,12 +82,12 @@
                                                 <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
                                             </a>                                   
                                             </td>
-                                            <?php if($value['status_keaktifan'] == "1"){
-                                                $status = "Aktif";
-                                            } else if($value['status_keaktifan'] == "0"){
-                                                $status = "Tidak Aktif";
-                                            } else if($value['status_keaktifan'] == "2"){
-                                                $status = "Lulus";
+                                            <?php if ($value['status_penerima'] == "1") {
+                                                $status = '<span class="badge badge-rounded badge-primary"> Aktif</span>';
+                                            } else if ($value['status_penerima'] == "0") {
+                                                $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
+                                            } else if ($value['status_penerima'] == "2") {
+                                                $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
                                             };
                                             ?>
                                             <td class="th-sm"><?= $status; ?></td>

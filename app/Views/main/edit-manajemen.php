@@ -37,7 +37,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Username</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input  type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -64,7 +64,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Hak Akses</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <select class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
+                                            <select  class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
                                                 <option></option>
                                                 <option value="2018">Admin</option>
                                                 <option value="2019">Mahasiswa</option>

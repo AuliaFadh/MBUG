@@ -38,7 +38,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                            <input readonly value="{di isi data sebelumnya dulu}"type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -48,7 +48,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -58,7 +58,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -69,7 +69,7 @@
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form-txa">Alamat</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea class="form-control custom-textfield" rows="2"></textarea>
+                                            <textarea  class="form-control custom-textfield" rows="2">{di isi data sebelumnya dulu}</textarea>
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -79,7 +79,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nomor Hp</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
+                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -99,7 +99,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                            <input value="-999" min="1981" type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -116,7 +116,7 @@
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea class="form-control custom-textfield" rows="2"></textarea>
+                                            <textarea class="form-control custom-textfield" rows="2">{di isi data sebelumnya dulu}</textarea>
                                             <div class="invalid-feedback">
 
                                             </div>
