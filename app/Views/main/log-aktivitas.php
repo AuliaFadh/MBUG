@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/person-icon.png'); ?>" alt="">
+                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/log.png'); ?>" alt="">
                             <h3>Log Aktivitas</h3>
                         </div>
 

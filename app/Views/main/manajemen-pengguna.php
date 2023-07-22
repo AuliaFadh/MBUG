@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/beasiswa-icon.png'); ?>" alt="">
+                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/manajemen.png'); ?>" alt="">
                             <h3>Manajemen Pengguna</h3>
                         </div>
 

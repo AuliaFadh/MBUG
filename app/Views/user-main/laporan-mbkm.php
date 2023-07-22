@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/beasiswa-icon.png'); ?>" alt="">
+                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/mbkm.png'); ?>" alt="">
                             <h3>Laporan MBKM</h3>
                         </div>
                         <div>
