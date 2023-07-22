@@ -9,10 +9,17 @@
             <h1>Profile </h1>
         </div>
 
-        <div class="row">
+        
             <!-- Ubah disini -->
-            <div class="col-lg-12">
-                <div class="card">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <form class="card">
+                <div class="card-header">
+                        <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 justify-content-between">
+                            <h2>Ingin Mengubah data profile mu?</h2>
+                            <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="row  d-flex align-items-center ">
                             <div class="profile-container col-lg-3 col-sm-12 col-md-12 ">
@@ -47,12 +54,30 @@
                                 </div>
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <h4 class="label-profile">Nomor Telepon</h4>
-                                    <h4 class="label-profile"><span>:</span> {+6281293942}</h4>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
+
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
+                                            <input type="text" value="{diisi data sebelymna}" class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
+                                            <div class="invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <h4 class="label-profile">Alamat</h4>
-                                    <h4 class="label-profile"><span>:</span> {Jl. Jendral Sudirman No.108 Kec.Benteng Kel.Warudoyong Kota Sukabumi Provinsi Jawa Barat}</h4>
+
+                                    <div class="container1-up custom-container-form col-lg-8 col-md-12 col-sm-12 no-mg no-pd">
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
+                                            <textarea class="form-control custom-textfield" rows="2">{di isi data sebelumnya dulu}</textarea>
+                                            <div class="invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
 
                         </div>
@@ -62,10 +87,42 @@
 
 
                     </div>
-                </div>
-
+                   
+                </form>
             </div>
-        </div>
+            <div class="card">
+                            <div class="card-header">
+                                <h4>Ingin Ubah Profile?</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="">
+                                    
+                                    <div class="container1 custom-container-form col-lg-7 col-md-7 col-sm-7 ">
+                                        <label class="label-form">Password Lama</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="password" class="form-control custom-textfield col-lg-7 col-md-7 col-sm-7">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container1 custom-container-form col-lg-7 col-md-7 col-sm-7 ">
+                                        <label class="label-form">Password Baru</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="password" class="form-control custom-textfield col-lg-7 col-md-7 col-sm-7">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
+
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
 
 
 

@@ -34,33 +34,34 @@
       </div>
       <div class="card-body">
 
-        <div class="card text-bg-info mb-3 col-lg-12">
-          <div class="card-header">
+      <div class="card text-bg-info mb-3 col-lg-12">
+          <div class="card-header custom-container-form ">
             <div class="col-lg-6">
               <h5 class="card-title">Judul Pengumuman</h5>
               <p>20 Juli 2023</p>
             </div>
-            <div class="col-lg-6 d-flex justify-content-end">
-              <button class="btn btn-secondary toggle-button">Baca Selengkapnya</button>
+            <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-end">
+              <button class="btn btn-secondary toggle-button col-lg-6 col-md-12 col-sm-12 ">Baca Selengkapnya</button>
             </div>
           </div>
           <div class="card-body card-body-content" style="display: none;">
-            <p>Isi pengumuman...</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
           </div>
         </div>
 
+
         <div class="card text-bg-info mb-3 col-lg-12">
-          <div class="card-header">
+          <div class="card-header custom-container-form ">
             <div class="col-lg-6">
               <h5 class="card-title">Judul Pengumuman</h5>
               <p>20 Juli 2023</p>
             </div>
-            <div class="col-lg-6 d-flex justify-content-end">
-              <button class="btn btn-secondary toggle-button">Baca Selengkapnya</button>
+            <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-end">
+              <button class="btn btn-secondary toggle-button col-lg-6 col-md-12 col-sm-12 ">Baca Selengkapnya</button>
             </div>
           </div>
           <div class="card-body card-body-content" style="display: none;">
-            <p>Isi pengumuman...</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
           </div>
         </div>
 

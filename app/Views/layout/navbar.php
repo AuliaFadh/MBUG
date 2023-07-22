@@ -105,7 +105,7 @@
 
                         <li class="nav-item">
                             <div nav-name-account >
-                                <h4 style="padding: 0;margin:0;">Muhammad Aul</h4>
+                                <h4 style="padding: 0;margin:0;">{Username yang Login}</h4>
                                 <h5 style="padding: 0;margin:0;text-align: right; color:white ">Admin</h5>
                             
                             

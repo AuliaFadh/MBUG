@@ -673,7 +673,7 @@ span#counter {
   min-width: 16.5%;
 }
 .container1-up .label-form-txa{
-  max-width: 24.7%;
+  max-width: 26.7%;
   min-width: 24.7%;
 }
 
@@ -684,7 +684,7 @@ span#counter {
 }
 
 .logo-home {
-  width: 20px;
+  max-width: 20px;
 }
 
 .nav-text{
@@ -902,6 +902,12 @@ span#counter {
 .how-to li a{
   color: blue;
   text-decoration: underline;
+}
+.no-mg{margin: 0!important ; }
+.no-pd{ padding: 0!important ;}
+
+.test{
+  border: 2px solid red;
 }
 /* 
 #example3 thead tr th ,#example3 tbody tr th{

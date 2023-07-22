@@ -76,7 +76,7 @@
                                             </td>
                                            
                                             <td class="th-sm"></td>
-                                            <td class="th-sm"> <a href="/admin/keaktifan/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td class="th-sm"> <a href="/user/keaktifan/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                 </tbody>
                             </table>
                         </div>

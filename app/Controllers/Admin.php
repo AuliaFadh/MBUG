@@ -25,7 +25,7 @@ class Admin extends BaseController
         $this->lgfModel = new \App\Models\lgfModel();
         $this->mnjModel = new \App\Models\mnjModel();
     }
-
+    
     public function login_admin()
     {
 

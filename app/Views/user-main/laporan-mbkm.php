@@ -38,8 +38,8 @@
                                 <thead>
                                     <tr>
                                         <th class="th-sm">No</th>
-
-                                        <th class="th-nm">Kegiatan MBKM</th>
+                                        <th class="th-lg">Nama Program MBKM</th>
+                                        <th class="th-nm">Jenis Program MBKM</th>
                                         <th class="th-sm">Periode</th>
                                         <th class="th-nm">Keterangan</th>
                                         <th class="th-sm">Aksi</th>
@@ -47,7 +47,7 @@
                                 </thead>
                                 <tbody>
                                     <td class="th-sm">1</td>
-
+                                    <td class="th-lg">Nama Program MBKM</td>
                                     <td class="th-nm">Studi Independent</td>
                                     <td class="th-sm">2023</td>
                                     <td class="th-nm">Keterangan</td>

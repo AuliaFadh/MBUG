@@ -36,7 +36,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
+                                            <input value="Di isi data sebelumnya dulu" name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
                                             <div class=" invalid-feedback">
 
                                             </div>
