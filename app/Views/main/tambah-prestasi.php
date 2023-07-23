@@ -46,7 +46,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
+                                            <input   type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -56,7 +56,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
+                                            <input   type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>

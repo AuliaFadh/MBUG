@@ -41,13 +41,13 @@
 
                                             </div>
                                         </div>
-                                        <button name="Check NPM" href="reset-pass.html" class="btn btn-sm btn-primary"><i class="mdi mdi-magnify"></i></button>
+                                        <!-- <button name="Check NPM" href="reset-pass.html" class="btn btn-sm btn-primary"><i class="mdi mdi-magnify"></i></button> -->
                                     </div>
 
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-10 col-sm-8">
-                                            <input readonly placeholder="Terisi bedasarkan NPM" value="nama bedasarkan input NPM" type="text" class="form-control custom-textfield ">
+                                            <input   type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -59,7 +59,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-10 col-sm-8">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
+                                            <input   type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
