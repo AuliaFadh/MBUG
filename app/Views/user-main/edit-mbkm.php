@@ -34,8 +34,17 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
 
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Nama Program MBKM</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield ">
+                                            <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Kegiatan MBKM</label>
+                                        <label class="label-form">Jenis Program MBKM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <select class="form-control  custom-textfield col-lg-7 col-md-12 col-sm-12">
                                                 <option></option>
