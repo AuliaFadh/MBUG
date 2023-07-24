@@ -25,7 +25,16 @@ class Admin extends BaseController
         $this->lgfModel = new \App\Models\lgfModel();
         $this->mnjModel = new \App\Models\mnjModel();
     }
-    
+    public function test()
+    {
+
+        $data = [
+            'title' => 'Test | MBUG',
+        ];
+
+        return view('main/test', $data);
+    }
+
     public function login_admin()
     {
 

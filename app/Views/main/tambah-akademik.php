@@ -36,30 +36,21 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-3 col-md-5 col-sm-3">
-                                            <input type="text" class="form-control custom-textfield ">
-                                            <div class="invalid-feedback">
-
+                                            <input type="text" id="npm-input" class="form-control custom-textfield ">
+                                            <div id="npm-drop-down" class="card-body  custom-textfield col-lg-12 col-md-12 col-sm-7" style="display: none;">
+                                                <span id="npm">10120544 </span>
+                                                <span id="npm">102322 </span>
+                                                <span id="npm">1203244 </span>
+                                                <span id="npm">1203214</span>
+                                                <span id="npm">1203244</span>
+                                                <span id="npm">12042244</span>
+                                                <span id="npm">1203244</span>
+                                                <span id="npm">113244</span>
+                                                <span id="npm">1203244</span>
+                                                <span id="npm">1323244</span>
+                                                <span id="npm">13213244</span>
+                                                <span id="npm-noData" style="display: none;">Data tidak ada</span>
                                             </div>
-                                        </div>
-                                        <!-- <button name="Check NPM" href="reset-pass.html" class="btn btn-sm btn-primary"><i class="mdi mdi-magnify"></i></button> -->
-                                    </div>
-
-                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Nama</label>
-                                        <div style="display: block;" class=" col-lg-8 col-md-10 col-sm-8">
-                                            <input   type="text" class="form-control custom-textfield ">
-                                            <div class="invalid-feedback">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Program Studi</label>
-                                        <div style="display: block;" class=" col-lg-8 col-md-10 col-sm-8">
-                                            <input   type="text" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -68,7 +59,21 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-10 col-sm-8">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <div id="jb-drop-down" class="card-body  custom-textfield col-lg-12 col-md-12 col-sm-7" style="display: none;">
+                                                <span id="jb">Kartu Indonesia Pintar </span>
+                                                <span id="jb">DIcoding </span>
+                                                <span id="jb">Bangkit </span>
+                                                <span id="jb">1203214</span>
+                                                <span id="jb">1203244</span>
+                                                <span id="jb">12042244</span>
+                                                <span id="jb">1203244</span>
+                                                <span id="jb">113244</span>
+                                                <span id="jb">1203244</span>
+                                                <span id="jb">1323244</span>
+                                                <span id="jb">13213244</span>
+                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                            </div>
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -95,16 +100,16 @@
                                                 <input required min="1981" type="number" class="form-control custom-textfield col-lg-3 col-md-4 col-sm-4">
                                                 <h3>/</h3>
                                                 <input required min="1982" type="number" class="form-control custom-textfield col-lg-3 col-md-4 col-sm-4">
-                                                
-                                                
-                                                
+
+
+
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
 
-                                 
+
 
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
@@ -115,11 +120,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Lokal</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01  type="number" class="form-control custom-textfield">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -128,7 +133,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01  type="number" class="form-control custom-textfield">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -146,7 +151,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
 
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
-                                        <a href="/admin/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-2">Batal</a>
+                                        <a href="/admin/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
 
                                 </div>
@@ -161,4 +166,5 @@
         </div>
     </div>
 </div>
+<script src="<?= base_url('asset/js/custom-npm-search.js'); ?>"></script>
 <?= $this->endSection('content') ?>

@@ -74,8 +74,8 @@
 
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
-                                        <a href="/admin/pengumuman" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
+                                        <a href="/admin/pengumuman" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
 
                                 </div>

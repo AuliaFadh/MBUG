@@ -15,6 +15,7 @@ $routes->setDefaultNamespace('App\Controllers');
 //$routes->setDefaultController('Home');
 //$routes->setDefaultMethod('index');
 $routes->group('admin', function ($routes) {
+    $routes->get('test', 'Admin::test');
     $routes->get('login', 'Admin::login_admin');
     $routes->get('profile', 'Admin::profile_admin');
     $routes->get('home', 'Admin::home');

@@ -906,6 +906,20 @@ span#counter {
 .no-mg{margin: 0!important ; }
 .no-pd{ padding: 0!important ;}
 
+ /* Styling untuk elemen hasil (default di sembunyikan) */
+ #npm-drop-down , #jb-drop-down {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border-radius: 10px;  
+  z-index: 90;
+}
+
+/* Styling untuk elemen li yang sesuai */
+#npm-drop-down span.active, #jb-drop-down span.active {
+  display: block;
+}
+
 .test{
   border: 2px solid red;
 }

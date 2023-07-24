@@ -21,10 +21,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row  d-flex align-items-center ">
-                            <div class="profile-container col-lg-3 col-sm-12 col-md-12 ">
-                                <div class="profile-image">
-                                    <img src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" alt="Foto Profil">
+                        <div class="row  d-flex align-items-center">
+                            <div class="profile-container col-lg-3 col-sm-12 col-md-12">
+                                <div class="profile-image ">
+                                    <img  src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" alt="Foto Profil">
                                     <div class="upload-overlay">
                                         <label for="file-input"> <i class="fa fa-pencil add-custom"></i> </label>
                                         <input type="file" id="file-input" style="display:none; visibility: none;">
