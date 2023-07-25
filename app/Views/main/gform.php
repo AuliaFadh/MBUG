@@ -61,7 +61,12 @@
                                             <td class="th-nm"><?= $value['jenis']; ?></td>
                                             <td class="th-nm"><a href="<?= $value['tautan']; ?>" type="link"><?= $value['tautan']; ?></a></td>
                                             <td class="th-sm"><?= $value['tanggal_pembuatan']; ?></td>
-                                            <td class="th-sm"> <a href="/admin/gform/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td class="th-sm"> 
+                                                <a href="/admin/gform/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                            <!-- Ul ini button Delete lu simpen url deletenya di public/asset/js/custom-js.js -->
+                                            <button onclick="deleteConfirmation_user(2)"  class="btn btn-sm btn-danger" ><i class="la la-trash-o"></i></button>
+                                            
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
