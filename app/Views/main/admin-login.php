@@ -19,16 +19,16 @@
 								<h3 class="mb-4">Login <p class="role">Admin</p>
 								</h3>
 							</div>
-
 						</div>
-						<form action="#" class="signin-form">
+
+						<form action="login_check" class="signin-form" method="post">
 							<div class="form-group mb-3">
-								<label class="label" for="name">Username</label>
-								<input type="text" class="form-control" placeholder="Username" required>
+								<label class="label" for="username">Username</label>
+								<input type="text" id="username" name="username" class="form-control" placeholder="username" required>
 							</div>
 							<div class="form-group mb-3">
 								<label class="label" for="password">Password</label>
-								<input type="password" class="form-control" placeholder="Password" required>
+								<input type="password" id="password" name="password" class="form-control" placeholder="password" required>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="form-control btn btn-primary-login rounded submit px-3">Sign In</button>
@@ -40,7 +40,6 @@
 										<span class="checkmark"></span>
 									</label>
 								</div>
-
 							</div>
 						</form>
 

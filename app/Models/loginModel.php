@@ -11,7 +11,7 @@ class loginModel extends Model
 
     public function login_check($username, $password)
     {
-        return- $this->db->table('user')
+        return $this->db->table('user')
         ->where(array('username' => $username, 'password' => $password))
         ->get()->getRowArray();
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2023 at 02:04 AM
+-- Generation Time: Jul 26, 2023 at 01:56 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -196,7 +196,7 @@ INSERT INTO `manajemen_pengguna` (`id_manajemen`, `id_user`, `nama`, `hak_akses`
 CREATE TABLE `penerima_beasiswa` (
   `id_penerima` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL,
-  `npm` int(11) NOT NULL,
+  `npm` varchar(10) NOT NULL,
   `prodi` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
@@ -211,7 +211,30 @@ CREATE TABLE `penerima_beasiswa` (
 --
 
 INSERT INTO `penerima_beasiswa` (`id_penerima`, `nama`, `npm`, `prodi`, `alamat`, `no_hp`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
-(1, 'Aulia', 10120698, 'Sistem Informasi', '	Depok Dua', '081237275191', '1', 2022, 2, '-');
+(1, 'Aulia', '10120698', 'Sistem Informasi', '	Depok Dua', '081237275191', '1', 2022, 2, '-');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(8) NOT NULL,
+  `nama_user` varchar(255) DEFAULT NULL,
+  `username` varchar(10) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `hak_akses` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `hak_akses`) VALUES
+(1, 'Muhammad Aulia Nur Fadhillah', '10120698', 'owlowlowl', 1),
+(2, 'Isa Tarmana Mustopa', '10120699', 'isaisaisa', 0),
+(3, 'Annisa Umulfath', '10120700', 'mulumul', 1);
 
 --
 -- Indexes for dumped tables
@@ -264,7 +287,15 @@ ALTER TABLE `manajemen_pengguna`
 -- Indexes for table `penerima_beasiswa`
 --
 ALTER TABLE `penerima_beasiswa`
-  ADD PRIMARY KEY (`id_penerima`);
+  ADD PRIMARY KEY (`id_penerima`),
+  ADD UNIQUE KEY `np` (`npm`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `uname` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -317,6 +348,12 @@ ALTER TABLE `manajemen_pengguna`
 --
 ALTER TABLE `penerima_beasiswa`
   MODIFY `id_penerima` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

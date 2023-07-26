@@ -14,6 +14,7 @@ class Admin extends BaseController
     protected $mbkmModel;
     protected $lgfModel;
     protected $mnjModel;
+    protected $loginModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -24,7 +25,9 @@ class Admin extends BaseController
         $this->mbkmModel = new \App\Models\mbkmModel();
         $this->lgfModel = new \App\Models\lgfModel();
         $this->mnjModel = new \App\Models\mnjModel();
+        $this->loginModel = new \App\Models\loginModel();
     }
+
     public function test()
     {
 
@@ -43,6 +46,16 @@ class Admin extends BaseController
         ];
 
         return view('main/admin-login', $data);
+    }
+
+    public function admin_login_check()
+    {
+
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        $check = $this->loginModel->login_check($username, $password);
+        dd($check);
     }
 
     public function profile_admin()

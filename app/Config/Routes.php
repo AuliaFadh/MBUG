@@ -17,6 +17,7 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->group('admin', function ($routes) {
     $routes->get('test', 'Admin::test');
     $routes->get('login', 'Admin::login_admin');
+    $routes->post('login_check', 'Admin::admin_login_check');
     $routes->get('profile', 'Admin::profile_admin');
     $routes->get('home', 'Admin::home');
 
