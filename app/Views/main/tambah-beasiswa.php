@@ -58,7 +58,7 @@
 
                                         <label for="tahun" class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=1981  type="number" class="form-control col-lg-2 col-md-2 col-sm-2 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
+                                            <input min=1981  type="number" class="form-control col-lg-2 col-md-3 col-sm-3 custom-textfield <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun" value="<?= old('tahun', isset($input['tahun']) ? $input['tahun'] : ''); ?>">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('tahun'); ?>
                                             </div>
@@ -76,7 +76,7 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                    <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
+                                    <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8" >Submit</button>
                                         <a href="/admin/beasiswa" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
                                 </div>

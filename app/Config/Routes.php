@@ -24,6 +24,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('beasiswa', 'Admin::beasiswa');
     $routes->get('beasiswa/add', 'Admin::add_beasiswa');
     $routes->get('beasiswa/edit/(:any)', 'Admin::edit_beasiswa/$1');
+    $routes->get('beasiswa/delete/(:any)', 'Admin::del_beasiswa/$1');
     $routes->post('beasiswa/save', 'Admin::save_beasiswa');
 
 
