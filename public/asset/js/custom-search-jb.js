@@ -1,5 +1,5 @@
 const jbInput = document.getElementById('jb-input');
-const jbResult = document.getElementById('jb-drop-down');
+const jbResult = document.getElementById('jb-search');
 const noDataJB = document.getElementById('jb-noData');
 
 jbInput.addEventListener('input', function() {
@@ -7,7 +7,7 @@ jbInput.addEventListener('input', function() {
     const inputValueJB = jbInput.value.toLowerCase();
 
     // Ambil semua elemen spanJB dengan id npmdi dalam div result
-    const listResultsJB = jbResult.querySelectorAll('#jb');
+    const listResultsJB = jbResult.querySelectorAll('#jb-data');
 
     // Cek apakah jbInput ada yang sama dengan spanJB-spannya
     let hasMatchingDataJB = false;
@@ -44,8 +44,14 @@ jbInput.addEventListener('input', function() {
 });
 jbInput.addEventListener('blur', function() {
     // Menyembunyikan elemen hasil
-    jbResult.style.display = 'none';
+   
+    setTimeout(function() {
+        jbResult.style.display = 'none';
+      },500);
 });
-
+function fillInputJB(JB) {
+    jbInput.value = JB;
+    
+}
 
 

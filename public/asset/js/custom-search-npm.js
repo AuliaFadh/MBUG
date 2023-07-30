@@ -1,14 +1,17 @@
 
 const npmInput = document.getElementById('npm-input');
-const npmResult = document.getElementById('npm-drop-down');
+const npmName = document.getElementById('npm-name');
+const npmPs = document.getElementById('npm-ps');
+const npmResult = document.getElementById('npm-search');
 const noDataNPM = document.getElementById('npm-noData');
+
 
 npmInput.addEventListener('input', function() {
     // Ambil nilai yang sedang diketik oleh user
     const inputValueNPM = npmInput.value.toLowerCase();
 
     // Ambil semua elemen spanNPM dengan id npmdi dalam div result
-    const listResultsNPM = npmResult.querySelectorAll('#npm');
+    const listResultsNPM = npmResult.querySelectorAll('#npm-data');
 
     // Cek apakah npmInput ada yang sama dengan spanNPM-spannya
     let hasMatchingDataNPM = false;
@@ -44,6 +47,15 @@ npmInput.addEventListener('input', function() {
     
 });
 npmInput.addEventListener('blur', function() {
-    // Menyembunyikan elemen hasil
-    npmResult.style.display = 'none';
+    setTimeout(function() {
+        npmResult.style.display = 'none';
+      },500); // 2000 milidetik atau 2 detik
+    
 });
+
+function fillInputNPM(npm,name,major) {
+    npmInput.value = npm;
+    npmName.value = name;
+    npmPs.value = major;
+}
+    
