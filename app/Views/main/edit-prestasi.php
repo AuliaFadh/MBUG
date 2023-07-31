@@ -31,9 +31,9 @@
                     <div class="card-body">
 
                         <form action="#" method="post">
-                        <div class="row">
+                            <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input readonly value="{10120544}" type="text" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">

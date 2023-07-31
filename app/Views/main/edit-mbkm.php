@@ -33,10 +33,10 @@
                         <form action="#" method="post">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input readonly value="{10120544}" type="text" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
@@ -55,22 +55,32 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
-                                            <div class=" invalid-feedback">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
+
+                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
+                                                <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
+                                                <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
+
+                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                            </div>
+                                            <div class="invalid-feedback">
 
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Program MBKM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
