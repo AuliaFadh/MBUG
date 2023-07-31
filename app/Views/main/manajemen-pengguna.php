@@ -15,13 +15,9 @@
                 <li class="breadcrumb-item active">
                     <a href="/admin/manajemen">Manajemen Pengguna</a>
                 </li>
-
-
             </ol>
-
         </div>
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -29,7 +25,6 @@
                             <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/manajemen.png'); ?>" alt="">
                             <h3>Manajemen Pengguna</h3>
                         </div>
-
                     </div>
                     <div class="add-btn-behav-custom">
                         <a class="add-btn-custom" href="/admin/manajemen/add" aria-expanded="false">
@@ -46,7 +41,7 @@
                                 <thead>
 
                                     <tr>
-                                        <th>ID User</th>
+                                        
                                         <th>Username</th>
                                         <th>Hak Akses</th>
                                         <th>Last Login</th>
@@ -57,14 +52,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>A001</td>
                                         <td>User1</td>
                                         <td>Admin</td>
                                         <td>4 Juli 2023</td>
                                         <td>Aktif</td>
                                         <td>
                                             <a href="manajemen/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                            <!-- Ul ini button Delete lu simpen url deletenya di public/asset/js/custom-js.js -->
+                                        
                                             <button onclick="deleteConfirmation_user(2)"  class="btn btn-sm btn-danger" ><i class="la la-trash-o"></i></button>
                                             
                                         </td>
