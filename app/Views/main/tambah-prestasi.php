@@ -12,67 +12,33 @@
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/prestasi">Laporan Prestasi</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/prestasi/add">Tambah Prestasi</a></li>
-
-
             </ol>
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-
                             <h3>Tambah Prestasi</h3>
                         </div>
-
                     </div>
                     <div class="card-body">
 
                         <form action="#" method="post">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
-                                        <div style="display: block;" class=" col-lg-3 col-md-5 col-sm-3">
-                                            <input type="text" id="npm-input" class="form-control custom-textfield ">
-                                            <div id="npm-drop-down" class="card-body  custom-textfield col-lg-12 col-md-12 col-sm-7" style="display: none;">
-                                                <span id="npm">10120544 </span>
-                                                <span id="npm">102322 </span>
-                                                <span id="npm">1203244 </span>
-                                                <span id="npm">1203214</span>
-                                                <span id="npm">1203244</span>
-                                                <span id="npm">12042244</span>
-                                                <span id="npm">1203244</span>
-                                                <span id="npm">113244</span>
-                                                <span id="npm">1203244</span>
-                                                <span id="npm">1323244</span>
-                                                <span id="npm">13213244</span>
-                                                <span id="npm-noData" style="display: none;">Data tidak ada</span>
-                                            </div>
-                                            <div class="invalid-feedback">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
+                                            <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Jenis Beasiswa</label>
-                                        <div style="display: block;" class=" col-lg-8 col-md-10 col-sm-8">
-                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
-                                            <div id="jb-drop-down" class="card-body  custom-textfield col-lg-12 col-md-12 col-sm-7" style="display: none;">
-                                                <span id="jb">Kartu Indonesia Pintar </span>
-                                                <span id="jb">DIcoding </span>
-                                                <span id="jb">Bangkit </span>
-                                                <span id="jb">1203214</span>
-                                                <span id="jb">1203244</span>
-                                                <span id="jb">12042244</span>
-                                                <span id="jb">1203244</span>
-                                                <span id="jb">113244</span>
-                                                <span id="jb">1203244</span>
-                                                <span id="jb">1323244</span>
-                                                <span id="jb">13213244</span>
-                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                                <a id="npm-data" onclick="fillInputNPM('10120544','Isa Tarmana','Sistem Informasi')">10120544 </a>
+                                                <a id="npm-data" onclick="fillInputNPM('10111544','Muhammad Aul','Sistem Informasi')">10111544 </a>
+                                                <a id="npm-data" onclick="fillInputNPM('101113544','Annisa Umul','Sistem Informasi')">10911544 </a>
+
+                                                <span id="npm-noData" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
 
@@ -81,8 +47,48 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Nama</label>
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input type="text" readonly id="npm-name" class="form-control custom-textfield ">
+                                            <div class="invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Program Studi</label>
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input type="text" readonly id="npm-ps" class="form-control custom-textfield ">
+                                            <div class="invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Jenis Beasiswa</label>
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
+
+                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
+                                                <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
+                                                <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
+
+                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                            </div>
+                                            <div class="invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tingkat</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <select class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-4">
                                                 <option></option>
                                                 <option value="2018">Internasional</option>
@@ -108,7 +114,7 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Kegiatan</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
@@ -118,7 +124,7 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Capaian</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <select class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
                                                 <option></option>
                                                 <option value="2018">Juara I</option>
@@ -140,7 +146,7 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tempat</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
@@ -149,8 +155,8 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal Pembuatan</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6" id="datepicker">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -159,7 +165,7 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Penyelenggara</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
@@ -176,7 +182,7 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan Publikasi</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input type="url" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
