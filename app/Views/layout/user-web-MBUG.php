@@ -29,6 +29,9 @@
 
 
     <!-- Javascript -->
+    <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-search-npm.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-search-jb.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/global/global.min.js'); ?>"></script>
     <script src="<?= base_url('asset/js/deznav-init.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/bootstrap-select/dist/js/bootstrap-select.min.js'); ?>"></script>
@@ -39,7 +42,7 @@
     <!-- Datatable -->
     <script src="<?= base_url('asset/vendor/datatables/js/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/svganimation/svg.animation.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/plugins-init/datatables.init.js');?>"></script>
+    <script src="<?= base_url('asset/js/plugins-init/datatables.init.js'); ?>"></script>
     <!-- Chart piety plugin files -->
     <script src="<?= base_url('asset/vendor/peity/jquery.peity.min.js'); ?>"></script>
 
@@ -56,8 +59,8 @@
     <script src="<?= base_url('asset/vendor/pickadate/picker.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/pickadate/picker.time.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/pickadate/picker.date.js'); ?>"></script>
-	<script src="<?= base_url('asset/js/plugins-init/chartjs-init.js'); ?>"></script>
-	<!-- Pickdate -->
+    <script src="<?= base_url('asset/js/plugins-init/chartjs-init.js'); ?>"></script>
+    <!-- Pickdate -->
     <script src="<?= base_url('asset/js/plugins-init/pickadate-init.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
     <script src="<?= base_url('asset/js/sweetalert2.all.min.js'); ?>"></script>

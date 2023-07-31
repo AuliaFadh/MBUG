@@ -36,40 +36,52 @@
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
+
+                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
+                                                <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
+                                                <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
+
+                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                            </div>
                                             <div class="invalid-feedback">
 
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Semester</label>
-                                        <div style="display: block;" class=" col-lg-2 col-md-2 col-sm-2">
+                                        <div style="display: block;" class=" col-lg-2 col-md-3 col-sm-5">
                                             <input type="number" min=1 max=14 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form" style="margin-right: 20px;">Tahun Ajaran</label>
-
-
-                                        <select class="form-control  custom-textfield col-lg-2 col-md-2 col-sm-2">
-                                            <option></option>
-                                            <option value="2018">ATA</option>
-                                            <option value="2018">PTA</option>
-                                        </select>
-                                        <input required min="1981" type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
-                                        <h3>/</h3>
-                                        <input required min="1982" type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Tahun Ajaran</label>
+                                        <div style="display: block; margin-left:20px;" class=" col-lg-8 col-md-10 col-sm-12 ">
+                                            <div class="row ">
+                                                <select class="form-control  custom-textfield col-lg-3 col-md-4 col-sm-6">
+                                                    <option></option>
+                                                    <option value="2018">PTA</option>
+                                                    <option value="2018">ATA</option>
+                                                </select>
+                                                <input required min="1981" type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
+                                                <h3>/</h3>
+                                                <input required min="1982" type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
+                                            </div>
+                                        </div>
                                     </div>
+
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                        <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -77,8 +89,8 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Lokal</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                        <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -86,16 +98,13 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min=0 max=4 step=0.1 type="number" class="form-control custom-textfield col-lg-2 col-md-2 col-sm-2">
+                                        <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Rangkuman Nilai(pdf)</label>
@@ -104,15 +113,13 @@
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
 
-                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
-                                        <a href="/user/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
+                                        <a href="/user/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
 
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
 
