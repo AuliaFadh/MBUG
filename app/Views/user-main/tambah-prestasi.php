@@ -12,8 +12,6 @@
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/user/prestasi">Laporan Prestasi</a></li>
                 <li class="breadcrumb-item active"><a href="/user/prestasi/add">Tambah Prestasi</a></li>
-
-
             </ol>
         </div>
 
@@ -23,10 +21,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-
                             <h3>Tambah Prestasi</h3>
                         </div>
-
                     </div>
                     <div class="card-body">
 
@@ -37,7 +33,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-3 col-sm-3" id="datepicker">
+                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-4 col-sm-8" id="datepicker">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -74,11 +70,7 @@
                                         <input type="radio" class="margin-custom" name="nilai" value="1"> Tim<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="0" checked> Individu<br>
 
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
                                     </div>
-
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Capaian</label>
@@ -95,7 +87,6 @@
                                                 <option value="2022">Partisipatif</option>
                                                 <option value="2022">Finalis</option>
                                                 <option value="2022">Lainnya</option>
-
                                             </select>
                                             <div class=" invalid-feedback">
 
@@ -112,7 +103,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Penyelenggara</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -122,6 +112,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Bukti</label>
@@ -141,15 +132,12 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
-                                        <a href="/user/prestasi" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-2 col-sm-2">Batal</a>
+                                        <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
+                                        <a href="/user/prestasi" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
-
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
 
