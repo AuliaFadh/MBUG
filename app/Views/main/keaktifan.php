@@ -3,22 +3,15 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/keaktifan">Keaktifan per Semester</a></li>
-
-
             </ol>
-
         </div>
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -38,8 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th class="th-sm">No</th>
-                                        <th class="th-nm">Nama</th>
                                         <th class="th-sm">NPM</th>
+                                        <th class="th-nm">Nama</th>
                                         <th class="th-nm">Program Studi</th>
                                         <th class="th-lg">Jenis Beasiswa</th>
                                         <th class="th-sm">Semester</th>
@@ -59,8 +52,8 @@
                                         <?php $no++; ?>
                                         <tr>
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
-                                            <td class="th-nm"><?= $value['nama']; ?></td>
                                             <td class="th-sm"><?= $value['npm']; ?></td>
+                                            <td class="th-nm"><?= $value['nama']; ?></td>                                        
                                             <td class="th-nm"><?= $value['prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['semester']; ?></td>
