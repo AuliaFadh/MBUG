@@ -625,7 +625,7 @@ span#counter {
 .btn-primary-download-excel {
   background-color: #EB823B;
   border-color: #EB823B;
-  margin: 5x;
+  margin: 5px;
   border-radius: 10px;
 }
 
@@ -638,7 +638,7 @@ span#counter {
 .btn-primary-import {
   
   
-  margin: 5x;
+  margin: 5px;
   border-radius: 10px;
 }
 
@@ -907,19 +907,31 @@ span#counter {
 .no-pd{ padding: 0!important ;}
 
  /* Styling untuk elemen hasil (default di sembunyikan) */
- #npm-drop-down , #jb-drop-down {
+.dropdown-custom {
   display: none;
   position: absolute;
   background-color: white;
-  border-radius: 10px;  
+  padding: 0;
   z-index: 90;
+  border: 2px solid whitesmoke;
+  border-radius: 3px;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.5);
+}
+#npm-data,#jb-data{
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+}
+#jb-noData,#npm-noData{
+  padding: 5px 10px 5px 10px;
 }
 
-/* Styling untuk elemen li yang sesuai */
-#npm-drop-down span.active, #jb-drop-down span.active {
-  display: block;
+#npm-data:hover,#jb-data:hover{
+  background-color: whitesmoke;
 }
-
+#npm-data:active,#jb-data:active{
+  background-color: #BE8ED7;
+}
+ 
 .test{
   border: 2px solid red;
 }

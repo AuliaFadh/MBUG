@@ -30,24 +30,24 @@
 
                     <div class="card-body">
                         <div class="how-to-import">
-                        <p>Berikut Langkah-langkah untuk mengimport data :</p>
-                        <ol class="how-to" type="1">
-                            <li>Anda dapat mengunduh <a  href="<?= base_url('asset/doc/template_import_data_penerima_beasiswa.xlsx'); ?>" download>Template Excel</a> agar memudahkan pembuatan data</li>
-                            <li>Export atau ubah file tersebut menjadi file CSV</li>
-                            <li>Pastikan Bahwa file yang akan di import adalah file CSV</li>
-                            <li>klik tombol pilih file untuk memasukan file</li>
-                            <li>file yang dimasukan akan terlihat pada Tampilan Data</li>
-                            <li>Pastikan data sudah terinput dengan benar</li>
-                            <li>klik import data jika sudah dipastikan benar data tersebut</li>
-                        </ol>
+                            <p>Berikut Langkah-langkah untuk mengimport data :</p>
+                            <ol class="how-to" type="1">
+                                <li>Anda dapat mengunduh <a href="<?= base_url('asset/doc/template_import_data_penerima_beasiswa.xlsx'); ?>" download>Template Excel</a> agar memudahkan pembuatan data</li>
+                                <li>Export atau ubah file tersebut menjadi file CSV</li>
+                                <li>Pastikan Bahwa file yang akan di import adalah file CSV</li>
+                                <li>klik tombol pilih file untuk memasukan file</li>
+                                <li>file yang dimasukan akan terlihat pada Tampilan Data</li>
+                                <li>Pastikan data sudah terinput dengan benar</li>
+                                <li>klik import data jika sudah dipastikan benar data tersebut</li>
+                            </ol>
                         </div>
                         <form id="csv-form" class="row">
-                            <div class="col-lg-7 col-md-7 col-sm-12">
-                            <input name="csv-file-input" type="file" id="csv-file-input" accept=".csv">
+                            <div class="col-lg-7 col-md-6 col-sm-12">
+                                <input name="csv-file-input" type="file" id="csv-file-input" accept=".csv">
                             </div>
-                            <div class="container1 custom-container-form col-lg-5 col-md-5 col-sm-12">
-                            <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-4 col-md-5 col-sm-4">Import data</button>
-                                        <a href="/admin/penerima" class="btn btn-primary-download-excel margin-custom col-lg-4 col-md-4 col-sm-4">Batal</a>
+                            <div class="container1 custom-container-form col-lg-5 col-md-6 col-sm-12 test">
+                                <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-4 col-md-5 col-sm-4">Import data</button>
+                                <a href="/admin/penerima" class="btn btn-primary-download-excel margin-custom col-lg-4 col-md-4 col-sm-4">Batal</a>
                             </div>
                         </form>
 

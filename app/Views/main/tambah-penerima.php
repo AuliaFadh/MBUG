@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/tambah-user-icon.png'); ?>" alt="">
+                            
                             <h3>Tambah Penerima</h3>
                         </div>
 
@@ -34,10 +34,11 @@
 
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <input type="text" class="form-control custom-textfield col-lg-4 col-md-4 col-sm-2">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -78,7 +79,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nomor Hp</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
+                                            <input type="text" class="form-control custom-textfield col-lg-4 col-md-6 col-sm-7">
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -98,7 +99,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input min="1981" type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
+                                            <input min=1981 type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-3">
                                             <div class="invalid-feedback">
 
                                             </div>
