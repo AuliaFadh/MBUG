@@ -87,7 +87,7 @@
                                     </div>
 
 
-                                    <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div style="padding-left : 15px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Kelamin</label>
                                         <input type="radio" class="margin-custom" name="nilai" value="2"> Laki-Laki<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="1"> Perempuan<br>
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
 
-                                    <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div style="padding-left : 15px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
                                         <input type="radio" class="margin-custom" name="nilai" value="2"> Lulus<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="1"> Aktif<br>

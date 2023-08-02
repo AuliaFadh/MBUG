@@ -103,7 +103,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div style="padding-left : 15px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Prestasi</label>
                                         <input type="radio" class="margin-custom" name="nilai" value="1"> Tim<br>
                                         <input type="radio" class="margin-custom" name="nilai" value="0" checked> Individu<br>

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?= base_url('asset/vendor/pickadate/themes/default.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/vendor/pickadate/themes/default.date.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/css/skin-2.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('asset/font/inter/inter.css'); ?>">
 </head>
 
 <body>
