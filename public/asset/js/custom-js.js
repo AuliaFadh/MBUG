@@ -1,3 +1,12 @@
+//Pengumuman
+const toggleButtons = document.querySelectorAll('.toggle-button');
+const cardBodies = document.querySelectorAll('.card-body-content');
+toggleButtons.forEach((button, index) => {
+  button.addEventListener('click', function() {
+    cardBodies[index].style.display = cardBodies[index].style.display === 'none' ? 'block' : 'none';
+    button.textContent = cardBodies[index].style.display === 'none' ? 'Baca Selengkapnya' : 'Sembunyikan';
+  });
+});
 //profile picture
 var file = document.getElementById("file-input");
 
@@ -10,16 +19,6 @@ file.addEventListener("change",(e)=>{
 
 
 
-//Pengumuman
-const toggleButtons = document.querySelectorAll('.toggle-button');
-const cardBodies = document.querySelectorAll('.card-body-content');
-
-toggleButtons.forEach((button, index) => {
-  button.addEventListener('click', function() {
-    cardBodies[index].style.display = cardBodies[index].style.display === 'none' ? 'block' : 'none';
-    button.textContent = cardBodies[index].style.display === 'none' ? 'Baca Selengkapnya' : 'Sembunyikan';
-  });
-});
 
 
 

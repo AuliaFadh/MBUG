@@ -33,6 +33,7 @@
     <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-search-npm.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-search-jb.js'); ?>"></script>
+    
     <script src="<?= base_url('asset/vendor/global/global.min.js'); ?>"></script>
     <script src="<?= base_url('asset/js/deznav-init.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/bootstrap-select/dist/js/bootstrap-select.min.js'); ?>"></script>
