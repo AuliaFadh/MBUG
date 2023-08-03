@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/beasiswa-icon.png'); ?>" alt="">
+                            
                             <h3>Import Data Penerima beasiswa</h3>
                         </div>
 
