@@ -40,68 +40,7 @@
                     </div>
 
                     <ul  class="navbar-nav header-right col-lg-6 d-flex justify-content-end">
-                        <!-- <li class="nav-item dropdown notification_dropdown">
-                            <a class="nav-link bell ai-icon" href="#" role="button" data-toggle="dropdown">
-                                <img class="logo-abbr" src="<?= base_url('asset/img/Email-notification.png'); ?>" width="20px" alt="" />
-                                <div class="pulse-css" style="background-color: red;"></div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="list-unstyled">
-                                    <li class="media dropdown-item">
-                                        <span class="success"><i class="ti-user"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>Martin</strong> has added a <strong>customer</strong>
-                                                    Successfully
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="danger"><i class="ti-bookmark"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>Robin</strong> marked a <strong>ticket</strong> as
-                                                    unsolved.
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="primary"><i class="ti-heart"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="success"><i class="ti-image"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong> James.</strong> has added a<strong>customer</strong>
-                                                    Successfully
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                </ul>
-                                <a class="all-notification" href="#">See all notifications <i class="ti-arrow-right"></i></a>
-                            </div>
-                        </li> -->
+                     
 
                         <li class="nav-item">
                             <div class="nav-name-account" >
@@ -113,7 +52,7 @@
                         </li>
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <img src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" style="height: 50px; width: 50px;" alt="" />
+                                <img id="profile-img-nav" src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" style="height: 50px; width: 50px;" alt="" />
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="/user/profile" class="dropdown-item ai-icon">

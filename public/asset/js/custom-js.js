@@ -1,3 +1,16 @@
+//profile picture
+var file = document.getElementById("file-input");
+
+var img = document.getElementById("profile-img");
+var imgNav = document.getElementById("profile-img-nav");
+file.addEventListener("change",(e)=>{
+    img.src = URL.createObjectURL(e.target.files[0])
+    imgNav.src = URL.createObjectURL(e.target.files[0])
+});
+
+
+
+//Pengumuman
 const toggleButtons = document.querySelectorAll('.toggle-button');
 const cardBodies = document.querySelectorAll('.card-body-content');
 
