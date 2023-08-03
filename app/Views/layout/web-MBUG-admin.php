@@ -33,6 +33,8 @@
     <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-search-npm.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-search-jb.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-csv-file.js'); ?>"></script>
     
     <script src="<?= base_url('asset/vendor/global/global.min.js'); ?>"></script>
     <script src="<?= base_url('asset/js/deznav-init.js'); ?>"></script>
@@ -64,7 +66,7 @@
 	<script src="<?= base_url('asset/js/plugins-init/chartjs-init.js'); ?>"></script>
 	<!-- Pickdate -->
     <script src="<?= base_url('asset/js/plugins-init/pickadate-init.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
+    
     <script src="<?= base_url('asset/js/sweetalert2.all.min.js'); ?>"></script>
 
 </body>
