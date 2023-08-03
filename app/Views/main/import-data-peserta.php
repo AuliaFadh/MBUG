@@ -5,7 +5,7 @@
     <div class="container-fluid">
 
 
-        <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
+        <div class="col-sm-6 col-lg-12 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
