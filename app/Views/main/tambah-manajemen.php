@@ -58,7 +58,7 @@
                                             <select class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
                                                 <option></option>
                                                 <option value="2018">Admin</option>
-                                                <option value="2019">Mahasiswa</option>
+                                                <option value="2019">Penerima Beasiswa</option>
 
                                             </select>
                                             <div class=" invalid-feedback">

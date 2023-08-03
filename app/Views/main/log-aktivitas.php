@@ -9,8 +9,9 @@
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
-                        <img class="logo-abbr logo-home" src="<?= base_url('asset/'); ?>img/Home.png" alt="">
-                        Log Activity</a></li>
+                <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
+                        Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/log">Log Aktivitas</a></li>
             </ol>
 
         </div>

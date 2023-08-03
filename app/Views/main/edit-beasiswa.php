@@ -37,7 +37,7 @@
                                     <?php endif; ?>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="nama" class="label-form">Nama Beasiswa</label>
+                                        <label for="nama" class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <input value=""  type="text" class="form-control custom-textfield  " id="nama" name="nama" autofocus>
                                             <div class="invalid-feedback">

@@ -109,7 +109,8 @@
 
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
-                                            <label class="label-form">Upload Rangkuman Nilai(pdf)</label>
+                                            <label class="label-form"> Rangkuman Nilai(pdf)</label>
+                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
                                             <input style="padding-left : 15px;" type="file" class="dropify " data-default-file="" accept=".pdf">
                                         </div>
                                     </div>

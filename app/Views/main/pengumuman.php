@@ -37,9 +37,10 @@
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th class="th-sm">Tanggal Terbit</th>
+                                    <th class="th-sm">Id</th>    
+                                    <th class="th-sm">Tanggal Terbit</th>
                                         <th class="th-sm">Batas Terbit</th>
-                                        <th class="th-sm">Id</th>
+                                        
                                         <th class="th-lg">Judul Berita</th>
                                         <th class="th-nm">penulis</th>
                                         <th class="th-sm">Aksi</th>
@@ -48,14 +49,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="th-sm">20 juli 2023</td>
+                                    <td class="th-sm">1</td>    
+                                    <td class="th-sm">20 juli 2023</td>
                                         <td class="th-sm">30 juli 2023</td>
-                                        <td class="th-sm">1</td>
+                                        
                                         <td class="th-lg">Pengumuman Seleksi Beasiswa Google.co</td>
                                         <td class="th-nm">Admin 1</td>
                                         <td class="th-sm">
                                             <a href="/admin/pengumuman/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_news(0)"><i class="la la-trash-o"></i></button>
                                         </td>
                                     </tr>
 
