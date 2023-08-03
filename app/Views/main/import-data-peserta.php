@@ -45,7 +45,7 @@
                             <div class="col-lg-7 col-md-6 col-sm-12">
                                 <input name="csv-file-input" type="file" id="csv-file-input" accept=".csv">
                             </div>
-                            <div class="container1 custom-container-form col-lg-5 col-md-6 col-sm-12 test">
+                            <div class="container1 custom-container-form col-lg-5 col-md-6 col-sm-12 ">
                                 <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-4 col-md-5 col-sm-4">Import data</button>
                                 <a href="/admin/penerima" class="btn btn-primary-download-excel margin-custom col-lg-4 col-md-4 col-sm-4">Batal</a>
                             </div>
