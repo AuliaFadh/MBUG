@@ -35,9 +35,12 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-*{
-  font-family: 'Inter' ;
-}
+
+
+body, h1, h2, h3, h4, h5, h6, p, span, div, a, ul, li, input, button {
+  font-family: 'Inter' !important;
+  }
+
 *,
 *::before,
 *::after {
