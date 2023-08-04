@@ -10,7 +10,7 @@ class pbModel extends Model
     protected $primaryKey       = 'id_penerima';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['nama', 'npm', 'prodi', 'alamat', 'no_hp', 'jenis_kelamin', 'tahun_diterima', 'status_penerimaan', 'keterangan'];
+    protected $allowedFields    = ['nama', 'npm', 'prodi', 'alamat', 'no_hp', 'jenis_kelamin', 'tahun_diterima', 'status_penerima', 'keterangan'];
 
     public function AllData()
     {

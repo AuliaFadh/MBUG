@@ -132,7 +132,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Add User | Admin',
+                'title' => 'Tambah Beasiswa | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -146,7 +146,7 @@ class Admin extends BaseController
         $data = [
             'id_beasiswa' => $id_beasiswa,
         ];
-        
+
         $this->jbModel->DeleteData($data);
         return redirect()->to(base_url('/admin/beasiswa'));
     }
@@ -166,6 +166,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Input Penerima | MBUG',
+            'validation' => \Config\Services::validation(),
         ];
 
 
@@ -183,6 +184,45 @@ class Admin extends BaseController
 
     public function save_penerima()
     {
+        if ($this->validate([
+            'nama' => 'required|is_unique[penerima_beasiswa.nama]',
+            'npm' => 'required|is_unique[penerima_beasiswa.npm]',
+            'prodi' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'jenis_kelamin' => 'required',
+            'tahun_diterima' => 'required',
+            'status_penerima' => 'required',
+            'keterangan' => 'required',
+        ])) {
+            $data = [
+                'nama' => $this->request->getPost('nama'),
+                'npm' => $this->request->getPost('npm'),
+                'prodi' => $this->request->getPost('prodi'),
+                'alamat' => $this->request->getPost('alamat'),
+                'no_hp' => $this->request->getPost('no_hp'),
+                'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+                'tahun_diterima' => $this->request->getPost('tahun_diterima'),
+                'status_penerima' => $this->request->getPost('status_penerima'),
+                'keterangan' => $this->request->getPost('keterangan'),
+            ];
+
+            $this->pbModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/penerima'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Tambah Penerima | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-penerima', $data);
+        }
     }
 
     public function import_penerima()
@@ -201,7 +241,7 @@ class Admin extends BaseController
         $data = [
             'id_penerima' => $id_penerima,
         ];
-        
+
         $this->pbModel->DeleteData($data);
         return redirect()->to(base_url('/admin/penerima'));
     }
@@ -237,7 +277,6 @@ class Admin extends BaseController
 
     public function save_akademik()
     {
-
     }
 
     public function prestasi()
@@ -400,7 +439,7 @@ class Admin extends BaseController
 
         return view('main/tambah-pengumuman', $data);
     }
-    
+
     public function edit_pengumuman()
     {
         $data = [

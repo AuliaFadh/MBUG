@@ -33,6 +33,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('penerima/edit/(:any)', 'Admin::edit_penerima/$1');
     $routes->get('penerima/import', 'Admin::import_penerima');
     $routes->get('penerima/delete/(:any)', 'Admin::del_penerima/$1');
+    $routes->post('penerima/save', 'Admin::save_penerima');
 
     $routes->get('akademik', 'Admin::akademik');
     $routes->get('akademik/add', 'Admin::add_akademik');

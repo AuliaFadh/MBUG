@@ -81,7 +81,7 @@
                                             <td class="th-nm">
                                                 <a href="<?= base_url('/admin/penerima/edit/' . $value['id_penerima']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                 <!-- ul ini yng elemen button dari adib, jadi dia confirm boxnya udah keren jadi  -->
-                                                <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_penerima(0)"><i class="la la-trash-o"></i></button>
+                                                <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_penerima(<?= $value['id_penerima']; ?>)"><i class="la la-trash-o"></i></button>
                                                 
                                             </td>
                                         </tr>
