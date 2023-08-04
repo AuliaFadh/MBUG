@@ -261,6 +261,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Input Akademik | MBUG',
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('main/tambah-akademik', $data);
@@ -277,6 +278,45 @@ class Admin extends BaseController
 
     public function save_akademik()
     {
+        if ($this->validate([
+            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+            'jenis' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            'bef' => 'required',
+            'af' => 'required',
+            'ipk' => 'required',
+            'ipk_lokal' => 'required',
+            'ipk_uu' => 'required',
+            #'rangkuman_nilai' => 'required',
+        ])) {
+            $data = [
+                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis')),
+                'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'ipk' => $this->request->getPost('ipk'),
+                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+                'ipk_uu' => $this->request->getPost('ipk_uu'),
+                'rangkuman_nilai' => $this->request->getPost('TA'),
+            ];
+
+            $this->laModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/akademik'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Tambah Penerima | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-akademik', $data);
+        }
     }
 
     public function prestasi()

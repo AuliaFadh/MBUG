@@ -10,7 +10,7 @@ class laModel extends Model
     protected $primaryKey       = 'id_akademik';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai'];
+    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai'];
 
     public function AllData()
     {
@@ -38,5 +38,25 @@ class laModel extends Model
     public function DeleteData($data)
     {
         $this->db->table('laporan_akademik')->where('id_akademik', $data['id_akademik'])->delete($data);
+    }
+
+    public function getIDb($data)
+    {
+        $b = $this->db->table('jenis_beasiswa')->where('jenis', $data)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['id_beasiswa'];
+    }
+
+    public function getIDp($data)
+    {
+        $p = $this->db->table('penerima_beasiswa')->where('npm', $data)->get()->getRow();
+        $p = get_object_vars($p);
+        return $p['id_penerima'];
+    }
+
+    public function getTA($ta, $bef, $af)
+    {
+        $tahun_ajaran = $ta . " " . $bef . "/" . $af;
+        return($tahun_ajaran);
     }
 }

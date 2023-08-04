@@ -38,6 +38,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('akademik', 'Admin::akademik');
     $routes->get('akademik/add', 'Admin::add_akademik');
     $routes->get('akademik/edit/(:any)', 'Admin::edit_akademik/$1');
+    $routes->post('akademik/save', 'Admin::save_akademik');
 
     $routes->get('prestasi', 'Admin::prestasi');
     $routes->get('prestasi/add', 'Admin::add_prestasi');
