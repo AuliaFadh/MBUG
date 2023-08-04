@@ -80,7 +80,7 @@
                                             } else if ($value['status_penerima'] == "0") {
                                                 $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
                                             } else if ($value['status_penerima'] == "2") {
-                                                $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
+                                                $status = '<span class="badge badge-rounded badge-success">lulus</span>';
                                             };
                                             ?>
                                             <td class="th-sm"><?= $status; ?></td>
