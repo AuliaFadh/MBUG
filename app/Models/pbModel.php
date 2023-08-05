@@ -27,9 +27,9 @@ class pbModel extends Model
         return $this->db->table('penerima_beasiswa')->where('id_penerima', $id_penerima)->get()->getRow();
     }
 
-    public function UpdateData($data)
+    public function UpdateData($id, $data)
     {
-        return $this->db->table('penerima_beasiswa')->where('id_penerima', $data['id_penerima'])->update($data);
+        return $this->db->table('penerima_beasiswa')->where('id_penerima', $id)->update($data);
     }
 
     public function DeleteData($data)

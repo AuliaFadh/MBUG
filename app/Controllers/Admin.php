@@ -127,7 +127,7 @@ class Admin extends BaseController
             ];
 
             $this->jbModel->UpdateData($id_beasiswa, $data);
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
 
             return redirect()->to(base_url('/admin/beasiswa'));
         } else {
@@ -199,10 +199,12 @@ class Admin extends BaseController
         return view('main/tambah-penerima', $data);
     }
 
-    public function edit_penerima()
+    public function edit_penerima($id_penerima)
     {
         $data = [
             'title' => 'Form Edit Penerima | MBUG',
+            'validation' => \Config\Services::validation(),
+            'mhs' => $this->jbModel->DetailData($id_penerima),
         ];
 
         return view('main/edit-penerima', $data);

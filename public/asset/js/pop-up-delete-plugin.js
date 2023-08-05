@@ -1,19 +1,19 @@
 
 function deleteData_news(id) {
-    // window.location.href = "/admin/pengumuman/delete/" + id;
+    window.location.href = "/admin/pengumuman/delete/" + id;
   }
 
 function deleteData_user(id) {
-    // window.location.href = "/admin/manajemen/delete/" + id;
+    window.location.href = "/admin/manajemen/delete/" + id;
   }
 function deleteData_beasiswa(id) {
     window.location.href = "/admin/beasiswa/delete/" + id;
   }
 function deleteData_penerima(id) {
-    // window.location.href = "/admin/penerima/delete/" + id;
+    window.location.href = "/admin/penerima/delete/" + id;
 }
 function deleteData_gform(id) {
-    // window.location.href = "/admin/gform/delete/" + id;
+    window.location.href = "/admin/gform/delete/" + id;
 }
 
 function deleteConfirmation_news(id) {
