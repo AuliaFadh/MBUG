@@ -27,9 +27,9 @@ class jbModel extends Model
         return $this->db->table('jenis_beasiswa')->where('id_beasiswa', $id_beasiswa)->get()->getRow();
     }
 
-    public function UpdateData($data)
+    public function UpdateData($id, $data)
     {
-        return $this->db->table('jenis_beasiswa')->where('id_beasiswa', $data['id_beasiswa'])->update($data);
+        return $this->db->table('jenis_beasiswa')->where('id_beasiswa', $id)->update($data);
     }
 
     public function DeleteData($data)

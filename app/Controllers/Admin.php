@@ -103,10 +103,36 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Edit Beasiswa | MBUG',
+            'validation' => \Config\Services::validation(),
             'mhs' => $this->jbModel->DetailData($id_beasiswa),
         ];
 
         return view('main/edit-beasiswa', $data);
+    }
+
+    public function cedit_beasiswa($id_beasiswa)
+    {
+        if ($this->validate([
+            'jenis' => 'required',
+            'asal' => 'required',
+            'tahun' => 'required',
+            'status' => 'required',
+        ])) {
+            $data = [
+                'id_beasiswa' => $id_beasiswa,
+                'jenis' => $this->request->getPost('jenis'),
+                'asal' => $this->request->getPost('asal'),
+                'tahun_penerimaan' => $this->request->getPost('tahun'),
+                'status_beasiswa' => $this->request->getPost('status'),
+            ];
+
+            $this->jbModel->UpdateData($id_beasiswa, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/beasiswa'));
+        } else {
+            return redirect()->to(base_url('/admin/beasiswa'));
+        }
     }
 
     public function save_beasiswa()
