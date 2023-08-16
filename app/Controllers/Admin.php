@@ -204,10 +204,45 @@ class Admin extends BaseController
         $data = [
             'title' => 'Form Edit Penerima | MBUG',
             'validation' => \Config\Services::validation(),
-            'mhs' => $this->jbModel->DetailData($id_penerima),
+            'mhs' => $this->pbModel->DetailData($id_penerima),
         ];
 
         return view('main/edit-penerima', $data);
+    }
+
+    public function cedit_penerima($id_penerima)
+    {
+        if ($this->validate([
+            'nama' => 'required',
+            'npm' => 'required',
+            'prodi' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'jenis_kelamin' => 'required',
+            'tahun_diterima' => 'required',
+            'status_penerima' => 'required',
+
+        ])) {
+            $data = [
+                'id_penerima' => $id_penerima,
+                'nama' => $this->request->getPost('nama'),
+                'npm' => $this->request->getPost('npm'),
+                'prodi' => $this->request->getPost('prodi'),
+                'alamat' => $this->request->getPost('alamat'),
+                'no_hp' => $this->request->getPost('no_hp'),
+                'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+                'tahun_diterima' => $this->request->getPost('tahun_diterima'),
+                'status_penerima' => $this->request->getPost('status_penerima'),
+                'keterangan' => $this->request->getPost('keterangan'),
+            ];
+
+            $this->pbModel->UpdateData($id_penerima, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/admin/penerima'));
+        } else {
+            return redirect()->to(base_url('/admin/penerima'));
+        }
     }
 
     public function save_penerima()
