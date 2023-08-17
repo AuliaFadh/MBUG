@@ -59,8 +59,8 @@
                                             <td class="th-nm"><?= $value['nama']; ?></td>
                                             <td class="th-nm"><?= $value['prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
-                                            <td class="th-lg">Bangkit Academy 2023 | Cloud Computing</td>
-                                            <td class="th-nm"><?= $value['kegiatan_mbkm']; ?></td>
+                                            <td class="th-lg"><?= $value['nama_mbkm']; ?></td>
+                                            <td class="th-nm"><?= $value['jenis_mbkm']; ?></td>
                                             <td class="th-sm"><?= $value['periode']; ?></td>
                                             <td class="th-lg"><?= $value['keterangan_mbkm']; ?></td>
                                             <td class="th-sm"><a href="/admin/mbkm/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>

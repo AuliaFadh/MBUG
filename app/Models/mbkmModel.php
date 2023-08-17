@@ -10,7 +10,7 @@ class mbkmModel extends Model
     protected $primaryKey       = 'id_mbkm';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'kegiatan_mbkm', 'periode', 'keterangan_mbkm'];
+    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'nama_mbkm', 'jenis_mbkm', 'periode', 'keterangan_mbkm'];
 
     public function AllData()
     {
@@ -38,5 +38,19 @@ class mbkmModel extends Model
     public function DeleteData($data)
     {
         $this->db->table('laporan_mbkm')->where('id_mbkm', $data['id_mbkm'])->delete($data);
+    }
+
+    public function getIDb($data)
+    {
+        $b = $this->db->table('jenis_beasiswa')->where('jenis', $data)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['id_beasiswa'];
+    }
+
+    public function getIDp($data)
+    {
+        $p = $this->db->table('penerima_beasiswa')->where('npm', $data)->get()->getRow();
+        $p = get_object_vars($p);
+        return $p['id_penerima'];
     }
 }

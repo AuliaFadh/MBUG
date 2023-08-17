@@ -476,9 +476,48 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Input MBKM | MBUG',
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('main/tambah-mbkm', $data);
+    }
+
+    public function save_mbkm()
+    {
+        if ($this->validate([
+            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'nama_mbkm' => 'required',
+            'jenis_mbkm' => 'required',
+            'periode' => 'required',
+            'keterangan_mbkm' => 'required',
+
+        ])) {
+            $data = [
+                'id_beasiswa' => $this->mbkmModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->mbkmModel->getIDp($this->request->getPost('npm')),
+                'nama_mbkm' => $this->request->getPost('nama_mbkm'),
+                'jenis_mbkm' => $this->request->getPost('jenis_mbkm'),
+                'periode' => $this->request->getPost('periode'),
+                'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
+            ];
+
+            $this->mbkmModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/mbkm'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Tambah Penerima | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-mbkm', $data);
+        }
     }
 
     public function edit_mbkm()
