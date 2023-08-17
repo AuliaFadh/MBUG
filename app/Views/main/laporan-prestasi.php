@@ -66,11 +66,20 @@
                                             <td class="th-nm"><?= $value['prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['tingkat']; ?></td>
-                                            <td class="th-nm"><?= $value['jenis_prestasi']; ?></td>
+                                            <?php if ($value['jenis_prestasi'] == "1") {
+                                                $jenis_prestasi = '<span class="badge badge-rounded badge-primary"> Tim </span>';
+                                            } else if ($value['jenis_prestasi'] == "0") {
+                                                $jenis_prestasi = '<span class="badge badge-rounded badge-success"> Individu </span>';
+                                            };
+                                            ?>
+                                            <td class="th-sm"><?= $jenis_prestasi; ?></td>
                                             <td class="th-nm"><?= $value['nama_kegiatan']; ?></td>
                                             <td class="th-nm"><?= $value['capaian']; ?></td>
                                             <td class="th-sm"><?= $value['tempat']; ?></td>
-                                            <td class="th-sm"><?= $value['tanggal']; ?></td>
+                                            <?php 
+                                            $tgl = date_create_from_format('Y-m-d', $value['tanggal']);
+                                            ?>
+                                            <td class="th-sm"><?= $tgl->format('d M Y'); ?></td>
                                             <td class="th-sm"><?= $value['penyelenggara']; ?></td>
                                             <td class="th-sm">
                                                 <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">

@@ -50,7 +50,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" readonly id="npm-name" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? ' is-invalid is-test' : ''; ?>" id="nama" name="nama" autofocus value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
+                                            <input type="text" readonly id="npm-name" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? ' is-invalid is-test' : ''; ?>" id="nama" name="nama" value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('nama'); ?>
                                             </div>
@@ -61,7 +61,7 @@
                                     <div class="container1 row  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" readonly id="npm-ps" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" autofocus value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
+                                            <input type="text" readonly id="npm-ps" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('prodi'); ?>
                                             </div>
@@ -71,7 +71,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? ' is-invalid is-test' : ''; ?>" id="jenis" name="jenis" autofocus value="<?= old('jenis', isset($input['jenis']) ? $input['jenis'] : ''); ?>">
+                                            <input type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis_beasiswa')) ? ' is-invalid is-test' : ''; ?>" id="jenis_beasiswa" name="jenis_beasiswa" value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : ''); ?>">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
                                                 <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
@@ -81,7 +81,7 @@
                                                 <span id="jb-noData" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-                                                <?= $validation->getError('jenis'); ?>
+                                                <?= $validation->getError('jenis_beasiswa'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Semester</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-3 col-sm-5 ">
-                                            <input type="number" min=1 max=14 class="form-control custom-textfield <?= ($validation->hasError('semester')) ? ' is-invalid is-test' : ''; ?>" id="semester" name="semester" autofocus value="<?= old('semester', isset($input['semester']) ? $input['semester'] : ''); ?>">
+                                            <input type="number" min=1 max=14 class="form-control custom-textfield <?= ($validation->hasError('semester')) ? ' is-invalid is-test' : ''; ?>" id="semester" name="semester" value="<?= old('semester', isset($input['semester']) ? $input['semester'] : ''); ?>">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('semester'); ?>
                                             </div>
@@ -121,7 +121,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk')) ? ' is-invalid is-test' : ''; ?>" id="ipk" name="ipk" autofocus value="<?= old('ipk', isset($input['ipk']) ? $input['ipk'] : ''); ?>">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk')) ? ' is-invalid is-test' : ''; ?>" id="ipk" name="ipk" value="<?= old('ipk', isset($input['ipk']) ? $input['ipk'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk'); ?>
                                             </div>
@@ -131,7 +131,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Lokal</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_lokal')) ? ' is-invalid is-test' : ''; ?>" id="ipk_lokal" name="ipk_lokal" autofocus value="<?= old('ipk_lokal', isset($input['ipk_lokal']) ? $input['ipk_lokal'] : ''); ?>">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_lokal')) ? ' is-invalid is-test' : ''; ?>" id="ipk_lokal" name="ipk_lokal" value="<?= old('ipk_lokal', isset($input['ipk_lokal']) ? $input['ipk_lokal'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk_lokal'); ?>
                                             </div>
@@ -141,7 +141,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_uu')) ? ' is-invalid is-test' : ''; ?>" id="ipk_uu" name="ipk_uu" autofocus value="<?= old('ipk_uu', isset($input['ipk_uu']) ? $input['ipk_uu'] : ''); ?>">
+                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_uu')) ? ' is-invalid is-test' : ''; ?>" id="ipk_uu" name="ipk_uu" value="<?= old('ipk_uu', isset($input['ipk_uu']) ? $input['ipk_uu'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk_uu'); ?>
                                             </div>

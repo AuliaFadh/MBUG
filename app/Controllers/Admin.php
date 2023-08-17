@@ -343,7 +343,7 @@ class Admin extends BaseController
     {
         if ($this->validate([
             'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
-            'jenis' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
             'TA' => 'required',
             'bef' => 'required',
@@ -354,7 +354,7 @@ class Admin extends BaseController
             #'rangkuman_nilai' => 'required',
         ])) {
             $data = [
-                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis')),
+                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
                 'semester' => $this->request->getPost('semester'),
                 'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
@@ -397,9 +397,59 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Input Prestasi | MBUG',
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('main/tambah-prestasi', $data);
+    }
+
+    public function save_prestasi()
+    {
+        if ($this->validate([
+            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'tingkat' => 'required',
+            'jenis_prestasi' => 'required',
+            'nama_kegiatan' => 'required',
+            'capaian' => 'required',
+            'tempat' => 'required',
+            'datepicker' => 'required',
+            'penyelenggara' => 'required',
+            'publikasi' => 'required',
+            #'rangkuman_nilai' => 'required',
+        ])) {
+            $tgl = $this->request->getPost('datepicker');
+            $tglformat = date_create_from_format('d M, Y', $tgl);
+            $data = [
+                'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->lpModel->getIDp($this->request->getPost('npm')),
+                'tingkat' => $this->request->getPost('tingkat'),
+                'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
+                'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
+                'capaian' => $this->request->getPost('capaian'),
+                'tempat' => $this->request->getPost('tempat'),
+                'tanggal' => $tglformat->format('Y-m-d'),
+                'penyelenggara' => $this->request->getPost('penyelenggara'),
+                'bukti_prestasi' => "-",
+                'publikasi' => $this->request->getPost('publikasi'),
+            ];
+
+            $this->lpModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/prestasi'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Tambah Penerima | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-prestasi', $data);
+        }
     }
 
     public function edit_prestasi()

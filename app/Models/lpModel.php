@@ -39,4 +39,18 @@ class lpModel extends Model
     {
         $this->db->table('laporan_prestasi')->where('id_prestasi', $data['id_prestasi'])->delete($data);
     }
+
+    public function getIDb($data)
+    {
+        $b = $this->db->table('jenis_beasiswa')->where('jenis', $data)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['id_beasiswa'];
+    }
+
+    public function getIDp($data)
+    {
+        $p = $this->db->table('penerima_beasiswa')->where('npm', $data)->get()->getRow();
+        $p = get_object_vars($p);
+        return $p['id_penerima'];
+    }
 }

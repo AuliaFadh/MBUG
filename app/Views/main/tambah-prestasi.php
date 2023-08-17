@@ -25,13 +25,14 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="#" method="post">
+                        <form action="/admin/prestasi/save" method="post">
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
+                                            <input type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3 <?= ($validation->hasError('npm')) ? ' is-invalid is-test' : ''; ?>" id="npm" name="npm" autofocus value="<?= old('npm', isset($input['npm']) ? $input['npm'] : ''); ?>">
                                             <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
                                                 <a id="npm-data" onclick="fillInputNPM('10120544','Isa Tarmana','Sistem Informasi')">10120544 </a>
@@ -41,7 +42,7 @@
                                                 <span id="npm-noData" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-
+                                                <?= $validation->getError('npm'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -49,9 +50,9 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" readonly id="npm-name" class="form-control custom-textfield ">
+                                            <input type="text" readonly id="npm-name" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? ' is-invalid is-test' : ''; ?>" id="nama" name="nama" value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
                                             <div class="invalid-feedback">
-
+                                                <?= $validation->getError('nama'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -60,9 +61,9 @@
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" readonly id="npm-ps" class="form-control custom-textfield ">
+                                            <input type="text" readonly id="npm-ps" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
                                             <div class="invalid-feedback">
-
+                                                <?= $validation->getError('prodi'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +71,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <input type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis_beasiswa')) ? ' is-invalid is-test' : ''; ?>" id="jenis_beasiswa" name="jenis_beasiswa" value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : ''); ?>">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
                                                 <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
@@ -80,7 +81,7 @@
                                                 <span id="jb-noData" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-
+                                                <?= $validation->getError('jenis_beasiswa'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -89,13 +90,13 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tingkat</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <select class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-4">
+                                            <select name="tingkat" class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-4">
                                                 <option></option>
-                                                <option value="2018">Internasional</option>
-                                                <option value="2019">Nasional</option>
-                                                <option value="2020">Provinsi</option>
-                                                <option value="2021">Wilayah</option>
-                                                <option value="2022">Internal</option>
+                                                <option value="Internasional">Internasional</option>
+                                                <option value="Nasional">Nasional</option>
+                                                <option value="Provinsi">Provinsi</option>
+                                                <option value="Wilayah">Wilayah</option>
+                                                <option value="Internal">Internal</option>
 
                                             </select>
                                             <div class=" invalid-feedback">
@@ -105,8 +106,8 @@
                                     </div>
                                     <div style="padding-left : 15px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Prestasi</label>
-                                        <input type="radio" class="margin-custom" name="nilai" value="1"> Tim<br>
-                                        <input type="radio" class="margin-custom" name="nilai" value="0" checked> Individu<br>
+                                        <input type="radio" class="margin-custom" name="jenis_prestasi" value="1"> Tim<br>
+                                        <input type="radio" class="margin-custom" name="jenis_prestasi" value="0" checked> Individu<br>
 
                                         <!-- <div class="invalid-feedback">
                                             
@@ -115,9 +116,9 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Kegiatan</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('nama_kegiatan')) ? ' is-invalid is-test' : ''; ?>" id="nama_kegiatan" name="nama_kegiatan" value="<?= old('nama_kegiatan', isset($input['nama_kegiatan']) ? $input['nama_kegiatan'] : ''); ?>">
                                             <div class=" invalid-feedback">
-
+                                                <?= $validation->getError('nama_kegiatan'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -125,38 +126,38 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Capaian</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <select class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
+                                            <select name="capaian" class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
                                                 <option></option>
-                                                <option value="2018">Juara I</option>
-                                                <option value="2019">Juara II</option>
-                                                <option value="2020">Juara III</option>
-                                                <option value="2021">Harapan I</option>
-                                                <option value="2022">Harapan II</option>
-                                                <option value="2022">Harapan III</option>
-                                                <option value="2022">Harapan IV</option>
-                                                <option value="2022">Partisipatif</option>
-                                                <option value="2022">Finalis</option>
-                                                <option value="2022">Lainnya</option>
+                                                <option value="Juara I">Juara I</option>
+                                                <option value="Juara II">Juara II</option>
+                                                <option value="Juara III">Juara III</option>
+                                                <option value="Harapan I">Harapan I</option>
+                                                <option value="Harapan II">Harapan II</option>
+                                                <option value="Harapan III">Harapan III</option>
+                                                <option value="Harapan IV">Harapan IV</option>
+                                                <option value="Partisipatif">Partisipatif</option>
+                                                <option value="Finalis">Finalis</option>
+                                                <option value="Lainnya">Lainnya</option>
 
                                             </select>
                                             <div class=" invalid-feedback">
-
+                                                <?= $validation->getError('capaian'); ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tempat</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('tempat')) ? ' is-invalid is-test' : ''; ?>" id="tempat" name="tempat" value="<?= old('tempat', isset($input['tempat']) ? $input['tempat'] : ''); ?>">
                                             <div class=" invalid-feedback">
-
+                                                <?= $validation->getError('tempat'); ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal Pembuatan</label>
-                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6" id="datepicker">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12" data-date-format="yyyy-mm-dd">
+                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 " data-date-format="yyyy-mm-dd" id="datepicker">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -166,9 +167,9 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Penyelenggara</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('penyelenggara')) ? ' is-invalid is-test' : ''; ?>" id="penyelenggara" name="penyelenggara" value="<?= old('penyelenggara', isset($input['penyelenggara']) ? $input['penyelenggara'] : ''); ?>">
                                             <div class=" invalid-feedback">
-
+                                                <?= $validation->getError('penyelenggara'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -183,9 +184,9 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan Publikasi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="url" class="form-control custom-textfield ">
+                                            <input type="url" class="form-control custom-textfield <?= ($validation->hasError('publikasi')) ? ' is-invalid is-test' : ''; ?>" id="publikasi" name="publikasi" value="<?= old('publikasi', isset($input['publikasi']) ? $input['publikasi'] : ''); ?>">
                                             <div class=" invalid-feedback">
-
+                                            <?= $validation->getError('publikasi'); ?>
                                             </div>
                                         </div>
                                     </div>

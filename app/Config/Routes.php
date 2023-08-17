@@ -45,6 +45,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('prestasi', 'Admin::prestasi');
     $routes->get('prestasi/add', 'Admin::add_prestasi');
     $routes->get('prestasi/edit/(:any)', 'Admin::edit_prestasi/$1');
+    $routes->post('prestasi/save', 'Admin::save_prestasi');
 
     $routes->get('mbkm', 'Admin::mbkm');
     $routes->get('mbkm/add', 'Admin::add_mbkm');
