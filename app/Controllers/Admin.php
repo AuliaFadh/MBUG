@@ -15,6 +15,7 @@ class Admin extends BaseController
     protected $lgfModel;
     protected $mnjModel;
     protected $loginModel;
+    protected $newsModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -26,6 +27,7 @@ class Admin extends BaseController
         $this->lgfModel = new \App\Models\lgfModel();
         $this->mnjModel = new \App\Models\mnjModel();
         $this->loginModel = new \App\Models\loginModel();
+        $this->newsModel = new \App\Models\newsModel();
     }
 
     public function test()
@@ -696,8 +698,10 @@ class Admin extends BaseController
 
     public function pengumuman()
     {
+        $news = $this->newsModel->AllData();
         $data = [
             'title' => 'Pengumuman | MBUG',
+            'news' => $news,
         ];
 
         return view('main/pengumuman', $data);
