@@ -157,7 +157,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal Pembuatan</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12" data-date-format="yyyy-mm-dd">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 " data-date-format="yyyy-mm-dd" id="datepicker">
+                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 " id="datepicker">
                                             <div class=" invalid-feedback">
 
                                             </div>

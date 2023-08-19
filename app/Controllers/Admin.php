@@ -647,8 +647,42 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Input Google Form |MB UG',
+            'validation' => \Config\Services::validation(),
         ];
         return view('main/tambah-gform', $data);
+    }
+
+    public function save_gform()
+    {
+        if ($this->validate([
+            'nama_form' => 'required',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'tautan' => 'required',
+            'datepicker' => 'required',
+        ])) {
+            $data = [
+                'nama_form' => $this->request->getPost('nama_form'),
+                'id_beasiswa' => $this->lgfModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'tautan' => $this->request->getPost('tautan'),
+                'tanggal_pembuatan' => $this->lgfModel->getDate($this->request->getPost('datepicker')),
+            ];
+
+            $this->lgfModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/gform'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Tambah Beasiswa | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-gform', $data);
+        }
     }
 
     public function edit_gform()

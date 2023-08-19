@@ -38,4 +38,17 @@ class lgfModel extends Model
     {
         $this->db->table('link_gform')->where('id_lgf', $data['id_lgf'])->delete($data);
     }
+
+    public function getIDb($data)
+    {
+        $b = $this->db->table('jenis_beasiswa')->where('jenis', $data)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['id_beasiswa'];
+    }
+
+    public function getDate($data)
+    {
+        $tglformat = date_create_from_format('d M, Y', $data);
+        return $tglformat->format('Y-m-d');
+    }
 }

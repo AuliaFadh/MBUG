@@ -28,16 +28,17 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="#" method="post">
+                        <form action="/admin/gform/save" method="post">
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Form</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('nama_form')) ? ' is-invalid is-test' : ''; ?>" autofocus id="nama_form" name="nama_form" value="<?= old('nama_form', isset($input['nama_form']) ? $input['nama_form'] : ''); ?>">
                                             <div class=" invalid-feedback">
-
+                                            <?= $validation->getError('nama_form'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +46,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <input type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis_beasiswa')) ? ' is-invalid is-test' : ''; ?>" id="jenis_beasiswa" name="jenis_beasiswa" value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : ''); ?>">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
                                                 <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
@@ -55,16 +56,16 @@
                                                 <span id="jb-noData" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-
+                                                <?= $validation->getError('jenis_beasiswa'); ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="link" class="form-control custom-textfield ">
+                                            <input type="link" class="form-control custom-textfield <?= ($validation->hasError('tautan')) ? ' is-invalid is-test' : ''; ?>" id="tautan" name="tautan" value="<?= old('tautan', isset($input['tautan']) ? $input['tautan'] : ''); ?>">
                                             <div class=" invalid-feedback">
-
+                                            <?= $validation->getError('tautan'); ?>
                                             </div>
                                         </div>
                                     </div>

@@ -60,6 +60,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('gform', 'Admin::gform');
     $routes->get('gform/add', 'Admin::add_gform');
     $routes->get('gform/edit/(:any)', 'Admin::edit_gform/$1');
+    $routes->post('gform/save', 'Admin::save_gform');
 
     $routes->get('pengumuman', 'Admin::pengumuman');
     $routes->get('pengumuman/add', 'Admin::add_pengumuman');
