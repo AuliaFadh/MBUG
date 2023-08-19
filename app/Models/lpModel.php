@@ -53,4 +53,10 @@ class lpModel extends Model
         $p = get_object_vars($p);
         return $p['id_penerima'];
     }
+
+    public function getDate($data)
+    {
+        $tglformat = date_create_from_format('d M, Y', $data);
+        return $tglformat->format('Y-m-d');
+    }
 }

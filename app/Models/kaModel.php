@@ -39,4 +39,24 @@ class kaModel extends Model
     {
         $this->db->table('laporan_keaktifan')->where('id_keaktifan', $data['id_keaktifan'])->delete($data);
     }
+
+    public function getIDb($data)
+    {
+        $b = $this->db->table('jenis_beasiswa')->where('jenis', $data)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['id_beasiswa'];
+    }
+
+    public function getIDp($data)
+    {
+        $p = $this->db->table('penerima_beasiswa')->where('npm', $data)->get()->getRow();
+        $p = get_object_vars($p);
+        return $p['id_penerima'];
+    }
+
+    public function getTA($ta, $bef, $af)
+    {
+        $tahun_ajaran = $ta . " " . $bef . "/" . $af;
+        return($tahun_ajaran);
+    }
 }

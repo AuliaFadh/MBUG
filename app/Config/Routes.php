@@ -55,6 +55,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('keaktifan', 'Admin::keaktifan');
     $routes->get('keaktifan/add', 'Admin::add_keaktifan');
     $routes->get('keaktifan/edit/(:any)', 'Admin::edit_keaktifan/$1');
+    $routes->post('keaktifan/save', 'Admin::save_keaktifan');
 
     $routes->get('gform', 'Admin::gform');
     $routes->get('gform/add', 'Admin::add_gform');

@@ -418,8 +418,6 @@ class Admin extends BaseController
             'publikasi' => 'required',
             #'rangkuman_nilai' => 'required',
         ])) {
-            $tgl = $this->request->getPost('datepicker');
-            $tglformat = date_create_from_format('d M, Y', $tgl);
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->lpModel->getIDp($this->request->getPost('npm')),
@@ -428,7 +426,7 @@ class Admin extends BaseController
                 'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
                 'capaian' => $this->request->getPost('capaian'),
                 'tempat' => $this->request->getPost('tempat'),
-                'tanggal' => $tglformat->format('Y-m-d'),
+                'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => "-",
                 'publikasi' => $this->request->getPost('publikasi'),
@@ -573,9 +571,57 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Input Keaktifan | MBUG',
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('main/tambah-keaktifan', $data);
+    }
+
+    public function save_keaktifan()
+    {
+        if ($this->validate([
+            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            'bef' => 'required',
+            'af' => 'required',
+            #'krs' => 'required',
+            'jumlah_ditagihkan' => 'required',
+            'jumlah_potongan' => 'required',
+            #'blanko_pembayaran' => 'required',
+            #'bukti_pembayaran' => 'required',
+            'status_keaktifan' => 'required',
+        ])) {
+            $data = [
+                'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->kaModel->getIDp($this->request->getPost('npm')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'krs' => "-",
+                'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
+                'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
+                'blanko_pembayaran' => "-",
+                'bukti_pembayaran' => "-",
+                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+            ];
+
+            $this->kaModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/keaktifan'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Tambah Penerima | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-keaktifan', $data);
+        }
     }
 
     public function edit_keaktifan()
