@@ -9,7 +9,7 @@
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
-                <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
+                        <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/log">Log Aktivitas</a></li>
             </ol>
@@ -38,24 +38,26 @@
                                         <th>ID User</th>
                                         <th>Username</th>
                                         <th>Hak Akses</th>
-
-
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>4 Juli 2023</td>
-                                        <td>A001</td>
-                                        <td>User1</td>
-                                        <td>Admin</td>
-
-
-                                    </tr>
-
-
-
+                                    <?php foreach ($log as $key => $value) : ?>
+                                        <tr>
+                                            <?php
+                                            $last_login = date_create_from_format('Y-m-d h:i:s', $value['log_last_login']);
+                                            ?>
+                                            <td><?= $last_login->format('d M Y, h:i:s'); ?></td>
+                                            <td><?= $value['id_user']; ?></td>
+                                            <td><?= $value['log_username']; ?></td>
+                                            <?php if ($value['hak_akses'] == "0") {
+                                                $hak_akses = '<span  style="color:white;"class="badge badge-rounded badge-success"> User </span>';
+                                            } else if ($value['hak_akses'] == "1") {
+                                                $hak_akses = '<span class="badge badge-rounded badge-primary"> Admin </span>';
+                                            }
+                                            ?>
+                                            <td><?= $hak_akses; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

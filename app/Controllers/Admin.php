@@ -13,9 +13,10 @@ class Admin extends BaseController
     protected $kaModel;
     protected $mbkmModel;
     protected $lgfModel;
-    protected $mnjModel;
+    protected $userModel;
     protected $loginModel;
     protected $newsModel;
+    protected $logModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -25,9 +26,10 @@ class Admin extends BaseController
         $this->kaModel = new \App\Models\kaModel();
         $this->mbkmModel = new \App\Models\mbkmModel();
         $this->lgfModel = new \App\Models\lgfModel();
-        $this->mnjModel = new \App\Models\mnjModel();
+        $this->userModel = new \App\Models\userModel();
         $this->loginModel = new \App\Models\loginModel();
         $this->newsModel = new \App\Models\newsModel();
+        $this->logModel = new \App\Models\logModel();
     }
 
     public function test()
@@ -532,10 +534,10 @@ class Admin extends BaseController
 
     public function manajemen()
     {
-        $mnj = $this->mnjModel->AllData();
+        $user = $this->userModel->AllData();
         $data = [
             'title' => 'User Manajemen | MBUG',
-            'mnj' => $mnj,
+            'user' => $user,
         ];
 
         return view('main/manajemen-pengguna', $data);
@@ -772,8 +774,10 @@ class Admin extends BaseController
 
     public function log()
     {
+        $log = $this->logModel->AllData();
         $data = [
             'title' => 'Log Aktivitas User|MBUG',
+            'log' => $log,
         ];
 
         return view('main/log-aktivitas', $data);
