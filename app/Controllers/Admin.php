@@ -72,9 +72,10 @@ class Admin extends BaseController
 
     public function home()
     {
-
+        $news = $this->newsModel->AllData();
         $data = [
             'title' => 'Dashboard | MBUG',
+            'news' => $news,
         ];
 
         return view('main/dashboard', $data);
