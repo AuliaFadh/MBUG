@@ -712,9 +712,44 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Form Input Pengumuman | MBUG',
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('main/tambah-pengumuman', $data);
+    }
+
+    public function save_pengumuman()
+    {
+        if ($this->validate([
+            'tanggal_terbit' => 'required',
+            'tanggal_tarik' => 'required',
+            'judul_pengumuman' => 'required',
+            'deskripsi' => 'required',
+        ])) {
+            $data = [
+                'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')),
+                'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
+                'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
+                'deskripsi' => $this->request->getPost('deskripsi'),
+                'penulis' => "-",
+            ];
+
+            $this->newsModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/pengumuman'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Tambah Penerima | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-pengumuman', $data);
+        }
     }
 
     public function edit_pengumuman()

@@ -36,4 +36,10 @@ class newsModel extends Model
     {
         $this->db->table('pengumuman')->where('id_pengumuman', $data['id_pengumuman'])->delete($data);
     }
+
+    public function getDate($data)
+    {
+        $tglformat = date_create_from_format('d M, Y', $data);
+        return $tglformat->format('Y-m-d');
+    }
 }
