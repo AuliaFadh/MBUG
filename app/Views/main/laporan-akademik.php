@@ -32,6 +32,18 @@
                         </div>
                     </div>
 
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('gagal')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal'); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -49,8 +61,6 @@
                                         <th class="th-sm">IPK UU</th>
                                         <th class="th-sm">Rangkuman Nilai</th>
                                         <th class="th-sm">Aksi</th>
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,7 +83,7 @@
                                                     <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
                                                 </a>
                                             </td>
-                                            <td class="th-sm"> <a href="/admin/akademik/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td class="th-sm"> <a href="<?= base_url('/admin/akademik/edit/' . $value['id_akademik']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

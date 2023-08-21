@@ -27,12 +27,15 @@ class laModel extends Model
 
     public function DetailData($id_akademik)
     {
-        return $this->db->table('laporan_akademik')->where('id_akademik', $id_akademik)->get()->getRow();
+        return $this->db->table('laporan_akademik')
+        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
+        ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
+        ->where('id_akademik', $id_akademik)->get()->getRow();
     }
 
-    public function UpdateData($data)
+    public function UpdateData($id, $data)
     {
-        return $this->db->table('laporan_akademik')->where('id_akademik', $data['id_akademik'])->update($data);
+        return $this->db->table('laporan_akademik')->where('id_akademik', $id)->update($data);
     }
 
     public function DeleteData($data)

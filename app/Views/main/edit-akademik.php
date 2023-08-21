@@ -30,13 +30,13 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="#" method="post">
+                        <form action="/admin/akademik/cedit/<?= $former->id_akademik; ?>" method="post">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly value="{10120544}" type="text" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
+                                            <input readonly name="npm" value="<?= $former->npm; ?>" type="text" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -45,7 +45,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
+                                            <input readonly name="nama" value="<?= $former->nama; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -55,7 +55,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
+                                            <input readonly name="prodi" value="<?= $former->prodi; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -64,10 +64,10 @@
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" value="{diisi dari database}" id="jb-input" class="form-control custom-textfield ">
+                                            <input type="text" name="jenis_beasiswa" value="<?= $former->jenis; ?>" id="jb-input" class="form-control custom-textfield ">
                                             <div id="jb-search" class="dropdown-custom col-lg-12 col-md-12 col-sm-12" style="display: none;">
 
-                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
+                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indonesia </a>
                                                 <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
                                                 <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
 
@@ -82,7 +82,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Semester</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-3 col-sm-5">
-                                            <input value="-99" type="number" min=1 max=14 class="form-control custom-textfield ">
+                                            <input name="semester" value="<?= $former->semester; ?>" type="number" min=1 max=14 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -92,14 +92,14 @@
                                         <label class="label-form" style="margin-right: 20px;">Tahun Ajaran</label>
 
 
-                                        <select class="form-control  custom-textfield col-lg-3 col-md-4 col-sm-6">
+                                        <select name="TA" class="form-control  custom-textfield col-lg-3 col-md-4 col-sm-6">
                                             <option></option>
-                                            <option value="2018">ATA</option>
-                                            <option value="2018">PTA</option>
+                                            <option value="ATA">ATA</option>
+                                            <option value="PTA">PTA</option>
                                         </select>
-                                        <input required type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
+                                        <input required type="number" name="bef" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
                                         <h3>/</h3>
-                                        <input required type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
+                                        <input required type="number" name="af" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
                                     </div>
 
 
@@ -108,7 +108,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input value="-99" min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
+                                            <input name="ipk" value="<?= $former->ipk; ?>" min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -117,7 +117,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Local</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input value="-99" min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
+                                            <input name="ipk_lokal" value="<?= $former->ipk_lokal; ?>" min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -126,7 +126,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input value="-99" min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
+                                            <input name="ipk_uu" value="<?= $former->ipk_uu; ?>" min=0 max=4 step=0.01 type="number" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -136,12 +136,9 @@
                                         <div class="form-group fallback w-100 ">
                                             <label class="label-form">Rangkuman Nilai</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
-                                            <input value="-99" type="file" class="dropify" data-default-file="">
+                                            <input name="rangkuman_nilai" value="-99" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
-
-
-
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
