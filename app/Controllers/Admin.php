@@ -327,9 +327,11 @@ class Admin extends BaseController
 
     public function add_akademik()
     {
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Input Akademik | MBUG',
             'validation' => \Config\Services::validation(),
+            'penerima' => $pb
         ];
 
         return view('main/tambah-akademik', $data);
