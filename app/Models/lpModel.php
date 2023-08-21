@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 namespace App\Models;
 
@@ -27,12 +27,15 @@ class lpModel extends Model
 
     public function DetailData($id_prestasi)
     {
-        return $this->db->table('laporan_prestasi')->where('id_prestasi', $id_prestasi)->get()->getRow();
+        return $this->db->table('laporan_prestasi')
+            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_prestasi.id_beasiswa', 'left')
+            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_prestasi.id_penerima', 'left')
+            ->where('id_prestasi', $id_prestasi)->get()->getRow();
     }
 
-    public function UpdateData($data)
+    public function UpdateData($id, $data)
     {
-        return $this->db->table('laporan_prestasi')->where('id_prestasi', $data['id_prestasi'])->update($data);
+        return $this->db->table('laporan_prestasi')->where('id_prestasi', $id)->update($data);
     }
 
     public function DeleteData($data)

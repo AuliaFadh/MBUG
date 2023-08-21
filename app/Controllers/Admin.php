@@ -497,13 +497,55 @@ class Admin extends BaseController
         }
     }
 
-    public function edit_prestasi()
+    public function edit_prestasi($id_prestasi)
     {
         $data = [
             'title' => 'Form Edit Prestasi | MBUG',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->lpModel->DetailData($id_prestasi),
         ];
 
         return view('main/edit-prestasi', $data);
+    }
+
+    public function cedit_prestasi($id_prestasi)
+    {
+        if ($this->validate([
+            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'tingkat' => 'required',
+            'jenis_prestasi' => 'required',
+            'nama_kegiatan' => 'required',
+            'capaian' => 'required',
+            'tempat' => 'required',
+            'datepicker' => 'required',
+            'penyelenggara' => 'required',
+            #'bukti_prestasi' => 'required',
+            'publikasi' => 'required',
+        ])) {
+            $data = [
+                'id_prestasi' => $id_prestasi,
+                'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->lpModel->getIDp($this->request->getPost('npm')),
+                'tingkat' => $this->request->getPost('tingkat'),
+                'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
+                'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
+                'capaian' => $this->request->getPost('capaian'),
+                'tempat' => $this->request->getPost('tempat'),
+                'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
+                'penyelenggara' => $this->request->getPost('penyelenggara'),
+                'bukti_prestasi' => "-",
+                'publikasi' => $this->request->getPost('publikasi'),
+            ];
+
+            $this->lpModel->UpdateData($id_prestasi, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/admin/prestasi'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/admin/prestasi'));
+        }
     }
 
     public function mbkm()
