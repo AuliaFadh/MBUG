@@ -746,13 +746,55 @@ class Admin extends BaseController
         }
     }
 
-    public function edit_keaktifan()
+    public function edit_keaktifan($id_keaktifan)
     {
         $data = [
             'title' => 'Form Edit Keaktifan per Semester | MBUG',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->kaModel->DetailData($id_keaktifan),
         ];
 
         return view('main/edit-keaktifan', $data);
+    }
+
+    public function cedit_keaktifan($id_keaktifan)
+    {
+        if ($this->validate([
+            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            'bef' => 'required',
+            'af' => 'required',
+            #'krs' => 'required',
+            'jumlah_ditagihkan' => 'required',
+            'jumlah_potongan' => 'required',
+            #'blanko_pembayaran' => 'required',
+            #'bukti_pembayaran' => 'required',
+            'status_keaktifan' => 'required',
+        ])) {
+            $data = [
+                'id_keaktifan' => $id_keaktifan,
+                'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->kaModel->getIDp($this->request->getPost('npm')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'krs' => "-",
+                'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
+                'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
+                'blanko_pembayaran' => "-",
+                'bukti_pembayaran' => "-",
+                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+            ];
+
+            $this->kaModel->UpdateData($id_keaktifan, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/admin/keaktifan'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/admin/keaktifan'));
+        }
     }
 
     public function gform()
