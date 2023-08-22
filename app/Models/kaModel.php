@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 namespace App\Models;
 
@@ -28,9 +28,9 @@ class kaModel extends Model
     public function DetailData($id_keaktifan)
     {
         return $this->db->table('laporan_keaktifan')
-        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_keaktifan.id_beasiswa', 'left')
+            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_keaktifan.id_beasiswa', 'left')
             ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_keaktifan.id_penerima', 'left')
-        ->where('id_keaktifan', $id_keaktifan)->get()->getRow();
+            ->where('id_keaktifan', $id_keaktifan)->get()->getRow();
     }
 
     public function UpdateData($id, $data)
@@ -60,6 +60,6 @@ class kaModel extends Model
     public function getTA($ta, $bef, $af)
     {
         $tahun_ajaran = $ta . " " . $bef . "/" . $af;
-        return($tahun_ajaran);
+        return ($tahun_ajaran);
     }
 }

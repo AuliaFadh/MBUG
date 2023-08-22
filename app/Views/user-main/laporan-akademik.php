@@ -63,23 +63,25 @@
                                 <tbody>
                                     <?php $no = 0; ?>
                                     <?php foreach ($la as $key => $value) : ?>
-                                        <?php $no++; ?>
-                                        <tr>
-                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
-                                            <td class="th-lg"><?= $value['jenis']; ?></td>
-                                            <td class="th-sm"><?= $value['semester']; ?></td>
-                                            <td class="th-nm"><?= $value['tahun_ajaran']; ?></td>
-                                            <td class="th-sm"><?= $value['ipk']; ?></td>
-                                            <td class="th-sm"><?= $value['ipk_lokal']; ?></td>
-                                            <td class="th-sm"><?= $value['ipk_uu']; ?></td>
-                                            <td class="th-sm">
-                                                <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
-                                                    <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
-                                                </a>
+                                        <?php if ($value["npm"] == session()->get('username')) : ?>
+                                            <?php $no++; ?>
+                                            <tr>
+                                                <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                                <td class="th-lg"><?= $value['jenis']; ?></td>
+                                                <td class="th-sm"><?= $value['semester']; ?></td>
+                                                <td class="th-nm"><?= $value['tahun_ajaran']; ?></td>
+                                                <td class="th-sm"><?= $value['ipk']; ?></td>
+                                                <td class="th-sm"><?= $value['ipk_lokal']; ?></td>
+                                                <td class="th-sm"><?= $value['ipk_uu']; ?></td>
+                                                <td class="th-sm">
+                                                    <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                        <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                                    </a>
 
-                                            </td>
-                                            <td class="th-sm"> <a href="<?= base_url('/user/akademik/edit/' . $value['id_akademik']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                        </tr>
+                                                </td>
+                                                <td class="th-sm"> <a href="<?= base_url('/user/akademik/edit/' . $value['id_akademik']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            </tr>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

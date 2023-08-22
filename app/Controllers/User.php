@@ -31,6 +31,7 @@ class User extends BaseController
         $this->newsModel = new \App\Models\newsModel();
         $this->logModel = new \App\Models\logModel();
     }
+
     public function user_login()
     {
         $data = [
@@ -45,7 +46,7 @@ class User extends BaseController
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $check = $this->loginModel->login_check($username, $password);
+        $check = $this->loginModel->login_check_u($username, $password);
 
         if (is_null($check)) {
             session()->setFlashdata('no_data', 'Username atau Password Salah');
@@ -57,7 +58,6 @@ class User extends BaseController
             ];
             $this->logModel->InsertData($datalog);
 
-
             $datamnj = [
                 'id_user' => $check["id_user"],
                 'username' => $check["username"],
@@ -68,15 +68,31 @@ class User extends BaseController
             ];
             $this->userModel->UpdateData($check["id_user"], $datamnj);
 
-            dd($check);
+            session()->set('username',$check["username"]);
+            session()->set('nama_user',$check["nama"]);
+            session()->set('hak_akses',$check["hak_akses"]);
+
+            return redirect()->to(base_url('/user/home'));
+            
         } elseif ($check["hak_akses"] == "1") {
             session()->setFlashdata('admin', 'Akun terdaftar sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
     }
 
+    public function user_logout()
+    {
+        session()->destroy();
+        return redirect()->to(base_url('/user/login'));
+    }
+
     public function user_home()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $news = $this->newsModel->AllData();
         $data = [
             'title' => 'Dashboard | MBUG',
@@ -87,6 +103,10 @@ class User extends BaseController
     }
     public function  user_profile()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
 
         $data = [
             'title' => 'Profile | MBUG',
@@ -97,6 +117,11 @@ class User extends BaseController
 
     public function user_akademik()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $la = $this->laModel->AllData();
         $data = [
             'title' => 'Akademik | MBUG',
@@ -107,6 +132,11 @@ class User extends BaseController
     }
     public function user_add_akademik()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $data = [
             'title' => 'Form Input Akademik | User',
         ];
@@ -121,6 +151,11 @@ class User extends BaseController
 
     public function user_edit_akademik()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $data = [
             'title' => 'Form edit Akademik | User',
         ];
@@ -130,6 +165,11 @@ class User extends BaseController
 
     public function user_mbkm()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $mbkm = $this->mbkmModel->AllData();
         $data = [
             'title' => 'Magang Bersertifikat Kampus Merdeka | MBUG',
@@ -140,6 +180,11 @@ class User extends BaseController
     }
     public function user_add_mbkm()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $data = [
             'title' => 'Form Input MBKM | User',
         ];
@@ -149,6 +194,11 @@ class User extends BaseController
 
     public function user_edit_mbkm()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $data = [
             'title' => 'Form Edit MBKM | User',
         ];
@@ -159,6 +209,11 @@ class User extends BaseController
 
     public function user_prestasi()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $lp = $this->lpModel->AllData();
         $data = [
             'title' => 'Laporan Prestasi | MBUG',
@@ -167,8 +222,14 @@ class User extends BaseController
 
         return view('user-main/laporan-prestasi', $data);
     }
+
     public function user_add_prestasi()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+        
         $data = [
             'title' => 'Form Input Prestasi | User',
         ];
@@ -186,6 +247,11 @@ class User extends BaseController
 
     public function user_keaktifan()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $ka = $this->kaModel->AllData();
         $data = [
             'title' => 'Keaktifan per Semester | MBUG',
@@ -196,6 +262,11 @@ class User extends BaseController
     }
     public function user_add_keaktifan()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $data = [
             'title' => 'Form Input Keaktifan | User',
         ];
@@ -203,6 +274,11 @@ class User extends BaseController
     }
     public function user_edit_keaktifan()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $data = [
             'title' => 'Form Edit Keaktifan per Semester | User',
         ];
@@ -212,6 +288,11 @@ class User extends BaseController
 
     public function user_panduan()
     {
+        if(session()->get('username')==""){
+            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+        
         $data = [
             'title' => 'Buku Panduan | MBUG',
         ];

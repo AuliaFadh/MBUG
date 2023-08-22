@@ -60,15 +60,17 @@
                                 <tbody>
                                     <?php $no = 0; ?>
                                     <?php foreach ($mbkm as $key => $value) : ?>
-                                        <?php $no++; ?>
-                                        <tr>
-                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
-                                            <td class="th-lg"><?= $value['nama_mbkm']; ?></td>
-                                            <td class="th-nm"><?= $value['jenis_mbkm']; ?></td>
-                                            <td class="th-sm"><?= $value['periode']; ?></td>
-                                            <td class="th-nm"><?= $value['keterangan_mbkm']; ?></td>
-                                            <td> <a href="<?= base_url('/user/mbkm/edit/' . $value['id_mbkm']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                        </tr>
+                                        <?php if ($value["npm"] == session()->get('username')) : ?>
+                                            <?php $no++; ?>
+                                            <tr>
+                                                <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                                <td class="th-lg"><?= $value['nama_mbkm']; ?></td>
+                                                <td class="th-nm"><?= $value['jenis_mbkm']; ?></td>
+                                                <td class="th-sm"><?= $value['periode']; ?></td>
+                                                <td class="th-nm"><?= $value['keterangan_mbkm']; ?></td>
+                                                <td> <a href="<?= base_url('/user/mbkm/edit/' . $value['id_mbkm']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            </tr>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
