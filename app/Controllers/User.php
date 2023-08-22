@@ -14,6 +14,9 @@ class User extends BaseController
     protected $mbkmModel;
     protected $lgfModel;
     protected $userModel;
+    protected $loginModel;
+    protected $newsModel;
+    protected $logModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -24,16 +27,54 @@ class User extends BaseController
         $this->mbkmModel = new \App\Models\mbkmModel();
         $this->lgfModel = new \App\Models\lgfModel();
         $this->userModel = new \App\Models\userModel();
+        $this->loginModel = new \App\Models\loginModel();
+        $this->newsModel = new \App\Models\newsModel();
+        $this->logModel = new \App\Models\logModel();
     }
     public function user_login()
     {
-
         $data = [
             'title' => 'Login Penerima Beasiswa | MBUG',
         ];
 
         return view('user-main/user-login', $data);
     }
+
+    public function user_login_check()
+    {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        $check = $this->loginModel->login_check($username, $password);
+
+        if (is_null($check)) {
+            session()->setFlashdata('no_data', 'Username atau Password Salah');
+            return redirect()->to(base_url('/user/login'));
+        } elseif ($check["hak_akses"] == "0") {
+            $datalog = [
+                'log_last_login' => $this->logModel->getCurrentDate(),
+                'log_username' => $check["username"],
+            ];
+            $this->logModel->InsertData($datalog);
+
+
+            $datamnj = [
+                'id_user' => $check["id_user"],
+                'username' => $check["username"],
+                'password' => $check["password"],
+                'hak_akses' => $check["hak_akses"],
+                'last_login' => $this->userModel->getCurrentDate(),
+                'status_user' => $check["status_user"],
+            ];
+            $this->userModel->UpdateData($check["id_user"], $datamnj);
+
+            dd($check);
+        } elseif ($check["hak_akses"] == "1") {
+            session()->setFlashdata('admin', 'Akun terdaftar sebagai Admin');
+            return redirect()->to(base_url('/admin/login'));
+        }
+    }
+
     public function user_home()
     {
 
@@ -57,8 +98,7 @@ class User extends BaseController
     {
         $la = $this->laModel->AllData();
         $data = [
-            'title' => 'Akademik | MBUG'
-            ,
+            'title' => 'Akademik | MBUG',
             'la' => $la,
         ];
 
@@ -67,24 +107,24 @@ class User extends BaseController
     public function user_add_akademik()
     {
         $data = [
-            'title' => 'Form Input Akademik | MBUG',
+            'title' => 'Form Input Akademik | User',
         ];
 
         return view('user-main/tambah-akademik', $data);
     }
 
+    public function user_save_akademik()
+    {
+
+    }
+
     public function user_edit_akademik()
     {
         $data = [
-            'title' => 'Form edit Akademik | MBUG',
+            'title' => 'Form edit Akademik | User',
         ];
 
         return view('user-main/edit-akademik', $data);
-    }
-
-    public function save_akademik()
-    {
-
     }
 
     public function user_mbkm()
@@ -100,7 +140,7 @@ class User extends BaseController
     public function user_add_mbkm()
     {
         $data = [
-            'title' => 'Form Input MBKM | MBUG',
+            'title' => 'Form Input MBKM | User',
         ];
 
         return view('user-main/tambah-mbkm', $data);
@@ -109,7 +149,7 @@ class User extends BaseController
     public function user_edit_mbkm()
     {
         $data = [
-            'title' => 'Form Edit MBKM | MBUG',
+            'title' => 'Form Edit MBKM | User',
         ];
 
         return view('user-main/edit-mbkm', $data);
@@ -129,7 +169,7 @@ class User extends BaseController
     public function user_add_prestasi()
     {
         $data = [
-            'title' => 'Form Input Prestasi | MBUG',
+            'title' => 'Form Input Prestasi | User',
         ];
 
         return view('user-main/tambah-prestasi', $data);
@@ -137,7 +177,7 @@ class User extends BaseController
     public function user_edit_prestasi()
     {
         $data = [
-            'title' => 'Form Edit Prestasi | MBUG',
+            'title' => 'Form Edit Prestasi | User',
         ];
 
         return view('user-main/edit-prestasi', $data);
@@ -156,14 +196,14 @@ class User extends BaseController
     public function user_add_keaktifan()
     {
         $data = [
-            'title' => 'Form Input Keaktifan | MBUG',
+            'title' => 'Form Input Keaktifan | User',
         ];
         return view('user-main/tambah-keaktifan', $data);
     }
     public function user_edit_keaktifan()
     {
         $data = [
-            'title' => 'Form Edit Keaktifan per Semester | MBUG',
+            'title' => 'Form Edit Keaktifan per Semester | User',
         ];
 
         return view('user-main/edit-keaktifan', $data);
@@ -178,4 +218,3 @@ class User extends BaseController
         return view('user-main/panduan', $data);
     }
 }
-

@@ -44,7 +44,7 @@ class Admin extends BaseController
     public function login_admin()
     {
         $data = [
-            'title' => 'Login | MBUG',
+            'title' => 'Login Admin | MBUG',
         ];
 
         return view('main/admin-login', $data);
@@ -56,7 +56,33 @@ class Admin extends BaseController
         $password = $this->request->getPost('password');
 
         $check = $this->loginModel->login_check($username, $password);
-        dd($check);
+
+        if(is_null($check)){
+            session()->setFlashdata('no_data', 'Username atau Password Salah');
+            return redirect()->to(base_url('/admin/login'));
+        } elseif($check["hak_akses"] == "1") {
+            $datalog = [
+                'log_last_login' => $this->logModel->getCurrentDate(),
+                'log_username' => $check["username"],
+            ];
+            $this->logModel->InsertData($datalog);
+
+
+            $datamnj = [
+                'id_user' => $check["id_user"],
+                'username' => $check["username"],
+                'password' => $check["password"],
+                'hak_akses' => $check["hak_akses"],
+                'last_login' => $this->userModel->getCurrentDate(),
+                'status_user' => $check["status_user"],
+            ];
+            $this->userModel->UpdateData($check["id_user"], $datamnj);
+
+            dd($check);
+        } elseif($check["hak_akses"] == "0") {
+            session()->setFlashdata('user', 'Akun terdaftar sebagai penerima beasiswa');
+            return redirect()->to(base_url('/user/login'));
+        }
     }
 
     public function profile_admin()

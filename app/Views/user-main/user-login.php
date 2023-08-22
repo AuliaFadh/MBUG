@@ -19,16 +19,28 @@
 								<h3 class="mb-4">Login <p class="role">Penerima Beasiswa</p>
 								</h3>
 							</div>
-
 						</div>
-						<form action="#" class="signin-form">
+
+						<?php if (session()->getFlashdata('user')) : ?>
+							<div class="alert alert-success" role="alert">
+								<?= session()->getFlashdata('user'); ?>
+							</div>
+						<?php endif; ?>
+
+						<?php if (session()->getFlashdata('no_data')) : ?>
+							<div class="alert alert-danger" role="alert">
+								<?= session()->getFlashdata('no_data'); ?>
+							</div>
+						<?php endif; ?>
+
+						<form action="/user/login_check" class="signin-form" method="post">
 							<div class="form-group mb-3">
 								<label class="label" for="name">Username</label>
-								<input type="text" class="form-control" placeholder="Username" required>
+								<input type="text" name="username" class="form-control" placeholder="Username" required>
 							</div>
 							<div class="form-group mb-3">
 								<label class="label" for="password">Password</label>
-								<input type="password" class="form-control" placeholder="Password" required>
+								<input type="password" name="password" class="form-control" placeholder="Password" required>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="form-control btn btn-primary-login rounded submit px-3">Sign In</button>

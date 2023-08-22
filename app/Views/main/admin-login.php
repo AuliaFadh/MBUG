@@ -21,14 +21,26 @@
 							</div>
 						</div>
 
-						<form action="login_check" class="signin-form" method="post">
+						<?php if (session()->getFlashdata('admin')) : ?>
+							<div class="alert alert-success" role="alert">
+								<?= session()->getFlashdata('admin'); ?>
+							</div>
+						<?php endif; ?>
+
+						<?php if (session()->getFlashdata('no_data')) : ?>
+							<div class="alert alert-danger" role="alert">
+								<?= session()->getFlashdata('no_data'); ?>
+							</div>
+						<?php endif; ?>
+
+						<form action="/admin/login_check" class="signin-form" method="post">
 							<div class="form-group mb-3">
 								<label class="label" for="username">Username</label>
-								<input type="text" id="username" name="username" class="form-control" placeholder="username" required>
+								<input type="text" name="username" class="form-control" placeholder="username" required>
 							</div>
 							<div class="form-group mb-3">
 								<label class="label" for="password">Password</label>
-								<input type="password" id="password" name="password" class="form-control" placeholder="password" required>
+								<input type="password" name="password" class="form-control" placeholder="password" required>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="form-control btn btn-primary-login rounded submit px-3">Sign In</button>
@@ -42,7 +54,6 @@
 								</div>
 							</div>
 						</form>
-
 					</div>
 				</div>
 			</div>

@@ -25,4 +25,9 @@ class logModel extends Model
         $time = date("Y-m-d h:i:s");
         return $time;
     }
+
+    public function InsertData($data)
+    {
+        $this->db->table('log_aktivitas')->insert(($data));
+    }
 }

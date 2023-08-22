@@ -92,6 +92,7 @@ $routes->group('admin', function ($routes) {
 
 $routes->group('user', function ($routes) {
     $routes->get('login', 'User::user_login');
+    $routes->post('login_check', 'User::user_login_check');
     $routes->get('profile', 'User::user_profile');
     $routes->get('home', 'User::user_home');
 
