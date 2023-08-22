@@ -21,7 +21,7 @@
                         </div>
                         <div>
                             <a href="/admin/keaktifan/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()"  class="btn btn-primary-download-excel">Download CSV</button>
+                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
 
@@ -59,33 +59,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php $no = 0; ?>
+                                    <?php $no = 0; ?>
                                     <?php foreach ($ka as $key => $value) : ?>
                                         <?php $no++; ?>
                                         <tr>
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
                                             <td class="th-sm"><?= $value['npm']; ?></td>
-                                            <td class="th-nm"><?= $value['nama']; ?></td>                                        
+                                            <td class="th-nm"><?= $value['nama']; ?></td>
                                             <td class="th-nm"><?= $value['prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['semester']; ?></td>
                                             <td class="th-nm"><?= $value['tahun_ajaran']; ?></td>
                                             <td class="th-sm">
-                                            <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
-                                            </a>                                   
+                                                <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                                </a>
                                             </td>
                                             <td class="th-sm"><?= $value['jumlah_ditagihkan']; ?></td>
                                             <td class="th-sm"><?= $value['jumlah_potongan']; ?></td>
                                             <td class="th-sm">
-                                            <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
-                                            </a>                                   
+                                                <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                                </a>
                                             </td>
                                             <td class="th-sm">
-                                            <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
-                                            </a>                                   
+                                                <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                                </a>
                                             </td>
                                             <?php if ($value['status_penerima'] == "1") {
                                                 $status = '<span class="badge badge-rounded badge-primary"> Aktif</span>';

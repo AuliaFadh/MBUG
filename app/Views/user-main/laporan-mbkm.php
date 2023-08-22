@@ -32,6 +32,18 @@
                         </div>
                     </div>
 
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('gagal')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal'); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -46,12 +58,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td class="th-sm">1</td>
-                                    <td class="th-lg">Nama Program MBKM</td>
-                                    <td class="th-nm">Studi Independent</td>
-                                    <td class="th-sm">2023</td>
-                                    <td class="th-nm">Keterangan</td>
-                                    <td> <a href="/user/mbkm/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                    <?php $no = 0; ?>
+                                    <?php foreach ($mbkm as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <td class="th-lg"><?= $value['nama_mbkm']; ?></td>
+                                            <td class="th-nm"><?= $value['jenis_mbkm']; ?></td>
+                                            <td class="th-sm"><?= $value['periode']; ?></td>
+                                            <td class="th-nm"><?= $value['keterangan_mbkm']; ?></td>
+                                            <td> <a href="<?= base_url('/user/mbkm/edit/' . $value['id_mbkm']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
