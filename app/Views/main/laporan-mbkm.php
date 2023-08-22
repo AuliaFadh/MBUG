@@ -32,6 +32,18 @@
                         </div>
                     </div>
 
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('gagal')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal'); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -63,7 +75,7 @@
                                             <td class="th-nm"><?= $value['jenis_mbkm']; ?></td>
                                             <td class="th-sm"><?= $value['periode']; ?></td>
                                             <td class="th-lg"><?= $value['keterangan_mbkm']; ?></td>
-                                            <td class="th-sm"><a href="/admin/mbkm/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                            <td class="th-sm"><a href="<?= base_url('/admin/mbkm/edit/' . $value['id_mbkm']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

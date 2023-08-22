@@ -51,7 +51,8 @@ $routes->group('admin', function ($routes) {
 
     $routes->get('mbkm', 'Admin::mbkm');
     $routes->get('mbkm/add', 'Admin::add_mbkm');
-    $routes->get('mbkm/edit/(:any)', 'Admin::edit_mbkm');
+    $routes->get('mbkm/edit/(:any)', 'Admin::edit_mbkm/$1');
+    $routes->post('mbkm/cedit/(:any)', 'Admin::cedit_mbkm/$1');
     $routes->post('mbkm/save', 'Admin::save_mbkm');
 
     $routes->get('keaktifan', 'Admin::keaktifan');

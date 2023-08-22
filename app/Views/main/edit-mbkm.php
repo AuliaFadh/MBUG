@@ -30,13 +30,13 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="#" method="post">
+                        <form action="/admin/mbkm/cedit/<?= $former->id_mbkm; ?>" method="post">
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input readonly value="{10120544}" type="text" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
+                                            <input readonly name="npm" value="<?= $former->npm; ?>" type="text" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -45,7 +45,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
+                                            <input readonly name="nama" value="<?= $former->nama; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -56,7 +56,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input readonly value="{diisi dari database}" type="text" class="form-control custom-textfield ">
+                                            <input readonly name="prodi" value="<?= $former->prodi; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -66,7 +66,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <input type="text" name="jenis_beasiswa" value="<?= $former->jenis; ?>" id="jb-input" class="form-control custom-textfield ">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
                                                 <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
@@ -84,7 +84,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Program MBKM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
+                                            <input name="nama_mbkm" value="<?= $former->nama_mbkm; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -94,17 +94,17 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Program MBKM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <select class="form-control  custom-textfield col-lg-7 col-md-12 col-sm-12">
+                                            <select name="jenis_mbkm" class="form-control  custom-textfield col-lg-7 col-md-12 col-sm-12">
                                                 <option></option>
-                                                <option value="2018">Pertukaran Pelajar</option>
-                                                <option value="2019"> Magang / Praktik Kerja</option>
-                                                <option value="2019"> Mengajar di Sekolah</option>
-                                                <option value="2019"> Penelitian / Riset</option>
-                                                <option value="2019"> Proyek Kemanusiaan</option>
-                                                <option value="">Proyek Desa</option>
-                                                <option value=""> Wirausaha</option>
-                                                <option value=""> Studi/Proyek Independen</option>
-                                                <option value="">Pengabdian Mahasiswa kepada Masyarakat</option>
+                                                <option value="Pertukaran Pelajar">Pertukaran Pelajar</option>
+                                                <option value="Magang / Praktik Kerja">Magang / Praktik Kerja</option>
+                                                <option value="Mengajar di Sekolah">Mengajar di Sekolah</option>
+                                                <option value="Penelitian / Riset">Penelitian / Riset</option>
+                                                <option value="Proyek Kemanusiaan">Proyek Kemanusiaan</option>
+                                                <option value="Proyek Desa">Proyek Desa</option>
+                                                <option value="Wirausaha">Wirausaha</option>
+                                                <option value="Studi/Proyek Independen">Studi/Proyek Independen</option>
+                                                <option value="Pengabdian Mahasiswa kepada Masyarakat">Pengabdian Mahasiswa kepada Masyarakat</option>
 
                                             </select>
 
@@ -117,7 +117,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Periode</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="{di isi data sebelumnya dulu}" type="text" class="form-control custom-textfield ">
+                                            <input name="periode" value="<?= $former->periode; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -127,7 +127,7 @@
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea class="form-control custom-textfield" rows="2">di isi data sebelumnya dulu"</textarea>
+                                            <textarea name="keterangan_mbkm" value="<?= $former->keterangan_mbkm; ?>" class="form-control custom-textfield" rows="2"></textarea>
                                             <div class=" invalid-feedback">
 
                                             </div>
