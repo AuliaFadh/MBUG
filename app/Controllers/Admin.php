@@ -35,7 +35,7 @@ class Admin extends BaseController
     public function test()
     {
         $data = [
-            'title' => 'Test | MBUG',
+            'title' => 'Test | Admin',
         ];
 
         return view('main/test', $data);
@@ -44,7 +44,7 @@ class Admin extends BaseController
     public function login_admin()
     {
         $data = [
-            'title' => 'Login Admin | MBUG',
+            'title' => 'Login Admin | Admin',
         ];
 
         return view('main/admin-login', $data);
@@ -88,7 +88,7 @@ class Admin extends BaseController
     public function profile_admin()
     {
         $data = [
-            'title' => 'Profile | MBUG',
+            'title' => 'Profile | Admin',
         ];
 
         return view('main/admin-profile', $data);
@@ -98,7 +98,7 @@ class Admin extends BaseController
     {
         $news = $this->newsModel->AllData();
         $data = [
-            'title' => 'Dashboard | MBUG',
+            'title' => 'Dashboard | Admin',
             'news' => $news,
         ];
 
@@ -109,7 +109,7 @@ class Admin extends BaseController
     {
         $jb = $this->jbModel->AllData();
         $data = [
-            'title' => 'Jenis Beasiswa | MBUG',
+            'title' => 'Jenis Beasiswa | Admin',
             'jb' => $jb,
         ];
 
@@ -210,7 +210,7 @@ class Admin extends BaseController
     {
         $pb = $this->pbModel->AllData();
         $data = [
-            'title' => 'Daftar Penerima Beasiswa | MBUG',
+            'title' => 'Daftar Penerima Beasiswa | Admin',
             'pb' => $pb,
         ];
 
@@ -322,7 +322,7 @@ class Admin extends BaseController
     {
 
         $data = [
-            'title' => 'Import Data Penerima | MBUG',
+            'title' => 'Import Data Penerima | Admin',
         ];
 
         return view('main/import-data-peserta', $data);
@@ -344,7 +344,7 @@ class Admin extends BaseController
     {
         $la = $this->laModel->AllData();
         $data = [
-            'title' => 'Akademik | MBUG',
+            'title' => 'Akademik | Admin',
             'la' => $la,
         ];
 
@@ -457,7 +457,7 @@ class Admin extends BaseController
     {
         $lp = $this->lpModel->AllData();
         $data = [
-            'title' => 'Laporan Prestasi | MBUG',
+            'title' => 'Laporan Prestasi | Admin',
             'lp' => $lp,
         ];
 
@@ -576,7 +576,7 @@ class Admin extends BaseController
     {
         $mbkm = $this->mbkmModel->AllData();
         $data = [
-            'title' => 'Magang Bersertifikat Kampus Merdeka | MBUG',
+            'title' => 'Magang Bersertifikat Kampus Merdeka | Admin',
             'mbkm' => $mbkm,
         ];
 
@@ -677,7 +677,7 @@ class Admin extends BaseController
     {
         $user = $this->userModel->AllData();
         $data = [
-            'title' => 'User Manajemen | MBUG',
+            'title' => 'User Manajemen | Admin',
             'user' => $user,
         ];
 
@@ -782,7 +782,7 @@ class Admin extends BaseController
     {
         $ka = $this->kaModel->AllData();
         $data = [
-            'title' => 'Keaktifan per Semester | MBUG',
+            'title' => 'Keaktifan per Semester | Admin',
             'ka' => $ka,
         ];
 
@@ -901,7 +901,7 @@ class Admin extends BaseController
     {
         $lgf = $this->lgfModel->AllData();
         $data = [
-            'title' => 'Daftar Link Google Form | MBUG',
+            'title' => 'Daftar Link Google Form | Admin',
             'lgf' => $lgf
         ];
         return view('main/gform', $data);
@@ -1001,7 +1001,7 @@ class Admin extends BaseController
     {
         $news = $this->newsModel->AllData();
         $data = [
-            'title' => 'Pengumuman | MBUG',
+            'title' => 'Pengumuman | Admin',
             'news' => $news,
         ];
 
@@ -1104,7 +1104,7 @@ class Admin extends BaseController
     public function panduan()
     {
         $data = [
-            'title' => 'Buku Panduan | MBUG',
+            'title' => 'Buku Panduan | Admin',
         ];
 
         return view('main/panduan', $data);
@@ -1114,7 +1114,7 @@ class Admin extends BaseController
     {
         $log = $this->logModel->AllData();
         $data = [
-            'title' => 'Log Aktivitas Pengguna | MBUG',
+            'title' => 'Log Aktivitas Pengguna | Admin',
             'log' => $log,
         ];
 

@@ -77,9 +77,10 @@ class User extends BaseController
 
     public function user_home()
     {
-
+        $news = $this->newsModel->AllData();
         $data = [
             'title' => 'Dashboard | MBUG',
+            'news' => $news,
         ];
 
         return view('user-main/dashboard', $data);

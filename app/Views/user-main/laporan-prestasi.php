@@ -28,6 +28,19 @@
                             <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
+
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('gagal')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal'); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -47,22 +60,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td class="th-sm">1</td>
-                                    <td class="th-nm">Tanggal</td>
-                                    <td class="th-lg">Kejuaraan Kebut Kelarin Pi</td>
-                                    <td class="th-nm">Tingkat</td>
-                                    <td class="th-sm">Jenis Prestasi</td>
-                                    <td class="th-sm">Capaian</td>
-                                    <td class="th-nm">Tempat</td>
-                                    <td class="th-nm">Penyelenggara</td>
-                                    <td class="th-sm">
-                                        <a title="Lihat File" href="<?= base_url('asset/doc/buku-panduan.pdf'); ?>">
-                                            <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
-                                        </a>
-                                    </td>
-                                    <td class="th-nm">Tautan Publikasi</td>
-                                    <td> <a href="prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-
+                                    <?php $no = 0; ?>
+                                    <?php foreach ($lp as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no; ?></strong></td>
+                                            <?php 
+                                            $tgl = date_create_from_format('Y-m-d', $value['tanggal']);
+                                            ?>
+                                            <td class="th-nm"><?= $tgl->format('d M Y'); ?></td>
+                                            <td class="th-lg"><?= $value['nama_kegiatan']; ?></td>
+                                            <td class="th-nm"><?= $value['tingkat']; ?></td>
+                                            <?php if ($value['jenis_prestasi'] == "1") {
+                                                $jenis_prestasi = '<span class="badge badge-rounded badge-primary"> Tim </span>';
+                                            } else if ($value['jenis_prestasi'] == "0") {
+                                                $jenis_prestasi = '<span class="badge badge-rounded badge-success"> Individu </span>';
+                                            };
+                                            ?>
+                                            <td class="th-sm"><?= $jenis_prestasi; ?></td>
+                                            <td class="th-sm"><?= $value['capaian']; ?></td>
+                                            <td class="th-nm"><?= $value['tempat']; ?></td>
+                                            <td class="th-nm"><?= $value['penyelenggara']; ?></td>
+                                            <td class="th-sm">
+                                                <a title="Lihat File" href="<?= base_url('asset/doc/buku-panduan.pdf'); ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
+                                                </a>
+                                            </td>
+                                            <td class="th-nm"><?= $value['publikasi']; ?></td>
+                                            <td> <a href="prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
