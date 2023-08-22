@@ -26,6 +26,24 @@
                             <h3>Manajemen Pengguna</h3>
                         </div>
                     </div>
+
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('gagal')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (session()->getFlashdata('hapus')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('hapus'); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="add-btn-behav-custom">
                         <a class="add-btn-custom" href="/admin/manajemen/add" aria-expanded="false">
                             <img src="<?= base_url('asset/img/cross-icon.png'); ?>">
@@ -34,10 +52,8 @@
                     </div>
 
                     <div class="card-body">
-
                         <div class="table-responsive">
                             <table id="example2" class="display" style="min-width: 845px">
-
                                 <thead>
                                     <tr>
                                         <th>Username</th>
@@ -52,13 +68,13 @@
                                         <tr>
                                             <td><?= $value['username']; ?></td>
                                             <?php if ($value['hak_akses'] == "0") {
-                                                $hak_akses = '<span  style="color:white;"class="badge badge-rounded badge-success"> User </span>';
+                                                $hak_akses = '<span  style="color:white;"class="badge badge-rounded badge-success"> Penerima Beasiswa </span>';
                                             } else if ($value['hak_akses'] == "1") {
                                                 $hak_akses = '<span class="badge badge-rounded badge-primary"> Admin </span>';
-                                            } 
+                                            }
                                             ?>
                                             <td><?= $hak_akses; ?></td>
-                                            <?php 
+                                            <?php
                                             $last_login = date_create_from_format('Y-m-d', $value['last_login']);
                                             ?>
                                             <td><?= $last_login->format('d M Y'); ?></td>
@@ -66,12 +82,12 @@
                                                 $status_user = '<span  style="color:white;"class="badge badge-rounded badge-success"> Aktif</span>';
                                             } else if ($value['status_user'] == "0") {
                                                 $status_user = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
-                                            } 
+                                            }
                                             ?>
                                             <td><?= $status_user; ?></td>
                                             <td>
-                                                <a href="manajemen/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                                <button onclick="deleteConfirmation_user(2)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></button>
+                                                <a href="<?= base_url('/admin/manajemen/edit/' . $value['id_user']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <button onclick="deleteConfirmation_user(<?= $value['id_user']; ?>)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -80,7 +96,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

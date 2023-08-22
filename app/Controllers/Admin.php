@@ -34,7 +34,6 @@ class Admin extends BaseController
 
     public function test()
     {
-
         $data = [
             'title' => 'Test | MBUG',
         ];
@@ -44,7 +43,6 @@ class Admin extends BaseController
 
     public function login_admin()
     {
-
         $data = [
             'title' => 'Login | MBUG',
         ];
@@ -54,7 +52,6 @@ class Admin extends BaseController
 
     public function admin_login_check()
     {
-
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
@@ -64,7 +61,6 @@ class Admin extends BaseController
 
     public function profile_admin()
     {
-
         $data = [
             'title' => 'Profile | MBUG',
         ];
@@ -97,7 +93,7 @@ class Admin extends BaseController
     public function add_beasiswa()
     {
         $data = [
-            'title' => 'Form Input Beasiswa',
+            'title' => 'Tambah Beasiswa | Admin',
             'validation' => \Config\Services::validation(),
         ];
 
@@ -107,7 +103,7 @@ class Admin extends BaseController
     public function edit_beasiswa($id_beasiswa)
     {
         $data = [
-            'title' => 'Form Edit Beasiswa | MBUG',
+            'title' => 'Form Edit Beasiswa | Admin',
             'validation' => \Config\Services::validation(),
             'mhs' => $this->jbModel->DetailData($id_beasiswa),
         ];
@@ -198,7 +194,7 @@ class Admin extends BaseController
     public function add_penerima()
     {
         $data = [
-            'title' => 'Form Input Penerima | MBUG',
+            'title' => 'Form Input Penerima | Admin',
             'validation' => \Config\Services::validation(),
         ];
 
@@ -209,7 +205,7 @@ class Admin extends BaseController
     public function edit_penerima($id_penerima)
     {
         $data = [
-            'title' => 'Form Edit Penerima | MBUG',
+            'title' => 'Form Edit Penerima | Admin',
             'validation' => \Config\Services::validation(),
             'mhs' => $this->pbModel->DetailData($id_penerima),
         ];
@@ -287,7 +283,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Tambah Penerima | Admin',
+                'title' => 'Form Edit Penerima | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -300,7 +296,7 @@ class Admin extends BaseController
     {
 
         $data = [
-            'title' => 'Import Data | MBUG',
+            'title' => 'Import Data Penerima | MBUG',
         ];
 
         return view('main/import-data-peserta', $data);
@@ -333,7 +329,7 @@ class Admin extends BaseController
     {
         $pb = $this->pbModel->AllData();
         $data = [
-            'title' => 'Form Input Akademik | MBUG',
+            'title' => 'Form Input Akademik | Admin',
             'validation' => \Config\Services::validation(),
             'penerima' => $pb
         ];
@@ -344,7 +340,7 @@ class Admin extends BaseController
     public function edit_akademik($id_akademik)
     {
         $data = [
-            'title' => 'Form edit Akademik | MBUG',
+            'title' => 'Form edit Akademik | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->laModel->DetailData($id_akademik),
         ];
@@ -422,7 +418,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Tambah Penerima | Admin',
+                'title' => 'Form Input Akademik | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -445,7 +441,7 @@ class Admin extends BaseController
     public function add_prestasi()
     {
         $data = [
-            'title' => 'Form Input Prestasi | MBUG',
+            'title' => 'Form Input Prestasi | Admin',
             'validation' => \Config\Services::validation(),
         ];
 
@@ -490,7 +486,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Tambah Penerima | Admin',
+                'title' => 'Form Input Prestasi | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -502,7 +498,7 @@ class Admin extends BaseController
     public function edit_prestasi($id_prestasi)
     {
         $data = [
-            'title' => 'Form Edit Prestasi | MBUG',
+            'title' => 'Form Edit Prestasi | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->lpModel->DetailData($id_prestasi),
         ];
@@ -564,7 +560,7 @@ class Admin extends BaseController
     public function add_mbkm()
     {
         $data = [
-            'title' => 'Form Input MBKM | MBUG',
+            'title' => 'Form Input MBKM | Admin',
             'validation' => \Config\Services::validation(),
         ];
 
@@ -600,7 +596,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Tambah Penerima | Admin',
+                'title' => 'Form Input MBKM | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -612,7 +608,7 @@ class Admin extends BaseController
     public function edit_mbkm($id_mbkm)
     {
         $data = [
-            'title' => 'Form Edit MBKM | MBUG',
+            'title' => 'Form Edit MBKM | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->mbkmModel->DetailData($id_mbkm),
         ];
@@ -665,19 +661,95 @@ class Admin extends BaseController
     public function add_manajemen()
     {
         $data = [
-            'title' => 'Form Input User | MBUG',
+            'title' => 'Form Input User | Admin',
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('main/tambah-manajemen', $data);
     }
 
-    public function edit_manajemen()
+    public function save_manajemen()
+    {
+        if ($this->validate([
+            'username' => 'required|is_unique[jenis_beasiswa.jenis]',
+            'password' => 'required',
+            'hak_akses' => 'required',
+            'status_user' => 'required',
+        ])) {
+            $data = [
+                'username' => $this->request->getPost('username'),
+                'password' => $this->request->getPost('password'),
+                'hak_akses' => $this->request->getPost('hak_akses'),
+                'last_login' => $this->userModel->getCurrentDate(),
+                'status_user' => $this->request->getPost('status_user'),
+            ];
+
+            $this->userModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/manajemen'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Form Input User | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('main/tambah-manajemen', $data);
+        }
+    }
+
+    public function edit_manajemen($id_user)
     {
         $data = [
-            'title' => 'Form Edit User | MBUG',
+            'title' => 'Form Edit User | Admin',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->userModel->DetailData($id_user),
         ];
 
         return view('main/edit-manajemen', $data);
+    }
+
+    public function cedit_manajemen($id_user)
+    {
+        if ($this->validate([
+            'username' => 'required',
+            'password_lama' => 'required|matches[password]',
+            'password_baru' => 'required',
+            'hak_akses' => 'required',
+            'status_user' => 'required',
+        ])) {
+            $data = [
+                'id_user' => $id_user,
+                'username' => $this->request->getPost('username'),
+                'password' => $this->request->getPost('password_baru'),
+                'hak_akses' => $this->request->getPost('hak_akses'),
+                'last_login' => $this->userModel->getCurrentDate(),
+                'status_user' => $this->request->getPost('status_user'),
+            ];
+
+            $this->userModel->UpdateData($id_user, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/admin/manajemen'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/admin/manajemen'));
+        }
+    }
+
+    public function del_manajemen($id_user)
+    {
+        $data = [
+            'id_user' => $id_user,
+        ];
+
+        $this->userModel->DeleteData($data);
+        session()->setFlashdata('hapus', 'Data berhasil dihapus');
+        return redirect()->to(base_url('/admin/manajemen'));
     }
 
     public function keaktifan()
@@ -694,7 +766,7 @@ class Admin extends BaseController
     public function add_keaktifan()
     {
         $data = [
-            'title' => 'Form Input Keaktifan | MBUG',
+            'title' => 'Form Input Keaktifan | Admin',
             'validation' => \Config\Services::validation(),
         ];
 
@@ -739,7 +811,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Tambah Penerima | Admin',
+                'title' => 'Form Input Keaktifan | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -751,7 +823,7 @@ class Admin extends BaseController
     public function edit_keaktifan($id_keaktifan)
     {
         $data = [
-            'title' => 'Form Edit Keaktifan per Semester | MBUG',
+            'title' => 'Form Edit Keaktifan | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->kaModel->DetailData($id_keaktifan),
         ];
@@ -803,7 +875,7 @@ class Admin extends BaseController
     {
         $lgf = $this->lgfModel->AllData();
         $data = [
-            'title' => 'Daftar Link Google Form |MB UG',
+            'title' => 'Daftar Link Google Form | MBUG',
             'lgf' => $lgf
         ];
         return view('main/gform', $data);
@@ -812,7 +884,7 @@ class Admin extends BaseController
     public function add_gform()
     {
         $data = [
-            'title' => 'Form Input Google Form |MB UG',
+            'title' => 'Form Input Google Form | Admin',
             'validation' => \Config\Services::validation(),
         ];
         return view('main/tambah-gform', $data);
@@ -842,7 +914,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Tambah Beasiswa | Admin',
+                'title' => 'Form Input Google Form | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -854,7 +926,7 @@ class Admin extends BaseController
     public function edit_gform($id_lgf)
     {
         $data = [
-            'title' => 'Form Input Google Form |MB UG',
+            'title' => 'Form Edit Google Form | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->lgfModel->DetailData($id_lgf),
         ];
@@ -913,7 +985,7 @@ class Admin extends BaseController
     public function add_pengumuman()
     {
         $data = [
-            'title' => 'Form Input Pengumuman | MBUG',
+            'title' => 'Form Input Pengumuman | Admin',
             'validation' => \Config\Services::validation(),
         ];
 
@@ -945,7 +1017,7 @@ class Admin extends BaseController
             $session->setFlashdata('input', $this->request->getPost());
 
             $data = [
-                'title' => 'Tambah Penerima | Admin',
+                'title' => 'Form Input Pengumuman | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
             ];
@@ -957,7 +1029,7 @@ class Admin extends BaseController
     public function edit_pengumuman($id_pengumuman)
     {
         $data = [
-            'title' => 'Form Edit Pengumuman | MBUG',
+            'title' => 'Form Edit Pengumuman | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->newsModel->DetailData($id_pengumuman),
         ];
@@ -1016,7 +1088,7 @@ class Admin extends BaseController
     {
         $log = $this->logModel->AllData();
         $data = [
-            'title' => 'Log Aktivitas User|MBUG',
+            'title' => 'Log Aktivitas Pengguna | MBUG',
             'log' => $log,
         ];
 

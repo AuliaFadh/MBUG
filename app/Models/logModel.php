@@ -18,4 +18,11 @@ class logModel extends Model
             ->join('user', 'user.username=log_aktivitas.log_username', 'left')
             ->Get()->getResultArray();
     }
+
+    public function getCurrentDate()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $time = date("Y-m-d h:i:s");
+        return $time;
+    }
 }

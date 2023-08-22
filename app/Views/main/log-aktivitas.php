@@ -46,7 +46,7 @@
                                             <?php
                                             $last_login = date_create_from_format('Y-m-d h:i:s', $value['log_last_login']);
                                             ?>
-                                            <td><?= $last_login->format('d M Y, h:i:s'); ?></td>
+                                            <td><?= $last_login->format('d M Y, h:i:s'); ?> WIB</td>
                                             <td><?= $value['id_user']; ?></td>
                                             <td><?= $value['log_username']; ?></td>
                                             <?php if ($value['hak_akses'] == "0") {

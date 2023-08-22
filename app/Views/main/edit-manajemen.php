@@ -23,21 +23,20 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-
                             <h3>Edit Pengguna</h3>
                         </div>
-
                     </div>
                     <div class="card-body">
 
-                        <form action="#" method="post">
+                        <form action="/admin/manajemen/cedit/<?= $former->id_user; ?>" method="post">
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Username</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input  readonly value="{Di isi oleh database}" type="text" class="form-control custom-textfield ">
+                                            <input readonly name="username" value="<?= $former->username; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -46,7 +45,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Password Lama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="password" class="form-control custom-textfield ">
+                                            <input type="password" name="password_lama" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -55,7 +54,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Password Baru</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="password" class="form-control custom-textfield ">
+                                            <input type="password" name="password_baru" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -64,10 +63,10 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Hak Akses</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <select  class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
+                                            <select name="hak_akses" class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
                                                 <option></option>
-                                                <option value="2018">Admin</option>
-                                                <option value="2019">Mahasiswa</option>
+                                                <option value="1">Admin</option>
+                                                <option value="0">Mahasiswa</option>
 
                                             </select>
                                             <div class=" invalid-feedback">
@@ -78,14 +77,11 @@
 
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="nilai" value="1">Aktif<br>
-                                        <input type="radio" class="margin-custom" name="nilai" value="0" checked>Tidak Aktif<br>
-
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
+                                        <input type="radio" class="margin-custom" name="status_user" value="1">Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_user" value="0" checked>Tidak Aktif<br>
                                     </div>
 
+                                    <input type ="hidden" name ="password" value ="<?= $former->password; ?>" />
 
                                 </div>
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -95,11 +91,8 @@
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -80,6 +80,9 @@ $routes->group('admin', function ($routes) {
     $routes->get('manajemen', 'Admin::manajemen');
     $routes->get('manajemen/add', 'Admin::add_manajemen');
     $routes->get('manajemen/edit/(:any)', 'Admin::edit_manajemen/$1');
+    $routes->post('manajemen/cedit/(:any)', 'Admin::cedit_manajemen/$1');
+    $routes->post('manajemen/save', 'Admin::save_manajemen');
+    $routes->get('manajemen/delete/(:any)', 'Admin::del_manajemen/$1');
 
     $routes->get('log', 'Admin::log');
 });
