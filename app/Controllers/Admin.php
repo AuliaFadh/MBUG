@@ -180,6 +180,7 @@ class Admin extends BaseController
         ];
 
         $this->jbModel->DeleteData($data);
+        session()->setFlashdata('hapus', 'Data berhasil dihapus');
         return redirect()->to(base_url('/admin/beasiswa'));
     }
 
@@ -313,6 +314,7 @@ class Admin extends BaseController
         ];
 
         $this->pbModel->DeleteData($data);
+        session()->setFlashdata('hapus', 'Data berhasil dihapus');
         return redirect()->to(base_url('/admin/penerima'));
     }
 
@@ -849,12 +851,51 @@ class Admin extends BaseController
         }
     }
 
-    public function edit_gform()
+    public function edit_gform($id_lgf)
     {
         $data = [
             'title' => 'Form Input Google Form |MB UG',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->lgfModel->DetailData($id_lgf),
         ];
         return view('main/edit-gform', $data);
+    }
+
+    public function cedit_gform($id_lgf)
+    {
+        if ($this->validate([
+            'nama_form' => 'required',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'tautan' => 'required',
+            'datepicker' => 'required',
+        ])) {
+            $data = [
+                'id_lgf' => $id_lgf,
+                'nama_form' => $this->request->getPost('nama_form'),
+                'id_beasiswa' => $this->lgfModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'tautan' => $this->request->getPost('tautan'),
+                'tanggal_pembuatan' => $this->lgfModel->getDate($this->request->getPost('datepicker')),
+            ];
+
+            $this->lgfModel->UpdateData($id_lgf, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/admin/gform'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/admin/gform'));
+        }
+    }
+
+    public function del_gform($id_lgf)
+    {
+        $data = [
+            'id_lgf' => $id_lgf,
+        ];
+
+        $this->lgfModel->DeleteData($data);
+        session()->setFlashdata('hapus', 'Data berhasil dihapus');
+        return redirect()->to(base_url('/admin/gform'));
     }
 
 

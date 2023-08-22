@@ -26,12 +26,14 @@ class lgfModel extends Model
 
     public function DetailData($id_lgf)
     {
-        return $this->db->table('link_gform')->where('id_lgf', $id_lgf)->get()->getRow();
+        return $this->db->table('link_gform')
+        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=link_gform.id_beasiswa', 'left')
+        ->where('id_lgf', $id_lgf)->get()->getRow();
     }
 
-    public function UpdateData($data)
+    public function UpdateData($id, $data)
     {
-        return $this->db->table('link_gform')->where('id_lgf', $data['id_lgf'])->update($data);
+        return $this->db->table('link_gform')->where('id_lgf', $id)->update($data);
     }
 
     public function DeleteData($data)

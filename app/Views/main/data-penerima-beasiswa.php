@@ -47,6 +47,11 @@
                             <?= session()->getFlashdata('gagal'); ?>
                         </div>
                     <?php endif; ?>
+                    <?php if (session()->getFlashdata('hapus')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('hapus'); ?>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="card-body">
                         <div class="table-responsive">

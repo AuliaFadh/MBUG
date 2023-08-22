@@ -13,7 +13,7 @@ class User extends BaseController
     protected $kaModel;
     protected $mbkmModel;
     protected $lgfModel;
-    protected $mnjModel;
+    protected $userModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -23,7 +23,7 @@ class User extends BaseController
         $this->kaModel = new \App\Models\kaModel();
         $this->mbkmModel = new \App\Models\mbkmModel();
         $this->lgfModel = new \App\Models\lgfModel();
-        $this->mnjModel = new \App\Models\mnjModel();
+        $this->userModel = new \App\Models\userModel();
     }
     public function user_login()
     {

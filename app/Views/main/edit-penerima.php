@@ -29,8 +29,6 @@
 
                     </div>
                     <div class="card-body">
-
-
                         <form action="/admin/penerima/cedit/<?= $mhs->id_penerima; ?>" method="post">
                             <?= csrf_field(); ?>
                             <div class="row">

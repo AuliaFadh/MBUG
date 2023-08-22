@@ -21,6 +21,23 @@
                         </div>
                     </div>
 
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                                            <div class="alert alert-success" role="alert">
+                                                <?= session()->getFlashdata('berhasil'); ?>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if (session()->getFlashdata('gagal')) : ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                <?= session()->getFlashdata('gagal'); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if (session()->getFlashdata('hapus')) : ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                <?= session()->getFlashdata('hapus'); ?>
+                                            </div>
+                                        <?php endif; ?>
+
                     <div class="add-btn-behav-custom">
                         <a class="add-btn-custom" href="/admin/gform/add" aria-expanded="false">
                             <img src="<?= base_url('asset/img/cross-icon.png'); ?>">
@@ -29,12 +46,9 @@
                     </div>
 
                     <div class="card-body">
-
                         <div class="table-responsive">
                             <table id="example2" class="display" style="min-width: 845px">
-
                                 <thead>
-
                                     <tr>
                                         <th class="">No</th>
                                         <th class="th-nm">Nama Form</th>
@@ -55,9 +69,8 @@
                                             <td class="th-nm"><a href="<?= $value['tautan']; ?>" type="link"><?= $value['tautan']; ?></a></td>
                                             <td class="th-sm"><?= $value['tanggal_pembuatan']; ?></td>
                                             <td class="th-nm">
-                                                <a href="/admin/gform/edit/$1" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                                <button onclick="deleteConfirmation_gform(2)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></button>
-
+                                                <a href="<?= base_url('/admin/gform/edit/' . $value['id_lgf']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <button onclick="deleteConfirmation_gform(<?= $value['id_lgf']; ?>)" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

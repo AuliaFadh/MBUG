@@ -42,6 +42,11 @@
                             <?= session()->getFlashdata('gagal'); ?>
                         </div>
                     <?php endif; ?>
+                    <?php if (session()->getFlashdata('hapus')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('hapus'); ?>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -71,14 +76,14 @@
                                                 $status = '<span  style="color:white;"class="badge badge-rounded badge-success"> Aktif</span>';
                                             } else if ($value['status_beasiswa'] == "0") {
                                                 $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
-                                            } 
+                                            }
                                             ?>
                                             <td class="th-sm"><?= $status; ?></td>
                                             <td class="th-sm">
                                                 <a href="<?= base_url('/admin/beasiswa/edit/' . $value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                 <!-- ul ini yng elemen button dari adib, jadi dia confirm boxnya udah keren jadi  -->
                                                 <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_beasiswa(<?= $value['id_beasiswa']; ?>)"><i class="la la-trash-o"></i></button>
-                                                
+
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

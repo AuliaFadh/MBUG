@@ -23,21 +23,19 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-
                             <h3>Edit Tautan</h3>
                         </div>
-
                     </div>
                     <div class="card-body">
-
-                        <form action="#" method="post">
+                        <form action="/admin/gform/cedit/<?= $former->id_lgf; ?>" method="post">
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Form</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input value="{Di isi data sebelumnya}" type="text" class="form-control custom-textfield ">
+                                            <input name="nama_form" value="<?= $former->nama_form; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -47,7 +45,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="jb-input" class="form-control custom-textfield ">
+                                            <input type="text" name="jenis_beasiswa" value="<?= $former->jenis; ?>" class="form-control custom-textfield ">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
                                                 <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
@@ -64,7 +62,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="link" class="form-control custom-textfield ">
+                                            <input name="tautan" value="<?= $former->tautan; ?>" type="link" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -79,7 +77,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
