@@ -22,21 +22,21 @@
                     </div>
 
                     <?php if (session()->getFlashdata('berhasil')) : ?>
-                                            <div class="alert alert-success" role="alert">
-                                                <?= session()->getFlashdata('berhasil'); ?>
-                                            </div>
-                                        <?php endif; ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
 
-                                        <?php if (session()->getFlashdata('gagal')) : ?>
-                                            <div class="alert alert-danger" role="alert">
-                                                <?= session()->getFlashdata('gagal'); ?>
-                                            </div>
-                                        <?php endif; ?>
-                                        <?php if (session()->getFlashdata('hapus')) : ?>
-                                            <div class="alert alert-danger" role="alert">
-                                                <?= session()->getFlashdata('hapus'); ?>
-                                            </div>
-                                        <?php endif; ?>
+                    <?php if (session()->getFlashdata('gagal')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (session()->getFlashdata('hapus')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('hapus'); ?>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="add-btn-behav-custom">
                         <a class="add-btn-custom" href="/admin/gform/add" aria-expanded="false">

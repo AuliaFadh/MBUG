@@ -12,8 +12,6 @@
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/pengumuman">Pengumuman</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/pengumuman/edit">Edit Pengumuman</a></li>
-
-
             </ol>
         </div>
 
@@ -23,20 +21,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-
                             <h3>Edit Pengumuman</h3>
                         </div>
-
                     </div>
                     <div class="card-body">
 
-                        <form action="#" method="post">
+                        <form action="/admin/pengumuman/cedit/<?= $former->id_pengumuman; ?>" method="post">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
                                         <label class="label-form">Tanggal Diterbitkan </label>
                                         <div style="display: block;" class=" col-lg-3 col-md-3 col-sm-3">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control " id="datepicker">
+                                            <input name="tanggal_terbit" class="custom-textfield datepicker-default form-control ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -45,7 +41,7 @@
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
                                         <label class="label-form">Batas Waktu Pengumuman </label>
                                         <div style="display: block;" class=" col-lg-3 col-md-3 col-sm-3">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control " id="datepicker">
+                                            <input name="tanggal_tarik" class="custom-textfield datepicker-default form-control ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -55,7 +51,7 @@
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
                                         <label class="label-form">Judul Pengumuman</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield ">
+                                            <input name="judul_pengumuman" value="<?= $former->judul_pengumuman; ?>" type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -65,7 +61,7 @@
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Deskripsi</label>
                                         <div style="display: block;" class=" col-lg-10 col-md-10 col-sm-10">
-                                            <textarea class="form-control custom-textfield" rows="10"></textarea>
+                                            <textarea name="deskripsi" class="form-control custom-textfield" rows="10"><?= $former->deskripsi; ?></textarea>
                                             <div class=" invalid-feedback">
 
                                             </div>

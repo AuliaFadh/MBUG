@@ -954,13 +954,53 @@ class Admin extends BaseController
         }
     }
 
-    public function edit_pengumuman()
+    public function edit_pengumuman($id_pengumuman)
     {
         $data = [
             'title' => 'Form Edit Pengumuman | MBUG',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->newsModel->DetailData($id_pengumuman),
         ];
 
         return view('main/edit-pengumuman', $data);
+    }
+
+    public function cedit_pengumuman($id_pengumuman)
+    {
+        if ($this->validate([
+            'tanggal_terbit' => 'required',
+            'tanggal_tarik' => 'required',
+            'judul_pengumuman' => 'required',
+            'deskripsi' => 'required',
+        ])) {
+            $data = [
+                'id_pengumuman' => $id_pengumuman,
+                'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')),
+                'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
+                'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
+                'deskripsi' => $this->request->getPost('deskripsi'),
+                'penulis' => "-",
+            ];
+
+            $this->newsModel->UpdateData($id_pengumuman, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/admin/pengumuman'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/admin/pengumuman'));
+        }
+    }
+
+    public function del_pengumuman($id_pengumuman)
+    {
+        $data = [
+            'id_pengumuman' => $id_pengumuman,
+        ];
+
+        $this->newsModel->DeleteData($data);
+        session()->setFlashdata('hapus', 'Data berhasil dihapus');
+        return redirect()->to(base_url('/admin/pengumuman'));
     }
 
     public function panduan()

@@ -12,11 +12,9 @@
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/pengumuman">Pengumuman</a></li>
-
-
             </ol>
-
         </div>
+
         <div class="row">
             <!-- Ubah disini -->
             <div class="col-lg-12">
@@ -31,6 +29,23 @@
                             <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
+
+                    <?php if (session()->getFlashdata('berhasil')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('gagal')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (session()->getFlashdata('hapus')) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('hapus'); ?>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="card-body">
                         <div class="table-responsive">

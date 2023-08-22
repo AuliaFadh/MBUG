@@ -71,7 +71,9 @@ $routes->group('admin', function ($routes) {
     $routes->get('pengumuman', 'Admin::pengumuman');
     $routes->get('pengumuman/add', 'Admin::add_pengumuman');
     $routes->get('pengumuman/edit/(:any)', 'Admin::edit_pengumuman/$1');
+    $routes->post('pengumuman/cedit/(:any)', 'Admin::cedit_pengumuman/$1');
     $routes->post('pengumuman/save', 'Admin::save_pengumuman');
+    $routes->get('pengumuman/delete/(:any)', 'Admin::del_pengumuman/$1');
 
     $routes->get('panduan', 'Admin::panduan');
 
