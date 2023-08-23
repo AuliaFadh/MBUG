@@ -1,5 +1,9 @@
 
 
+const csvFileInput = document.getElementById('csv-file-input');
+const csvTable = document.querySelector('.csv-table');
+const csvHeaderRow = document.querySelector('.csv-header-row');
+const csvBody = document.querySelector('.csv-body');
 //Read CSV
 function readCSV(file) {
     return new Promise((resolve, reject) => {
@@ -18,10 +22,7 @@ function readCSV(file) {
     });
   }
   
-  const csvFileInput = document.getElementById('csv-file-input');
-  const csvTable = document.querySelector('.csv-table');
-  const csvHeaderRow = document.querySelector('.csv-header-row');
-  const csvBody = document.querySelector('.csv-body');
+
   
   csvFileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];

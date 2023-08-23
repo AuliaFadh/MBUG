@@ -17,12 +17,6 @@ file.addEventListener("change",(e)=>{
     imgNav.src = URL.createObjectURL(e.target.files[0])
 });
 
-
-
-
-
-
-
 //download CSV
 
 function exportToCSV() {
