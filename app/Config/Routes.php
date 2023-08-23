@@ -102,7 +102,9 @@ $routes->group('user', function ($routes) {
 
     $routes->get('akademik', 'User::user_akademik');
     $routes->get('akademik/add', 'User::user_add_akademik');
+    $routes->post('akademik/save', 'User::user_save_akademik');
     $routes->get('akademik/edit/(:any)', 'User::user_edit_akademik/$1');
+    $routes->post('akademik/cedit/(:any)', 'User::user_cedit_akademik/$1');
 
     $routes->get('prestasi', 'User::user_prestasi');
     $routes->get('prestasi/add', 'User::user_add_prestasi');

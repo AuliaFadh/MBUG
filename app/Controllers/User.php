@@ -68,12 +68,11 @@ class User extends BaseController
             ];
             $this->userModel->UpdateData($check["id_user"], $datamnj);
 
-            session()->set('username',$check["username"]);
-            session()->set('nama_user',$check["nama"]);
-            session()->set('hak_akses',$check["hak_akses"]);
+            session()->set('username', $check["username"]);
+            session()->set('nama_user', $check["nama"]);
+            session()->set('hak_akses', $check["hak_akses"]);
 
             return redirect()->to(base_url('/user/home'));
-            
         } elseif ($check["hak_akses"] == "1") {
             session()->setFlashdata('admin', 'Akun terdaftar sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
@@ -88,8 +87,8 @@ class User extends BaseController
 
     public function user_home()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -104,8 +103,8 @@ class User extends BaseController
 
     public function  user_profile()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -181,8 +180,8 @@ class User extends BaseController
 
     public function user_akademik()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -196,13 +195,16 @@ class User extends BaseController
     }
     public function user_add_akademik()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Input Akademik | User',
+            'validation' => \Config\Services::validation(),
+            'jenis_beasiswa' => $jb
         ];
 
         return view('user-main/tambah-akademik', $data);
@@ -210,27 +212,103 @@ class User extends BaseController
 
     public function user_save_akademik()
     {
+        if ($this->validate([
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            'bef' => 'required',
+            'af' => 'required',
+            'ipk' => 'required',
+            'ipk_lokal' => 'required',
+            'ipk_uu' => 'required',
+            #'rangkuman_nilai' => 'required',
+        ])) {
+            $data = [
+                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->laModel->getIDp(session()->get('username')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'ipk' => $this->request->getPost('ipk'),
+                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+                'ipk_uu' => $this->request->getPost('ipk_uu'),
+                'rangkuman_nilai' => $this->request->getPost('TA'),
+            ];
 
+            $this->laModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/user/akademik'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Form Input Akademik | User',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('user-main/tambah-akademik', $data);
+        }
     }
 
-    public function user_edit_akademik()
+    public function user_edit_akademik($id_akademik)
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form edit Akademik | User',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->laModel->DetailData($id_akademik),
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('user-main/edit-akademik', $data);
     }
 
+    public function user_cedit_akademik($id_akademik)
+    {
+        if ($this->validate([
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            'bef' => 'required',
+            'af' => 'required',
+            'ipk' => 'required',
+            'ipk_lokal' => 'required',
+            'ipk_uu' => 'required',
+            #'rangkuman_nilai' => 'required',
+        ])) {
+            $data = [
+                'id_akademik' => $id_akademik,
+                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->laModel->getIDp(session()->get('username')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'ipk' => $this->request->getPost('ipk'),
+                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+                'ipk_uu' => $this->request->getPost('ipk_uu'),
+                'rangkuman_nilai' => $this->request->getPost('TA'),
+            ];
+
+            $this->laModel->UpdateData($id_akademik, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/user/akademik'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/user/akademik'));
+        }
+    }
+
     public function user_mbkm()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -244,8 +322,8 @@ class User extends BaseController
     }
     public function user_add_mbkm()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -258,8 +336,8 @@ class User extends BaseController
 
     public function user_edit_mbkm()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -273,8 +351,8 @@ class User extends BaseController
 
     public function user_prestasi()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -289,11 +367,11 @@ class User extends BaseController
 
     public function user_add_prestasi()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
-        
+
         $data = [
             'title' => 'Form Input Prestasi | User',
         ];
@@ -311,8 +389,8 @@ class User extends BaseController
 
     public function user_keaktifan()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -326,8 +404,8 @@ class User extends BaseController
     }
     public function user_add_keaktifan()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -338,8 +416,8 @@ class User extends BaseController
     }
     public function user_edit_keaktifan()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
@@ -352,11 +430,11 @@ class User extends BaseController
 
     public function user_panduan()
     {
-        if(session()->get('username')==""){
-            session()->setFlashdata("belum_login","Anda Belum Login Sebagai User");
+        if (session()->get('username') == "") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
-        
+
         $data = [
             'title' => 'Buku Panduan | MBUG',
         ];
