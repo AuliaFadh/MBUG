@@ -29,11 +29,10 @@
 
                     </div>
                     <div class="card-body">
-
                         <form action="/user/prestasi/cedit/<?= $former->id_prestasi; ?>" method="post">
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                    
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -53,6 +52,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tingkat</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -69,11 +69,13 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Prestasi</label>
                                         <input type="radio" class="margin-custom" name="jenis_prestasi" value="1"> Tim<br>
                                         <input type="radio" class="margin-custom" name="jenis_prestasi" value="0" checked> Individu<br>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Capaian</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -114,7 +116,7 @@
 
                                             </div>
                                         </div>
-</div>
+                                    </div>
 
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100 ">

@@ -26,11 +26,13 @@
 								<?= session()->getFlashdata('user'); ?>
 							</div>
 						<?php endif; ?>
+
 						<?php if (session()->getFlashdata('no_data')) : ?>
 							<div class="alert alert-danger" role="alert">
 								<?= session()->getFlashdata('no_data'); ?>
 							</div>
 						<?php endif; ?>
+						
 						<?php if (session()->getFlashdata('belum_login')) : ?>
 							<div class="alert alert-danger" role="alert">
 								<?= session()->getFlashdata('belum_login'); ?>

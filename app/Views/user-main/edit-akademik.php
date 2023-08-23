@@ -27,9 +27,9 @@
                     <div class="card-body">
 
                         <form action="/user/akademik/cedit/<?= $former->id_akademik; ?>" method="post">
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -57,6 +57,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Ajaran</label>
                                         <div style="display: block; margin-left:20px;" class=" col-lg-8 col-md-10 col-sm-12 ">
@@ -82,6 +83,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Lokal</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
@@ -91,6 +93,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
@@ -108,8 +111,8 @@
                                             <input style="padding-left : 15px;" type="file" name="rangkuman_nilai" class="dropify " data-default-file="" accept=".pdf">
                                         </div>
                                     </div>
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
 
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
                                         <a href="/user/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>

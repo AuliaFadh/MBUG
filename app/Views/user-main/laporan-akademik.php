@@ -3,8 +3,6 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
@@ -12,11 +10,9 @@
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/user/akademik">Laporan Akademik</a></li>
-
-
             </ol>
-
         </div>
+        
         <div class="row">
             <!-- Ubah disini -->
             <div class="col-lg-12">
@@ -77,7 +73,6 @@
                                                     <a title="Lihat File" href="<?= base_url('asset/doc/database/krs/krs-default.pdf'); ?>">
                                                         <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
                                                     </a>
-
                                                 </td>
                                                 <td class="th-sm"> <a href="<?= base_url('/user/akademik/edit/' . $value['id_akademik']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                             </tr>
@@ -88,7 +83,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@
         <!-- Ubah disini -->
         <div class="col-lg-12 col-md-12 col-sm-12">
             <form action="/user/profile/cedit/<?= $profile->id_penerima; ?>" class="card" method="post" id="user">
+                <?= csrf_field(); ?>
                 <div class="card-header">
                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 justify-content-between">
                         <h2>Ingin Mengubah data profile mu?</h2>
@@ -108,6 +109,7 @@
             </div>
             <div class="card-body">
                 <form action="/user/profile/pass/<?= $profile->username; ?>" method="post" id="pass">
+                    <?= csrf_field(); ?>
                     <div class="container1 custom-container-form col-lg-7 col-md-7 col-sm-7 ">
                         <label class="label-form">Password Lama</label>
                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">

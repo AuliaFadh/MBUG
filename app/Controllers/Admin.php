@@ -96,15 +96,60 @@ class Admin extends BaseController
 
     public function profile_admin()
     {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        $uname = session()->get('username');
+        $profile = $this->userModel->getData_username($uname);
         $data = [
             'title' => 'Profile | Admin',
+            'profile' => $profile,
         ];
 
         return view('main/admin-profile', $data);
     }
 
+    public function cedit_profile($uname)
+    {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        if ($this->validate([
+            'password_lama' => 'required|matches[password]',
+            'password_baru' => 'required',
+
+        ])) {
+            $penerima = $this->userModel->getData_username($uname);
+            $data = [
+                'id_user' => $penerima->id_user,
+                'username' => $penerima->username,
+                'password' => $this->request->getPost('password_baru'),
+                'hak_akses' => $penerima->hak_akses,
+                'last_login' => $penerima->last_login,
+                'status_user' => $penerima->status_user,
+            ];
+
+            $this->userModel->UpdateData($penerima->id_user, $data);
+            session()->setFlashdata('pass_berhasil', 'Password berhasil diubah');
+
+            return redirect()->to(base_url('/admin/profile'));
+        } else {
+            session()->setFlashdata('pass_gagal', 'Password tidak berhasil diubah');
+            return redirect()->to(base_url('/admin/profile'));
+        }
+    }
+
     public function home()
     {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
         $news = $this->newsModel->AllData();
         $data = [
             'title' => 'Dashboard | Admin',

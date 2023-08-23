@@ -3,7 +3,6 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
@@ -24,9 +23,10 @@
                             <h3>Tambah Prestasi</h3>
                         </div>
                     </div>
-                    <div class="card-body">
 
+                    <div class="card-body">
                         <form action="/user/prestasi/save" method="post">
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -38,6 +38,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Kegiatan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -47,6 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tingkat</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -57,18 +59,17 @@
                                                 <option value="Provinsi">Provinsi</option>
                                                 <option value="Wilayah">Wilayah</option>
                                                 <option value="Internal">Internal</option>
-
                                             </select>
                                             <div class=" invalid-feedback">
 
                                             </div>
                                         </div>
                                     </div>
+
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Prestasi</label>
                                         <input type="radio" class="margin-custom" name="jenis_prestasi" value="1"> Tim<br>
                                         <input type="radio" class="margin-custom" name="jenis_prestasi" value="0" checked> Individu<br>
-
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -92,6 +93,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tempat</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -118,6 +120,7 @@
                                             <input name="bukti_prestasi" style="padding-left : 15px;" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan Publikasi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">

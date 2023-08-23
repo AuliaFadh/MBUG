@@ -3,7 +3,6 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <!-- Ubah disini -->
@@ -73,7 +72,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group row fallback w-100 ">

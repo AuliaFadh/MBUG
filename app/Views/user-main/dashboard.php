@@ -7,7 +7,6 @@
   <!-- row -->
   <div class="container-fluid">
     <div>
-
       <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/user/home">

@@ -33,6 +33,12 @@
 							</div>
 						<?php endif; ?>
 
+						<?php if (session()->getFlashdata('belum_login')) : ?>
+							<div class="alert alert-danger" role="alert">
+								<?= session()->getFlashdata('belum_login'); ?>
+							</div>
+						<?php endif; ?>
+
 						<form action="/admin/login_check" class="signin-form" method="post">
 							<div class="form-group mb-3">
 								<label class="label" for="username">Username</label>

@@ -20,6 +20,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('logout', 'Admin::logout_admin');
     $routes->post('login_check', 'Admin::admin_login_check');
     $routes->get('profile', 'Admin::profile_admin');
+    $routes->post('profile/cedit/(:any)', 'Admin::cedit_profile/$1');
     $routes->get('home', 'Admin::home');
 
     $routes->get('beasiswa', 'Admin::beasiswa');

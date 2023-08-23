@@ -10,6 +10,7 @@
                 <li class="breadcrumb-item active"><a href="/user/keaktifan">Keaktifan per Semester</a></li>
             </ol>
         </div>
+        
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -99,7 +100,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
