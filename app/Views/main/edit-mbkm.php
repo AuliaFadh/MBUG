@@ -70,9 +70,9 @@
                                             <input type="text" name="jenis_beasiswa" value="<?= $former->jenis; ?>" id="jb-input" class="form-control custom-textfield ">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
-                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
-                                                <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
-                                                <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
+                                                <?php foreach ($jenis_beasiswa as $key => $value) : ?>
+                                                    <a id="jb-data" onclick="fillInputJB('<?= $value['jenis']; ?>')"><?= $value['jenis']; ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="jb-noData" style="display: none;">Data tidak ada</span>
                                             </div>

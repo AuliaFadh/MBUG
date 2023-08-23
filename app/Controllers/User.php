@@ -337,6 +337,43 @@ class User extends BaseController
         return view('user-main/tambah-mbkm', $data);
     }
 
+    public function user_save_mbkm()
+    {
+        if ($this->validate([
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'nama_mbkm' => 'required',
+            'jenis_mbkm' => 'required',
+            'periode' => 'required',
+            'keterangan_mbkm' => 'required',
+
+        ])) {
+            $data = [
+                'id_beasiswa' => $this->mbkmModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->mbkmModel->getIDp(session()->get('username')),
+                'nama_mbkm' => $this->request->getPost('nama_mbkm'),
+                'jenis_mbkm' => $this->request->getPost('jenis_mbkm'),
+                'periode' => $this->request->getPost('periode'),
+                'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
+            ];
+
+            $this->mbkmModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/user/mbkm'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Form Input MBKM | User',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('user-main/tambah-mbkm', $data);
+        }
+    }
+
     public function user_edit_mbkm($id_mbkm)
     {
         if (session()->get('username') == "") {
@@ -355,6 +392,35 @@ class User extends BaseController
         return view('user-main/edit-mbkm', $data);
     }
 
+    public function user_cedit_mbkm($id_mbkm)
+    {
+        if ($this->validate([
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'nama_mbkm' => 'required',
+            'jenis_mbkm' => 'required',
+            'periode' => 'required',
+            'keterangan_mbkm' => 'required',
+
+        ])) {
+            $data = [
+                'id_mbkm' => $id_mbkm,
+                'id_beasiswa' => $this->mbkmModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->mbkmModel->getIDp(session()->get('username')),
+                'nama_mbkm' => $this->request->getPost('nama_mbkm'),
+                'jenis_mbkm' => $this->request->getPost('jenis_mbkm'),
+                'periode' => $this->request->getPost('periode'),
+                'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
+            ];
+
+            $this->mbkmModel->UpdateData($id_mbkm, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/user/mbkm'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/user/mbkm'));
+        }
+    }
 
     public function user_prestasi()
     {

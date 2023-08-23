@@ -36,9 +36,9 @@
                                             <input type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3 <?= ($validation->hasError('npm')) ? ' is-invalid is-test' : ''; ?>" id="npm" name="npm" autofocus value="<?= old('npm', isset($input['npm']) ? $input['npm'] : ''); ?>">
                                             <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
-                                                <a id="npm-data" onclick="fillInputNPM('10120544','Isa Tarmana','Sistem Informasi')">10120544 </a>
-                                                <a id="npm-data" onclick="fillInputNPM('10111544','Muhammad Aul','Sistem Informasi')">10111544 </a>
-                                                <a id="npm-data" onclick="fillInputNPM('101113544','Annisa Umul','Sistem Informasi')">10911544 </a>
+                                                <?php foreach ($penerima as $key => $value) : ?>
+                                                    <a id="npm-data" onclick="fillInputNPM('<?= $value['npm']; ?>','<?= $value['nama']; ?>','<?= $value['prodi']; ?>')"><?= $value['npm']; ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="npm-noData" style="display: none;">Data tidak ada</span>
                                             </div>
@@ -75,9 +75,9 @@
                                             <input type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis_beasiswa')) ? ' is-invalid is-test' : ''; ?>" id="jenis_beasiswa" name="jenis_beasiswa" value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : ''); ?>">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
-                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
-                                                <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
-                                                <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
+                                                <?php foreach ($jenis_beasiswa as $key => $value) : ?>
+                                                    <a id="jb-data" onclick="fillInputJB('<?= $value['jenis']; ?>')"><?= $value['jenis']; ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="jb-noData" style="display: none;">Data tidak ada</span>
                                             </div>
@@ -133,7 +133,7 @@
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <textarea class="form-control custom-textfield <?= ($validation->hasError('keterangan_mbkm')) ? ' is-invalid is-test' : ''; ?>" id="keterangan_mbkm" name="keterangan_mbkm" value="<?= old('keterangan_mbkm', isset($input['keterangan_mbkm']) ? $input['keterangan_mbkm'] : ''); ?>" rows="2"></textarea>
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('keterangan_mbkm'); ?>
+                                                <?= $validation->getError('keterangan_mbkm'); ?>
                                             </div>
                                         </div>
                                     </div>

@@ -114,7 +114,9 @@ $routes->group('user', function ($routes) {
 
     $routes->get('mbkm', 'User::user_mbkm');
     $routes->get('mbkm/add', 'User::user_add_mbkm');
-    $routes->get('mbkm/edit/(:any)', 'User::user_edit_mbkm');
+    $routes->post('mbkm/save', 'User::user_save_mbkm');
+    $routes->get('mbkm/edit/(:any)', 'User::user_edit_mbkm/$1');
+    $routes->post('mbkm/cedit/(:any)', 'User::user_cedit_mbkm/$1');
 
     $routes->get('keaktifan', 'User::user_keaktifan');
     $routes->get('keaktifan/add', 'User::user_add_keaktifan');

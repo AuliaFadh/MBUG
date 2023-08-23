@@ -21,7 +21,6 @@
                     </div>
 
                     <div class="card-body">
-
                         <form action="/admin/akademik/save" method="post">
                             <?= csrf_field(); ?>
                             <div class="row">
@@ -105,16 +104,9 @@
                                                 <input required min="1981" type="number" name="bef" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
                                                 <h3>/</h3>
                                                 <input required min="1982" type="number" name="af" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
-
-
-
                                             </div>
-
                                         </div>
                                     </div>
-
-
-
 
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
@@ -146,8 +138,6 @@
                                         </div>
                                     </div>
 
-
-
                                     <div class="row  col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Rangkuman Nilai(pdf)</label>
@@ -159,15 +149,11 @@
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
                                         <a href="/admin/akademik" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
-
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
