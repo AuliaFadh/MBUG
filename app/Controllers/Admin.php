@@ -505,8 +505,8 @@ class Admin extends BaseController
             'tempat' => 'required',
             'datepicker' => 'required',
             'penyelenggara' => 'required',
+            #'bukti_prestasi' => 'required',
             'publikasi' => 'required',
-            #'rangkuman_nilai' => 'required',
         ])) {
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),

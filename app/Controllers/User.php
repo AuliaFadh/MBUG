@@ -389,6 +389,51 @@ class User extends BaseController
         return view('user-main/tambah-prestasi', $data);
     }
 
+    public function user_save_prestasi()
+    {
+        if ($this->validate([
+            'tingkat' => 'required',
+            'jenis_prestasi' => 'required',
+            'nama_kegiatan' => 'required',
+            'capaian' => 'required',
+            'tempat' => 'required',
+            'datepicker' => 'required',
+            'penyelenggara' => 'required',
+            #'bukti_prestasi' => 'required',
+            'publikasi' => 'required',
+        ])) {
+            $data = [
+                'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->lpModel->getIDp(session()->get('username')),
+                'tingkat' => $this->request->getPost('tingkat'),
+                'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
+                'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
+                'capaian' => $this->request->getPost('capaian'),
+                'tempat' => $this->request->getPost('tempat'),
+                'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
+                'penyelenggara' => $this->request->getPost('penyelenggara'),
+                'bukti_prestasi' => "-",
+                'publikasi' => $this->request->getPost('publikasi'),
+            ];
+
+            $this->lpModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/user/prestasi'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Form Input Prestasi | User',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('user-main/tambah-prestasi', $data);
+        }
+    }
+
     public function user_edit_prestasi($id_prestasi)
     {
         $jb = $this->jbModel->AllData();
@@ -400,6 +445,44 @@ class User extends BaseController
         ];
 
         return view('user-main/edit-prestasi', $data);
+    }
+
+    public function user_cedit_prestasi($id_prestasi)
+    {
+        if ($this->validate([
+            'tingkat' => 'required',
+            'jenis_prestasi' => 'required',
+            'nama_kegiatan' => 'required',
+            'capaian' => 'required',
+            'tempat' => 'required',
+            'datepicker' => 'required',
+            'penyelenggara' => 'required',
+            #'bukti_prestasi' => 'required',
+            'publikasi' => 'required',
+        ])) {
+            $data = [
+                'id_prestasi' => $id_prestasi,
+                'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->lpModel->getIDp(session()->get('username')),
+                'tingkat' => $this->request->getPost('tingkat'),
+                'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
+                'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
+                'capaian' => $this->request->getPost('capaian'),
+                'tempat' => $this->request->getPost('tempat'),
+                'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
+                'penyelenggara' => $this->request->getPost('penyelenggara'),
+                'bukti_prestasi' => "-",
+                'publikasi' => $this->request->getPost('publikasi'),
+            ];
+
+            $this->lpModel->UpdateData($id_prestasi, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/user/prestasi'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/user/prestasi'));
+        }
     }
 
     public function user_keaktifan()

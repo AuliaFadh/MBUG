@@ -35,9 +35,9 @@
                                             <input type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3 <?= ($validation->hasError('npm')) ? ' is-invalid is-test' : ''; ?>" id="npm" name="npm" autofocus value="<?= old('npm', isset($input['npm']) ? $input['npm'] : ''); ?>">
                                             <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
-                                                <a id="npm-data" onclick="fillInputNPM('10120544','Isa Tarmana','Sistem Informasi')">10120544</a>
-                                                <a id="npm-data" onclick="fillInputNPM('10111544','Muhammad Aul','Sistem Informasi')">10111544</a>
-                                                <a id="npm-data" onclick="fillInputNPM('101113544','Annisa Umul','Sistem Informasi')">10911544</a>
+                                                <?php foreach ($penerima as $key => $value) : ?>
+                                                    <a id="npm-data" onclick="fillInputNPM('<?= $value['npm']; ?>','<?= $value['nama']; ?>','<?= $value['prodi']; ?>')"><?= $value['npm']; ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="npm-noData" style="display: none;">Data tidak ada</span>
                                             </div>
@@ -74,9 +74,9 @@
                                             <input type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis_beasiswa')) ? ' is-invalid is-test' : ''; ?>" id="jenis_beasiswa" name="jenis_beasiswa" value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : ''); ?>">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
-                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
-                                                <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
-                                                <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
+                                                <?php foreach ($jenis_beasiswa as $key => $value) : ?>
+                                                    <a id="jb-data" onclick="fillInputJB('<?= $value['jenis']; ?>')"><?= $value['jenis']; ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="jb-noData" style="display: none;">Data tidak ada</span>
                                             </div>
@@ -176,9 +176,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Bukti</label>
-
-                                            <input style="padding-left : 15px;" type="file" class="dropify" data-default-file="">
-
+                                            <input name="bukti_prestasi" style="padding-left : 15px;" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -186,7 +184,7 @@
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input type="url" class="form-control custom-textfield <?= ($validation->hasError('publikasi')) ? ' is-invalid is-test' : ''; ?>" id="publikasi" name="publikasi" value="<?= old('publikasi', isset($input['publikasi']) ? $input['publikasi'] : ''); ?>">
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('publikasi'); ?>
+                                                <?= $validation->getError('publikasi'); ?>
                                             </div>
                                         </div>
                                     </div>

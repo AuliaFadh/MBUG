@@ -88,7 +88,7 @@
                                                     </a>
                                                 </td>
                                                 <td class="th-nm"><?= $value['publikasi']; ?></td>
-                                                <td> <a href="prestasi/edit" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                                <td> <a href="<?= base_url('/user/prestasi/edit/' . $value['id_prestasi']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                             </tr>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
