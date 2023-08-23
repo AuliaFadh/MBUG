@@ -87,7 +87,7 @@ class User extends BaseController
 
     public function user_home()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -103,7 +103,7 @@ class User extends BaseController
 
     public function  user_profile()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -120,6 +120,11 @@ class User extends BaseController
 
     public function cedit_user_profile($id_penerima)
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'alamat' => 'required',
             'no_hp' => 'required',
@@ -152,6 +157,11 @@ class User extends BaseController
 
     public function cedit_password_profile($uname)
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'password_lama' => 'required|matches[password]',
             'password_baru' => 'required',
@@ -180,7 +190,7 @@ class User extends BaseController
 
     public function user_akademik()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -195,7 +205,7 @@ class User extends BaseController
     }
     public function user_add_akademik()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -212,6 +222,11 @@ class User extends BaseController
 
     public function user_save_akademik()
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
@@ -254,7 +269,7 @@ class User extends BaseController
 
     public function user_edit_akademik($id_akademik)
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -272,6 +287,11 @@ class User extends BaseController
 
     public function user_cedit_akademik($id_akademik)
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
@@ -307,7 +327,7 @@ class User extends BaseController
 
     public function user_mbkm()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -322,7 +342,7 @@ class User extends BaseController
     }
     public function user_add_mbkm()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -339,6 +359,11 @@ class User extends BaseController
 
     public function user_save_mbkm()
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'nama_mbkm' => 'required',
@@ -376,7 +401,7 @@ class User extends BaseController
 
     public function user_edit_mbkm($id_mbkm)
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -394,6 +419,11 @@ class User extends BaseController
 
     public function user_cedit_mbkm($id_mbkm)
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'nama_mbkm' => 'required',
@@ -424,7 +454,7 @@ class User extends BaseController
 
     public function user_prestasi()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -440,7 +470,7 @@ class User extends BaseController
 
     public function user_add_prestasi()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -457,6 +487,11 @@ class User extends BaseController
 
     public function user_save_prestasi()
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'tingkat' => 'required',
             'jenis_prestasi' => 'required',
@@ -502,6 +537,11 @@ class User extends BaseController
 
     public function user_edit_prestasi($id_prestasi)
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Edit Prestasi | User',
@@ -515,6 +555,11 @@ class User extends BaseController
 
     public function user_cedit_prestasi($id_prestasi)
     {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
         if ($this->validate([
             'tingkat' => 'required',
             'jenis_prestasi' => 'required',
@@ -553,7 +598,7 @@ class User extends BaseController
 
     public function user_keaktifan()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -566,9 +611,10 @@ class User extends BaseController
 
         return view('user-main/keaktifan', $data);
     }
+
     public function user_add_keaktifan()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -581,9 +627,61 @@ class User extends BaseController
         ];
         return view('user-main/tambah-keaktifan', $data);
     }
+
+    public function user_save_keaktifan()
+    {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
+        if ($this->validate([
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            'bef' => 'required',
+            'af' => 'required',
+            #'krs' => 'required',
+            'jumlah_ditagihkan' => 'required',
+            'jumlah_potongan' => 'required',
+            #'blanko_pembayaran' => 'required',
+            #'bukti_pembayaran' => 'required',
+            'status_keaktifan' => 'required',
+        ])) {
+            $data = [
+                'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->kaModel->getIDp(session()->get('username')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'krs' => "-",
+                'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
+                'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
+                'blanko_pembayaran' => "-",
+                'bukti_pembayaran' => "-",
+                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+            ];
+
+            $this->kaModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/user/keaktifan'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+
+            $data = [
+                'title' => 'Form Input Keaktifan | User',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+            ];
+
+            return view('user-main/tambah-keaktifan', $data);
+        }
+    }
+
     public function user_edit_keaktifan($id_keaktifan)
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
@@ -599,9 +697,53 @@ class User extends BaseController
         return view('user-main/edit-keaktifan', $data);
     }
 
+    public function user_cedit_keaktifan($id_keaktifan)
+    {
+        if (session()->get('hak_akses') != "0") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+            return redirect()->to(base_url('/user/login'));
+        }
+
+        if ($this->validate([
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            'bef' => 'required',
+            'af' => 'required',
+            #'krs' => 'required',
+            'jumlah_ditagihkan' => 'required',
+            'jumlah_potongan' => 'required',
+            #'blanko_pembayaran' => 'required',
+            #'bukti_pembayaran' => 'required',
+            'status_keaktifan' => 'required',
+        ])) {
+            $data = [
+                'id_keaktifan' => $id_keaktifan,
+                'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->kaModel->getIDp(session()->get('username')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'krs' => "-",
+                'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
+                'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
+                'blanko_pembayaran' => "-",
+                'bukti_pembayaran' => "-",
+                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+            ];
+
+            $this->kaModel->UpdateData($id_keaktifan, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/user/keaktifan'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/user/keaktifan'));
+        }
+    }
+
     public function user_panduan()
     {
-        if (session()->get('username') == "") {
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }

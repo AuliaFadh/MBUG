@@ -120,7 +120,9 @@ $routes->group('user', function ($routes) {
 
     $routes->get('keaktifan', 'User::user_keaktifan');
     $routes->get('keaktifan/add', 'User::user_add_keaktifan');
+    $routes->post('keaktifan/save', 'User::user_save_keaktifan');
     $routes->get('keaktifan/edit/(:any)', 'User::user_edit_keaktifan/$1');
+    $routes->post('keaktifan/cedit/(:any)', 'User::user_cedit_keaktifan/$1');
 
     $routes->get('panduan', 'User::user_panduan');
 });

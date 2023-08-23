@@ -19,23 +19,22 @@
                         <div class="container1">
                             <h3>Edit Keaktifan</h3>
                         </div>
-
                     </div>
-                    <div class="card-body">
 
+                    <div class="card-body">
                         <form action="/admin/keaktifan/cedit/<?= $former->id_keaktifan; ?>" method="post">
-                        <?= csrf_field(); ?>
+                            <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input readonly name="npm" value="<?= $former->npm; ?>" type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
                                             <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
-                                                <a id="npm-data" onclick="fillInputNPM('10120544','Isa Tarmana','Sistem Informasi')">10120544 </a>
-                                                <a id="npm-data" onclick="fillInputNPM('10111544','Muhammad Aul','Sistem Informasi')">10111544 </a>
-                                                <a id="npm-data" onclick="fillInputNPM('101113544','Annisa Umul','Sistem Informasi')">10911544 </a>
+                                                <?php foreach ($penerima as $key => $value) : ?>
+                                                    <a id="npm-data" onclick="fillInputNPM('<?= $value['npm']; ?>','<?= $value['nama']; ?>','<?= $value['prodi']; ?>')"><?= $value['npm']; ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="npm-noData" style="display: none;">Data tidak ada</span>
                                             </div>
@@ -98,9 +97,9 @@
                                             <input type="text" name="jenis_beasiswa" value="<?= $former->jenis; ?>" id="jb-input" class="form-control custom-textfield ">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
-                                                <a id="jb-data" onclick="fillInputJB('Dicoding Indonesia')">Dicoding Indoneisa </a>
-                                                <a id="jb-data" onclick="fillInputJB('KIPK')">KIPK </a>
-                                                <a id="jb-data" onclick="fillInputJB('Kementrian Pertahanan Indonesia')">Kementrian Pertahanan Indonesia</a>
+                                                <?php foreach ($jenis_beasiswa as $key => $value) : ?>
+                                                    <a id="jb-data" onclick="fillInputJB('<?= $value['jenis']; ?>')"><?= $value['jenis']; ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="jb-noData" style="display: none;">Data tidak ada</span>
                                             </div>
@@ -109,8 +108,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
 
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group row fallback w-100 ">
                                             <label class="label-form">Upload KRS</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
@@ -137,6 +136,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group row fallback w-100">
                                             <label class="label-form">Upload Blanko Pembayaran</label>
@@ -144,6 +144,7 @@
                                             <input type="file" name="blanko_pembayaran" class="dropify" data-default-file="">
                                         </div>
                                     </div>
+
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group row fallback w-100">
                                             <label class="label-form">Upload Bukti Pembayaran</label>
@@ -163,13 +164,10 @@
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
                                         <a href="/admin/keaktifan" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
-
                                 </div>
                             </div>
                         </form>
-
                     </div>
-
                 </div>
             </div>
         </div>
