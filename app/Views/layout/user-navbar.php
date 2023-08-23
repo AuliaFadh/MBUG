@@ -7,14 +7,12 @@
 </div>
 
 <div id="main-wrapper">
-
     <!--**********************************
             Nav header start
         ***********************************-->
     <div class="nav-header nav-custome" style="background-color: #C4C4C4;">
         <a href="/user/home" class="brand-logo">
             <img class="logo-abbr" style="width: 100%;" src="https://gunadarma.ac.id/assets/images/logosmall.png" alt="">
-
             <img class="brand-title" src="<?= base_url('asset/img/Logo-web.png'); ?>" alt="">
         </a>
 
@@ -35,19 +33,16 @@
         <div class="header-content">
             <nav class="navbar navbar-expand">
                 <div class="collapse navbar-collapse justify-content-between">
-                    <div class="header-left">
-                        
+                    <div class="header-left">                       
                     </div>
-
-                    <ul  class="navbar-nav header-right col-lg-6 d-flex justify-content-end">
-                     
-
+                    <ul  class="navbar-nav header-right col-lg-6 d-flex justify-content-end">                     
                         <li class="nav-item">
                             <div class="nav-name-account" >
                                 <h4 style="padding: 0;margin:0;"><?= session()->get('nama_user'); ?></h4>
                                 <h5 style="padding: 0;margin:0;text-align: right; color:white ">Penerima Beasiswa</h5>             
                             </div>
                         </li>
+                        
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                 <img id="profile-img-nav" src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" style="height: 50px; width: 50px;" alt="" />

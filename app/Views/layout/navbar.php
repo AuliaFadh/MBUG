@@ -7,7 +7,6 @@
 </div>
 
 <div id="main-wrapper">
-
     <!--**********************************
             Nav header start
         ***********************************-->
@@ -35,10 +34,8 @@
         <div class="header-content">
             <nav class="navbar navbar-expand">
                 <div class="collapse navbar-collapse justify-content-between">
-                    <div class="header-left">
-                        
+                    <div class="header-left">                    
                     </div>
-
                     <ul  class="navbar-nav header-right col-lg-6 d-flex justify-content-end">
                         <!-- <li class="nav-item dropdown notification_dropdown">
                             <a class="nav-link bell ai-icon" href="#" role="button" data-toggle="dropdown">
@@ -105,12 +102,13 @@
 
                         <li class="nav-item">
                             <div class="nav-name-account" >
-                                <h4 style="padding: 0;margin:0;">{Username yang Login}</h4>
+                                <h4 style="padding: 0;margin:0;"><?= session()->get('username'); ?></h4>
                                 <h5 style="padding: 0;margin:0;text-align: right; color:white ">Admin</h5>
                             
                             
                             </div>
                         </li>
+                        
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                 <img src="<?= base_url('asset/img/person-icon.png'); ?>" style="height: 50px; width: 50px;" alt="" />
