@@ -327,22 +327,29 @@ class User extends BaseController
             return redirect()->to(base_url('/user/login'));
         }
 
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Input MBKM | User',
+            'validation' => \Config\Services::validation(),
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('user-main/tambah-mbkm', $data);
     }
 
-    public function user_edit_mbkm()
+    public function user_edit_mbkm($id_mbkm)
     {
         if (session()->get('username') == "") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Edit MBKM | User',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->mbkmModel->DetailData($id_mbkm),
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('user-main/edit-mbkm', $data);
@@ -372,16 +379,24 @@ class User extends BaseController
             return redirect()->to(base_url('/user/login'));
         }
 
+        $jb = $this->jbModel->AllData();
         $data = [
-            'title' => 'Form Input Prestasi | User',
+            'title' => 'Form Input Prestasi | Admin',
+            'validation' => \Config\Services::validation(),
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('user-main/tambah-prestasi', $data);
     }
-    public function user_edit_prestasi()
+
+    public function user_edit_prestasi($id_prestasi)
     {
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Edit Prestasi | User',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->lpModel->DetailData($id_prestasi),
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('user-main/edit-prestasi', $data);
@@ -409,20 +424,27 @@ class User extends BaseController
             return redirect()->to(base_url('/user/login'));
         }
 
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Input Keaktifan | User',
+            'validation' => \Config\Services::validation(),
+            'jenis_beasiswa' => $jb,
         ];
         return view('user-main/tambah-keaktifan', $data);
     }
-    public function user_edit_keaktifan()
+    public function user_edit_keaktifan($id_keaktifan)
     {
         if (session()->get('username') == "") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
 
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Edit Keaktifan per Semester | User',
+            'validation' => \Config\Services::validation(),
+            'former' => $this->kaModel->DetailData($id_keaktifan),
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('user-main/edit-keaktifan', $data);

@@ -108,7 +108,9 @@ $routes->group('user', function ($routes) {
 
     $routes->get('prestasi', 'User::user_prestasi');
     $routes->get('prestasi/add', 'User::user_add_prestasi');
+    $routes->post('prestasi/save', 'User::user_save_prestasi');
     $routes->get('prestasi/edit/(:any)', 'User::user_edit_prestasi/$1');
+    $routes->post('prestasi/cedit/(:any)', 'User::user_cedit_prestasi/$1');
 
     $routes->get('mbkm', 'User::user_mbkm');
     $routes->get('mbkm/add', 'User::user_add_mbkm');

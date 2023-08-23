@@ -362,11 +362,13 @@ class Admin extends BaseController
 
     public function add_akademik()
     {
+        $jb = $this->jbModel->AllData();
         $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Input Akademik | Admin',
             'validation' => \Config\Services::validation(),
-            'penerima' => $pb
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/tambah-akademik', $data);
@@ -374,10 +376,14 @@ class Admin extends BaseController
 
     public function edit_akademik($id_akademik)
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form edit Akademik | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->laModel->DetailData($id_akademik),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/edit-akademik', $data);
@@ -475,9 +481,13 @@ class Admin extends BaseController
 
     public function add_prestasi()
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Input Prestasi | Admin',
             'validation' => \Config\Services::validation(),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/tambah-prestasi', $data);
@@ -532,10 +542,14 @@ class Admin extends BaseController
 
     public function edit_prestasi($id_prestasi)
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Edit Prestasi | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->lpModel->DetailData($id_prestasi),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/edit-prestasi', $data);
@@ -594,9 +608,13 @@ class Admin extends BaseController
 
     public function add_mbkm()
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Input MBKM | Admin',
             'validation' => \Config\Services::validation(),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/tambah-mbkm', $data);
@@ -642,10 +660,14 @@ class Admin extends BaseController
 
     public function edit_mbkm($id_mbkm)
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Edit MBKM | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->mbkmModel->DetailData($id_mbkm),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/edit-mbkm', $data);
@@ -695,9 +717,13 @@ class Admin extends BaseController
 
     public function add_manajemen()
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Input User | Admin',
             'validation' => \Config\Services::validation(),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/tambah-manajemen', $data);
@@ -739,10 +765,14 @@ class Admin extends BaseController
 
     public function edit_manajemen($id_user)
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Edit User | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->userModel->DetailData($id_user),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/edit-manajemen', $data);
@@ -800,9 +830,13 @@ class Admin extends BaseController
 
     public function add_keaktifan()
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Input Keaktifan | Admin',
             'validation' => \Config\Services::validation(),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/tambah-keaktifan', $data);
@@ -857,10 +891,14 @@ class Admin extends BaseController
 
     public function edit_keaktifan($id_keaktifan)
     {
+        $jb = $this->jbModel->AllData();
+        $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Edit Keaktifan | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->kaModel->DetailData($id_keaktifan),
+            'penerima' => $pb,
+            'jenis_beasiswa' => $jb,
         ];
 
         return view('main/edit-keaktifan', $data);
@@ -918,9 +956,11 @@ class Admin extends BaseController
 
     public function add_gform()
     {
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Input Google Form | Admin',
             'validation' => \Config\Services::validation(),
+            'jenis_beasiswa' => $jb,
         ];
         return view('main/tambah-gform', $data);
     }
@@ -960,10 +1000,12 @@ class Admin extends BaseController
 
     public function edit_gform($id_lgf)
     {
+        $jb = $this->jbModel->AllData();
         $data = [
             'title' => 'Form Edit Google Form | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->lgfModel->DetailData($id_lgf),
+            'jenis_beasiswa' => $jb,
         ];
         return view('main/edit-gform', $data);
     }
