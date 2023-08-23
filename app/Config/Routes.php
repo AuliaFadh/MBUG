@@ -96,6 +96,8 @@ $routes->group('user', function ($routes) {
     $routes->get('logout', 'User::user_logout');
     $routes->post('login_check', 'User::user_login_check');
     $routes->get('profile', 'User::user_profile');
+    $routes->post('profile/cedit/(:any)', 'User::cedit_user_profile/$1');
+    $routes->post('profile/pass/(:any)', 'User::cedit_password_profile/$1');
     $routes->get('home', 'User::user_home');
 
     $routes->get('akademik', 'User::user_akademik');

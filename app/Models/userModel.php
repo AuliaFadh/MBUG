@@ -27,6 +27,13 @@ class userModel extends Model
         return $this->db->table('user')->where('id_user', $id_user)->get()->getRow();
     }
 
+    public function getData_username($uname)
+    {
+        return $this->db->table('user')
+        ->join('penerima_beasiswa', 'penerima_beasiswa.npm=user.username', 'left')
+        ->where('username', $uname)->get()->getRow();
+    }
+
     public function UpdateData($id, $data)
     {
         return $this->db->table('user')->where('id_user', $id)->update($data);

@@ -101,6 +101,7 @@ class User extends BaseController
 
         return view('user-main/dashboard', $data);
     }
+
     public function  user_profile()
     {
         if(session()->get('username')==""){
@@ -108,12 +109,75 @@ class User extends BaseController
             return redirect()->to(base_url('/user/login'));
         }
 
+        $uname = session()->get('username');
+        $profile = $this->userModel->getData_username($uname);
         $data = [
             'title' => 'Profile | MBUG',
+            'profile' => $profile,
         ];
 
         return view('user-main/user-profile', $data);
     }
+
+    public function cedit_user_profile($id_penerima)
+    {
+        if ($this->validate([
+            'alamat' => 'required',
+            'no_hp' => 'required',
+
+        ])) {
+            $penerima = $this->pbModel->DetailData($id_penerima);
+            $data = [
+                'id_penerima' => $id_penerima,
+                'nama' => $penerima->nama,
+                'npm' => $penerima->npm,
+                'prodi' => $penerima->prodi,
+                'alamat' => $this->request->getPost('alamat'),
+                'no_hp' => $this->request->getPost('no_hp'),
+                'jenis_kelamin' => $penerima->jenis_kelamin,
+                'tahun_diterima' => $penerima->tahun_diterima,
+                'status_penerima' => $penerima->status_penerima,
+                'keterangan' => $penerima->keterangan,
+            ];
+
+            $this->pbModel->UpdateData($id_penerima, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/user/profile'));
+        } else {
+            dd($this->request->getPost('password_baru'));
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/user/profile'));
+        }
+    }
+
+    public function cedit_password_profile($uname)
+    {
+        if ($this->validate([
+            'password_lama' => 'required|matches[password]',
+            'password_baru' => 'required',
+
+        ])) {
+            $penerima = $this->userModel->getData_username($uname);
+            $data = [
+                'id_user' => $penerima->id_user,
+                'username' => $penerima->username,
+                'password' => $this->request->getPost('password_baru'),
+                'hak_akses' => $penerima->hak_akses,
+                'last_login' => $penerima->last_login,
+                'status_user' => $penerima->status_user,
+            ];
+
+            $this->userModel->UpdateData($penerima->id_user, $data);
+            session()->setFlashdata('pass_berhasil', 'Password berhasil diubah');
+
+            return redirect()->to(base_url('/user/profile'));
+        } else {
+            session()->setFlashdata('pass_gagal', 'Password tidak berhasil diubah');
+            return redirect()->to(base_url('/user/profile'));
+        }
+    }
+
 
     public function user_akademik()
     {
