@@ -3,8 +3,6 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
-
         <div class="col-sm-6 col-lg-12p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/home">
@@ -12,7 +10,6 @@
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/penerima">Daftar Penerima Beasiswa</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/penerima/import">Import Data Penerima beasiswa</a></li>
-
             </ol>
         </div>
 
@@ -21,11 +18,9 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="container1">
-                            
+                        <div class="container1">                            
                             <h3>Import Data Penerima beasiswa</h3>
                         </div>
-
                     </div>
 
                     <div class="card-body">
@@ -41,7 +36,9 @@
                                 <li>klik import data jika sudah dipastikan benar data tersebut</li>
                             </ol>
                         </div>
-                        <form id="csv-form" class="row">
+
+                        <form action="/admin/penerima/cimport" id="csv-form" class="row" method="post" enctype="multipart/form-data">
+                        <?= csrf_field(); ?>
                             <div class="col-lg-7 col-md-6 col-sm-12">
                                 <input name="csv-file-input" type="file" id="csv-file-input" accept=".csv">
                             </div>
@@ -62,18 +59,10 @@
                                 </table>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
-
-
-
-
-
     </div>
 </div>
 </div>

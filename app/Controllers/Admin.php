@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\userModel;
 
 class Admin extends BaseController
 {
@@ -17,6 +18,7 @@ class Admin extends BaseController
     protected $loginModel;
     protected $newsModel;
     protected $logModel;
+    protected $lib;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -437,6 +439,64 @@ class Admin extends BaseController
         ];
 
         return view('main/import-data-peserta', $data);
+    }
+
+    public function cimport_penerima()
+    {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        if ($this->request->getPost()) {
+            $con = mysqli_connect('localhost', 'root', '');
+
+            mysqli_select_db($con, 'mbug');
+
+            $filename = $_FILES["csv-file-input"]["tmp_name"];
+
+            if ($_FILES['csv-file-input']['size'] > 0) {
+                $file = fopen($filename, 'r');
+
+                $builder = $this->userModel->builder();
+                $data = array();
+
+                $num = 0;
+                while (($column = fgetcsv($file, 1000, ",")) !== false) {
+                    if ($num == 0) {
+                        $num++;
+                    } else {
+                        $nama = $column[1];
+                        $npm = $column[2];
+                        $prodi = $column[3];
+                        $alamat = $column[4];
+                        $no_hp = $column[5];
+                        if ($column[6] == "Perempuan") {
+                            $jk = "0";
+                        } else {
+                            $jk = "1";
+                        }
+                        $jenis_kelamin = $jk;
+                        $tahun_diterima = $column[7];
+                        if ($column[8] == "Lulus") {
+                            $status = "2";
+                        } elseif ($column[8] == "Aktif") {
+                            $status = "1";
+                        } else {
+                            $status = "0";
+                        }
+                        $status_penerima = $status;
+                        $keterangan = $column[9];
+                        mysqli_query($con, "INSERT INTO penerima_beasiswa 
+                        (nama,npm,prodi,alamat,no_hp,jenis_kelamin,tahun_diterima,status_penerima,keterangan) 
+                        VALUES ('$nama','$npm','$prodi','$alamat','$no_hp','$jenis_kelamin','$tahun_diterima',
+                        '$status_penerima','$keterangan')");
+                    }
+                }
+            }
+        }
+        
+        return redirect()->to(base_url('/admin/penerima'));
     }
 
     public function del_penerima($id_penerima)

@@ -85,11 +85,11 @@
                                             <td class="th-sm"><?= $value['jenis_kelamin'] == "1" ? "Laki-laki" : "Perempuan"; ?></td>
                                             <td class="th-sm"><?= $value['tahun_diterima']; ?></td>
                                             <?php if ($value['status_penerima'] == "1") {
-                                                $status = '<span class="badge badge-rounded badge-primary"> Aktif</span>';
+                                                $status = '<span class="badge badge-rounded badge-primary">Aktif</span>';
                                             } else if ($value['status_penerima'] == "0") {
                                                 $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
                                             } else if ($value['status_penerima'] == "2") {
-                                                $status = '<span class="badge badge-rounded badge-success"> Lulus <span>';
+                                                $status = '<span class="badge badge-rounded badge-success">Lulus<span>';
                                             };
                                             ?>
                                             <td class="th-sm"><?= $status; ?></td>
