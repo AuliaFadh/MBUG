@@ -34,6 +34,7 @@
 
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Last Login</th>
                                         <th>ID User</th>
                                         <th>Username</th>
@@ -41,16 +42,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($log as $key => $value) : ?>
+                                    <?php $no = 0; ?>
+                                    <?php foreach (array_reverse($log) as $key => $value) : ?>
+                                        <?php $no++; ?>
                                         <tr>
+                                            <td><strong><?= $no; ?></strong></td>
                                             <?php
-                                            $last_login = date_create_from_format('Y-m-d h:i:s', $value['log_last_login']);
+                                            $last_login = date_create_from_format('Y-m-d H:i:s', $value['log_last_login']);
                                             ?>
-                                            <td><?= $last_login->format('d M Y, h:i:s'); ?> WIB</td>
+                                            <td><?= $last_login->format('d M Y, H:i:s'); ?> WIB</td>
                                             <td><?= $value['id_user']; ?></td>
                                             <td><?= $value['log_username']; ?></td>
                                             <?php if ($value['hak_akses'] == "0") {
-                                                $hak_akses = '<span  style="color:white;"class="badge badge-rounded badge-success"> User </span>';
+                                                $hak_akses = '<span  style="color:white;"class="badge badge-rounded badge-success"> Penerima Beasiswa </span>';
                                             } else if ($value['hak_akses'] == "1") {
                                                 $hak_akses = '<span class="badge badge-rounded badge-primary"> Admin </span>';
                                             }

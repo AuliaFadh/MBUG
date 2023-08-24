@@ -57,10 +57,10 @@ class Admin extends BaseController
 
         $check = $this->loginModel->login_check_a($username, $password);
 
-        if(is_null($check)){
+        if (is_null($check)) {
             session()->setFlashdata('no_data', 'Username atau Password Salah');
             return redirect()->to(base_url('/admin/login'));
-        } elseif($check["hak_akses"] == "1") {
+        } elseif ($check["hak_akses"] == "1") {
             $datalog = [
                 'log_last_login' => $this->logModel->getCurrentDate(),
                 'log_username' => $check["username"],
@@ -77,12 +77,11 @@ class Admin extends BaseController
             ];
             $this->userModel->UpdateData($check["id_user"], $datamnj);
 
-            session()->set('username',$check["username"]);
-            session()->set('hak_akses',$check["hak_akses"]);
+            session()->set('username', $check["username"]);
+            session()->set('hak_akses', $check["hak_akses"]);
 
             return redirect()->to(base_url('/admin/home'));
-
-        } elseif($check["hak_akses"] == "0") {
+        } elseif ($check["hak_akses"] == "0") {
             session()->setFlashdata('user', 'Akun terdaftar sebagai penerima beasiswa');
             return redirect()->to(base_url('/user/login'));
         }
@@ -1090,23 +1089,35 @@ class Admin extends BaseController
             'TA' => 'required',
             'bef' => 'required',
             'af' => 'required',
-            #'krs' => 'required',
+            'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
             'jumlah_ditagihkan' => 'required',
             'jumlah_potongan' => 'required',
-            #'blanko_pembayaran' => 'required',
-            #'bukti_pembayaran' => 'required',
+            'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
+            'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
             'status_keaktifan' => 'required',
         ])) {
+            $krs = $this->request->getFile('krs');
+            $nama_krs = $krs->getRandomName();
+            $krs->move('asset/doc/database/krs', $nama_krs);
+
+            $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
+            $nama_blanko = $blanko_pembayaran->getRandomName();
+            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+
+            $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
+            $nama_bukti = $bukti_pembayaran->getRandomName();
+            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+
             $data = [
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->kaModel->getIDp($this->request->getPost('npm')),
                 'semester' => $this->request->getPost('semester'),
                 'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
-                'krs' => "-",
+                'krs' => $nama_krs,
                 'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
-                'blanko_pembayaran' => "-",
-                'bukti_pembayaran' => "-",
+                'blanko_pembayaran' => $nama_blanko,
+                'bukti_pembayaran' => $nama_bukti,
                 'status_keaktifan' => $this->request->getPost('status_keaktifan'),
             ];
 
@@ -1162,24 +1173,36 @@ class Admin extends BaseController
             'TA' => 'required',
             'bef' => 'required',
             'af' => 'required',
-            #'krs' => 'required',
+            'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
             'jumlah_ditagihkan' => 'required',
             'jumlah_potongan' => 'required',
-            #'blanko_pembayaran' => 'required',
-            #'bukti_pembayaran' => 'required',
+            'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
+            'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
             'status_keaktifan' => 'required',
         ])) {
+            $krs = $this->request->getFile('krs');
+            $nama_krs = $krs->getRandomName();
+            $krs->move('asset/doc/database/krs', $nama_krs);
+
+            $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
+            $nama_blanko = $blanko_pembayaran->getRandomName();
+            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+
+            $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
+            $nama_bukti = $bukti_pembayaran->getRandomName();
+            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+
             $data = [
                 'id_keaktifan' => $id_keaktifan,
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->kaModel->getIDp($this->request->getPost('npm')),
                 'semester' => $this->request->getPost('semester'),
                 'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
-                'krs' => "-",
+                'krs' => $nama_krs,
                 'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
-                'blanko_pembayaran' => "-",
-                'bukti_pembayaran' => "-",
+                'blanko_pembayaran' => $nama_blanko,
+                'bukti_pembayaran' => $nama_bukti,
                 'status_keaktifan' => $this->request->getPost('status_keaktifan'),
             ];
 
@@ -1375,7 +1398,7 @@ class Admin extends BaseController
                 'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
                 'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
                 'deskripsi' => $this->request->getPost('deskripsi'),
-                'penulis' => "-",
+                'penulis' => session()->get('username'),
             ];
 
             $this->newsModel->InsertData($data);
@@ -1431,7 +1454,7 @@ class Admin extends BaseController
                 'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
                 'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
                 'deskripsi' => $this->request->getPost('deskripsi'),
-                'penulis' => "-",
+                'penulis' => session()->get('username'),
             ];
 
             $this->newsModel->UpdateData($id_pengumuman, $data);

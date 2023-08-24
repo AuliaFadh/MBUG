@@ -22,7 +22,7 @@ class logModel extends Model
     public function getCurrentDate()
     {
         date_default_timezone_set('Asia/Jakarta');
-        $time = date("Y-m-d h:i:s");
+        $time = date("Y-m-d H:i:s");
         return $time;
     }
 

@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="/admin/keaktifan/cedit/<?= $former->id_keaktifan; ?>" method="post">
+                        <form action="/admin/keaktifan/cedit/<?= $former->id_keaktifan; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -53,7 +53,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="container1 row  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
@@ -112,7 +111,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group row fallback w-100 ">
                                             <label class="label-form">Upload KRS</label>
-                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
+                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/krs/' . $former->krs); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
                                             <input type="file" name="krs" class="dropify" data-default-file="">
                                         </div>
                                     </div>
@@ -140,7 +139,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group row fallback w-100">
                                             <label class="label-form">Upload Blanko Pembayaran</label>
-                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
+                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/blanko_pembayaran/' . $former->blanko_pembayaran); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
                                             <input type="file" name="blanko_pembayaran" class="dropify" data-default-file="">
                                         </div>
                                     </div>
@@ -148,7 +147,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group row fallback w-100">
                                             <label class="label-form">Upload Bukti Pembayaran</label>
-                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
+                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/bukti_pembayaran/' . $former->bukti_pembayaran); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
                                             <input type="file" name="bukti_pembayaran" class="dropify" data-default-file="">
                                         </div>
                                     </div>

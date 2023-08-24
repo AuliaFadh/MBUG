@@ -3,7 +3,6 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/home">
@@ -13,6 +12,7 @@
                 <li class="breadcrumb-item active"><a href="/admin/keaktifan/add">Tambah Keaktifan</a></li>
             </ol>
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -20,10 +20,10 @@
                         <div class="container1">
                             <h3>Tambah Keaktifan</h3>
                         </div>
-
                     </div>
+
                     <div class="card-body">
-                        <form action="/admin/keaktifan/save" method="post">
+                        <form action="/admin/keaktifan/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -54,7 +54,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="container1 row  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
@@ -88,11 +87,7 @@
                                                 <input required min="1981" type="number" name="bef" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
                                                 <h3>/</h3>
                                                 <input required min="1982" type="number" name="af" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
-
-
-
                                             </div>
-
                                         </div>
                                     </div>
 

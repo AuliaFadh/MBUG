@@ -33,25 +33,31 @@
       </div>
       <div class="card-body">
 
-      <?php foreach ($news as $key => $value) : ?>
-          <div class="card text-bg-info mb-3 col-lg-12">
-            <div class="card-header custom-container-form ">
-              <div class="col-lg-6">
-                <h5 class="card-title"><?= $value['judul_pengumuman']; ?></h5>
-                <?php
-                $tgl_terbit = date_create_from_format('Y-m-d', $value['tanggal_terbit']);
-                $tgl_tarik = date_create_from_format('Y-m-d', $value['tanggal_tarik']);
-                ?>
-                <p>posted : <?= $tgl_terbit->format('d M Y'); ?> - <?= $tgl_tarik->format('d M Y'); ?></p>
+        <?php foreach ($news as $key => $value) : ?>
+          <?php
+          date_default_timezone_set('Asia/Jakarta');
+          $time = date("Y-m-d");
+          ?>
+          <?php if ($time < $value["tanggal_tarik"]) : ?>
+            <div class="card text-bg-info mb-3 col-lg-12">
+              <div class="card-header custom-container-form ">
+                <div class="col-lg-6">
+                  <h5 class="card-title"><?= $value['judul_pengumuman']; ?></h5>
+                  <?php
+                  $tgl_terbit = date_create_from_format('Y-m-d', $value['tanggal_terbit']);
+                  $tgl_tarik = date_create_from_format('Y-m-d', $value['tanggal_tarik']);
+                  ?>
+                  <p>posted : <?= $tgl_terbit->format('d M Y'); ?> - <?= $tgl_tarik->format('d M Y'); ?></p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-end">
+                  <button class="btn btn-secondary toggle-button col-lg-6 col-md-12 col-sm-12 ">Baca Selengkapnya</button>
+                </div>
               </div>
-              <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-end">
-                <button class="btn btn-secondary toggle-button col-lg-6 col-md-12 col-sm-12 ">Baca Selengkapnya</button>
+              <div class="card-body card-body-content" style="display: none;">
+                <p><?= $value['deskripsi']; ?></p>
               </div>
             </div>
-            <div class="card-body card-body-content" style="display: none;">
-              <p><?= $value['deskripsi']; ?></p>
-            </div>
-          </div>
+          <?php endif; ?>
         <?php endforeach; ?>
       </div>
     </div>
