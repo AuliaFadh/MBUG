@@ -29,7 +29,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="/user/prestasi/cedit/<?= $former->id_prestasi; ?>" method="post">
+                        <form action="/user/prestasi/cedit/<?= $former->id_prestasi; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -121,7 +121,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100 ">
                                             <label class="label-form">Bukti Prestasi</label>
-                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
+                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/bukti_prestasi/' . $former->bukti_prestasi); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
                                             <input name="bukti_prestasi" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>

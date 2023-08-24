@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="/user/akademik/cedit/<?= $former->id_akademik; ?>" method="post">
+                        <form action="/user/akademik/cedit/<?= $former->id_akademik; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -107,7 +107,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form"> Rangkuman Nilai(pdf)</label>
-                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="pdf/pdf1.pdf"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
+                                            <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $former->rangkuman_nilai); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
                                             <input style="padding-left : 15px;" type="file" name="rangkuman_nilai" class="dropify " data-default-file="" accept=".pdf">
                                         </div>
                                     </div>

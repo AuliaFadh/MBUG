@@ -82,7 +82,7 @@
                                                 <td class="th-nm"><?= $value['tempat']; ?></td>
                                                 <td class="th-nm"><?= $value['penyelenggara']; ?></td>
                                                 <td class="th-sm">
-                                                    <a title="Lihat File" href="<?= base_url('asset/doc/buku-panduan.pdf'); ?>">
+                                                    <a title="Lihat File" href="<?= base_url('asset/doc/database/bukti_prestasi/' . $value['bukti_prestasi']); ?>">
                                                         <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
                                                     </a>
                                                 </td>

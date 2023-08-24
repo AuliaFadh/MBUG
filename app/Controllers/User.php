@@ -236,8 +236,11 @@ class User extends BaseController
             'ipk' => 'required',
             'ipk_lokal' => 'required',
             'ipk_uu' => 'required',
-            #'rangkuman_nilai' => 'required',
+            'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
         ])) {
+            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
+            $nama_rn = $rangkuman_nilai->getRandomName();
+            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
             $data = [
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp(session()->get('username')),
@@ -246,7 +249,7 @@ class User extends BaseController
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $this->request->getPost('TA'),
+                'rangkuman_nilai' => $nama_rn,
             ];
 
             $this->laModel->InsertData($data);
@@ -301,8 +304,11 @@ class User extends BaseController
             'ipk' => 'required',
             'ipk_lokal' => 'required',
             'ipk_uu' => 'required',
-            #'rangkuman_nilai' => 'required',
+            'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
         ])) {
+            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
+            $nama_rn = $rangkuman_nilai->getRandomName();
+            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
             $data = [
                 'id_akademik' => $id_akademik,
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -312,7 +318,7 @@ class User extends BaseController
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $this->request->getPost('TA'),
+                'rangkuman_nilai' => $nama_rn,
             ];
 
             $this->laModel->UpdateData($id_akademik, $data);
@@ -500,9 +506,12 @@ class User extends BaseController
             'tempat' => 'required',
             'datepicker' => 'required',
             'penyelenggara' => 'required',
-            #'bukti_prestasi' => 'required',
+            'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+            $bukti_prestasi = $this->request->getFile('bukti_prestasi');
+            $nama_bp = $bukti_prestasi->getRandomName();
+            $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->lpModel->getIDp(session()->get('username')),
@@ -513,7 +522,7 @@ class User extends BaseController
                 'tempat' => $this->request->getPost('tempat'),
                 'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
-                'bukti_prestasi' => "-",
+                'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
             ];
 
@@ -568,9 +577,12 @@ class User extends BaseController
             'tempat' => 'required',
             'datepicker' => 'required',
             'penyelenggara' => 'required',
-            #'bukti_prestasi' => 'required',
+            'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+            $bukti_prestasi = $this->request->getFile('bukti_prestasi');
+            $nama_bp = $bukti_prestasi->getRandomName();
+            $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
             $data = [
                 'id_prestasi' => $id_prestasi,
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -582,7 +594,7 @@ class User extends BaseController
                 'tempat' => $this->request->getPost('tempat'),
                 'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
-                'bukti_prestasi' => "-",
+                'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
             ];
 
@@ -641,23 +653,35 @@ class User extends BaseController
             'TA' => 'required',
             'bef' => 'required',
             'af' => 'required',
-            #'krs' => 'required',
+            'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
             'jumlah_ditagihkan' => 'required',
             'jumlah_potongan' => 'required',
-            #'blanko_pembayaran' => 'required',
-            #'bukti_pembayaran' => 'required',
+            'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
+            'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
             'status_keaktifan' => 'required',
         ])) {
+            $krs = $this->request->getFile('krs');
+            $nama_krs = $krs->getRandomName();
+            $krs->move('asset/doc/database/krs', $nama_krs);
+
+            $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
+            $nama_blanko = $blanko_pembayaran->getRandomName();
+            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+
+            $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
+            $nama_bukti = $bukti_pembayaran->getRandomName();
+            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+
             $data = [
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->kaModel->getIDp(session()->get('username')),
                 'semester' => $this->request->getPost('semester'),
                 'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
-                'krs' => "-",
+                'krs' => $nama_krs,
                 'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
-                'blanko_pembayaran' => "-",
-                'bukti_pembayaran' => "-",
+                'blanko_pembayaran' => $nama_blanko,
+                'bukti_pembayaran' => $nama_bukti,
                 'status_keaktifan' => $this->request->getPost('status_keaktifan'),
             ];
 
@@ -710,24 +734,36 @@ class User extends BaseController
             'TA' => 'required',
             'bef' => 'required',
             'af' => 'required',
-            #'krs' => 'required',
+            'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
             'jumlah_ditagihkan' => 'required',
             'jumlah_potongan' => 'required',
-            #'blanko_pembayaran' => 'required',
-            #'bukti_pembayaran' => 'required',
+            'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
+            'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
             'status_keaktifan' => 'required',
         ])) {
+            $krs = $this->request->getFile('krs');
+            $nama_krs = $krs->getRandomName();
+            $krs->move('asset/doc/database/krs', $nama_krs);
+
+            $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
+            $nama_blanko = $blanko_pembayaran->getRandomName();
+            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+
+            $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
+            $nama_bukti = $bukti_pembayaran->getRandomName();
+            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+
             $data = [
                 'id_keaktifan' => $id_keaktifan,
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->kaModel->getIDp(session()->get('username')),
                 'semester' => $this->request->getPost('semester'),
                 'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
-                'krs' => "-",
+                'krs' => $nama_krs,
                 'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
-                'blanko_pembayaran' => "-",
-                'bukti_pembayaran' => "-",
+                'blanko_pembayaran' => $nama_blanko,
+                'bukti_pembayaran' => $nama_bukti,
                 'status_keaktifan' => $this->request->getPost('status_keaktifan'),
             ];
 
