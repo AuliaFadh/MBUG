@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="/admin/akademik/save" method="post">
+                        <form action="/admin/akademik/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -141,7 +141,7 @@
                                     <div class="row  col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Rangkuman Nilai(pdf)</label>
-                                            <input style="padding-left : 15px;" type="file" class="dropify " data-default-file="" accept=".pdf">
+                                            <input style="padding-left : 15px;" name="rangkuman_nilai" type="file" class="dropify " data-default-file="" accept=".pdf">
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">

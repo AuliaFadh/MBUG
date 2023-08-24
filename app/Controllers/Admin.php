@@ -531,8 +531,8 @@ class Admin extends BaseController
             'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
         ])) {
             $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
-            $nama = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama);
+            $nama_rn = $rangkuman_nilai->getRandomName();
+            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
             $data = [
                 'id_akademik' => $id_akademik,
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -542,7 +542,7 @@ class Admin extends BaseController
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $nama,
+                'rangkuman_nilai' => $nama_rn,
             ];
 
             $this->laModel->UpdateData($id_akademik, $data);
@@ -572,8 +572,11 @@ class Admin extends BaseController
             'ipk' => 'required',
             'ipk_lokal' => 'required',
             'ipk_uu' => 'required',
-            #'rangkuman_nilai' => 'required',
+            'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
         ])) {
+            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
+            $nama_rn = $rangkuman_nilai->getRandomName();
+            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
             $data = [
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
@@ -582,7 +585,7 @@ class Admin extends BaseController
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $this->request->getPost('TA'),
+                'rangkuman_nilai' => $nama_rn,
             ];
 
             $this->laModel->InsertData($data);
