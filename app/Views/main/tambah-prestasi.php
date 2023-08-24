@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="/admin/prestasi/save" method="post">
+                        <form action="/admin/prestasi/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -57,7 +57,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -86,7 +85,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tingkat</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -97,22 +95,19 @@
                                                 <option value="Provinsi">Provinsi</option>
                                                 <option value="Wilayah">Wilayah</option>
                                                 <option value="Internal">Internal</option>
-
                                             </select>
                                             <div class=" invalid-feedback">
 
                                             </div>
                                         </div>
                                     </div>
+
                                     <div style="padding-left : 15px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Prestasi</label>
                                         <input type="radio" class="margin-custom" name="jenis_prestasi" value="1"> Tim<br>
                                         <input type="radio" class="margin-custom" name="jenis_prestasi" value="0" checked> Individu<br>
-
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Kegiatan</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -138,13 +133,13 @@
                                                 <option value="Partisipatif">Partisipatif</option>
                                                 <option value="Finalis">Finalis</option>
                                                 <option value="Lainnya">Lainnya</option>
-
                                             </select>
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('capaian'); ?>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tempat</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -154,6 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal Pembuatan</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -173,12 +169,14 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Bukti</label>
                                             <input name="bukti_prestasi" style="padding-left : 15px;" type="file" class="dropify" data-default-file="">
                                         </div>
                                     </div>
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tautan Publikasi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -193,15 +191,11 @@
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
                                         <a href="/admin/prestasi" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
-
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -658,9 +658,12 @@ class Admin extends BaseController
             'tempat' => 'required',
             'datepicker' => 'required',
             'penyelenggara' => 'required',
-            #'bukti_prestasi' => 'required',
+            'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+            $bukti_prestasi = $this->request->getFile('bukti_prestasi');
+            $nama_bp = $bukti_prestasi->getRandomName();
+            $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->lpModel->getIDp($this->request->getPost('npm')),
@@ -671,7 +674,7 @@ class Admin extends BaseController
                 'tempat' => $this->request->getPost('tempat'),
                 'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
-                'bukti_prestasi' => "-",
+                'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
             ];
 
@@ -730,9 +733,12 @@ class Admin extends BaseController
             'tempat' => 'required',
             'datepicker' => 'required',
             'penyelenggara' => 'required',
-            #'bukti_prestasi' => 'required',
+            'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+            $bukti_prestasi = $this->request->getFile('bukti_prestasi');
+            $nama_bp = $bukti_prestasi->getRandomName();
+            $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
             $data = [
                 'id_prestasi' => $id_prestasi,
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -744,7 +750,7 @@ class Admin extends BaseController
                 'tempat' => $this->request->getPost('tempat'),
                 'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
-                'bukti_prestasi' => "-",
+                'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
             ];
 
