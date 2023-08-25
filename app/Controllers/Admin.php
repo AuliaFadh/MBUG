@@ -32,15 +32,6 @@ class Admin extends BaseController
         $this->logModel = new \App\Models\logModel();
     }
 
-    public function test()
-    {
-        $data = [
-            'title' => 'Test | Admin',
-        ];
-
-        return view('main/test', $data);
-    }
-
     public function login_admin()
     {
         $data = [

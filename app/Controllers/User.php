@@ -187,7 +187,6 @@ class User extends BaseController
         }
     }
 
-
     public function user_akademik()
     {
         if (session()->get('hak_akses') != "0") {
@@ -203,6 +202,7 @@ class User extends BaseController
 
         return view('user-main/laporan-akademik', $data);
     }
+
     public function user_add_akademik()
     {
         if (session()->get('hak_akses') != "0") {
@@ -346,6 +346,7 @@ class User extends BaseController
 
         return view('user-main/laporan-mbkm', $data);
     }
+    
     public function user_add_mbkm()
     {
         if (session()->get('hak_akses') != "0") {
