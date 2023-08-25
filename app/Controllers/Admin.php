@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\userModel;
 
 class Admin extends BaseController
 {
@@ -18,7 +17,6 @@ class Admin extends BaseController
     protected $loginModel;
     protected $newsModel;
     protected $logModel;
-    protected $lib;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -457,9 +455,6 @@ class Admin extends BaseController
 
             if ($_FILES['csv-file-input']['size'] > 0) {
                 $file = fopen($filename, 'r');
-
-                $builder = $this->userModel->builder();
-                $data = array();
 
                 $num = 0;
                 while (($column = fgetcsv($file, 1000, ",")) !== false) {

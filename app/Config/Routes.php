@@ -12,8 +12,7 @@ $routes = Services::routes();
  */
 
 $routes->setDefaultNamespace('App\Controllers');
-//$routes->setDefaultController('Home');
-//$routes->setDefaultMethod('index');
+// Route untuk admin
 $routes->group('admin', function ($routes) {
     $routes->get('test', 'Admin::test');
     $routes->get('login', 'Admin::login_admin');
@@ -90,9 +89,9 @@ $routes->group('admin', function ($routes) {
     $routes->get('log', 'Admin::log');
 });
 
-
 //____________________________________________________________________________________________________
 
+// Route untuk penerima beasiswa
 $routes->group('user', function ($routes) {
     $routes->get('login', 'User::user_login');
     $routes->get('logout', 'User::user_logout');
@@ -128,7 +127,6 @@ $routes->group('user', function ($routes) {
 
     $routes->get('panduan', 'User::user_panduan');
 });
-
 
 // $routes->setTranslateURIDashes(false);
 // $routes->set404Override();
