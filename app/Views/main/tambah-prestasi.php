@@ -3,10 +3,8 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
@@ -23,8 +21,9 @@
                             <h3>Tambah Prestasi</h3>
                         </div>
                     </div>
-                    <div class="card-body">
 
+                    <!-- Form tambah laporan prestasi -->
+                    <div class="card-body">
                         <form action="/admin/prestasi/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">

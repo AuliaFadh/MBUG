@@ -4,7 +4,6 @@
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
@@ -21,6 +20,7 @@
                         </div>
                     </div>
 
+                    <!-- Notifikasi -->
                     <?php if (session()->getFlashdata('berhasil')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->getFlashdata('berhasil'); ?>
@@ -45,6 +45,7 @@
                         </a>
                     </div>
 
+                    <!-- Tabel -->
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example2" class="display" style="min-width: 845px">
@@ -58,6 +59,7 @@
                                         <th class="th-nm">Aksi</th>
                                     </tr>
                                 </thead>
+                                <!-- Loop data link gform -->
                                 <tbody>
                                     <?php $no = 0; ?>
                                     <?php foreach ($lgf as $key => $value) : ?>
@@ -79,7 +81,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

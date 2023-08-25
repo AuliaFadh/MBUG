@@ -3,8 +3,6 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/home">
@@ -16,7 +14,6 @@
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -24,31 +21,18 @@
                             <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/buku-panduan.png'); ?>" alt="">
                             <h3>Buku Panduan</h3>
                         </div>
-
                     </div>
 
+                    <!-- Menampilkan pdf buku panduan -->
                     <div class="card-body">
-
-
-
-
                         <div>
                             <iframe src="<?= base_url('asset/doc/buku-panduan.pdf'); ?>" width="100%" height="500px"></iframe>
                         </div>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
-
-
-
-
-
     </div>
 </div>
 </div>
-
 <?= $this->endSection('content') ?>

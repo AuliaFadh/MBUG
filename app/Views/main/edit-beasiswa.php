@@ -3,10 +3,8 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
@@ -16,7 +14,6 @@
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -25,17 +22,12 @@
                         </div>
                     </div>
 
+                    <!-- Form Edit Daftar Jenis Beasiswa -->
                     <div class="card-body">
                         <form action="/admin/beasiswa/cedit/<?= $mhs->id_beasiswa; ?>" method="post">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <?php if (session()->getFlashdata('pesan')) : ?>
-                                        <div class="alert alert-success" role="alert">
-                                            <?= session()->getFlashdata('pesan'); ?>
-                                        </div>
-                                    <?php endif; ?>
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -70,10 +62,6 @@
                                         <label for="status" class="label-form">Status</label>
                                         <input type="radio" class="margin-custom" name="status" value="1"> Aktif<br>
                                         <input type="radio" class="margin-custom" name="status" value="0"> Tidak Aktif<br>
-
-                                        <!-- <div class="invalid-feedback">
-                                            
-                                        </div> -->
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">

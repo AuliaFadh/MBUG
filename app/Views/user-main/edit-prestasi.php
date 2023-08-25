@@ -3,31 +3,26 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/user/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/user/prestasi">Laporan Prestasi</a></li>
                 <li class="breadcrumb-item active"><a href="/user/prestasi/edit">Edit Prestasi</a></li>
-
-
             </ol>
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-
                             <h3>Edit Prestasi</h3>
                         </div>
-
                     </div>
+
+                    <!-- Form edit laporan prestasi penerima beasiswa -->
                     <div class="card-body">
                         <form action="/user/prestasi/cedit/<?= $former->id_prestasi; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>

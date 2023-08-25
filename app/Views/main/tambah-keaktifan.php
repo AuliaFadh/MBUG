@@ -22,6 +22,7 @@
                         </div>
                     </div>
 
+                    <!-- Form tambah data keaktifan per semester -->
                     <div class="card-body">
                         <form action="/admin/keaktifan/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>

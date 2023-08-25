@@ -13,7 +13,6 @@
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -23,6 +22,7 @@
                         </div>
                     </div>
 
+                    <!-- Menampilkan pdf buku panduan penerima beasiswa -->
                     <div class="card-body">
                         <div>
                             <iframe src="<?= base_url('asset/doc/buku-panduan.pdf'); ?>" width="100%" height="500px"></iframe>
@@ -34,5 +34,4 @@
     </div>
 </div>
 </div>
-
 <?= $this->endSection('content') ?>

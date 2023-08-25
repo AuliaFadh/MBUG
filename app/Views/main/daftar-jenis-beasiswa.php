@@ -3,21 +3,16 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/beasiswa">Jenis Beasiswa</a></li>
             </ol>
-
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -31,6 +26,7 @@
                         </div>
                     </div>
 
+                    <!-- Notifikasi -->
                     <?php if (session()->getFlashdata('berhasil')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->getFlashdata('berhasil'); ?>
@@ -48,6 +44,7 @@
                         </div>
                     <?php endif; ?>
 
+                    <!-- Tabel -->
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -62,6 +59,7 @@
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
+                                <!-- Loop data  -->
                                 <tbody>
                                     <?php $no = 0; ?>
                                     <?php foreach ($jb as $key => $value) : ?>
@@ -83,7 +81,6 @@
                                                 <a href="<?= base_url('/admin/beasiswa/edit/' . $value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                 <!-- ul ini yng elemen button dari adib, jadi dia confirm boxnya udah keren jadi  -->
                                                 <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_beasiswa(<?= $value['id_beasiswa']; ?>)"><i class="la la-trash-o"></i></button>
-
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -91,10 +88,7 @@
                             </table>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>

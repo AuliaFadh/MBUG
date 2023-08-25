@@ -7,7 +7,6 @@
   <!-- row -->
   <div class="container-fluid">
     <div>
-
       <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/admin/home">
@@ -26,14 +25,15 @@
           para penerima beasiswa di Universistas Gunadarma. saat ini anda berada pada halaman Admin.
         </p>
       </div>
-
     </div>
+
     <div class="card">
       <div class="card-header">
         <h3>Pengumuman</h3>
       </div>
       <div class="card-body">
 
+        <!-- Loop Data Pengumuman -->
         <?php foreach ($news as $key => $value) : ?>
           <?php
           date_default_timezone_set('Asia/Jakarta');

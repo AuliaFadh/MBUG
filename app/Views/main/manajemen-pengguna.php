@@ -3,11 +3,8 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a>
@@ -17,6 +14,7 @@
                 </li>
             </ol>
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -27,6 +25,7 @@
                         </div>
                     </div>
 
+                    <!-- Notifikasi -->
                     <?php if (session()->getFlashdata('berhasil')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->getFlashdata('berhasil'); ?>
@@ -51,6 +50,7 @@
                         </a>
                     </div>
 
+                    <!-- Tabel -->
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example2" class="display" style="min-width: 845px">
@@ -63,6 +63,7 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <!-- Loop data user -->
                                 <tbody>
                                     <?php foreach ($user as $key => $value) : ?>
                                         <tr>

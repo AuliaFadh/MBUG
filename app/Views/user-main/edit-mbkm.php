@@ -3,10 +3,8 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/user/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
@@ -16,7 +14,6 @@
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -25,12 +22,12 @@
                         </div>
                     </div>
 
+                    <!-- Form edit laporan mbkm penerima beasiswa -->
                     <div class="card-body">
                         <form action="/user/mbkm/cedit/<?= $former->id_mbkm; ?>" method="post">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama Program MBKM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -40,7 +37,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Program MBKM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">

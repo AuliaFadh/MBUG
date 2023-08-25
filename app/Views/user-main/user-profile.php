@@ -2,9 +2,8 @@
 <?= $this->section('content') ?>
 <div class="content-body">
     <!-- row -->
+    <!-- Form edit data diri penerima beasiswa -->
     <div class="container-fluid">
-
-        <!-- Ubah disini -->
         <div class="col-lg-12 col-md-12 col-sm-12">
             <form action="/user/profile/cedit/<?= $profile->id_penerima; ?>" class="card" method="post" id="user">
                 <?= csrf_field(); ?>
@@ -14,6 +13,7 @@
                     </div>
                 </div>
 
+                <!-- Notifikasi -->
                 <?php if (session()->getFlashdata('berhasil')) : ?>
                     <div class="alert alert-success" role="alert">
                         <?= session()->getFlashdata('berhasil'); ?>
@@ -84,7 +84,6 @@
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Alamat</h4>
-
                                 <div class="container1-up custom-container-form col-lg-8 col-md-12 col-sm-12 no-mg no-pd">
                                     <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
                                         <textarea name="alamat" class="form-control custom-textfield" rows="2"><?= $profile->alamat; ?></textarea>
@@ -107,6 +106,8 @@
             <div class="card-header">
                 <h4>Ingin Ubah Password?</h4>
             </div>
+
+            <!-- Form ubah password penerima beasiswa -->
             <div class="card-body">
                 <form action="/user/profile/pass/<?= $profile->username; ?>" method="post" id="pass">
                     <?= csrf_field(); ?>
@@ -119,6 +120,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="container1 custom-container-form col-lg-7 col-md-7 col-sm-7 ">
                         <label class="label-form">Password Baru</label>
                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
@@ -133,13 +135,10 @@
 
                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                         <button type="submit" id="pass" name="submit2" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-2 col-sm-2">Submit</button>
-
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
 <?= $this->endSection('content') ?>

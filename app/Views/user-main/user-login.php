@@ -1,7 +1,6 @@
 <?= $this->extend('layout/login-frame'); ?>
 <?= $this->section('content') ?>
 
-
 <section class="ftco-section">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -21,6 +20,7 @@
 							</div>
 						</div>
 
+						<!-- Notifikasi -->
 						<?php if (session()->getFlashdata('user')) : ?>
 							<div class="alert alert-success" role="alert">
 								<?= session()->getFlashdata('user'); ?>
@@ -32,13 +32,14 @@
 								<?= session()->getFlashdata('no_data'); ?>
 							</div>
 						<?php endif; ?>
-						
+
 						<?php if (session()->getFlashdata('belum_login')) : ?>
 							<div class="alert alert-danger" role="alert">
 								<?= session()->getFlashdata('belum_login'); ?>
 							</div>
 						<?php endif; ?>
 
+						<!-- Form input login penerima beasiswa -->
 						<form action="/user/login_check" class="signin-form" method="post">
 							<div class="form-group mb-3">
 								<label class="label" for="name">Username</label>
@@ -58,10 +59,8 @@
 										<span class="checkmark"></span>
 									</label>
 								</div>
-
 							</div>
 						</form>
-
 					</div>
 				</div>
 			</div>

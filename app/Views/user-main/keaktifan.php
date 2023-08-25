@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item active"><a href="/user/keaktifan">Keaktifan per Semester</a></li>
             </ol>
         </div>
-        
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -25,6 +25,7 @@
                         </div>
                     </div>
 
+                    <!-- Notifikasi -->
                     <?php if (session()->getFlashdata('berhasil')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->getFlashdata('berhasil'); ?>
@@ -37,6 +38,7 @@
                         </div>
                     <?php endif; ?>
 
+                    <!-- Tabel -->
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -55,6 +57,7 @@
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
+                                <!-- Loop data keaktifan per semester penerima beasiswa -->
                                 <tbody>
                                     <?php $no = 0; ?>
                                     <?php foreach ($ka as $key => $value) : ?>

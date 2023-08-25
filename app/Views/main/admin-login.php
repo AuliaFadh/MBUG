@@ -21,6 +21,7 @@
 							</div>
 						</div>
 
+						<!-- Notifikasi -->
 						<?php if (session()->getFlashdata('admin')) : ?>
 							<div class="alert alert-success" role="alert">
 								<?= session()->getFlashdata('admin'); ?>
@@ -39,6 +40,7 @@
 							</div>
 						<?php endif; ?>
 
+						<!-- Form input login admin -->
 						<form action="/admin/login_check" class="signin-form" method="post">
 							<div class="form-group mb-3">
 								<label class="label" for="username">Username</label>

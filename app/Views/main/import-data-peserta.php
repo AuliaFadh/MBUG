@@ -14,11 +14,10 @@
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="container1">                            
+                        <div class="container1">
                             <h3>Import Data Penerima beasiswa</h3>
                         </div>
                     </div>
@@ -37,8 +36,9 @@
                             </ol>
                         </div>
 
+                        <!-- Form import data penerima beasiswa -->
                         <form action="/admin/penerima/cimport" id="csv-form" class="row" method="post" enctype="multipart/form-data">
-                        <?= csrf_field(); ?>
+                            <?= csrf_field(); ?>
                             <div class="col-lg-7 col-md-6 col-sm-12">
                                 <input name="csv-file-input" type="file" id="csv-file-input" accept=".csv">
                             </div>
@@ -48,6 +48,7 @@
                             </div>
                         </form>
 
+                        <!-- Tampilan data yang akan diinput (setelah upload file csv yang sesuai) -->
                         <div class="table-responsive">
                             <div class="csv-container">
                                 <table id="example3" class="csv-table">
@@ -66,5 +67,4 @@
     </div>
 </div>
 </div>
-
 <?= $this->endSection('content') ?>

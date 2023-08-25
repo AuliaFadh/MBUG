@@ -3,10 +3,8 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
@@ -23,13 +21,13 @@
                             <h3>Tambah MBKM</h3>
                         </div>
                     </div>
-                    <div class="card-body">
 
+                    <!-- Form tambah laporan MBKM -->
+                    <div class="card-body">
                         <form action="/admin/mbkm/save" method="post">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -57,7 +55,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
@@ -138,20 +135,15 @@
                                         </div>
                                     </div>
 
-
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <button type="submit" class="btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8">Submit</button>
                                         <a href="/admin/mbkm" class="btn btn-primary-download-excel margin-custom col-lg-2 col-md-4 col-sm-8">Batal</a>
                                     </div>
-
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

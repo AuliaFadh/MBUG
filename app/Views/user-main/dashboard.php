@@ -4,7 +4,6 @@
             Content body start
         ***********************************-->
 <div class="content-body">
-  <!-- row -->
   <div class="container-fluid">
     <div>
       <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
@@ -26,6 +25,7 @@
         </p>
       </div>
 
+      <!-- Pengumuman -->
     </div>
     <div class="card">
       <div class="card-header">
@@ -33,6 +33,7 @@
       </div>
       <div class="card-body">
 
+        <!-- Loop data pengumuman -->
         <?php foreach ($news as $key => $value) : ?>
           <?php
           date_default_timezone_set('Asia/Jakarta');
@@ -64,7 +65,6 @@
   </div>
 </div>
 </div>
-
 <!--**********************************
                                 Content body end
                             ***********************************-->

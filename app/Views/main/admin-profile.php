@@ -3,14 +3,11 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-
-
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <h1>Profile </h1>
         </div>
 
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -25,6 +22,7 @@
                                 <h4>Ingin Ubah Password?</h4>
                             </div>
 
+                            <!-- Notifikasi -->
                             <?php if (session()->getFlashdata('pass_berhasil')) : ?>
                                 <div class="alert alert-success" role="alert">
                                     <?= session()->getFlashdata('pass_berhasil'); ?>
@@ -37,6 +35,7 @@
                                 </div>
                             <?php endif; ?>
 
+                            <!-- Form ganti password -->
                             <div class="card-body">
                                 <form action="/admin/profile/cedit/<?= $profile->username; ?>" method="post">
                                     <?= csrf_field(); ?>

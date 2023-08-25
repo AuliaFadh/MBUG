@@ -21,6 +21,7 @@
                         </div>
                     </div>
 
+                    <!-- Form Edit Keaktifan per Semester -->
                     <div class="card-body">
                         <form action="/admin/keaktifan/cedit/<?= $former->id_keaktifan; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>

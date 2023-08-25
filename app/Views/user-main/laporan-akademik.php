@@ -5,16 +5,14 @@
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <!-- Ubah disini -->
                 <li class="breadcrumb-item"><a href="/user/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/user/akademik">Laporan Akademik</a></li>
             </ol>
         </div>
-        
+
         <div class="row">
-            <!-- Ubah disini -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -28,6 +26,7 @@
                         </div>
                     </div>
 
+                    <!-- Notifikasi -->
                     <?php if (session()->getFlashdata('berhasil')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->getFlashdata('berhasil'); ?>
@@ -40,6 +39,7 @@
                         </div>
                     <?php endif; ?>
 
+                    <!-- Tabel -->
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
@@ -56,6 +56,7 @@
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
+                                <!-- Loop data laporan akademik penerima beasiswa -->
                                 <tbody>
                                     <?php $no = 0; ?>
                                     <?php foreach ($la as $key => $value) : ?>
@@ -87,5 +88,4 @@
         </div>
     </div>
 </div>
-
 <?= $this->endSection('content') ?>

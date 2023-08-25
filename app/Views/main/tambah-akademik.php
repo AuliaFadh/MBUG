@@ -20,12 +20,12 @@
                         </div>
                     </div>
 
+                    <!-- Form tambah data laporan akademik -->
                     <div class="card-body">
                         <form action="/admin/akademik/save" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="npm" class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
@@ -53,7 +53,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="container1 row  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
@@ -92,6 +91,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Ajaran</label>
                                         <div style="display: block; margin-left:20px;" class=" col-lg-8 col-md-10 col-sm-12 ">
@@ -158,8 +158,5 @@
         </div>
     </div>
 </div>
-
-
 <script src="<?= base_url('asset/js/custom-npm-search.js'); ?>"></script>
-
 <?= $this->endSection('content') ?>
