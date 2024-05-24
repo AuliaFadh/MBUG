@@ -778,6 +778,9 @@ span#counter {
 
 }
 
+.custom-other-option{
+  border-radius: 6px;
+}
 .custom-textfield{
   border: 3px solid #BEBDBD;
 }
@@ -912,6 +915,10 @@ span#counter {
 }
 .no-mg{margin: 0!important ; }
 .no-pd{ padding: 0!important ;}
+
+.hidden-other-option {
+  display: none;
+}
 
  /* Styling untuk elemen hasil (default di sembunyikan) */
 .dropdown-custom {
