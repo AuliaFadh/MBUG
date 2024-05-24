@@ -715,7 +715,9 @@ class Admin extends BaseController
                 'tingkat' => $this->request->getPost('tingkat'),
                 'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
                 'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
-                'capaian' => $this->request->getPost('capaian'),
+                'capaian' => $this->request->getPost('capaian'), 
+                // Task-BE di sini atur2 ul
+                // Disini terdapat logika jika value capaian = Lainnya, maka yang diambil adalah value dari elemen id="capaian-other"
                 'tempat' => $this->request->getPost('tempat'),
                 'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
@@ -1489,14 +1491,15 @@ class Admin extends BaseController
         }
 
         if ($this->validate([
-            'tanggal_terbit' => 'required',
+            // 'tanggal_terbit' => 'required',
             'tanggal_tarik' => 'required',
             'judul_pengumuman' => 'required',
             'deskripsi' => 'required',
         ])) {
             $data = [
                 'id_pengumuman' => $id_pengumuman,
-                'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')),
+                // 'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')), 
+                // Task-BE ini w udah di nonaktifin ul
                 'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
                 'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
                 'deskripsi' => $this->request->getPost('deskripsi'),

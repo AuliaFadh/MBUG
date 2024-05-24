@@ -117,10 +117,13 @@
                                         </div>
                                     </div>
 
+                                  
+
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        
                                         <label class="label-form">Capaian</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <select name="capaian" class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
+                                            <select name="capaian" id="capaian" onchange="checkOther()" class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
                                                 <option></option>
                                                 <option value="Juara I">Juara I</option>
                                                 <option value="Juara II">Juara II</option>
@@ -133,6 +136,8 @@
                                                 <option value="Finalis">Finalis</option>
                                                 <option value="Lainnya">Lainnya</option>
                                             </select>
+                                            <input type="text" id="capaian-other" name="other_form" class="form-control custom-textfield col-lg-6 col-md-6 col-sm-6 custom-other-option hidden-other-option" placeholder="Isi pencapaian lain...">
+                                            <!-- Task-BE -->
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('capaian'); ?>
                                             </div>
@@ -199,4 +204,6 @@
         </div>
     </div>
 </div>
+
+
 <?= $this->endSection('content') ?>
