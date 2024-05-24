@@ -2,3 +2,151 @@ INFO - 2024-05-22 01:44:54 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-05-22 01:44:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-22 01:45:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-22 01:45:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-05-22 01:57:59 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#10 {main}
+CRITICAL - 2024-05-22 01:57:59 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user`
+LEFT JOIN `penerima_beasiswa` ON `penerima_beasiswa`.`npm`=`user`.`username`
+WHERE `username` = :username:
+AND `password` = :password:', [...], false)
+ 3 APPPATH\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\OneDrive\\Dokumen\\Tugas\\Semester_8\\MBUG dev\\MBUG\\public\\index.php')
+ERROR - 2024-05-22 01:59:03 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#10 {main}
+CRITICAL - 2024-05-22 01:59:03 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user`
+LEFT JOIN `penerima_beasiswa` ON `penerima_beasiswa`.`npm`=`user`.`username`
+WHERE `username` = :username:
+AND `password` = :password:', [...], false)
+ 3 APPPATH\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\OneDrive\\Dokumen\\Tugas\\Semester_8\\MBUG dev\\MBUG\\public\\index.php')
+ERROR - 2024-05-22 02:00:04 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#10 {main}
+CRITICAL - 2024-05-22 02:00:04 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user`
+LEFT JOIN `penerima_beasiswa` ON `penerima_beasiswa`.`npm`=`user`.`username`
+WHERE `username` = :username:
+AND `password` = :password:', [...], false)
+ 3 APPPATH\Models\loginModel.php(24): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\User.php(49): App\Models\loginModel->login_check_u('10120699', 'isaisaisa')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\User->user_login_check()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\OneDrive\\Dokumen\\Tugas\\Semester_8\\MBUG dev\\MBUG\\public\\index.php')
+INFO - 2024-05-22 02:01:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:01:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:01:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:02:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:02:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:11:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:11:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:11:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:12:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:12:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:14:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-22 02:17:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
