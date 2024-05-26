@@ -484,10 +484,20 @@ class Admin extends BaseController
                         }
                         $status_penerima = $status;
                         $keterangan = $column[9];
+                        
                         mysqli_query($con, "INSERT INTO penerima_beasiswa 
                         (nama,npm,prodi,alamat,no_hp,jenis_kelamin,tahun_diterima,status_penerima,keterangan) 
                         VALUES ('$nama','$npm','$prodi','$alamat','$no_hp','$jenis_kelamin','$tahun_diterima',
                         '$status_penerima','$keterangan')");
+
+                       
+                        $hak_akses_pb = 0;
+                        $status_user = 1;
+                        $last_login = $this->userModel->getCurrentDate();
+                        $default_password = $npm.".beasiswa"; 
+                        mysqli_query($con, "INSERT INTO user
+                        (username,password,hak_akses, last_login, status_user) 
+                        VALUES ('$npm','$default_password','$hak_akses_pb','$last_login','$status_user')");
                     }
                 }
             }
