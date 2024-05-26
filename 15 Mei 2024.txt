@@ -1,0 +1,37 @@
+- Search berdasarkan field tertentu (gampang)
+
+- Template import csv (gampang)+nanya format data asli
+
+- periode (Tambah MBKM), kalo bisa otomatis pas masukin 
+  NPM
+
+- Kalau edit file pdf/img lama dihapus (aul)
+
+- Kalo edit pengumuman gausah masukin tanggal terbit lg (done) tinggal BE
+
+- ada beberapa yg perlu tanggal mulai & tanggal akhir
+  (laporan prestasi) (aman)
+
+- Lain-lain bisa input manual (aman)
+
+- import data penerima beasiswa langsung generate akun (aman)
+
+- manajemen pengguna - tambah data untuk admin aja (onrpogres Gampang)
++ tambah halaman
+
+- import data, jk dan status pakai angka, kasih 
+  keterangan di sheet ke-2 (gampang)
+
+- Data inputan penerima bahasiswa diberikan status
+  (pending, diterima, ditolak)(aul)
+
+- Laporan akademik kalo udh disetujui gabisa diedit (aul)
+
+- Foto user belum bisa(aul) +  tiap 
+
+-Admin memberikan kesempatan input untuk PB (seperti isi KRS)
+Admin dapat memberikan lebih dari 8x
+
+
+
+
