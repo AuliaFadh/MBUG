@@ -29,7 +29,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="npm" class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3 <?= ($validation->hasError('npm')) ? ' is-invalid is-test' : ''; ?>" id="npm" name="npm" autofocus value="<?= old('npm', isset($input['npm']) ? $input['npm'] : ''); ?>">
+                                            <input required type="text" id="npm-input" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3 <?= ($validation->hasError('npm')) ? ' is-invalid is-test' : ''; ?>" id="npm" name="npm" autofocus value="<?= old('npm', isset($input['npm']) ? $input['npm'] : ''); ?>">
                                             <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
                                                 <?php foreach ($penerima as $key => $value) : ?>
@@ -47,7 +47,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" readonly id="npm-name" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? ' is-invalid is-test' : ''; ?>" id="nama" name="nama" value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
+                                            <input required type="text" readonly id="npm-name" class="form-control custom-textfield <?= ($validation->hasError('nama')) ? ' is-invalid is-test' : ''; ?>" id="nama" name="nama" value="<?= old('nama', isset($input['nama']) ? $input['nama'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('nama'); ?>
                                             </div>
@@ -57,7 +57,7 @@
                                     <div class="container1 row  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" readonly id="npm-ps" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
+                                            <input required type="text" readonly id="npm-ps" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('prodi'); ?>
                                             </div>
@@ -67,7 +67,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis_beasiswa')) ? ' is-invalid is-test' : ''; ?>" id="jenis_beasiswa" name="jenis_beasiswa" value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : ''); ?>">
+                                            <input required type="text" id="jb-input" class="form-control custom-textfield <?= ($validation->hasError('jenis_beasiswa')) ? ' is-invalid is-test' : ''; ?>" id="jenis_beasiswa" name="jenis_beasiswa" value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : ''); ?>">
                                             <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7" style="display: none;">
 
                                                 <?php foreach ($jenis_beasiswa as $key => $value) : ?>
@@ -85,7 +85,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Semester</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-3 col-sm-5 ">
-                                            <input type="number" min=1 max=14 class="form-control custom-textfield <?= ($validation->hasError('semester')) ? ' is-invalid is-test' : ''; ?>" id="semester" name="semester" value="<?= old('semester', isset($input['semester']) ? $input['semester'] : ''); ?>">
+                                            <input required type="number" min=1 max=14 class="form-control custom-textfield <?= ($validation->hasError('semester')) ? ' is-invalid is-test' : ''; ?>" id="semester" name="semester" value="<?= old('semester', isset($input['semester']) ? $input['semester'] : ''); ?>">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('semester'); ?>
                                             </div>
@@ -111,7 +111,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk')) ? ' is-invalid is-test' : ''; ?>" id="ipk" name="ipk" value="<?= old('ipk', isset($input['ipk']) ? $input['ipk'] : ''); ?>">
+                                            <input required min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk')) ? ' is-invalid is-test' : ''; ?>" id="ipk" name="ipk" value="<?= old('ipk', isset($input['ipk']) ? $input['ipk'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk'); ?>
                                             </div>
@@ -121,7 +121,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Lokal</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_lokal')) ? ' is-invalid is-test' : ''; ?>" id="ipk_lokal" name="ipk_lokal" value="<?= old('ipk_lokal', isset($input['ipk_lokal']) ? $input['ipk_lokal'] : ''); ?>">
+                                            <input required min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_lokal')) ? ' is-invalid is-test' : ''; ?>" id="ipk_lokal" name="ipk_lokal" value="<?= old('ipk_lokal', isset($input['ipk_lokal']) ? $input['ipk_lokal'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk_lokal'); ?>
                                             </div>
@@ -131,7 +131,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_uu')) ? ' is-invalid is-test' : ''; ?>" id="ipk_uu" name="ipk_uu" value="<?= old('ipk_uu', isset($input['ipk_uu']) ? $input['ipk_uu'] : ''); ?>">
+                                            <input required min=0 max=4 step=0.01 type="number" class="form-control custom-textfield <?= ($validation->hasError('ipk_uu')) ? ' is-invalid is-test' : ''; ?>" id="ipk_uu" name="ipk_uu" value="<?= old('ipk_uu', isset($input['ipk_uu']) ? $input['ipk_uu'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk_uu'); ?>
                                             </div>
@@ -141,7 +141,7 @@
                                     <div class="row  col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Rangkuman Nilai(pdf)</label>
-                                            <input style="padding-left : 15px;" name="rangkuman_nilai" type="file" class="dropify " data-default-file="" accept=".pdf">
+                                            <input required style="padding-left : 15px;" name="rangkuman_nilai" type="file" class="dropify " data-default-file="" accept=".pdf">
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">

@@ -386,9 +386,13 @@ class Admin extends BaseController
             'status_penerima' => 'required',
             'keterangan' => 'required',
         ])) {
+            $npm = $this->request->getPost('npm');   
+            $default_password = $npm.".beasiswa"; 
+            $hak_akses_pb = 0;
+            $status_user = 1;
             $data = [
                 'nama' => $this->request->getPost('nama'),
-                'npm' => $this->request->getPost('npm'),
+                'npm' => $npm,
                 'prodi' => $this->request->getPost('prodi'),
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
@@ -397,8 +401,15 @@ class Admin extends BaseController
                 'status_penerima' => $this->request->getPost('status_penerima'),
                 'keterangan' => $this->request->getPost('keterangan'),
             ];
-
+            $data_user = [
+                'username' => $npm,
+                'password' => $default_password,
+                'hak_akses' => $hak_akses_pb,
+                'last_login' => $this->userModel->getCurrentDate(),
+                'status_user' => $status_user,
+            ];
             $this->pbModel->InsertData($data);
+            $this->userModel->InsertData($data_user);
             session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
 
             return redirect()->to(base_url('/admin/penerima'));
