@@ -920,6 +920,56 @@ span#counter {
   display: none;
 }
 
+/* Accepting Button */
+
+.radio-buttons-confirm {
+  display: flex;
+  gap: 2px;
+}
+
+.radio-input-confirm {
+  display: none;
+}
+
+.radio-label-confirm {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border: 2px solid #ccc;
+  border-radius: 100%;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.radio-input-confirm:checked + .radio-label-confirm {
+  color: white;
+}
+
+.no-color{
+  background-color: transparent;
+  border: transparent;
+}
+.radio-input-confirm:checked + .accepted-label-confirm {
+  background-color: #40ff00; /* Hijau */
+  border-color: #00ff3c;
+}
+
+.radio-input-confirm:checked + .accepted-label-confirm .icon-confirm {
+  color: white;
+}
+
+.radio-input-confirm:checked + .rejected-label-confirm {
+  background-color: #ff0019; /* Merah */
+  border-color: #ff0019;
+}
+
+.radio-input-confirm:checked + .rejected-label .icon-confirm {
+  color: white;
+}
+
  /* Styling untuk elemen hasil (default di sembunyikan) */
 .dropdown-custom {
   display: none;

@@ -59,3 +59,15 @@ function checkOther() {
       otherInput.classList.add("hidden-other-option");
   }
 }
+
+// Toggle filter
+function toggleFilter() {
+  var filterDiv = document.getElementById('advance-filter');
+  if (filterDiv.style.display === 'none') {
+      filterDiv.style.display = 'block';
+  } else {
+      filterDiv.style.display = 'none';
+  }
+}
+
+// Advance Filter Laporan Akademik

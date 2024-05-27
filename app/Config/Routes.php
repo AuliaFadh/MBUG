@@ -40,6 +40,7 @@ $routes->group('admin', function ($routes) {
     $routes->post('penerima/save', 'Admin::save_penerima');
 
     $routes->get('akademik', 'Admin::akademik');
+    $routes->get('akademik/confirm', 'Admin::confirm_akademik');
     $routes->get('akademik/add', 'Admin::add_akademik');
     $routes->get('akademik/edit/(:any)', 'Admin::edit_akademik/$1');
     $routes->post('akademik/cedit/(:any)', 'Admin::cedit_akademik/$1');
