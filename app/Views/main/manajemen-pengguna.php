@@ -42,12 +42,90 @@
                             <?= session()->getFlashdata('hapus'); ?>
                         </div>
                     <?php endif; ?>
+                        <button type="button" class=" border no-color m-2 float-right" id="toggle-filter"
+                            onclick="toggleFilter()">
+                            Advanced Filter
+                            <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
+                            <!-- Icon gear -->
+                        </button>
+                        <div id="advance-filter" style="display:none; transition: all 0.3s ease;"
+                            class="container pt-2 border rounded mt-5">
+                            <h6>Advanced Filter</h6>
+                            <div class="row d-flex justify-content-center align-items-center">
 
-                    <div class="add-btn-behav-custom">
+                                <div class="col-md-3 col-12 mb-3">
+                                    <h7 class="d-flex justify-content-center align-items-center ">IPK</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12 mb-3">
+                                    <h7 class="d-flex justify-content-center align-items-center ">IPK Lokal</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-lokal"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12 mb-3">
+                                    <h7 class="d-flex justify-content-center align-items-center ">IPK UU</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-uu"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-uu"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row d-flex justify-content-center align-items-center">
+
+                                <div class="col-md-6 col-12 mb-3">
+
+                                    <h7 class="d-flex justify-content-center align-items-center ">Semester</h7>
+
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" id="low-semester" min=0 max=20 value="0"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number" id="high-semester" min=0 max=20 value="20"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12 mb-3">
+
+                                    <h7 class="d-flex justify-content-center align-items-center ">Tahun Ajaran</h7>
+
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="text" id="low-ajaran" placeholder="PTA 1982/1983"
+                                            class="col-md-4 col-4 mb-3 p-1">
+                                        <h6 class=" col-1 mb-1  d-flex justify-content-center align-items-center">~
+                                        </h6>
+                                        <input type="text" min="1946" id="high-ajaran"
+                                            placeholder="ATA 2023/2024" class="col-md-4 col-4 mb-3 p-1">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    <div class="row add-btn-behav-custom">
                         <a class="add-btn-custom" href="/admin/manajemen/add" aria-expanded="false">
                             <img src="<?= base_url('asset/img/cross-icon.png'); ?>">
-                            Tambah User Baru
-                        </a>
+                          Tambah Admin baru
+                        </a>                    
                     </div>
 
                     <!-- Tabel -->
@@ -101,4 +179,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Toggle filter
+function toggleFilter() {
+  var filterDiv = document.getElementById('advance-filter');
+  if (filterDiv.style.display === 'none') {
+      filterDiv.style.display = 'block';
+  } else {
+      filterDiv.style.display = 'none';
+  }
+}
+
+</script>
 <?= $this->endSection('content') ?>

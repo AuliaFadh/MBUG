@@ -62,8 +62,8 @@
                                             <div class="row ">
                                                 <select name="TA" class="form-control  custom-textfield col-lg-3 col-md-4 col-sm-6">
                                                     <option></option>
-                                                    <option value="PTA">PTA</option>
-                                                    <option value="ATA">ATA</option>
+                                                    <option value="PTA">PTA 2021/2022</option>
+                                                    <option value="ATA">ATA 2022/2023</option>
                                                 </select>
                                                 <input required min="1981" name="bef" type="number" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
                                                 <h3>/</h3>
