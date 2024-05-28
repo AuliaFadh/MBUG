@@ -44,7 +44,7 @@
 
                     <!-- Tabel -->
                     <div class="card-body">
-                        <button type="button" class=" no-color m-2 float-right" id="toggle-filter"
+                        <button type="button" class="  no-color m-2 float-right" id="toggle-filter"
                             onclick="toggleFilter()">
                             Advanced Filter
                             <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
