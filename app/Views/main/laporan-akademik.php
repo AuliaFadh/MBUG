@@ -44,7 +44,7 @@
 
 
                     </div>
-                    < <!-- Notifikasi -->
+                     <!-- Notifikasi -->
                         <?php if (session()->getFlashdata('berhasil')) : ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->getFlashdata('berhasil') ?>
@@ -69,7 +69,7 @@
                                 </button>
                             </div>
 
-                            <div id="advance-filter" style="display:block; transition: all 0.3s ease;"
+                            <div id="advance-filter" style="display:none; transition: all 0.3s ease;"
                                 class="container pt-2 border rounded  mt-0">
                                 <h6>Advanced Filter</h6>
                                 <div class="row pb-0 d-flex justify-content-center align-items-center">
@@ -97,10 +97,11 @@
                                             <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
                                                 class="col-md-3 col-4 mb-3 p-1">
                                         </div>
-                                    </div>                                    
+                                    </div>
                                     <div class="col-md-3 col-12 mb-3">
                                         <h7 class="d-flex justify-content-center align-items-center ">IPK UU</h7>
-                                        <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <div
+                                            class="row border-bottom d-flex justify-content-center align-items-center ">
                                             <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-uu"
                                                 class="col-md-3 col-4 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
@@ -113,7 +114,7 @@
                                 </div>
 
                                 <div class="row pb-0 d-flex justify-content-center align-items-center">
-                                    
+
                                     <div class="col-md-6 col-12 mb-3  ">
                                         <h7 class="d-flex justify-content-center align-items-center ">Semester</h7>
                                         <div
@@ -138,7 +139,8 @@
                                                 <option value="PTA 2022/2023">ATA 2021/2022</option>
                                                 <option value="ATA 2023/2024">ATA 2021/2022</option>
                                             </select>
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center">
+                                                ~
                                             </h6>
                                             <select name="high-ajaran" id="high-ajaran"
                                                 class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-6 ">
@@ -150,109 +152,98 @@
                                             </select>
                                         </div>
                                     </div>
-                                   
-                                   
+
+
                                 </div>
-                                
+
                                 <div class="row  pb-2 d-flex justify-content-center align-items-center">
-                                    
-                                <div class="btn-group col-md-12" role="group" aria-label="Basic outlined example  ">
-                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4" onclick="filterTableAkademik('Disetuji')">Disetuji</button>
-                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4" onclick="filterTableAkademik('Diproses')">Diproses</button>
-                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4" onclick="filterTableAkademik('Ditolak')">Ditolak</button>
-                                </div>
+
+                                    <div class="btn-group col-md-12" role="group"
+                                        aria-label="Basic outlined example  ">
+                                        <button type="button"
+                                            class="custom-btn-status btn btn-outline-primary col-md-4"
+                                            onclick="filterTableAkademik('Disetujui')">Disetuji</button>
+                                        <button type="button"
+                                            class="custom-btn-status btn btn-outline-primary col-md-4"
+                                            onclick="filterTableAkademik('Diproses')">Diproses</button>
+                                        <button type="button"
+                                            class="custom-btn-status btn btn-outline-primary col-md-4"
+                                            onclick="filterTableAkademik('Ditolak')">Ditolak</button>
+                                    </div>
 
                                 </div>
 
-                            </div>    
+                            </div>
 
-                                <div class="table-responsive">
-                                    <table id="example3" class="display" style="min-width: 845px">
-                                        <thead>
-                                            <tr>
-                                                <th class="th-sm">No</th>
-                                                <th class="th-sm">NPM</th>
-                                                <th class="th-nm">Nama</th>
-                                                <th class="th-nm">Program Studi</th>
-                                                <th class="th-lg">Jenis Beasiswa</th>
-                                                <th class="th-sm">Semester</th>
-                                                <th class="th-nm">Tahun Ajaran</th>
-                                                <th class="th-sm">IPK</th>
-                                                <th class="th-sm">IPK Lokal</th>
-                                                <th class="th-sm">IPK UU</th>
-                                                <th class="th-sm">Rangkuman Nilai</th>
-                                                <th class="th-sm">Status Konfirmasi</th>
-                                                <th class="th-sm">Aksi</th>
-
-
-                                            </tr>
-                                        </thead>
-                                        <!-- Loop data laporan akademik -->
-                                        <tbody>
-                                            <?php $no = 0; ?>
-                                            <?php foreach ($la as $key => $value) : ?>
-                                            <?php $no++; ?>
-                                            <tr>
-                                                <td class="th-sm"><strong><?= $no ?></strong></td>
-                                                <td class="th-sm"><?= $value['npm'] ?></td>
-                                                <td class="th-nm"><?= $value['nama'] ?></td>
-                                                <td class="th-nm"><?= $value['prodi'] ?></td>
-                                                <td class="th-lg"><?= $value['jenis'] ?></td>
-                                                <td class="th-sm"><?= $value['semester'] ?></td>
-                                                <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
-                                                <td class="th-sm"><?= $value['ipk'] ?></td>
-                                                <td class="th-sm"><?= $value['ipk_lokal'] ?></td>
-                                                <td class="th-sm"><?= $value['ipk_uu'] ?></td>
-                                                <td class="th-sm">
-                                                    <a title="Lihat File"
-                                                        href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $value['rangkuman_nilai']) ?>">
-                                                        <img id="doc-search" class="btn btn-sm btn-success"
-                                                            src="<?= base_url('asset/img/doc-search.png') ?>"
-                                                            alt="">
-                                                    </a>
-                                                </td>
-                                                <td  class="th-sm">
-                                                    <span style="color:white;"class="badge badge-rounded badge-success">Disetujui</span>
-                                                    <!-- <span style="color:white;"class="badge badge-rounded badge-danger">Ditolak</span>
-                                                    <span style="color:white;"class="badge badge-rounded badge-warning">Diproses</span> -->
-                                                </td>
-                                                <td class="th-sm">
-                                                    <a href="<?= base_url('/admin/akademik/edit/' . $value['id_akademik']) ?>"
-                                                        class="btn btn-sm btn-primary"><i
-                                                            class="la la-pencil"></i></a>
-
-                                                </td>
+                            <div class="table-responsive">
+                            <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
+                                <table id="example3" class="display" style="min-width: 845px">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-sm">No</th>
+                                            <th class="th-sm">NPM</th>
+                                            <th class="th-nm">Nama</th>
+                                            <th class="th-nm">Program Studi</th>
+                                            <th class="th-lg">Jenis Beasiswa</th>
+                                            <th class="th-sm">Semester</th>
+                                            <th class="th-nm">Tahun Ajaran</th>
+                                            <th class="th-sm">IPK</th>
+                                            <th class="th-sm">IPK Lokal</th>
+                                            <th class="th-sm">IPK UU</th>
+                                            <th class="th-sm">Rangkuman Nilai</th>
+                                            <th class="th-sm">Status Konfirmasi</th>
+                                            <th class="th-sm">Aksi</th>
 
 
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        </tr>
+                                    </thead>
+                                    <!-- Loop data laporan akademik -->
+                                    <tbody>
+                                        <?php $no = 0; ?>
+                                        <?php foreach ($la as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no ?></strong></td>
+                                            <td class="th-sm"><?= $value['npm'] ?></td>
+                                            <td class="th-nm"><?= $value['nama'] ?></td>
+                                            <td class="th-nm"><?= $value['prodi'] ?></td>
+                                            <td class="th-lg"><?= $value['jenis'] ?></td>
+                                            <td class="th-sm"><?= $value['semester'] ?></td>
+                                            <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
+                                            <td class="th-sm"><?= $value['ipk'] ?></td>
+                                            <td class="th-sm"><?= $value['ipk_lokal'] ?></td>
+                                            <td class="th-sm"><?= $value['ipk_uu'] ?></td>
+                                            <td class="th-sm">
+                                                <a title="Lihat File"
+                                                    href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $value['rangkuman_nilai']) ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success"
+                                                        src="<?= base_url('asset/img/doc-search.png') ?>"
+                                                        alt="">
+                                                </a>
+                                            </td>
+                                            <td class="th-sm">
+                                                <span
+                                                    class="status_akademik badge badge-rounded badge-success">Disetujui</span>
+                                                <!-- <span class="status_akademik badge badge-rounded badge-danger">Ditolak</span>
+                <span class="status_akademik badge badge-rounded badge-warning">Diproses</span> -->
+                                            </td>
+                                            <td class="th-sm">
+                                                <a href="<?= base_url('/admin/akademik/edit/' . $value['id_akademik']) ?>"
+                                                    class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function filterTableAkademik(status) {
-            var i =0;
-            var rows = document.querySelectorAll('table tbody tr');
-            rows.forEach(function(row) {
-                var statusCell = row.querySelector('td span');
-                
-                if (statusCell.textContent = status) {
-                    row.style.display = ''; // Menampilkan baris
-                    console.log('hiden =',i++);
-                } else {
-                    
-                    row.classList.add('hidden');
-                    console.log('unhiden =',i++);
-                    
-                } 
-            });
-        }
-    </script>
+</div>
+<script>
+   
+</script>
 
-    <?= $this->endSection('content') ?>
+<?= $this->endSection('content') ?>

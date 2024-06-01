@@ -1,4 +1,26 @@
 
+function filterTableAkademik(status) {
+    var rows = document.querySelectorAll('table tbody tr');
+    var displayedRowCount = 0;
+    
+    rows.forEach(function(row) {
+        var statusCell = row.querySelector('span.status_akademik');
+        if (statusCell && statusCell.textContent.trim() === status) {
+            row.style.display = 'table-row'; // Menampilkan baris
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none'; // Menyembunyikan baris
+        }
+    });
+
+    // Update jumlah baris yang ditampilkan
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}
+document.addEventListener('DOMContentLoaded', function() {
+    var rows = document.querySelectorAll('table tbody tr');
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + rows.length;
+});
+
 function handleFilterAkademik() {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
