@@ -35,6 +35,7 @@
     <script src="<?= base_url('asset/js/custom-search-jb.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-csv-file.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-advance-filter.js'); ?>"></script>
     
     <script src="<?= base_url('asset/vendor/global/global.min.js'); ?>"></script>
     <script src="<?= base_url('asset/js/deznav-init.js'); ?>"></script>

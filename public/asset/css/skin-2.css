@@ -617,14 +617,25 @@ span#counter {
   border-radius: 10px;
 }
 
-.nav-custome {
-  background-color: #C4C4C4;
-}
-
 .btn-primary-add-data:hover {
 
   background-color: #d000fa;
   border-color: #d000fa;
+  color: white;
+
+}
+
+.btn-primary-confirm {
+  background-color: #57e780;
+  border-color: #57e780;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.btn-primary-confirm:hover {
+
+  background-color: #22fb5f;
+  border-color: #22fb5f;
   color: white;
 
 }
@@ -648,7 +659,13 @@ span#counter {
   margin: 5px;
   border-radius: 10px;
 }
+.custom-btn-status {
+  cursor: pointer;
+}
 
+.nav-custome {
+  background-color: #C4C4C4;
+}
 
 
 .container1 {
