@@ -37,6 +37,8 @@ o Kalau edit file pdf/img lama dihapus USER (aul)
   - Akademik
 
 - Lain-lain bisa input manual (aman) tinggal BE
+  - USER
+  - ADMIN
 
 - manajemen pengguna - tambah data untuk admin aja (onrpogres Gampang)
   + tambah halaman
