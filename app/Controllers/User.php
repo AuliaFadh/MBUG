@@ -47,7 +47,6 @@ class User extends BaseController
         $password = $this->request->getPost('password');
 
         $check = $this->loginModel->login_check_u($username, $password);
-        $pp = $this->pbModel->getPictureN($username);
 
         if (is_null($check)) {
             session()->setFlashdata('no_data', 'Username atau Password Salah');
@@ -72,6 +71,7 @@ class User extends BaseController
             session()->set('username', $check["username"]);
             session()->set('nama_user', $check["nama"]);
             session()->set('hak_akses', $check["hak_akses"]);
+            $pp = $this->pbModel->getPictureN($username);
             session()->set('pp', $pp);
 
             return redirect()->to(base_url('/user/home'));

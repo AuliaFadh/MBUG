@@ -1,6 +1,6 @@
 o Search berdasarkan field tertentu (gampang)
 
-- Template import csv (gampang)+nanya format data asli
+o Template import csv (gampang)+nanya format data asli
 
 x periode (Tambah MBKM), kalo bisa otomatis pas masukin 
   NPM

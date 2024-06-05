@@ -459,7 +459,7 @@ class Admin extends BaseController
                 $file = fopen($filename, 'r');
 
                 $num = 0;
-                while (($column = fgetcsv($file, 1000, ",")) !== false) {
+                while (($column = fgetcsv($file, 5000, ",")) !== false) {
                     if ($num == 0) {
                         $num++;
                     } else {
@@ -473,7 +473,7 @@ class Admin extends BaseController
                         } else {
                             $jk = "1";
                         }
-                        $jenis_kelamin = $jk;
+                        $jenis_kelamin = $column[6];
                         $tahun_diterima = $column[7];
                         if ($column[8] == "Lulus") {
                             $status = "2";
@@ -482,7 +482,7 @@ class Admin extends BaseController
                         } else {
                             $status = "0";
                         }
-                        $status_penerima = $status;
+                        $status_penerima = $column[8];
                         $keterangan = $column[9];
                         
                         mysqli_query($con, "INSERT INTO penerima_beasiswa 
