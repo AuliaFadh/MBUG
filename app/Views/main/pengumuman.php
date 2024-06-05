@@ -21,7 +21,7 @@
                             <h3>Pengumuman</h3>
                         </div>
                         <div>
-                            <a href="/admin/pengumuman/add" class="btn btn-primary-add-data">Tambah Data</a>
+                            <a href="/admin/pengumuman/add" class="btn btn-primary-add-data">Tambah Pengumuman</a>
                             <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>

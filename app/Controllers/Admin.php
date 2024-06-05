@@ -1477,6 +1477,12 @@ class Admin extends BaseController
             'judul_pengumuman' => 'required',
             'deskripsi' => 'required',
         ])) {
+
+            if ($this->newsModel->calc($this->newsModel->getDate($this->request->getPost('tanggal_terbit')), $this->newsModel->getDate($this->request->getPost('tanggal_tarik'))) < 0) {
+                session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
+                return redirect()->to(base_url('/admin/pengumuman'));
+            }
+
             $data = [
                 'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')),
                 'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
@@ -1510,12 +1516,15 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/login'));
         }
 
+        $former = $this->newsModel->DetailData($id_pengumuman);
         $data = [
             'title' => 'Form Edit Pengumuman | Admin',
             'validation' => \Config\Services::validation(),
-            'former' => $this->newsModel->DetailData($id_pengumuman),
+            'former' => $former,
+            'terbit' => $this->newsModel->convDate($former->tanggal_terbit)
         ];
 
+        //dd($data);
         return view('main/edit-pengumuman', $data);
     }
 
@@ -1532,14 +1541,21 @@ class Admin extends BaseController
             'judul_pengumuman' => 'required',
             'deskripsi' => 'required',
         ])) {
+
+            $former = $this->newsModel->DetailData($id_pengumuman);
+
+            if ($this->newsModel->calc($former->tanggal_terbit, $this->newsModel->getDate($this->request->getPost('tanggal_tarik'))) < 0) {
+                session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
+                return redirect()->to(base_url('/admin/pengumuman'));
+            }
+
             $data = [
                 'id_pengumuman' => $id_pengumuman,
-                // 'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')), 
-                // Task-BE ini w udah di nonaktifin ul
+                'tanggal_terbit' => $former->tanggal_terbit, 
                 'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
                 'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
                 'deskripsi' => $this->request->getPost('deskripsi'),
-                'penulis' => session()->get('username'),
+                'penulis' => $former->penulis,
             ];
 
             $this->newsModel->UpdateData($id_pengumuman, $data);
