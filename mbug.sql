@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2024 at 12:42 PM
+-- Generation Time: Jun 05, 2024 at 05:29 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -59,18 +59,19 @@ CREATE TABLE `laporan_akademik` (
   `ipk` float NOT NULL,
   `ipk_lokal` float NOT NULL,
   `ipk_uu` float NOT NULL,
-  `rangkuman_nilai` varchar(255) DEFAULT NULL
+  `rangkuman_nilai` varchar(255) DEFAULT NULL,
+  `konfirmasi_akademik` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_akademik`
 --
 
-INSERT INTO `laporan_akademik` (`id_akademik`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `ipk`, `ipk_lokal`, `ipk_uu`, `rangkuman_nilai`) VALUES
-(1, 1, 1, 6, 'ATA 2022/2023', 3.93, 3.91, 4, '1692897903_910b004fd3c8d3d0a589.pdf'),
-(2, 1, 1, 5, 'PTA 2022/2023', 4, 4, 4, 'PTA'),
-(4, 1, 4, 4, 'ATA 2021/2022', 3.5, 3, 4, '1692847785_07f8b275b22cd39df515.pdf'),
-(5, 17, 1, 8, 'ATA 2023/2024', 4, 4, 4, 'ATA');
+INSERT INTO `laporan_akademik` (`id_akademik`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `ipk`, `ipk_lokal`, `ipk_uu`, `rangkuman_nilai`, `konfirmasi_akademik`) VALUES
+(1, 1, 1, 6, 'ATA 2022/2023', 3.93, 3.91, 4, '1692897903_910b004fd3c8d3d0a589.pdf', 0),
+(2, 1, 1, 5, 'ATA 2023/2024', 4, 4, 4, '1717600725_64e67d3716770ed67774.pdf', 2),
+(4, 1, 4, 4, 'ATA 2021/2022', 3.5, 3, 4, '1692847785_07f8b275b22cd39df515.pdf', 2),
+(5, 17, 1, 8, 'PTA 2023/2024', 4, 4, 4, '1717598173_c3bb8583207ead478b0f.pdf', 2);
 
 -- --------------------------------------------------------
 
@@ -89,18 +90,19 @@ CREATE TABLE `laporan_keaktifan` (
   `jumlah_potongan` int(11) NOT NULL,
   `blanko_pembayaran` varchar(255) DEFAULT NULL,
   `bukti_pembayaran` varchar(255) DEFAULT NULL,
-  `status_keaktifan` tinyint(1) NOT NULL
+  `status_keaktifan` tinyint(1) NOT NULL,
+  `konfirmasi_keaktifan` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_keaktifan`
 --
 
-INSERT INTO `laporan_keaktifan` (`id_keaktifan`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `krs`, `jumlah_ditagihkan`, `jumlah_potongan`, `blanko_pembayaran`, `bukti_pembayaran`, `status_keaktifan`) VALUES
-(1, 1, 1, 6, 'ATA 2022/2023', '', 11000000, 10000000, '', '', 1),
-(2, 17, 4, 6, 'PTA 2022/2023', '-', 8000000, 4000000, '-', '-', 1),
-(3, 17, 1, 4, 'ATA 2021/2022', '1692865568_151a7909860328b5c7a2.pdf', 10000000, 6000000, '1692865568_4084607a77ac6a271e42.pdf', '1692865568_aabdcf12683eaa66a763.pdf', 1),
-(4, 1, 1, 3, 'PTA 2021/2022', '1692865896_e80f30f80d2447665486.pdf', 11680000, 0, '1692865896_3859679e8a0f73abed92.pdf', '1692865896_1c7b18eca5bcf197aac8.pdf', 1);
+INSERT INTO `laporan_keaktifan` (`id_keaktifan`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `krs`, `jumlah_ditagihkan`, `jumlah_potongan`, `blanko_pembayaran`, `bukti_pembayaran`, `status_keaktifan`, `konfirmasi_keaktifan`) VALUES
+(1, 1, 1, 6, 'PTA 2023/2024', '1717601345_d86a9b78658c5572f041.pdf', 11000000, 10000000, '1717601345_6f4dbb06af31b8be4ee1.pdf', '1717601345_4e47edf8aa5281dd078f.pdf', 1, 2),
+(2, 17, 4, 6, 'PTA 2022/2023', 'ATA.pdf', 8000000, 4000000, 'ATA.pdf', 'ATA.pdf', 1, 2),
+(3, 17, 1, 4, 'ATA 2021/2022', '1692865568_151a7909860328b5c7a2.pdf', 10000000, 6000000, '1692865568_4084607a77ac6a271e42.pdf', '1692865568_aabdcf12683eaa66a763.pdf', 1, 1),
+(4, 1, 1, 3, 'PTA 2021/2022', '1692865896_e80f30f80d2447665486.pdf', 11680000, 0, '1692865896_3859679e8a0f73abed92.pdf', '1692865896_1c7b18eca5bcf197aac8.pdf', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -115,17 +117,18 @@ CREATE TABLE `laporan_mbkm` (
   `nama_mbkm` varchar(100) NOT NULL,
   `jenis_mbkm` varchar(100) NOT NULL,
   `periode` int(4) NOT NULL,
-  `keterangan_mbkm` varchar(255) DEFAULT NULL
+  `keterangan_mbkm` varchar(255) DEFAULT NULL,
+  `konfirmasi_mbkm` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_mbkm`
 --
 
-INSERT INTO `laporan_mbkm` (`id_mbkm`, `id_beasiswa`, `id_penerima`, `nama_mbkm`, `jenis_mbkm`, `periode`, `keterangan_mbkm`) VALUES
-(1, 1, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2023, 'Lulus Machine learning Path'),
-(2, 17, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2021, '--'),
-(3, 18, 1, 'Bangkit Academy 2024', 'Studi/Proyek Independen', 2024, 'Lulus Mobile Development Path');
+INSERT INTO `laporan_mbkm` (`id_mbkm`, `id_beasiswa`, `id_penerima`, `nama_mbkm`, `jenis_mbkm`, `periode`, `keterangan_mbkm`, `konfirmasi_mbkm`) VALUES
+(1, 1, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2023, 'Lulus Machine learning Path', 0),
+(2, 17, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2021, '--', 1),
+(3, 18, 1, 'Bangkit Academy 2024', 'Studi/Proyek Independen', 2024, 'Lulus Mobile Development Path', 2);
 
 -- --------------------------------------------------------
 
@@ -142,21 +145,23 @@ CREATE TABLE `laporan_prestasi` (
   `nama_kegiatan` varchar(100) NOT NULL,
   `capaian` varchar(255) NOT NULL,
   `tempat` varchar(255) NOT NULL,
-  `tanggal` date NOT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
   `penyelenggara` varchar(255) NOT NULL,
   `bukti_prestasi` varchar(255) DEFAULT NULL,
-  `publikasi` varchar(255) NOT NULL
+  `publikasi` varchar(255) NOT NULL,
+  `konfirmasi_prestasi` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_prestasi`
 --
 
-INSERT INTO `laporan_prestasi` (`id_prestasi`, `id_beasiswa`, `id_penerima`, `tingkat`, `jenis_prestasi`, `nama_kegiatan`, `capaian`, `tempat`, `tanggal`, `penyelenggara`, `bukti_prestasi`, `publikasi`) VALUES
-(1, 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2023-08-24', 'Google, GoTo, Traveloka', '1692849294_e1a325a37618e9ffe000.pdf', 'https://www.google.com/'),
-(4, 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2023-08-20', 'Traveloka', '-', 'https://www.google.com/'),
-(5, 1, 4, 'Provinsi', 0, 'Magang Mandiri', 'Lainnya', 'Rumah', '2023-08-18', 'Isa', '-', 'https://www.google.com/'),
-(6, 18, 1, 'Nasional', 0, 'Bangkit Academy 2024', 'Partisipatif', 'Gedung D', '2023-08-23', 'Traveloka', '-', 'https://www.google.com/');
+INSERT INTO `laporan_prestasi` (`id_prestasi`, `id_beasiswa`, `id_penerima`, `tingkat`, `jenis_prestasi`, `nama_kegiatan`, `capaian`, `tempat`, `tanggal_mulai`, `tanggal_selesai`, `penyelenggara`, `bukti_prestasi`, `publikasi`, `konfirmasi_prestasi`) VALUES
+(1, 18, 1, 'Internasional', 0, 'Bangkit Academy 2023', 'Finalis', 'Rumah', '2024-06-07', '2024-06-09', 'Google, GoTo, Traveloka', '1717597260_b94feee346ed4657f456.pdf', 'https://www.google.com/', 2),
+(4, 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2023-08-20', '2023-08-20', 'Traveloka', '-', 'https://www.google.com/', 1),
+(5, 1, 4, 'Provinsi', 0, 'Magang Mandiri', 'Lainnya', 'Rumah', '2023-08-18', '2023-08-19', 'Isa', '-', 'https://www.google.com/', 1),
+(6, 18, 1, 'Nasional', 0, 'Bangkit Academy 2024', 'Partisipatif', 'Gedung D', '2023-08-23', '2023-08-24', 'Traveloka', '-', 'https://www.google.com/', 2);
 
 -- --------------------------------------------------------
 
@@ -260,7 +265,8 @@ INSERT INTO `log_aktivitas` (`id_log`, `log_last_login`, `log_username`) VALUES
 (62, '2024-06-05 12:04:38', '10120700'),
 (63, '2024-06-05 17:18:19', '10120700'),
 (64, '2024-06-05 17:41:01', '10120701'),
-(65, '2024-06-05 17:41:53', '10120701');
+(65, '2024-06-05 17:41:53', '10120701'),
+(66, '2024-06-05 20:22:53', '10120698');
 
 -- --------------------------------------------------------
 
@@ -480,7 +486,7 @@ ALTER TABLE `link_gform`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `penerima_beasiswa`

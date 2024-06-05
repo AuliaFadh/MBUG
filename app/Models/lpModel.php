@@ -10,7 +10,7 @@ class lpModel extends Model
     protected $primaryKey       = 'id_prestasi';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'tingkat', 'jenis_prestasi', 'nama_kegiatan', 'capaian', 'tempat', 'tanggal', 'penyelenggara', 'bukti_prestasi', 'publikasi','konfirmasi_prestasi'];
+    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'tingkat', 'jenis_prestasi', 'nama_kegiatan', 'capaian', 'tempat', 'tanggal_mulai', 'tanggal_selesai', 'penyelenggara', 'bukti_prestasi', 'publikasi','konfirmasi_prestasi'];
 
     public function AllData()
     {
@@ -61,5 +61,12 @@ class lpModel extends Model
     {
         $tglformat = date_create_from_format('d M, Y', $data);
         return $tglformat->format('Y-m-d');
+    }
+
+    public function getDoc($id)
+    {
+        $b = $this->db->table('laporan_prestasi')->where('id_prestasi', $id)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['bukti_prestasi'];
     }
 }

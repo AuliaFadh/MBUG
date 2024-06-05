@@ -62,4 +62,11 @@ class kaModel extends Model
         $tahun_ajaran = $ta . " " . $bef . "/" . $af;
         return ($tahun_ajaran);
     }
+
+    public function getDoc($id)
+    {
+        $b = $this->db->table('laporan_keaktifan')->where('id_keaktifan', $id)->get()->getRow();
+        $b = get_object_vars($b);
+        return array ($b['krs'], $b['blanko_pembayaran'], $b['bukti_pembayaran']);
+    }
 }

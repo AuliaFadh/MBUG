@@ -6,21 +6,35 @@ o Template import csv (gampang)+nanya format data asli
 o import data, jk dan status pakai angka, kasih 
   keterangan di sheet ke-2 (gampang)
 
-o buat tabel program studi
+o buat tabel db program studi
 
 o import data penerima beasiswa langsung generate akun (aman)
 
 o Kalo edit pengumuman gausah masukin tanggal terbit lg (done) tinggal BE
-o batas pengumuman gaboleh sebelum tanggal terbit
 
 o Kolom Konfirmasi di bagian user [ditolak, diterima, pending] 
 - Admin bisa konfirmasi inputan user
 - user tidak bisa merubah data jika status sudah "diterima"
 
-- Kalau edit file pdf/img lama dihapus (aul)
+o Kalau edit file pdf/img lama dihapus USER (aul)
+  o prestasi
+  o akademik
+  o keaktifan 
+
+- Kalau edit file pdf/img lama dihapus ADMIN (aul)
 
 - ada beberapa yg perlu tanggal mulai & tanggal akhir (done) tinggal BE
   (laporan prestasi) (aman)
+  o USER
+  - ADMIN
+
+- Tanggal gaboleh mundur
+  o pengumuman
+  - laporan prestasi USER
+  - laporan prestasi ADMIN
+
+- Tahun Ajaran Benerin
+  - Akademik
 
 - Lain-lain bisa input manual (aman) tinggal BE
 

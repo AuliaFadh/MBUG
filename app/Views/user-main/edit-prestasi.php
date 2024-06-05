@@ -29,9 +29,13 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Tanggal</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-4 col-sm-8" id="datepicker">
+                                    <label class="label-form">Tanggal Pelaksanaan</label>
+                                        <div style="display: block;margin-left:15px;" class=" col-lg-8 col-md-12 col-sm-12">
+                                        <div class="row">
+                                            <input id="tgl_mulai_pelaksana" name="datepicker-mulai" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
+                                            <pre>  Sampai dengan  </pre>
+                                            <input id="tgl_akhir_pelaksana" name="datepicker-selesai" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">                                            
+                                        </div>
                                             <div class=" invalid-feedback">
 
                                             </div>

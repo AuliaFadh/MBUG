@@ -62,4 +62,11 @@ class laModel extends Model
         $tahun_ajaran = $ta . " " . $bef . "/" . $af;
         return($tahun_ajaran);
     }
+
+    public function getDoc($id)
+    {
+        $b = $this->db->table('laporan_akademik')->where('id_akademik', $id)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['rangkuman_nilai'];
+    }
 }

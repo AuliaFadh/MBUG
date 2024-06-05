@@ -46,7 +46,8 @@
                                 <thead>
                                     <tr>
                                         <th class="th-sm">No.</th>
-                                        <th class="th-nm">Tanggal</th>
+                                        <th class="th-nm">Tanggal Mulai</th>
+                                        <th class="th-nm">Tanggal Selesai</th>
                                         <th class="th-lg">Nama Kegiatan</th>
                                         <th class="th-nm">Tingkat</th>
                                         <th class="th-sm">Jenis Prestasi</th>
@@ -68,9 +69,11 @@
                                             <tr>
                                                 <td class="th-sm"><strong><?= $no; ?></strong></td>
                                                 <?php
-                                                $tgl = date_create_from_format('Y-m-d', $value['tanggal']);
+                                                $tgl_mulai = date_create_from_format('Y-m-d', $value['tanggal_mulai']);
+                                                $tgl_selesai = date_create_from_format('Y-m-d', $value['tanggal_selesai']);
                                                 ?>
-                                                <td class="th-nm"><?= $tgl->format('d M Y'); ?></td>
+                                                <td class="th-nm"><?= $tgl_mulai->format('d M Y'); ?></td>
+                                                <td class="th-nm"><?= $tgl_selesai->format('d M Y'); ?></td>
                                                 <td class="th-lg"><?= $value['nama_kegiatan']; ?></td>
                                                 <td class="th-nm"><?= $value['tingkat']; ?></td>
                                                 <?php if ($value['jenis_prestasi'] == "1") {
