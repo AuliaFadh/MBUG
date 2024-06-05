@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2023 at 11:38 AM
+-- Generation Time: Jun 05, 2024 at 06:46 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -244,7 +244,19 @@ INSERT INTO `log_aktivitas` (`id_log`, `log_last_login`, `log_username`) VALUES
 (46, '2023-09-04 11:42:32', '10120700'),
 (47, '2023-09-14 22:07:06', '10120700'),
 (48, '2023-09-15 01:34:24', '10120700'),
-(49, '2023-09-20 12:18:22', '10120700');
+(49, '2023-09-20 12:18:22', '10120700'),
+(50, '2024-05-15 12:06:05', '10120698'),
+(51, '2024-05-15 13:34:35', '10120698'),
+(52, '2024-05-15 13:34:59', '10120700'),
+(53, '2024-06-03 11:32:51', '10120700'),
+(54, '2024-06-03 11:33:17', '10120698'),
+(55, '2024-06-05 10:07:11', '10120700'),
+(56, '2024-06-05 10:07:26', '10120698'),
+(57, '2024-06-05 10:46:52', '10120698'),
+(58, '2024-06-05 11:09:25', '10120698'),
+(59, '2024-06-05 11:34:39', '10120699'),
+(60, '2024-06-05 11:43:50', '10120698'),
+(61, '2024-06-05 11:44:17', '10120699');
 
 -- --------------------------------------------------------
 
@@ -259,6 +271,7 @@ CREATE TABLE `penerima_beasiswa` (
   `prodi` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
+  `ppicture` varchar(255) DEFAULT NULL,
   `jenis_kelamin` tinyint(1) NOT NULL,
   `tahun_diterima` int(4) NOT NULL,
   `status_penerima` tinyint(1) NOT NULL,
@@ -269,9 +282,9 @@ CREATE TABLE `penerima_beasiswa` (
 -- Dumping data for table `penerima_beasiswa`
 --
 
-INSERT INTO `penerima_beasiswa` (`id_penerima`, `nama`, `npm`, `prodi`, `alamat`, `no_hp`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
-(1, 'Muhammad Aulia Nur Fadhillah', '10120698', 'Sistem Informasi', 'Depok Tiga', '081237275191', 1, 2022, 2, ''),
-(4, 'Isa Tarmana Mustopa', '10120699', 'Teknik Informatika', 'sddasfasdas', '081288889999', 1, 1981, 2, '-');
+INSERT INTO `penerima_beasiswa` (`id_penerima`, `nama`, `npm`, `prodi`, `alamat`, `no_hp`, `ppicture`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
+(1, 'Muhammad Aulia Nur Fadhillah', '10120698', 'Sistem Informasi', 'Depok Tiga', '081237275191', '1717562024_824cb48a5c1ba1c1720a.png', 1, 2022, 2, ''),
+(4, 'Isa Tarmana Mustopa', '10120699', 'Teknik Informatika', 'sddasfasdas', '081288889999', '1717562096_50311d87853dd230e5ac.jpg', 1, 1981, 2, '-');
 
 -- --------------------------------------------------------
 
@@ -316,9 +329,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `hak_akses`, `last_login`, `status_user`) VALUES
-(1, '10120698', 'owlowl', 0, '2023-08-28', 1),
-(2, '10120699', 'isaisaisa', 0, '2023-08-23', 1),
-(3, '10120700', 'umul', 1, '2023-09-20', 1),
+(1, '10120698', 'owlowl', 0, '2024-06-05', 1),
+(2, '10120699', 'isaisaisa', 0, '2024-06-05', 1),
+(3, '10120700', 'umul', 1, '2024-06-05', 1),
 (8, 'bebek_an_u', 'kwekkwek', 1, '2023-08-23', 1);
 
 --
@@ -433,7 +446,7 @@ ALTER TABLE `link_gform`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `penerima_beasiswa`
