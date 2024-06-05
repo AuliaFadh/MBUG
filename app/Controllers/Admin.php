@@ -17,6 +17,7 @@ class Admin extends BaseController
     protected $loginModel;
     protected $newsModel;
     protected $logModel;
+    protected $prodiModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -30,6 +31,7 @@ class Admin extends BaseController
         $this->loginModel = new \App\Models\loginModel();
         $this->newsModel = new \App\Models\newsModel();
         $this->logModel = new \App\Models\logModel();
+        $this->prodiModel = new \App\Models\prodiModel();
     }
 
     public function login_admin()
@@ -352,6 +354,7 @@ class Admin extends BaseController
                 'prodi' => $this->request->getPost('prodi'),
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
+                'ppicture' => null,
                 'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
                 'tahun_diterima' => $this->request->getPost('tahun_diterima'),
                 'status_penerima' => $this->request->getPost('status_penerima'),
@@ -473,6 +476,7 @@ class Admin extends BaseController
                         } else {
                             $jk = "1";
                         }
+                        $ppicture = null;
                         $jenis_kelamin = $column[6];
                         $tahun_diterima = $column[7];
                         if ($column[8] == "Lulus") {
@@ -486,8 +490,8 @@ class Admin extends BaseController
                         $keterangan = $column[9];
                         
                         mysqli_query($con, "INSERT INTO penerima_beasiswa 
-                        (nama,npm,prodi,alamat,no_hp,jenis_kelamin,tahun_diterima,status_penerima,keterangan) 
-                        VALUES ('$nama','$npm','$prodi','$alamat','$no_hp','$jenis_kelamin','$tahun_diterima',
+                        (nama,npm,prodi,alamat,no_hp,ppicture,jenis_kelamin,tahun_diterima,status_penerima,keterangan) 
+                        VALUES ('$nama','$npm','$prodi','$alamat','$no_hp','$ppicture,'$jenis_kelamin','$tahun_diterima',
                         '$status_penerima','$keterangan')");
 
                        

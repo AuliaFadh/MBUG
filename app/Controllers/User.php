@@ -17,6 +17,7 @@ class User extends BaseController
     protected $loginModel;
     protected $newsModel;
     protected $logModel;
+    protected $prodiModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -30,6 +31,7 @@ class User extends BaseController
         $this->loginModel = new \App\Models\loginModel();
         $this->newsModel = new \App\Models\newsModel();
         $this->logModel = new \App\Models\logModel();
+        $this->prodiModel = new \App\Models\prodiModel();
     }
 
     public function user_login()

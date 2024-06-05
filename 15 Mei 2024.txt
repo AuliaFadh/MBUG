@@ -9,6 +9,8 @@ o import data, jk dan status pakai angka, kasih
 x periode (Tambah MBKM), kalo bisa otomatis pas masukin 
   NPM
 
+o buat tabel program studi
+
 - Kalau edit file pdf/img lama dihapus (aul)
 
 o Kalo edit pengumuman gausah masukin tanggal terbit lg (done) tinggal BE
