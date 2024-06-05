@@ -10,7 +10,7 @@ class lpModel extends Model
     protected $primaryKey       = 'id_prestasi';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'tingkat', 'jenis_prestasi', 'nama_kegiatan', 'capaian', 'tempat', 'tanggal', 'penyelenggara', 'bukti_prestasi', 'publikasi'];
+    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'tingkat', 'jenis_prestasi', 'nama_kegiatan', 'capaian', 'tempat', 'tanggal', 'penyelenggara', 'bukti_prestasi', 'publikasi','konfirmasi_prestasi'];
 
     public function AllData()
     {

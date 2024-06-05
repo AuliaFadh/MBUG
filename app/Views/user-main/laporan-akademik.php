@@ -53,6 +53,7 @@
                                         <th class="th-sm">IPK Lokal</th>
                                         <th class="th-sm">IPK UU</th>
                                         <th class="th-sm">Rangkuman Nilai</th>
+                                        <th class="th-sm">Status Konfirmasi</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
@@ -75,6 +76,15 @@
                                                         <img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt="">
                                                     </a>
                                                 </td>
+                                                <?php if ($value['konfirmasi_akademik'] == "1") {
+                                                    $confirm = '<span class="badge badge-rounded badge-success">Diterima</span>';
+                                                } else if ($value['konfirmasi_akademik'] == "0") {
+                                                    $confirm = '<span class="badge badge-rounded badge-danger">Ditolak</span>';
+                                                } else if ($value['konfirmasi_akademik'] == "2") {
+                                                    $confirm = '<span class="badge badge-rounded badge-primary">Pending<span>';
+                                                };
+                                                ?>
+                                                <td class="th-sm"><?= $confirm; ?></td>
                                                 <td class="th-sm"> <a href="<?= base_url('/user/akademik/edit/' . $value['id_akademik']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                             </tr>
                                         <?php endif; ?>

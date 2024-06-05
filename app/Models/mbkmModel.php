@@ -10,7 +10,7 @@ class mbkmModel extends Model
     protected $primaryKey       = 'id_mbkm';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'nama_mbkm', 'jenis_mbkm', 'periode', 'keterangan_mbkm'];
+    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'nama_mbkm', 'jenis_mbkm', 'periode', 'keterangan_mbkm','konfirmasi_mbkm'];
 
     public function AllData()
     {

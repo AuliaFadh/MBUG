@@ -541,6 +541,7 @@ class Admin extends BaseController
 
         return view('main/laporan-akademik', $data);
     }
+
     public function confirm_akademik()
     {
         if (session()->get('hak_akses') != "1") {
@@ -628,6 +629,7 @@ class Admin extends BaseController
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
                 'rangkuman_nilai' => $nama_rn,
+                'konfirmasi_akademik' => 2,
             ];
 
             $this->laModel->UpdateData($id_akademik, $data);
@@ -671,6 +673,7 @@ class Admin extends BaseController
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
                 'rangkuman_nilai' => $nama_rn,
+                'konfirmasi_akademik' => 2,
             ];
 
             $this->laModel->InsertData($data);
@@ -763,6 +766,7 @@ class Admin extends BaseController
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
+                'konfirmasi_prestasi' => 2,
             ];
 
             $this->lpModel->InsertData($data);
@@ -839,6 +843,7 @@ class Admin extends BaseController
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
+                'konfirmasi_prestasi' => 2,
             ];
 
             $this->lpModel->UpdateData($id_prestasi, $data);
@@ -909,6 +914,7 @@ class Admin extends BaseController
                 'jenis_mbkm' => $this->request->getPost('jenis_mbkm'),
                 'periode' => $this->request->getPost('periode'),
                 'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
+                'konfirmasi_mbkm' => 2,
             ];
 
             $this->mbkmModel->InsertData($data);
@@ -973,6 +979,7 @@ class Admin extends BaseController
                 'jenis_mbkm' => $this->request->getPost('jenis_mbkm'),
                 'periode' => $this->request->getPost('periode'),
                 'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
+                'konfirmasi_mbkm' => 2,
             ];
 
             $this->mbkmModel->UpdateData($id_mbkm, $data);
@@ -1207,6 +1214,7 @@ class Admin extends BaseController
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
                 'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+                'konfirmasi_keaktifan' => 2,
             ];
 
             $this->kaModel->InsertData($data);
@@ -1292,6 +1300,7 @@ class Admin extends BaseController
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
                 'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+                'konfirmasi_keaktifan' => 2,
             ];
 
             $this->kaModel->UpdateData($id_keaktifan, $data);

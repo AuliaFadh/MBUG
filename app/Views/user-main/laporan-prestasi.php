@@ -55,6 +55,7 @@
                                         <th class="th-nm">Penyelenggara</th>
                                         <th class="th-sm">Bukti Prestasi</th>
                                         <th class="th-nm">Tautan Publikasi</th>
+                                        <th class="th-nm">Status Konfirmasi</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
@@ -88,6 +89,15 @@
                                                     </a>
                                                 </td>
                                                 <td class="th-nm"><?= $value['publikasi']; ?></td>
+                                                <?php if ($value['konfirmasi_prestasi'] == "1") {
+                                                    $confirm = '<span class="badge badge-rounded badge-success">Diterima</span>';
+                                                } else if ($value['konfirmasi_prestasi'] == "0") {
+                                                    $confirm = '<span class="badge badge-rounded badge-danger">Ditolak</span>';
+                                                } else if ($value['konfirmasi_prestasi'] == "2") {
+                                                    $confirm = '<span class="badge badge-rounded badge-primary">Pending<span>';
+                                                };
+                                                ?>
+                                                <td class="th-sm"><?= $confirm; ?></td>
                                                 <td> <a href="<?= base_url('/user/prestasi/edit/' . $value['id_prestasi']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                             </tr>
                                         <?php endif; ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2024 at 06:46 AM
+-- Generation Time: Jun 05, 2024 at 12:42 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -256,7 +256,11 @@ INSERT INTO `log_aktivitas` (`id_log`, `log_last_login`, `log_username`) VALUES
 (58, '2024-06-05 11:09:25', '10120698'),
 (59, '2024-06-05 11:34:39', '10120699'),
 (60, '2024-06-05 11:43:50', '10120698'),
-(61, '2024-06-05 11:44:17', '10120699');
+(61, '2024-06-05 11:44:17', '10120699'),
+(62, '2024-06-05 12:04:38', '10120700'),
+(63, '2024-06-05 17:18:19', '10120700'),
+(64, '2024-06-05 17:41:01', '10120701'),
+(65, '2024-06-05 17:41:53', '10120701');
 
 -- --------------------------------------------------------
 
@@ -284,7 +288,8 @@ CREATE TABLE `penerima_beasiswa` (
 
 INSERT INTO `penerima_beasiswa` (`id_penerima`, `nama`, `npm`, `prodi`, `alamat`, `no_hp`, `ppicture`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
 (1, 'Muhammad Aulia Nur Fadhillah', '10120698', 'Sistem Informasi', 'Depok Tiga', '081237275191', '1717562024_824cb48a5c1ba1c1720a.png', 1, 2022, 2, ''),
-(4, 'Isa Tarmana Mustopa', '10120699', 'Teknik Informatika', 'sddasfasdas', '081288889999', '1717562096_50311d87853dd230e5ac.jpg', 1, 1981, 2, '-');
+(4, 'Isa Tarmana Mustopa', '10120699', 'Teknik Informatika', 'sddasfasdas', '081288889999', '1717562096_50311d87853dd230e5ac.jpg', 1, 1981, 2, '-'),
+(13, 'Naufal Nur', '10120701', 'Teknik Informatika', 'bandung', '081266778899', '1717584089_23c9e5d6df3e5657233d.jpeg', 1, 2024, 1, '-');
 
 -- --------------------------------------------------------
 
@@ -306,8 +311,29 @@ CREATE TABLE `pengumuman` (
 --
 
 INSERT INTO `pengumuman` (`id_pengumuman`, `judul_pengumuman`, `tanggal_terbit`, `tanggal_tarik`, `penulis`, `deskripsi`) VALUES
-(1, 'Batas Akhir pengumpulan SR dan SPTJM', '2023-08-18', '2023-08-22', '10120700', 'Batas Akhir Pengumpulan SR dan SPTJM untuk Kampus Merdeka Batch 6'),
-(2, 'Jadwal UAS Penyetaraan MBKM', '2023-08-20', '2023-08-29', '-', 'UAS Penyetaraan untuk mahasiswa yang mengikuti MBKM akan dilaksanakan mulai 22 Agustus 2023 - 29 Agustus 2023.');
+(1, 'Batas Akhir pengumpulan SR dan SPTJM', '2023-08-18', '2024-06-04', '10120700', 'Batas Akhir Pengumpulan SR dan SPTJM untuk Kampus Merdeka Batch 6'),
+(2, 'Jadwal UAS Penyetaraan MBKM', '2023-08-20', '2024-06-19', '-', 'UAS Penyetaraan untuk mahasiswa yang mengikuti MBKM akan dilaksanakan mulai 22 Agustus 2023 - 29 Agustus 2023.'),
+(5, 'Staycation 01', '2024-06-05', '2024-06-13', '10120700', 'Staycation lagi lah');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `program_studi`
+--
+
+CREATE TABLE `program_studi` (
+  `id_prodi` int(11) NOT NULL,
+  `nama_prodi` varchar(100) NOT NULL,
+  `fakultas_prodi` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `program_studi`
+--
+
+INSERT INTO `program_studi` (`id_prodi`, `nama_prodi`, `fakultas_prodi`) VALUES
+(101, 'S1-Sistem Informasi', 'Fakultas Ilmu Komputer dan Teknologi Informasi'),
+(102, 'S1-Manajemen', 'Fakultas Ekonomi');
 
 -- --------------------------------------------------------
 
@@ -332,7 +358,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `hak_akses`, `last_login`
 (1, '10120698', 'owlowl', 0, '2024-06-05', 1),
 (2, '10120699', 'isaisaisa', 0, '2024-06-05', 1),
 (3, '10120700', 'umul', 1, '2024-06-05', 1),
-(8, 'bebek_an_u', 'kwekkwek', 1, '2023-08-23', 1);
+(8, 'bebek_an_u', 'kwekkwek', 1, '2023-08-23', 1),
+(9, '10120701', '10120701.beasiswa', 0, '2024-06-05', 1);
 
 --
 -- Indexes for dumped tables
@@ -396,6 +423,13 @@ ALTER TABLE `pengumuman`
   ADD KEY `penulis` (`penulis`) USING BTREE;
 
 --
+-- Indexes for table `program_studi`
+--
+ALTER TABLE `program_studi`
+  ADD PRIMARY KEY (`id_prodi`),
+  ADD UNIQUE KEY `nama_prodi` (`nama_prodi`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -446,25 +480,25 @@ ALTER TABLE `link_gform`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `penerima_beasiswa`
 --
 ALTER TABLE `penerima_beasiswa`
-  MODIFY `id_penerima` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_penerima` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id_pengumuman` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pengumuman` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
