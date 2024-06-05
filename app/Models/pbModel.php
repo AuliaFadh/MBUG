@@ -10,7 +10,7 @@ class pbModel extends Model
     protected $primaryKey       = 'id_penerima';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['nama', 'npm', 'prodi', 'alamat', 'no_hp', 'jenis_kelamin', 'tahun_diterima', 'status_penerima', 'keterangan'];
+    protected $allowedFields    = ['nama', 'npm', 'prodi', 'alamat', 'no_hp', "ppicture", 'jenis_kelamin', 'tahun_diterima', 'status_penerima', 'keterangan'];
 
     public function __construct()
     {
@@ -35,6 +35,20 @@ class pbModel extends Model
     public function UpdateData($id, $data)
     {
         return $this->db->table('penerima_beasiswa')->where('id_penerima', $id)->update($data);
+    }
+
+    public function getPicture($id)
+    {
+        $b = $this->db->table('penerima_beasiswa')->where('id_penerima', $id)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['ppicture'];
+    }
+
+    public function getPictureN($npm)
+    {
+        $b = $this->db->table('penerima_beasiswa')->where('npm', $npm)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['ppicture'];
     }
 
     public function DeleteData($data)

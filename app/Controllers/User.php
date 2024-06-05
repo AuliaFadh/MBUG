@@ -47,6 +47,7 @@ class User extends BaseController
         $password = $this->request->getPost('password');
 
         $check = $this->loginModel->login_check_u($username, $password);
+        $pp = $this->pbModel->getPictureN($username);
 
         if (is_null($check)) {
             session()->setFlashdata('no_data', 'Username atau Password Salah');
@@ -71,6 +72,7 @@ class User extends BaseController
             session()->set('username', $check["username"]);
             session()->set('nama_user', $check["nama"]);
             session()->set('hak_akses', $check["hak_akses"]);
+            session()->set('pp', $pp);
 
             return redirect()->to(base_url('/user/home'));
         } elseif ($check["hak_akses"] == "1") {
@@ -131,6 +133,20 @@ class User extends BaseController
 
         ])) {
             $penerima = $this->pbModel->DetailData($id_penerima);
+
+            $pp = $this->pbModel->getPicture($id_penerima);
+
+            $foto_pp = $this->request->getFile('file-input');
+            if ($foto_pp->getSize() > 0) {
+                if (!is_null($pp)){
+                    unlink('asset/img/database/picture/' . $pp);
+                }
+                $nama_pp = $foto_pp->getRandomName();
+                $foto_pp->move('asset/img/database/picture/', $nama_pp);
+            } else {
+                $nama_pp = $pp;
+            }
+
             $data = [
                 'id_penerima' => $id_penerima,
                 'nama' => $penerima->nama,
@@ -138,6 +154,7 @@ class User extends BaseController
                 'prodi' => $penerima->prodi,
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
+                'ppicture' => $nama_pp,
                 'jenis_kelamin' => $penerima->jenis_kelamin,
                 'tahun_diterima' => $penerima->tahun_diterima,
                 'status_penerima' => $penerima->status_penerima,

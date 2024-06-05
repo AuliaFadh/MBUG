@@ -27,7 +27,7 @@ o import data penerima beasiswa langsung generate akun (aman)
 
 - Laporan akademik kalo udh disetujui gabisa diedit (aul)
 
-- Foto user belum bisa(aul) + tiap 
+o Foto user belum bisa(aul) + tiap 
 
 - Admin memberikan kesempatan input untuk PB (seperti isi KRS)
   Admin dapat memberikan lebih dari 8x
