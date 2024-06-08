@@ -77,11 +77,11 @@
                                                     </a>
                                                 </td>
                                                 <?php if ($value['konfirmasi_akademik'] == "1") {
-                                                    $confirm = '<span class="badge badge-rounded badge-success">Diterima</span>';
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-success">Disetujui</span>';
                                                 } else if ($value['konfirmasi_akademik'] == "0") {
-                                                    $confirm = '<span class="badge badge-rounded badge-danger">Ditolak</span>';
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-danger">Ditolak</span>';
                                                 } else if ($value['konfirmasi_akademik'] == "2") {
-                                                    $confirm = '<span class="badge badge-rounded badge-primary">Pending<span>';
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-warning">Diproses<span>';
                                                 };
                                                 ?>
                                                 <td class="th-sm"><?= $confirm; ?></td>

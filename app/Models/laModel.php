@@ -18,6 +18,14 @@ class laModel extends Model
             ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
             ->where('konfirmasi_akademik',2)->Get()->getResultArray();
     }
+    public function update_konfirmasi_akademik($id, $status) {
+        // Memperbarui status konfirmasi akademik berdasarkan ID yang diberikan
+        $data = [
+            'konfirmasi_akademik' => $status
+        ];
+        $this->db->table('laporan_akademik')->where('id_akademik', $id)->update($data);
+        
+    }
     public function AllData()
     {
         return $this->db->table('laporan_akademik')

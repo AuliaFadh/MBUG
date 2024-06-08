@@ -125,7 +125,7 @@
                             </div>
 
                         </div>
-                        <form>
+                        <form action="confirm/all" method="post">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
@@ -141,7 +141,7 @@
                                         <th class="th-sm">IPK Lokal</th>
                                         <th class="th-sm">IPK UU</th>
                                         <th class="th-sm">Rangkuman Nilai</th>
-                                        <th class="th-sm">Aksi</th>
+                                        <th class="th-nm">Keterangan Masukan</th>
                                         <th class="th-sm">Konfirmasi</th>
                                     </tr>
                                 </thead>
@@ -168,24 +168,23 @@
                                                     src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
                                             </a>
                                         </td>
-                                        <td class="th-sm">
-                                            <a href="<?= base_url('/admin/akademik/edit/' . $value['id_akademik']) ?>"
-                                                class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                        <td class="th-nm">
+                                        <textarea   name="keterangan_" rows="2"></textarea>
 
                                         </td>
                                         <td class="th-sm">
 
                                             <div class="radio-buttons-confirm">
                                                 <input type="radio" id="accepted-<?= $value['id_akademik'] ?>"
-                                                    name="status_penerima-<?= $value['id_akademik'] ?>"
-                                                    value="accepted" class="radio-input-confirm">
+                                                    name="status_data[<?= $value['id_akademik'] ?>]"
+                                                    value="1" class="radio-input-confirm">
                                                 <label for="accepted-<?= $value['id_akademik'] ?>"
                                                     class="radio-label-confirm accepted-label-confirm">
                                                     <span class="icon-confirm">&#10003;</span> <!-- Ceklis --></label>
 
                                                 <input type="radio" id="rejected-<?= $value['id_akademik'] ?>"
-                                                    name="status_penerima-<?= $value['id_akademik'] ?>"
-                                                    value="rejected" class="radio-input-confirm">
+                                                    name="status_data[<?= $value['id_akademik'] ?>]"
+                                                    value="0" class="radio-input-confirm">
                                                 <label for="rejected-<?= $value['id_akademik'] ?>"
                                                     class="radio-label-confirm rejected-label-confirm">
                                                     <span class="icon-confirm">&#10007;</span> <!-- Silang --></label>
@@ -198,12 +197,8 @@
                             </table>
                         </div>
 
-                        <button type="submit" class=" btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8 m-2 float-right" id="toggle-filter"
-                            onclick="toggleFilter()">
-                            Konfirmasi
-                            
-                            <!-- Icon gear -->
-                        </button>
+                        <button type="submit" class=" btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8 m-2 float-right" id="toggle-filter">
+                            Konfirmasi </button>
                         </form>
                     </div>
                 </div>

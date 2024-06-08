@@ -552,13 +552,28 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/login'));
         }
 
-        $la = $this->laModel->AllData();
+        
+        $DataDiproses = $this->laModel->GetProcessData();
         $data = [
             'title' => 'Akademik | Admin',
-            'la' => $la,
+            'la' => $DataDiproses,
+           
         ];
 
         return view('main/confirm-akademik', $data);
+    }
+
+    public function save_confirm_akademik(){
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+        $konfirmasi = $this->request->GetPost('status_data');        
+        foreach ($konfirmasi as $id => $status) {   
+            
+            $this->laModel->update_konfirmasi_akademik($id, $status);
+        }
+        return redirect()->to(base_url('/admin/akademik'));
     }
 
     public function add_akademik()
