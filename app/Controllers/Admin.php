@@ -532,11 +532,14 @@ class Admin extends BaseController
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
             return redirect()->to(base_url('/admin/login'));
         }
+        
 
         $la = $this->laModel->AllData();
+        $DataDiproses = $this->laModel->GetProcessData();
         $data = [
             'title' => 'Akademik | Admin',
             'la' => $la,
+            'DataDiproses'=>$DataDiproses,
         ];
 
         return view('main/laporan-akademik', $data);

@@ -29,10 +29,17 @@
                             <div class="col-lg-4 col-md-4 col-sm-12     m-0 p-0 pr-2">
                                 <a href="/admin/akademik/confirm"
                                     class="btn btn-primary-confirm position-relative float-right"> Konfirmasi
-                                    <span style="color: white;"
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        10
-                                    </span>
+                                    
+                                    
+                                        <?php $count_notif = 0; ?>
+                                        <?php foreach ($DataDiproses as $key => $value) : ?>
+                                            <?php $count_notif++; ?>
+                                        <?php endforeach; ?>
+                                        <?php if ($count_notif > 0): ?>
+                                            <span style="color: white;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                <?= $count_notif ?>
+                                            </span>
+                                        <?php endif; ?>
                                     <!-- TASK-BE Ul ini tambahin fitur jumlah notif -->
                                 </a>
                             </div>
@@ -200,7 +207,9 @@
                                     <!-- Loop data laporan akademik -->
                                     <tbody>
                                         <?php $no = 0; ?>
+                                        
                                         <?php foreach ($la as $key => $value) : ?>
+                                        
                                         <?php $no++; ?>
                                         <tr>
                                             <td class="th-sm"><strong><?= $no ?></strong></td>
@@ -221,12 +230,18 @@
                                                         alt="">
                                                 </a>
                                             </td>
-                                            <td class="th-sm">
-                                                <span
-                                                    class="status_akademik badge badge-rounded badge-success">Disetujui</span>
-                                                <!-- <span class="status_akademik badge badge-rounded badge-danger">Ditolak</span>
-                <span class="status_akademik badge badge-rounded badge-warning">Diproses</span> -->
-                                            </td>
+                                           
+
+                                            <?php if ($value['konfirmasi_akademik'] == "1") {
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-success">Disetujui</span>';
+                                                } else if ($value['konfirmasi_akademik'] == "0") {
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-danger">Ditolak</span>';
+                                                } else if ($value['konfirmasi_akademik'] == "2") {
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-warning">Diproses<span>';
+                                                };
+                                                ?>
+                                                <td class="th-sm"><?= $confirm; ?></td>
+
                                             <td class="th-sm">
                                                 <a href="<?= base_url('/admin/akademik/edit/' . $value['id_akademik']) ?>"
                                                     class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>

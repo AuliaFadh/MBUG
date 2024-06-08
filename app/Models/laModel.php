@@ -12,6 +12,12 @@ class laModel extends Model
     protected $returnType       = 'array';
     protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai','konfirmasi_akademik'];
 
+    public function GetProcessData(){
+        return $this->db->table('laporan_akademik')
+            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
+            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
+            ->where('konfirmasi_akademik',2)->Get()->getResultArray();
+    }
     public function AllData()
     {
         return $this->db->table('laporan_akademik')
