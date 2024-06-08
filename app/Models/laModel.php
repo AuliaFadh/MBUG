@@ -10,7 +10,7 @@ class laModel extends Model
     protected $primaryKey       = 'id_akademik';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai','konfirmasi_akademik'];
+    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai','konf_ket_akademik','konfirmasi_akademik'];
 
     public function GetProcessData(){
         return $this->db->table('laporan_akademik')
