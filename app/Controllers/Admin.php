@@ -1644,4 +1644,21 @@ class Admin extends BaseController
 
         return view('main/log-aktivitas', $data);
     }
+
+    public function tahun_ajaran()
+    {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        
+        $data = [
+            'title' => 'Tahun Ajaran | Admin',
+          
+        ];
+
+        return view('main/tahun-ajaran', $data);
+    }
+
 }

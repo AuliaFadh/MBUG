@@ -57,7 +57,8 @@
                                     <div class="container1 row  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input required type="text" readonly id="npm-ps" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
+                                            <input type="text" readonly id="npm-ps" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" 
+                                            value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('prodi'); ?>
                                             </div>
@@ -96,14 +97,12 @@
                                         <label class="label-form">Tahun Ajaran</label>
                                         <div style="display: block; margin-left:20px;" class=" col-lg-8 col-md-10 col-sm-12 ">
                                             <div class="row ">
-                                                <select name="TA" class="form-control custom-textfield col-lg-3 col-md-4 col-sm-6">
+                                                <select required name="TA" class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
                                                     <option></option>
-                                                    <option value="PTA">PTA</option>
-                                                    <option value="ATA">ATA</option>
-                                                </select>
-                                                <input required min="1981" type="number" name="bef" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
-                                                <h3>/</h3>
-                                                <input required min="1982" type="number" name="af" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
+                                                    <!-- Task BE Thn Ajaran -->
+                                                    <option value="">xxxxxx</option>
+                                                    <option value="0">xxxxxx</option>
+                                                </select>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -142,6 +141,18 @@
                                         <div class="form-group fallback w-100">
                                             <label class="label-form">Upload Rangkuman Nilai(pdf)</label>
                                             <input required style="padding-left : 15px;" name="rangkuman_nilai" type="file" class="dropify " data-default-file="" accept=".pdf">
+                                        </div>
+                                    </div>
+                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Konfirmasi Dokumen</label>
+                                        <div style="display: block; margin-left:20px;" class=" col-lg-8 col-md-10 col-sm-12 ">
+                                            <div class="row ">
+                                                <select name="konfirmasi_akademik" class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
+                                                    <option value="2">Diproses</option>
+                                                    <option value="1">Distujui</option>
+                                                    <option value="0">Ditolak</option>
+                                                </select>                                                
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">

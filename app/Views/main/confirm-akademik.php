@@ -10,6 +10,7 @@
                 <li class="breadcrumb-item"><a href="/admin/home">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png') ?>" alt="">
                         Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="/admin/akademik">Laporan Akademik</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/akademik">Konfirmasi Laporan Akademik</a></li>
             </ol>
         </div>
@@ -19,15 +20,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/akademik.png') ?>"
-                                alt="">
+                            
                             <h3>Konfirmasi Laporan Akademik</h3>
                         </div>
-                        <div>
-
-                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
-
-                        </div>
+                        
                     </div>
 
                     <!-- Notifikasi -->
@@ -126,79 +122,86 @@
 
                         </div>
                         <form action="confirm/all" method="post">
-                        <div class="table-responsive">
-                            <table id="example3" class="display" style="min-width: 845px">
-                                <thead>
-                                    <tr>
-                                        <th class="th-sm">No</th>
-                                        <th class="th-sm">NPM</th>
-                                        <th class="th-nm">Nama</th>
-                                        <th class="th-nm">Program Studi</th>
-                                        <th class="th-lg">Jenis Beasiswa</th>
-                                        <th class="th-sm">Semester</th>
-                                        <th class="th-nm">Tahun Ajaran</th>
-                                        <th class="th-sm">IPK</th>
-                                        <th class="th-sm">IPK Lokal</th>
-                                        <th class="th-sm">IPK UU</th>
-                                        <th class="th-sm">Rangkuman Nilai</th>
-                                        <th class="th-nm">Keterangan Masukan</th>
-                                        <th class="th-sm">Konfirmasi</th>
-                                    </tr>
-                                </thead>
-                                <!-- Loop data laporan akademik -->
-                                <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($la as $key => $value) : ?>
-                                    <?php $no++; ?>
-                                    <tr>
-                                        <td class="th-sm"><strong><?= $no ?></strong></td>
-                                        <td class="th-sm"><?= $value['npm'] ?></td>
-                                        <td class="th-nm"><?= $value['nama'] ?></td>
-                                        <td class="th-nm"><?= $value['prodi'] ?></td>
-                                        <td class="th-lg"><?= $value['jenis'] ?></td>
-                                        <td class="th-sm"><?= $value['semester'] ?></td>
-                                        <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
-                                        <td class="th-sm"><?= $value['ipk'] ?></td>
-                                        <td class="th-sm"><?= $value['ipk_lokal'] ?></td>
-                                        <td class="th-sm"><?= $value['ipk_uu'] ?></td>
-                                        <td class="th-sm">
-                                            <a title="Lihat File"
-                                                href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $value['rangkuman_nilai']) ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success"
-                                                    src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="th-nm">
-                                        <textarea   name="keterangan_" rows="2"></textarea>
+                            <div class="table-responsive">
+                                <table id="example3" class="display" style="min-width: 845px">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-sm">No</th>
+                                            <th class="th-sm">NPM</th>
+                                            <th class="th-nm">Nama</th>
+                                            <th class="th-nm">Program Studi</th>
+                                            <th class="th-lg">Jenis Beasiswa</th>
+                                            <th class="th-sm">Semester</th>
+                                            <th class="th-nm">Tahun Ajaran</th>
+                                            <th class="th-sm">IPK</th>
+                                            <th class="th-sm">IPK Lokal</th>
+                                            <th class="th-sm">IPK UU</th>
+                                            <th class="th-sm">Rangkuman Nilai</th>
+                                            <th class="th-nm">Keterangan Masukan</th>
+                                            <th class="th-sm">Konfirmasi</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Loop data laporan akademik -->
+                                    <tbody>
+                                        <?php $no = 0; ?>
+                                        <?php foreach ($la as $key => $value) : ?>
+                                        <?php $no++; ?>
+                                        <tr>
+                                            <td class="th-sm"><strong><?= $no ?></strong></td>
+                                            <td class="th-sm"><?= $value['npm'] ?></td>
+                                            <td class="th-nm"><?= $value['nama'] ?></td>
+                                            <td class="th-nm"><?= $value['prodi'] ?></td>
+                                            <td class="th-lg"><?= $value['jenis'] ?></td>
+                                            <td class="th-sm"><?= $value['semester'] ?></td>
+                                            <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
+                                            <td class="th-sm"><?= $value['ipk'] ?></td>
+                                            <td class="th-sm"><?= $value['ipk_lokal'] ?></td>
+                                            <td class="th-sm"><?= $value['ipk_uu'] ?></td>
+                                            <td class="th-sm">
+                                                <a title="Lihat File"
+                                                    href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $value['rangkuman_nilai']) ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success"
+                                                        src="<?= base_url('asset/img/doc-search.png') ?>"
+                                                        alt="">
+                                                </a>
+                                            </td>
+                                            <td class="th-nm">
+                                                <textarea name="keterangan_" rows="2"></textarea>
 
-                                        </td>
-                                        <td class="th-sm">
+                                            </td>
+                                            <td class="th-sm">
 
-                                            <div class="radio-buttons-confirm">
-                                                <input type="radio" id="accepted-<?= $value['id_akademik'] ?>"
-                                                    name="status_data[<?= $value['id_akademik'] ?>]"
-                                                    value="1" class="radio-input-confirm">
-                                                <label for="accepted-<?= $value['id_akademik'] ?>"
-                                                    class="radio-label-confirm accepted-label-confirm">
-                                                    <span class="icon-confirm">&#10003;</span> <!-- Ceklis --></label>
+                                                <div class="radio-buttons-confirm">
+                                                    <input type="radio" id="accepted-<?= $value['id_akademik'] ?>"
+                                                        name="status_data[<?= $value['id_akademik'] ?>]"
+                                                        value="1" class="radio-input-confirm">
+                                                    <label for="accepted-<?= $value['id_akademik'] ?>"
+                                                        class="radio-label-confirm accepted-label-confirm">
+                                                        <span class="icon-confirm">&#10003;</span>
+                                                        <!-- Ceklis --></label>
 
-                                                <input type="radio" id="rejected-<?= $value['id_akademik'] ?>"
-                                                    name="status_data[<?= $value['id_akademik'] ?>]"
-                                                    value="0" class="radio-input-confirm">
-                                                <label for="rejected-<?= $value['id_akademik'] ?>"
-                                                    class="radio-label-confirm rejected-label-confirm">
-                                                    <span class="icon-confirm">&#10007;</span> <!-- Silang --></label>
-                                            </div>
-                                        </td>
+                                                    <input type="radio" id="rejected-<?= $value['id_akademik'] ?>"
+                                                        name="status_data[<?= $value['id_akademik'] ?>]"
+                                                        value="0" class="radio-input-confirm">
+                                                    <label for="rejected-<?= $value['id_akademik'] ?>"
+                                                        class="radio-label-confirm rejected-label-confirm">
+                                                        <span class="icon-confirm">&#10007;</span>
+                                                        <!-- Silang --></label>
+                                                </div>
+                                            </td>
 
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        <button type="submit" class=" btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8 m-2 float-right" id="toggle-filter">
-                            Konfirmasi </button>
+                            <a href="/admin/akademik" class="btn btn-primary-download-excel margin-custom float-right col-lg-2 col-md-4 col-sm-8">Batal</a>
+                            <button type="submit"
+                                class=" btn btn-primary-add-data margin-custom col-lg-2 col-md-4 col-sm-8 m-2 float-right"
+                                id="toggle-filter">
+                                Konfirmasi </button>
+                            
                         </form>
                     </div>
                 </div>

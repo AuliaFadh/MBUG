@@ -89,6 +89,14 @@ $routes->group('admin', function ($routes) {
     $routes->get('manajemen/delete/(:any)', 'Admin::del_manajemen/$1');
 
     $routes->get('log', 'Admin::log');
+
+    $routes->get('tahun-ajaran', 'Admin::tahun_ajaran');
+    $routes->post('tahun-ajaran/save', 'Admin::save_tahun_ajaran');
+    $routes->post('tahun-ajaran/cedit/(:any)', 'Admin::cedit_tahun_ajaran/$1');
+    $routes->post('tahun-ajaran/delete/(:any)', 'Admin::del_tahun_ajaran/$1');
+
+    $routes->get('program-studi', 'Admin::program_studi');
+
 });
 
 //____________________________________________________________________________________________________

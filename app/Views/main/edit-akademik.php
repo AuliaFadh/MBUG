@@ -86,16 +86,18 @@
                                         </div>
                                     </div>
 
-                                    <div class=" container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form" style="margin-right: 20px;">Tahun Ajaran</label>
-                                        <select name="TA" class="form-control  custom-textfield col-lg-3 col-md-4 col-sm-6">
-                                            <option></option>
-                                            <option value="ATA">ATA</option>
-                                            <option value="PTA">PTA</option>
-                                        </select>
-                                        <input required type="number" name="bef" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
-                                        <h3>/</h3>
-                                        <input required type="number" name="af" class="form-control custom-textfield col-lg-3 col-md-3 col-sm-4">
+                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Tahun Ajaran</label>
+                                        <div style="display: block; margin-left:20px;" class=" col-lg-8 col-md-10 col-sm-12 ">
+                                            <div class="row ">
+                                                <select name="TA" class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
+                                                    <option></option>
+                                                    <!-- Task BE Thn Ajaran -->
+                                                    <option value="">xxxxxx</option>
+                                                    <option value="0">xxxxxx</option>
+                                                </select>                                                
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -133,6 +135,18 @@
                                             <label class="label-form">Rangkuman Nilai</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $former->rangkuman_nilai); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
                                             <input name="rangkuman_nilai" type="file" class="dropify" data-default-file="">
+                                        </div>
+                                    </div>
+                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Konfirmasi Dokumen</label>
+                                        <div style="display: block; margin-left:20px;" class=" col-lg-8 col-md-10 col-sm-12 ">
+                                            <div class="row ">
+                                                <select name="konfirmasi_akademik" class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
+                                                <option value="2" <?php if ($former->konfirmasi_akademik == 2) echo 'selected'; ?>>Diproses</option>
+                <option value="1" <?php if ($former->konfirmasi_akademik == 1) echo 'selected'; ?>>Disetujui</option>
+                <option value="0" <?php if ($former->konfirmasi_akademik == 0) echo 'selected'; ?>>Ditolak</option>
+                                                </select>                                                
+                                            </div>
                                         </div>
                                     </div>
 

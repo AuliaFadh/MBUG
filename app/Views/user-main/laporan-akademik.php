@@ -40,7 +40,7 @@
                     <?php endif; ?>
 
                     <!-- Tabel -->
-                    <div class="card-body">
+                    <div class="card-body">                    
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
@@ -63,7 +63,11 @@
                                     <?php foreach ($la as $key => $value) : ?>
                                         <?php if ($value["npm"] == session()->get('username')) : ?>
                                             <?php $no++; ?>
-                                            <tr>
+                                            <tr 
+                                            <?php if($value['konfirmasi_akademik'] == "0")
+                                                echo 'style="background-color: #ffdfdf!important;"'
+                                            ?>
+                                           >
                                                 <td class="th-sm"><strong><?= $no; ?></strong></td>
                                                 <td class="th-lg"><?= $value['jenis']; ?></td>
                                                 <td class="th-sm"><?= $value['semester']; ?></td>
