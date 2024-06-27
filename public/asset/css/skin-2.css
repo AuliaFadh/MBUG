@@ -999,6 +999,13 @@ span#counter {
   border-radius: 3px;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.5);
 }
+.dropdown-custom a{
+  cursor: pointer;  
+}
+.dropdown-custom a, .dropdown-custom span{
+  padding: 5px 10px 5px 10px;
+}
+
 #npm-data,#jb-data{
   cursor: pointer;
   padding: 5px 10px 5px 10px;

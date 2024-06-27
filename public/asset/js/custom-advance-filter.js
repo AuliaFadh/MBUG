@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + rows.length;
 });
 
+
+
+
 function handleFilterAkademik() {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();

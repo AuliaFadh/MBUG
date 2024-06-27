@@ -108,96 +108,33 @@
                             <div class="row pb-0 d-flex justify-content-center align-items-center">
 
                                 <div class="col-md-3 col-12 mb-3">
-                                    <h7 class="d-flex justify-content-center align-items-center ">IPK</h7>
+                                    <h7 class="d-flex justify-content-center align-items-center ">Tahun</h7>
                                     <div class="row border-bottom d-flex justify-content-center align-items-center ">
-                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk"
-                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <input type="number" min=0 value=0 id="low-tahun"
+                                            class="col-md-4 col-4 mb-3 p-1" placeholder="tahun awal">
                                         <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                         </h6>
-                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk"
-                                            class="col-md-3 col-4 mb-3 p-1">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-12 mb-3">
-                                    <h7 class="d-flex justify-content-center align-items-center ">IPK Lokal</h7>
-                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
-                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-lokal"
-                                            class="col-md-3 col-4 mb-3 p-1">
-                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                        </h6>
-                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
-                                            class="col-md-3 col-4 mb-3 p-1">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-12 mb-3">
-                                    <h7 class="d-flex justify-content-center align-items-center ">IPK UU</h7>
-                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
-                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-uu"
-                                            class="col-md-3 col-4 mb-3 p-1">
-                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                        </h6>
-                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-uu"
-                                            class="col-md-3 col-4 mb-3 p-1">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row pb-0 d-flex justify-content-center align-items-center">
-
-                                <div class="col-md-6 col-12 mb-3  ">
-                                    <h7 class="d-flex justify-content-center align-items-center ">Semester</h7>
-                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
-                                        <input type="number" id="low-semester" min=0 max=20 value="0"
-                                            class="col-md-2 col-2 mb-3 p-1">
-                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                        </h6>
-                                        <input type="number" id="high-semester" min=0 max=20 value="20"
-                                            class="col-md-2 col-2 mb-3 p-1">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12 mb-3  ">
-                                    <h7 class="d-flex justify-content-center align-items-center ">Tahun Ajaran</h7>
-                                    <div
-                                        class="row border-bottom d-flex justify-content-center align-items-center  p-2">
-                                        <select name="low-ajaran" id="low-ajaran"
-                                            class="form-control   custom-textfield col-lg-4 col-md-4 col-sm-6">
-                                            <option></option>
-                                            <option value="PTA 2020/2021">PTA 2020/2021</option>
-                                            <option value="ATA 2021/2022">ATA 2021/2022</option>
-                                            <option value="PTA 2022/2023">ATA 2021/2022</option>
-                                            <option value="ATA 2023/2024">ATA 2021/2022</option>
-                                        </select>
-                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center">
-                                            ~
-                                        </h6>
-                                        <select name="high-ajaran" id="high-ajaran"
-                                            class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-6 ">
-                                            <option></option>
-                                            <option value="PTA 2020/2021">PTA 2020/2021</option>
-                                            <option value="ATA 2021/2022">ATA 2021/2022</option>
-                                            <option value="PTA 2022/2023">ATA 2021/2022</option>
-                                            <option value="ATA 2023/2024">ATA 2021/2022</option>
-                                        </select>
+                                        <input type="number"min=0 value=0 id="high-tahun" placeholder="tahun akhir"
+                                            class="col-md-4 col-4 mb-3 p-1">
                                     </div>
                                 </div>
 
 
                             </div>
-
                             <div class="row  pb-2 d-flex justify-content-center align-items-center">
 
-                                <div class="btn-group col-md-12" role="group"
-                                    aria-label="Basic outlined example  ">
-                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4"
-                                        onclick="filterTableAkademik('Disetujui')">Disetuji</button>
-                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4"
-                                        onclick="filterTableAkademik('Diproses')">Diproses</button>
-                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4"
-                                        onclick="filterTableAkademik('Ditolak')">Ditolak</button>
+                                <div class="btn-group col-md-12" role="group" aria-label="Basic outlined example  ">
+                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
+                                        onclick="filterTableTahunAjaran('Aktif')">Aktif</button>
+                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
+                                        onclick="filterTableTahunAjaran('Tidak Aktif')">Tidak Aktif</button>                                    
                                 </div>
 
                             </div>
+
+
+
+
 
                         </div>
 
@@ -233,8 +170,8 @@
                                         <td id="TAakhir_<?= $no ?>" data-value='2023' class="th-sm">2023</td>
                                         <td class="th-sm">
                                             <span id="TA_status_<?= $no ?>" data-value=1
-                                                class="status_akademik badge badge-rounded badge-success">Aktif</span>
-                                            <!-- <span id="TA_status<?= $no ?>" class="status_akademik badge badge-rounded badge-danger">Tidak Aktif</span> -->
+                                                class="status_TA badge badge-rounded badge-success">Aktif</span>
+                                            <!-- <span id="TA_status<?= $no ?>" class="status_TA badge badge-rounded badge-danger">Tidak Aktif</span> -->
                                         </td>
                                         <td class="th-sm">
                                             <button type="button" class="btn btn-sm btn-primary"
@@ -261,10 +198,10 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 class="modal-title fs-5" id="exampleModalLabel">Edit Tahun Ajaran</h3>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close">X</button>
+                                    <h3 class="modal-title " id="exampleModalLabel">Edit Tahun Ajaran</h3>                                    
+                                    <h6>PTA 2023/2024</h6>
                                 </div>
+                                                                        
                                 <div class="modal-body">
 
                                     <div class="mb-3">
@@ -318,11 +255,49 @@
     </div>
 </div>
 <script>
-    function doit() {
-        // Mendapatkan elemen select berdasarkan ID
-        var x = document.getElementById('dd');
+    function filterTableTahunAjaran(status) {
+        var rows = document.querySelectorAll('table tbody tr');
+        var displayedRowCount = 0;
+
+        rows.forEach(function(row) {
+            var statusCell = row.querySelector('span.status_TA');
+            if (statusCell && statusCell.textContent.trim() === status) {
+                row.style.display = 'table-row'; // Menampilkan baris
+                displayedRowCount++;
+            } else {
+                row.style.display = 'none'; // Menyembunyikan baris
+            }
+        });
+
+        // Update jumlah baris yang ditampilkan
+        document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
     }
-    x.querySelector('option[value="1"]').selected = true;
+
+    function handlerFilterTahunAjaran() {
+        var lowTahun = document.getElementById('low-tahun').value;
+        var highTahun = document.getElementById('high-tahun').value;
+        var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+        for (var i = 1; i < tableRows.length; i++) {
+            var row = tableRows[i];
+
+            var TahunAwalCell = row.cells[2].innerText;
+            var TahunAkhirCell = row.cells[3].innerText;
+
+
+            if (TahunAwalCell >= lowTahun &&
+                TahunAkhirCell <= highTahun
+            ) {
+                row.style.display = ''; // Tampilkan baris jika memenuhi kriteria
+            } else {
+                row.style.display = 'none'; // Sembunyikan baris jika tidak memenuhi kriteria
+            }
+        }
+
+
+    }
+    document.getElementById('low-tahun').addEventListener('input', handlerFilterTahunAjaran);
+    document.getElementById('high-tahun').addEventListener('input', handlerFilterTahunAjaran);
+
 
     function openEditModal(id, order) {
         // Mengubah URL action form modal
