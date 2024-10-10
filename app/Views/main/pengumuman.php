@@ -63,8 +63,12 @@
                                     <?php foreach ($news as $key => $value) : ?>
                                         <tr>
                                             <td class="th-sm"><?= $value['id_pengumuman']; ?></td>
-                                            <td class="th-sm"><?= $value['tanggal_terbit']; ?></td>
-                                            <td class="th-sm"><?= $value['tanggal_tarik']; ?></td>
+                                            <?php
+                                            $tgl_terbit = date_create_from_format('Y-m-d', $value['tanggal_terbit']);
+                                            $tgl_tarik = date_create_from_format('Y-m-d', $value['tanggal_tarik']);
+                                            ?>
+                                            <td class="th-nm"><?= $tgl_terbit->format('d M Y'); ?></td>
+                                            <td class="th-nm"><?= $tgl_tarik->format('d M Y'); ?></td>
                                             <td class="th-lg"><?= $value['judul_pengumuman']; ?></td>
                                             <td class="th-nm"><?= $value['penulis']; ?></td>
                                             <td class="th-sm">

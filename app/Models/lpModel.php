@@ -69,4 +69,10 @@ class lpModel extends Model
         $b = get_object_vars($b);
         return $b['bukti_prestasi'];
     }
+
+    public function calc($awal, $akhir)
+    {
+        $days = strtotime($akhir) - strtotime($awal);
+        return $days;
+    }
 }

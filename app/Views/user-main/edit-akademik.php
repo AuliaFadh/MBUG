@@ -22,6 +22,13 @@
                         </div>
                     </div>
 
+                    <!-- Notifikasi -->
+                    <?php if ($former->konfirmasi_akademik == 0) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= $former->konf_ket_akademik; ?>
+                        </div>
+                    <?php endif; ?>
+
                     <!-- Form Edit laporan akademik penerima beasiswa -->
                     <div class="card-body">
                         <form action="/user/akademik/cedit/<?= $former->id_akademik; ?>" method="post" enctype="multipart/form-data">

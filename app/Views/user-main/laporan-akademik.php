@@ -89,7 +89,17 @@
                                                 };
                                                 ?>
                                                 <td class="th-sm"><?= $confirm; ?></td>
-                                                <td class="th-sm"> <a href="<?= base_url('/user/akademik/edit/' . $value['id_akademik']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                                <td class="th-sm"> 
+                                                    <?php if ($value['konfirmasi_akademik'] == 1): ?>
+                                                        <a href="#" class="btn btn-sm btn-primary disabled" style="opacity: 0.5;">
+                                                            <i class="la la-pencil"></i>
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <a href="<?= base_url('/user/akademik/edit/' . $value['id_akademik']); ?>" class="btn btn-sm btn-primary">
+                                                            <i class="la la-pencil"></i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </td>
                                             </tr>
                                         <?php endif; ?>
                                     <?php endforeach; ?>

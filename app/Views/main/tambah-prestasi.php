@@ -159,9 +159,9 @@
                                         <label class="label-form">Tanggal Pelaksanaan</label>
                                         <div style="display: block;margin-left:15px;" class=" col-lg-8 col-md-12 col-sm-12">
                                         <div class="row">
-                                            <input id="tgl_mulai_pelaksana" name="datepicker" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
+                                            <input id="tgl_mulai_pelaksana" name="datepicker-mulai" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
                                             <pre>  Sampai dengan  </pre>
-                                            <input id="tgl_akhir_pelaksana" name="datepicker" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">                                            
+                                            <input id="tgl_akhir_pelaksana" name="datepicker-selesai" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">                                            
                                         </div>
                                             
                                         </div>        

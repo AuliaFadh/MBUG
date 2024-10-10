@@ -83,23 +83,26 @@ o Kalau edit file pdf/img lama dihapus USER (aul)
 
 - Tanggal gaboleh mundur
   o pengumuman
-  - laporan prestasi USER
-  - laporan prestasi ADMIN
+  o laporan prestasi USER
+  o laporan prestasi ADMIN (tambah)
+  - laporan prestasi ADMIN (edit)
 
 - Tahun Ajaran Benerin
   - Akademik
 
 - Lain-lain bisa input manual (aman) tinggal BE
-  - USER
-  - ADMIN
+  - USER (lap prestasi)
+  - ADMIN (lap prestasi)
 
 - manajemen pengguna - tambah data untuk admin aja (onrpogres Gampang)
   + tambah halaman
 
-- Data inputan penerima bahasiswa diberikan status
+o Data inputan penerima bahasiswa diberikan status
   (pending, diterima, ditolak)(aul)
 
-- Laporan akademik kalo udh disetujui gabisa diedit (aul)
+o Laporan akademik kalo udh disetujui gabisa diedit (aul)
+  o Pesan ditolak pada halaman edit akademin USER
+  o laporan akademik disetujui tidak bisa diedit
 
 - Admin memberikan kesempatan input untuk PB (seperti isi KRS)
   Admin dapat memberikan lebih dari 8x

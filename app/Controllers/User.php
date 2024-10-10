@@ -544,6 +544,12 @@ class User extends BaseController
             'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+
+            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('datepicker-mulai')), $this->lpModel->getDate($this->request->getPost('datepicker-selesai'))) < 0) {
+                session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
+                return redirect()->to(base_url('/user/prestasi'));
+            }
+
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
             $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
@@ -618,6 +624,12 @@ class User extends BaseController
             'bukti_prestasi' => 'max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+
+            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('datepicker-mulai')), $this->lpModel->getDate($this->request->getPost('datepicker-selesai'))) < 0) {
+                session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
+                return redirect()->to(base_url('/user/prestasi'));
+            }
+
             $bp = $this->lpModel->getDoc($id_prestasi);
 
             $doc_bp = $this->request->getFile('bukti_prestasi');
