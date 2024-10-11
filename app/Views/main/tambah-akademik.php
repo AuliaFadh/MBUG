@@ -39,7 +39,7 @@
 
                                                 <?php foreach ($penerima as $key => $value) : ?>
                                                 <a id="npm-data"
-                                                    onclick="fillInputNPM('<?= $value['npm'] ?>','<?= $value['nama'] ?>','<?= $value['prodi'] ?>')"><?= $value['npm'] ?></a>
+                                                    onclick="fillInputNPM('<?= $value['npm'] ?>','<?= $value['nama'] ?>','<?= $value['nama_prodi'] ?>')"><?= $value['npm'] ?></a>
                                                 <?php endforeach; ?>
 
                                                 <span id="npm-noData" style="display: none;">Data tidak ada</span>
@@ -67,9 +67,9 @@
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
                                             <input type="text" readonly id="npm-ps"
-                                                class="form-control custom-textfield <?= $validation->hasError('prodi') ? ' is-invalid is-test' : '' ?>"
+                                                class="form-control custom-textfield <?= $validation->hasError('nama_prodi') ? ' is-invalid is-test' : '' ?>"
                                                 id="prodi" name="prodi"
-                                                value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : '') ?>">
+                                                value="<?= old('nama_prodi', isset($input['nama_prodi']) ? $input['nama_prodi'] : '') ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('prodi') ?>
                                             </div>

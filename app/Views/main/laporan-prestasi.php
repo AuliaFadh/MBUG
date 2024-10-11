@@ -55,7 +55,8 @@
                                         <th class="th-nm">Nama Kegiatan</th>
                                         <th class="th-nm">Capaian</th>
                                         <th class="th-nm">Tempat</th>
-                                        <th class="th-nm">Tanggal</th>
+                                        <th class="th-nm">Tanggal Mulai</th>
+                                        <th class="th-nm">Tanggal Selesai</th>
                                         <th class="th-nm">Penyelenggara</th>
                                         <th class="th-sm">Bukti Prestasi</th>
                                         <th class="th-nm">Tautan Publikasi</th>
@@ -71,7 +72,7 @@
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
                                             <td class="th-sm"><?= $value['npm']; ?></td>
                                             <td class="th-nm"><?= $value['nama']; ?></td>
-                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-nm"><?= $value['nama_prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['tingkat']; ?></td>
                                             <?php if ($value['jenis_prestasi'] == "1") {

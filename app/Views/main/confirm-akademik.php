@@ -150,7 +150,7 @@
                                             <td class="th-sm"><strong><?= $no ?></strong></td>
                                             <td class="th-sm"><?= $value['npm'] ?></td>
                                             <td class="th-nm"><?= $value['nama'] ?></td>
-                                            <td class="th-nm"><?= $value['prodi'] ?></td>
+                                            <td class="th-nm"><?= $value['nama_prodi'] ?></td>
                                             <td class="th-lg"><?= $value['jenis'] ?></td>
                                             <td class="th-sm"><?= $value['semester'] ?></td>
                                             <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>

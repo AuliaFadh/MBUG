@@ -18,6 +18,7 @@ class User extends BaseController
     protected $newsModel;
     protected $logModel;
     protected $prodiModel;
+    protected $tahunModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -32,6 +33,7 @@ class User extends BaseController
         $this->newsModel = new \App\Models\newsModel();
         $this->logModel = new \App\Models\logModel();
         $this->prodiModel = new \App\Models\prodiModel();
+        $this->tahunModel = new \App\Models\tahunModel();
     }
 
     public function user_login()
@@ -720,7 +722,6 @@ class User extends BaseController
             'jumlah_potongan' => 'required',
             'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
             'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
-            'status_keaktifan' => 'required',
         ])) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
@@ -744,7 +745,6 @@ class User extends BaseController
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
-                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
                 'konfirmasi_keaktifan' => 2,
             ];
 
@@ -802,7 +802,6 @@ class User extends BaseController
             'jumlah_potongan' => 'required',
             'blanko_pembayaran' => 'max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
             'bukti_pembayaran' => 'max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
-            'status_keaktifan' => 'required',
         ])) {
             list($krs, $blanko, $bukti) = $this->kaModel->getDoc($id_keaktifan);
 
@@ -850,7 +849,6 @@ class User extends BaseController
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
-                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
                 'konfirmasi_keaktifan' => 2,
             ];
 

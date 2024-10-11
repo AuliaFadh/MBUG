@@ -17,6 +17,7 @@ class mbkmModel extends Model
         return $this->db->table('laporan_mbkm')
             ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_mbkm.id_beasiswa', 'left')
             ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_mbkm.id_penerima', 'left')
+            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
             ->Get()->getResultArray();
     }
 
@@ -30,6 +31,7 @@ class mbkmModel extends Model
         return $this->db->table('laporan_mbkm')
             ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_mbkm.id_beasiswa', 'left')
             ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_mbkm.id_penerima', 'left')
+            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
             ->where('id_mbkm', $id_mbkm)->get()->getRow();
     }
 

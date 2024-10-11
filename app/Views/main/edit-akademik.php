@@ -54,7 +54,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly name="prodi" value="<?= $former->prodi ?>" type="text"
+                                            <input readonly name="prodi" value="<?= $former->nama_prodi ?>" type="text"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 

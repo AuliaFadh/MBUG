@@ -53,7 +53,7 @@
                                         <th class="th-sm">Semester</th>
                                         <th class="th-nm">Tahun Ajaran</th>
                                         <th class="th-sm">KRS</th>
-                                        <th class="th-nm">Blanko Pembayaran: Jumlah ditagihkan</th>
+                                        <th class="th-nm">Jumlah ditagihkan</th>
                                         <th class="th-nm">Jumlah Potongan</th>
                                         <th class="th-sm">Blanko Pembayaran</th>
                                         <th class="th-sm">Bukti Pembayaran</th>
@@ -70,7 +70,7 @@
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
                                             <td class="th-sm"><?= $value['npm']; ?></td>
                                             <td class="th-nm"><?= $value['nama']; ?></td>
-                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-nm"><?= $value['nama_prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['semester']; ?></td>
                                             <td class="th-nm"><?= $value['tahun_ajaran']; ?></td>

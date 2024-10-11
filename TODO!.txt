@@ -70,11 +70,17 @@ o Admin bisa memberikan keterangan konfirmasi
 - user tidak bisa merubah data jika status sudah "diterima"
 
 o Kalau edit file pdf/img lama dihapus USER (aul)
+  o profile pic
   o prestasi
   o akademik
   o keaktifan 
 
 - Kalau edit file pdf/img lama dihapus ADMIN (aul)
+  - blanko_pembayaran
+  - bukti_pembayaran
+  - bukti_prestasi
+  - KRS
+  - Rangkuman Nilai
 
 - ada beberapa yg perlu tanggal mulai & tanggal akhir (done) tinggal BE
   (laporan prestasi) (aman)
@@ -88,7 +94,16 @@ o Kalau edit file pdf/img lama dihapus USER (aul)
   - laporan prestasi ADMIN (edit)
 
 - Tahun Ajaran Benerin
+  0 buat tabel tahun ajaran
+  - join id tahun ajaran
   - Akademik
+
+o program studi Benerin
+  o buat tabel program studi
+  o masukin data 
+  o join id_prodi
+  o import penerima benerin
+  - import pake id apa nama prodi?
 
 - Lain-lain bisa input manual (aman) tinggal BE
   - USER (lap prestasi)
@@ -103,13 +118,26 @@ o Data inputan penerima bahasiswa diberikan status
 o Laporan akademik kalo udh disetujui gabisa diedit (aul)
   o Pesan ditolak pada halaman edit akademin USER
   o laporan akademik disetujui tidak bisa diedit
+  - kalo diproses bisa diedit engga?
 
-- Admin memberikan kesempatan input untuk PB (seperti isi KRS)
-  Admin dapat memberikan lebih dari 8x
+- keaktifan kasih konfirmasi
+  - pesan ditolak
+
+- Tahun Penerimaan pake queue ?
+  - sesuaikan dengan tahun masuk USER
+  - tahun sebelumnya tidak keluar di form
+  - laporan akademik, satu mahasiswa satu data tiap tahun ajaran
+  - keaktifan, satu mahasiswa satu data tiap tahun ajaran
 
 x periode (Tambah MBKM), kalo bisa otomatis pas masukin 
   NPM
 
+- form ADMIN
+  - Keaktifan, tahun ajaran (tambah dan edit)
+
+- form USER
+  - lap akademik, tahun ajaran (tambah dan edit)
+  - keaktifan, tahun ajaran (tambah dan edit)
 
 
 

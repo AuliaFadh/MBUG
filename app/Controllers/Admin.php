@@ -18,6 +18,7 @@ class Admin extends BaseController
     protected $newsModel;
     protected $logModel;
     protected $prodiModel;
+    protected $tahunModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -32,6 +33,7 @@ class Admin extends BaseController
         $this->newsModel = new \App\Models\newsModel();
         $this->logModel = new \App\Models\logModel();
         $this->prodiModel = new \App\Models\prodiModel();
+        $this->tahunModel = new \App\Models\tahunModel();
     }
 
     public function login_admin()
@@ -351,7 +353,7 @@ class Admin extends BaseController
                 'id_penerima' => $id_penerima,
                 'nama' => $this->request->getPost('nama'),
                 'npm' => $this->request->getPost('npm'),
-                'prodi' => $this->request->getPost('prodi'),
+                'id_prodi' => $this->prodiModel->getIDprodi($this->request->getPost('prodi')),
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
                 'ppicture' => null,
@@ -396,7 +398,7 @@ class Admin extends BaseController
             $data = [
                 'nama' => $this->request->getPost('nama'),
                 'npm' => $npm,
-                'prodi' => $this->request->getPost('prodi'),
+                'id_prodi' => $this->prodiModel->getIDprodi($this->request->getPost('prodi')),
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
                 'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
@@ -469,6 +471,7 @@ class Admin extends BaseController
                         $nama = $column[1];
                         $npm = $column[2];
                         $prodi = $column[3];
+                        $id_prodi = $this->prodiModel->getIDprodi($prodi);
                         $alamat = $column[4];
                         $no_hp = $column[5];
                         if ($column[6] == "Perempuan") {
@@ -491,7 +494,7 @@ class Admin extends BaseController
                         
                         mysqli_query($con, "INSERT INTO penerima_beasiswa 
                         (nama,npm,prodi,alamat,no_hp,ppicture,jenis_kelamin,tahun_diterima,status_penerima,keterangan) 
-                        VALUES ('$nama','$npm','$prodi','$alamat','$no_hp','$ppicture,'$jenis_kelamin','$tahun_diterima',
+                        VALUES ('$nama','$npm','$id_prodi','$alamat','$no_hp','$ppicture,'$jenis_kelamin','$tahun_diterima',
                         '$status_penerima','$keterangan')");
 
                        
@@ -1214,7 +1217,6 @@ class Admin extends BaseController
             'jumlah_potongan' => 'required',
             'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
             'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
-            'status_keaktifan' => 'required',
         ])) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
@@ -1238,7 +1240,6 @@ class Admin extends BaseController
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
-                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
                 'konfirmasi_keaktifan' => 2,
             ];
 
@@ -1299,7 +1300,6 @@ class Admin extends BaseController
             'jumlah_potongan' => 'required',
             'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
             'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
-            'status_keaktifan' => 'required',
         ])) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
@@ -1324,7 +1324,6 @@ class Admin extends BaseController
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
-                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
                 'konfirmasi_keaktifan' => 2,
             ];
 

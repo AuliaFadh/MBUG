@@ -64,7 +64,7 @@
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Program Studi</h4>
-                                <h4 class="label-profile"><span>:</span> <?= $profile->prodi; ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= $profile->nama_prodi; ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Tahun Penerimaan</h4>

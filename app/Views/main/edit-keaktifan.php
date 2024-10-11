@@ -34,7 +34,7 @@
                                             <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
                                                 <?php foreach ($penerima as $key => $value) : ?>
-                                                    <a id="npm-data" onclick="fillInputNPM('<?= $value['npm']; ?>','<?= $value['nama']; ?>','<?= $value['prodi']; ?>')"><?= $value['npm']; ?></a>
+                                                    <a id="npm-data" onclick="fillInputNPM('<?= $value['npm']; ?>','<?= $value['nama']; ?>','<?= $value['nama_prodi']; ?>')"><?= $value['npm']; ?></a>
                                                 <?php endforeach; ?>
 
                                                 <span id="npm-noData" style="display: none;">Data tidak ada</span>
@@ -58,7 +58,7 @@
                                     <div class="container1 row  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" name="prodi" value="<?= $former->prodi; ?>" readonly class="form-control custom-textfield ">
+                                            <input type="text" name="prodi" value="<?= $former->nama_prodi; ?>" readonly class="form-control custom-textfield ">
                                             <div class="invalid-feedback">
 
                                             </div>

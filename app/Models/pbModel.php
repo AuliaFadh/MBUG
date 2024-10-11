@@ -10,7 +10,7 @@ class pbModel extends Model
     protected $primaryKey       = 'id_penerima';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['nama', 'npm', 'prodi', 'alamat', 'no_hp', "ppicture", 'jenis_kelamin', 'tahun_diterima', 'status_penerima', 'keterangan'];
+    protected $allowedFields    = ['nama', 'npm', 'id_prodi', 'alamat', 'no_hp', "ppicture", 'jenis_kelamin', 'tahun_diterima', 'status_penerima', 'keterangan'];
 
     public function __construct()
     {
@@ -19,7 +19,9 @@ class pbModel extends Model
 
     public function AllData()
     {
-        return $this->db->table('penerima_beasiswa')->Get()->getResultArray();
+        return $this->db->table('penerima_beasiswa')
+        ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
+        ->Get()->getResultArray();
     }
 
     public function InsertData($data)
@@ -29,7 +31,9 @@ class pbModel extends Model
 
     public function DetailData($id_penerima)
     {
-        return $this->db->table('penerima_beasiswa')->where('id_penerima', $id_penerima)->get()->getRow();
+        return $this->db->table('penerima_beasiswa')->
+        join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
+        ->where('id_penerima', $id_penerima)->get()->getRow();
     }
 
     public function UpdateData($id, $data)
