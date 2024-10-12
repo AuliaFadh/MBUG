@@ -17,6 +17,8 @@ class Admin extends BaseController
     protected $loginModel;
     protected $newsModel;
     protected $logModel;
+    protected $prodiModel;
+    protected $tahunModel;
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -30,6 +32,8 @@ class Admin extends BaseController
         $this->loginModel = new \App\Models\loginModel();
         $this->newsModel = new \App\Models\newsModel();
         $this->logModel = new \App\Models\logModel();
+        $this->prodiModel = new \App\Models\prodiModel();
+        $this->tahunModel = new \App\Models\tahunModel();
     }
 
     public function login_admin()
@@ -349,9 +353,10 @@ class Admin extends BaseController
                 'id_penerima' => $id_penerima,
                 'nama' => $this->request->getPost('nama'),
                 'npm' => $this->request->getPost('npm'),
-                'prodi' => $this->request->getPost('prodi'),
+                'id_prodi' => $this->prodiModel->getIDprodi($this->request->getPost('prodi')),
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
+                'ppicture' => null,
                 'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
                 'tahun_diterima' => $this->request->getPost('tahun_diterima'),
                 'status_penerima' => $this->request->getPost('status_penerima'),
@@ -386,10 +391,14 @@ class Admin extends BaseController
             'status_penerima' => 'required',
             'keterangan' => 'required',
         ])) {
+            $npm = $this->request->getPost('npm');   
+            $default_password = $npm.".beasiswa"; 
+            $hak_akses_pb = 0;
+            $status_user = 1;
             $data = [
                 'nama' => $this->request->getPost('nama'),
-                'npm' => $this->request->getPost('npm'),
-                'prodi' => $this->request->getPost('prodi'),
+                'npm' => $npm,
+                'id_prodi' => $this->prodiModel->getIDprodi($this->request->getPost('prodi')),
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
                 'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
@@ -397,8 +406,15 @@ class Admin extends BaseController
                 'status_penerima' => $this->request->getPost('status_penerima'),
                 'keterangan' => $this->request->getPost('keterangan'),
             ];
-
+            $data_user = [
+                'username' => $npm,
+                'password' => $default_password,
+                'hak_akses' => $hak_akses_pb,
+                'last_login' => $this->userModel->getCurrentDate(),
+                'status_user' => $status_user,
+            ];
             $this->pbModel->InsertData($data);
+            $this->userModel->InsertData($data_user);
             session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
 
             return redirect()->to(base_url('/admin/penerima'));
@@ -448,13 +464,14 @@ class Admin extends BaseController
                 $file = fopen($filename, 'r');
 
                 $num = 0;
-                while (($column = fgetcsv($file, 1000, ",")) !== false) {
+                while (($column = fgetcsv($file, 5000, ",")) !== false) {
                     if ($num == 0) {
                         $num++;
                     } else {
                         $nama = $column[1];
                         $npm = $column[2];
                         $prodi = $column[3];
+                        $id_prodi = $this->prodiModel->getIDprodi($prodi);
                         $alamat = $column[4];
                         $no_hp = $column[5];
                         if ($column[6] == "Perempuan") {
@@ -462,7 +479,8 @@ class Admin extends BaseController
                         } else {
                             $jk = "1";
                         }
-                        $jenis_kelamin = $jk;
+                        $ppicture = null;
+                        $jenis_kelamin = $column[6];
                         $tahun_diterima = $column[7];
                         if ($column[8] == "Lulus") {
                             $status = "2";
@@ -471,12 +489,22 @@ class Admin extends BaseController
                         } else {
                             $status = "0";
                         }
-                        $status_penerima = $status;
+                        $status_penerima = $column[8];
                         $keterangan = $column[9];
+                        
                         mysqli_query($con, "INSERT INTO penerima_beasiswa 
-                        (nama,npm,prodi,alamat,no_hp,jenis_kelamin,tahun_diterima,status_penerima,keterangan) 
-                        VALUES ('$nama','$npm','$prodi','$alamat','$no_hp','$jenis_kelamin','$tahun_diterima',
+                        (nama,npm,prodi,alamat,no_hp,ppicture,jenis_kelamin,tahun_diterima,status_penerima,keterangan) 
+                        VALUES ('$nama','$npm','$id_prodi','$alamat','$no_hp','$ppicture,'$jenis_kelamin','$tahun_diterima',
                         '$status_penerima','$keterangan')");
+
+                       
+                        $hak_akses_pb = 0;
+                        $status_user = 1;
+                        $last_login = $this->userModel->getCurrentDate();
+                        $default_password = $npm.".beasiswa"; 
+                        mysqli_query($con, "INSERT INTO user
+                        (username,password,hak_akses, last_login, status_user) 
+                        VALUES ('$npm','$default_password','$hak_akses_pb','$last_login','$status_user')");
                     }
                 }
             }
@@ -507,14 +535,48 @@ class Admin extends BaseController
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
             return redirect()->to(base_url('/admin/login'));
         }
+        
 
         $la = $this->laModel->AllData();
+        $DataDiproses = $this->laModel->GetProcessData();
         $data = [
             'title' => 'Akademik | Admin',
             'la' => $la,
+            'DataDiproses'=>$DataDiproses,
         ];
 
         return view('main/laporan-akademik', $data);
+    }
+
+    public function confirm_akademik()
+    {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        
+        $DataDiproses = $this->laModel->GetProcessData();
+        $data = [
+            'title' => 'Akademik | Admin',
+            'la' => $DataDiproses,
+           
+        ];
+
+        return view('main/confirm-akademik', $data);
+    }
+
+    public function save_confirm_akademik(){
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+        $konfirmasi = $this->request->GetPost('status_data');        
+        foreach ($konfirmasi as $id => $status) {   
+            
+            $this->laModel->update_konfirmasi_akademik($id, $status);
+        }
+        return redirect()->to(base_url('/admin/akademik'));
     }
 
     public function add_akademik()
@@ -588,6 +650,7 @@ class Admin extends BaseController
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
                 'rangkuman_nilai' => $nama_rn,
+                'konfirmasi_akademik' => 2,
             ];
 
             $this->laModel->UpdateData($id_akademik, $data);
@@ -631,6 +694,7 @@ class Admin extends BaseController
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
                 'rangkuman_nilai' => $nama_rn,
+                'konfirmasi_akademik' => 2,
             ];
 
             $this->laModel->InsertData($data);
@@ -701,11 +765,18 @@ class Admin extends BaseController
             'nama_kegiatan' => 'required',
             'capaian' => 'required',
             'tempat' => 'required',
-            'datepicker' => 'required',
+            'datepicker-mulai' => 'required',
+            'datepicker-selesai' => 'required',
             'penyelenggara' => 'required',
             'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+
+            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('datepicker-mulai')), $this->lpModel->getDate($this->request->getPost('datepicker-selesai'))) < 0) {
+                session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
+                return redirect()->to(base_url('/admin/prestasi'));
+            }
+
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
             $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
@@ -715,12 +786,15 @@ class Admin extends BaseController
                 'tingkat' => $this->request->getPost('tingkat'),
                 'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
                 'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
-                'capaian' => $this->request->getPost('capaian'),
+                'capaian' => $this->request->getPost('capaian'), 
+                // Task-BE di sini atur2 ul
+                // Disini terdapat logika jika value capaian = Lainnya, maka yang diambil adalah value dari elemen id="capaian-other"
                 'tempat' => $this->request->getPost('tempat'),
                 'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
+                'konfirmasi_prestasi' => 2,
             ];
 
             $this->lpModel->InsertData($data);
@@ -797,6 +871,7 @@ class Admin extends BaseController
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
+                'konfirmasi_prestasi' => 2,
             ];
 
             $this->lpModel->UpdateData($id_prestasi, $data);
@@ -867,6 +942,7 @@ class Admin extends BaseController
                 'jenis_mbkm' => $this->request->getPost('jenis_mbkm'),
                 'periode' => $this->request->getPost('periode'),
                 'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
+                'konfirmasi_mbkm' => 2,
             ];
 
             $this->mbkmModel->InsertData($data);
@@ -931,6 +1007,7 @@ class Admin extends BaseController
                 'jenis_mbkm' => $this->request->getPost('jenis_mbkm'),
                 'periode' => $this->request->getPost('periode'),
                 'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
+                'konfirmasi_mbkm' => 2,
             ];
 
             $this->mbkmModel->UpdateData($id_mbkm, $data);
@@ -1140,7 +1217,6 @@ class Admin extends BaseController
             'jumlah_potongan' => 'required',
             'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
             'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
-            'status_keaktifan' => 'required',
         ])) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
@@ -1164,7 +1240,7 @@ class Admin extends BaseController
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
-                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+                'konfirmasi_keaktifan' => 2,
             ];
 
             $this->kaModel->InsertData($data);
@@ -1224,7 +1300,6 @@ class Admin extends BaseController
             'jumlah_potongan' => 'required',
             'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
             'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
-            'status_keaktifan' => 'required',
         ])) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
@@ -1249,7 +1324,7 @@ class Admin extends BaseController
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
-                'status_keaktifan' => $this->request->getPost('status_keaktifan'),
+                'konfirmasi_keaktifan' => 2,
             ];
 
             $this->kaModel->UpdateData($id_keaktifan, $data);
@@ -1439,6 +1514,12 @@ class Admin extends BaseController
             'judul_pengumuman' => 'required',
             'deskripsi' => 'required',
         ])) {
+
+            if ($this->newsModel->calc($this->newsModel->getDate($this->request->getPost('tanggal_terbit')), $this->newsModel->getDate($this->request->getPost('tanggal_tarik'))) < 0) {
+                session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
+                return redirect()->to(base_url('/admin/pengumuman'));
+            }
+
             $data = [
                 'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')),
                 'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
@@ -1472,12 +1553,15 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/login'));
         }
 
+        $former = $this->newsModel->DetailData($id_pengumuman);
         $data = [
             'title' => 'Form Edit Pengumuman | Admin',
             'validation' => \Config\Services::validation(),
-            'former' => $this->newsModel->DetailData($id_pengumuman),
+            'former' => $former,
+            'terbit' => $this->newsModel->convDate($former->tanggal_terbit)
         ];
 
+        //dd($data);
         return view('main/edit-pengumuman', $data);
     }
 
@@ -1489,18 +1573,26 @@ class Admin extends BaseController
         }
 
         if ($this->validate([
-            'tanggal_terbit' => 'required',
+            // 'tanggal_terbit' => 'required',
             'tanggal_tarik' => 'required',
             'judul_pengumuman' => 'required',
             'deskripsi' => 'required',
         ])) {
+
+            $former = $this->newsModel->DetailData($id_pengumuman);
+
+            if ($this->newsModel->calc($former->tanggal_terbit, $this->newsModel->getDate($this->request->getPost('tanggal_tarik'))) < 0) {
+                session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
+                return redirect()->to(base_url('/admin/pengumuman'));
+            }
+
             $data = [
                 'id_pengumuman' => $id_pengumuman,
-                'tanggal_terbit' => $this->newsModel->getDate($this->request->getPost('tanggal_terbit')),
+                'tanggal_terbit' => $former->tanggal_terbit, 
                 'tanggal_tarik' => $this->newsModel->getDate($this->request->getPost('tanggal_tarik')),
                 'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
                 'deskripsi' => $this->request->getPost('deskripsi'),
-                'penulis' => session()->get('username'),
+                'penulis' => $former->penulis,
             ];
 
             $this->newsModel->UpdateData($id_pengumuman, $data);
@@ -1558,4 +1650,21 @@ class Admin extends BaseController
 
         return view('main/log-aktivitas', $data);
     }
+
+    public function tahun_ajaran()
+    {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        
+        $data = [
+            'title' => 'Tahun Ajaran | Admin',
+          
+        ];
+
+        return view('main/tahun-ajaran', $data);
+    }
+
 }

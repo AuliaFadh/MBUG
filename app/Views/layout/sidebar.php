@@ -59,14 +59,21 @@
             </li>
             <li><a class="ai-icon" href="/admin/manajemen" aria-expanded="false">
             <img class="logo-abbr logo-home" src="<?= base_url('asset/img/manajemen.png'); ?>" alt="">
-                    <span class="nav-text">Manajemen Pengguna</span>
+                    <span class="nav-text">Pengaturan Admin</span>
                 </a>
+                <ul style="color: black !important;list-style-type: none;" aria-expanded="">
+                    <li><a href="/admin/manajemen"><span style="font-weight: 500;" class="nav-text">Manajemen Pengguna</span></a></li>
+                    <li><a href="/admin/tahun-ajaran"><span style="font-weight: 500;" class="nav-text">Tahun Ajaran</span></a></li>
+                    <li><a href="/admin/program-studi"><span style="font-weight: 500;" class="nav-text">Program Studi</span></a></li>
+                    
+                    
+                </ul>
             </li>
             <li><a class="ai-icon" href="/admin/log" aria-expanded="false">
             <img class="logo-abbr logo-home" src="<?= base_url('asset/img/log.png'); ?>" alt="">
                     <span class="nav-text">Log Aktivitas Pengguna</span>
                 </a>
-            </li>
+            </li>            
 
         </ul>
     </div>

@@ -50,6 +50,7 @@
                                         <th class="th-nm">Jenis Program MBKM</th>
                                         <th class="th-sm">Periode</th>
                                         <th class="th-nm">Keterangan</th>
+                                        <th class="th-nm">Status Konfirmasi</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
@@ -65,6 +66,15 @@
                                                 <td class="th-nm"><?= $value['jenis_mbkm']; ?></td>
                                                 <td class="th-sm"><?= $value['periode']; ?></td>
                                                 <td class="th-nm"><?= $value['keterangan_mbkm']; ?></td>
+                                                <?php if ($value['konfirmasi_mbkm'] == "1") {
+                                                    $confirm = '<span class="badge badge-rounded badge-success">Diterima</span>';
+                                                } else if ($value['konfirmasi_mbkm'] == "0") {
+                                                    $confirm = '<span class="badge badge-rounded badge-danger">Ditolak</span>';
+                                                } else if ($value['konfirmasi_mbkm'] == "2") {
+                                                    $confirm = '<span class="badge badge-rounded badge-primary">Pending<span>';
+                                                };
+                                                ?>
+                                                <td class="th-sm"><?= $confirm; ?></td>
                                                 <td> <a href="<?= base_url('/user/mbkm/edit/' . $value['id_mbkm']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                             </tr>
                                         <?php endif; ?>

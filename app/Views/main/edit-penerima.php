@@ -51,9 +51,9 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= $mhs->prodi; ?>" type="text" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi">
+                                            <input value="<?= $mhs->nama_prodi; ?>" type="text" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi">
                                             <div class="invalid-feedback">
-                                                <?= $validation->getError('prodi'); ?>
+                                                <?= $validation->getError('nama_prodi'); ?>
                                             </div>
                                         </div>
                                     </div>

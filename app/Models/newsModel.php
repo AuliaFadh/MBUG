@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use DateTime;
 
 class newsModel extends Model
 {
@@ -41,5 +42,17 @@ class newsModel extends Model
     {
         $tglformat = date_create_from_format('d M, Y', $data);
         return $tglformat->format('Y-m-d');
+    }
+
+    public function convDate($data)
+    {
+        //$tglformat = new DateTime($data);
+        return date('d F, Y', strtotime($data));
+    }
+
+    public function calc($awal, $akhir)
+    {
+        $days = strtotime($akhir) - strtotime($awal);
+        return $days;
     }
 }

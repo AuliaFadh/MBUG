@@ -35,7 +35,7 @@
                                             <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8" style="display: none;">
 
                                                 <?php foreach ($penerima as $key => $value) : ?>
-                                                    <a id="npm-data" onclick="fillInputNPM('<?= $value['npm']; ?>','<?= $value['nama']; ?>','<?= $value['prodi']; ?>')"><?= $value['npm']; ?></a>
+                                                    <a id="npm-data" onclick="fillInputNPM('<?= $value['npm']; ?>','<?= $value['nama']; ?>','<?= $value['nama_prodi']; ?>')"><?= $value['npm']; ?></a>
                                                 <?php endforeach; ?>
 
                                                 <span id="npm-noData" style="display: none;">Data tidak ada</span>

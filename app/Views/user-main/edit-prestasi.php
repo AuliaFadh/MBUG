@@ -29,9 +29,13 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Tanggal</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-3 col-md-4 col-sm-8" id="datepicker">
+                                    <label class="label-form">Tanggal Pelaksanaan</label>
+                                        <div style="display: block;margin-left:15px;" class=" col-lg-8 col-md-12 col-sm-12">
+                                        <div class="row">
+                                            <input id="tgl_mulai_pelaksana" name="datepicker-mulai" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
+                                            <pre>  Sampai dengan  </pre>
+                                            <input id="tgl_akhir_pelaksana" name="datepicker-selesai" type="text" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">                                            
+                                        </div>
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -72,9 +76,10 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        
                                         <label class="label-form">Capaian</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <select name="capaian" class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
+                                            <select name="capaian" id="capaian" onchange="checkOther()" class="form-control  custom-textfield col-lg-6 col-md-12 col-sm-12">
                                                 <option></option>
                                                 <option value="Juara I">Juara I</option>
                                                 <option value="Juara II">Juara II</option>
@@ -87,8 +92,10 @@
                                                 <option value="Finalis">Finalis</option>
                                                 <option value="Lainnya">Lainnya</option>
                                             </select>
+                                            <input type="text" id="capaian-other" name="other_form" class="form-control custom-textfield col-lg-6 col-md-6 col-sm-6 custom-other-option hidden-other-option" placeholder="Isi pencapaian lain...">
+                                            <!-- Task-BE -->
                                             <div class=" invalid-feedback">
-
+                                                <!-- Task BE disini belom ada validationnya ul -->
                                             </div>
                                         </div>
                                     </div>

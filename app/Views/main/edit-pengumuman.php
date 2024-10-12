@@ -30,7 +30,10 @@
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
                                         <label class="label-form">Tanggal Diterbitkan </label>
                                         <div style="display: block;" class=" col-lg-3 col-md-3 col-sm-3">
-                                            <input name="tanggal_terbit" class="custom-textfield datepicker-default form-control ">
+                                            <?php
+                                                $terbit = date('d F, Y', strtotime($former->tanggal_terbit));
+                                                echo $terbit;
+                                            ?>
                                             <div class=" invalid-feedback">
 
                                             </div>

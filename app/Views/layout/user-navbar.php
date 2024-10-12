@@ -45,7 +45,11 @@
                         
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                <?php if (session()->get('pp') == null) : ?>
                                 <img id="profile-img-nav" src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" style="height: 50px; width: 50px;" alt="" />
+                                <?php elseif (session()->get('pp') !== null) : ?>
+                                <img id="profile-img-nav" src="<?= base_url('asset/img/database/picture/' . session()->get('pp')); ?>" style="height: 50px; width: 50px;" alt="" />
+                                <?php endif; ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="/user/profile" class="dropdown-item ai-icon">

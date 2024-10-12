@@ -31,6 +31,7 @@ class userModel extends Model
     {
         return $this->db->table('user')
         ->join('penerima_beasiswa', 'penerima_beasiswa.npm=user.username', 'left')
+        ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
         ->where('username', $uname)->get()->getRow();
     }
 

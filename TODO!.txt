@@ -1,0 +1,143 @@
+TODO :
+1. Laporan Akademik Admin {
+  -advance filter tahun akademik belum selesai
+  -bikin kolom di database untuk keterangan
+  -post nilai keterangan ke database (halaman add+ Edit + konfirm)
+}
+2. Laporan Akademik MHS {
+  -gak perlu advance filter
+  -MHS gak bisa edit yang udah di setujui
+  -MHS melhat keterangan berwarna merah jika ada revisi dan kondisi data ditolak
+}
+3. Manajemen Pengguna Admin{
+  -Foto profile harus ada untuk MHS, kalo Admin pake Default aja(foto default nanti diganti yang normal fotonya)
+  -Nama untuk MHS itu pake nama dari tabel penerima_beaisswa di join pake NPM, kalo Admin pake username aja
+  -advance filter :
+    + filter tampilkan Hak Akses
+    + Filter tampilkan status
+    + Range Last Login
+}
+4. Tahun Ajaran ADMIN{
+  -Front end udah oke
+  - buat controler untuk add data tahun Ajaran sesuai tabel tampilkan
+  - buat Tabel Tahun Ajaran (kode(increment aja),ta(bolean PTA(0)/ATA(1), thn_awal,thn_akhir,status_ta))
+  - Kalo yang dimasukin ke tabel lain bentuknya string aja gak usah pake joinan dari tabel Tahun Ajaran, 
+      +misal : add Laporan Akademik itu perlu tahun ajaran, maka masukinnya teks aja. berarti pas get data dari tabel Tahun ajaran untuk form add itu ta+" "+thn_awal+"/"+tahun_akhir
+      + jangan lupa untuk tampilin PTA ATA nya yang statusnya Aktif di form form yang ada tahun ajaran
+}
+
+
+
+DONE :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+o Search berdasarkan field tertentu (gampang)
+
+o Foto user belum bisa(aul) + tiap 
+
+o Template import csv (gampang)+nanya format data asli
+o import data, jk dan status pakai angka, kasih 
+  keterangan di sheet ke-2 (gampang)
+
+o buat tabel db program studi
+
+o import data penerima beasiswa langsung generate akun (aman)
+
+o Kalo edit pengumuman gausah masukin tanggal terbit lg (done) tinggal BE
+
+o Kolom Konfirmasi di bagian user [ditolak, diterima, pending] 
+o Admin bisa konfirmasi inputan user
+o Admin bisa memberikan keterangan konfirmasi
+- user tidak bisa merubah data jika status sudah "diterima"
+
+o Kalau edit file pdf/img lama dihapus USER (aul)
+  o profile pic
+  o prestasi
+  o akademik
+  o keaktifan 
+
+- Kalau edit file pdf/img lama dihapus ADMIN (aul)
+  - blanko_pembayaran
+  - bukti_pembayaran
+  - bukti_prestasi
+  - KRS
+  - Rangkuman Nilai
+
+- ada beberapa yg perlu tanggal mulai & tanggal akhir (done) tinggal BE
+  (laporan prestasi) (aman)
+  o USER
+  - ADMIN
+
+- Tanggal gaboleh mundur
+  o pengumuman
+  o laporan prestasi USER
+  o laporan prestasi ADMIN (tambah)
+  - laporan prestasi ADMIN (edit)
+
+- Tahun Ajaran Benerin
+  0 buat tabel tahun ajaran
+  - join id tahun ajaran
+  - Akademik
+
+o program studi Benerin
+  o buat tabel program studi
+  o masukin data 
+  o join id_prodi
+  o import penerima benerin
+  - import pake id apa nama prodi?
+
+- Lain-lain bisa input manual (aman) tinggal BE
+  - USER (lap prestasi)
+  - ADMIN (lap prestasi)
+
+- manajemen pengguna - tambah data untuk admin aja (onrpogres Gampang)
+  + tambah halaman
+
+o Data inputan penerima bahasiswa diberikan status
+  (pending, diterima, ditolak)(aul)
+
+o Laporan akademik kalo udh disetujui gabisa diedit (aul)
+  o Pesan ditolak pada halaman edit akademin USER
+  o laporan akademik disetujui tidak bisa diedit
+  - kalo diproses bisa diedit engga?
+
+- keaktifan kasih konfirmasi
+  - pesan ditolak
+
+- Tahun Penerimaan pake queue ?
+  - sesuaikan dengan tahun masuk USER
+  - tahun sebelumnya tidak keluar di form
+  - laporan akademik, satu mahasiswa satu data tiap tahun ajaran
+  - keaktifan, satu mahasiswa satu data tiap tahun ajaran
+
+x periode (Tambah MBKM), kalo bisa otomatis pas masukin 
+  NPM
+
+- form ADMIN
+  - Keaktifan, tahun ajaran (tambah dan edit)
+
+- form USER
+  - lap akademik, tahun ajaran (tambah dan edit)
+  - keaktifan, tahun ajaran (tambah dan edit)
+
+
+

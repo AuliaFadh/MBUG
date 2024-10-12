@@ -55,7 +55,8 @@
                                         <th class="th-nm">Nama Kegiatan</th>
                                         <th class="th-nm">Capaian</th>
                                         <th class="th-nm">Tempat</th>
-                                        <th class="th-nm">Tanggal</th>
+                                        <th class="th-nm">Tanggal Mulai</th>
+                                        <th class="th-nm">Tanggal Selesai</th>
                                         <th class="th-nm">Penyelenggara</th>
                                         <th class="th-sm">Bukti Prestasi</th>
                                         <th class="th-nm">Tautan Publikasi</th>
@@ -71,7 +72,7 @@
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
                                             <td class="th-sm"><?= $value['npm']; ?></td>
                                             <td class="th-nm"><?= $value['nama']; ?></td>
-                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-nm"><?= $value['nama_prodi']; ?></td>
                                             <td class="th-lg"><?= $value['jenis']; ?></td>
                                             <td class="th-sm"><?= $value['tingkat']; ?></td>
                                             <?php if ($value['jenis_prestasi'] == "1") {
@@ -85,9 +86,11 @@
                                             <td class="th-nm"><?= $value['capaian']; ?></td>
                                             <td class="th-sm"><?= $value['tempat']; ?></td>
                                             <?php
-                                            $tgl = date_create_from_format('Y-m-d', $value['tanggal']);
+                                            $tgl_mulai = date_create_from_format('Y-m-d', $value['tanggal_mulai']);
+                                            $tgl_selesai = date_create_from_format('Y-m-d', $value['tanggal_selesai']);
                                             ?>
-                                            <td class="th-sm"><?= $tgl->format('d M Y'); ?></td>
+                                            <td class="th-nm"><?= $tgl_mulai->format('d M Y'); ?></td>
+                                            <td class="th-nm"><?= $tgl_selesai->format('d M Y'); ?></td>
                                             <td class="th-sm"><?= $value['penyelenggara']; ?></td>
                                             <td class="th-sm">
                                                 <a title="Lihat File" href="<?= base_url('asset/doc/database/bukti_prestasi/' . $value['bukti_prestasi']); ?>">

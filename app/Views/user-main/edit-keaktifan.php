@@ -23,9 +23,9 @@
 
                     <!-- Form edit data keaktifan per semester penerima beasiswa -->
                     <div class="card-body">
-                        <form action="/user/keaktifan/cedit/<?= $former->id_keaktifan; ?>" method="post" enctype="multipart/form-data>
+                        <form action="/user/keaktifan/cedit/<?= $former->id_keaktifan; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
-                            <div class=" row">
+                            <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                     <label class="label-form">Jenis Beasiswa</label>
@@ -75,7 +75,7 @@
                                     <div class="form-group row fallback w-100 ">
                                         <label class="label-form">KRS</label>
                                         <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/krs/' . $former->krs); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
-                                        <input type="file" name="krs" class="dropify" data-default-file="">
+                                        <input type="file" name="krs" class="dropify" data-default-file="" accept=".pdf">
                                     </div>
                                 </div>
 
@@ -103,7 +103,7 @@
                                     <div class="form-group row fallback w-100">
                                         <label class="label-form"> Blanko Pembayaran</label>
                                         <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/blanko_pembayaran/' . $former->blanko_pembayaran); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
-                                        <input type="file" name="blanko_pembayaran" class="dropify" data-default-file="">
+                                        <input type="file" name="blanko_pembayaran" class="dropify" data-default-file="" accept=".pdf">
                                     </div>
                                 </div>
 
@@ -111,7 +111,7 @@
                                     <div class="form-group row fallback w-100">
                                         <label class="label-form"> Bukti Pembayaran</label>
                                         <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya" href="<?= base_url('asset/doc/database/bukti_pembayaran/' . $former->bukti_pembayaran); ?>"><img id="doc-search" class="btn btn-sm btn-success" src="<?= base_url('asset/img/doc-search.png'); ?>" alt=""></a>
-                                        <input type="file" name="bukti_pembayaran" class="dropify" data-default-file="">
+                                        <input type="file" name="bukti_pembayaran" class="dropify" data-default-file="" accept=".pdf">
                                     </div>
                                 </div>
 

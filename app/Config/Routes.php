@@ -40,9 +40,11 @@ $routes->group('admin', function ($routes) {
     $routes->post('penerima/save', 'Admin::save_penerima');
 
     $routes->get('akademik', 'Admin::akademik');
+    $routes->get('akademik/confirm', 'Admin::confirm_akademik');
     $routes->get('akademik/add', 'Admin::add_akademik');
     $routes->get('akademik/edit/(:any)', 'Admin::edit_akademik/$1');
     $routes->post('akademik/cedit/(:any)', 'Admin::cedit_akademik/$1');
+    $routes->post('akademik/confirm/all', 'Admin::save_confirm_akademik');
     $routes->post('akademik/save', 'Admin::save_akademik');
 
     $routes->get('prestasi', 'Admin::prestasi');
@@ -87,6 +89,14 @@ $routes->group('admin', function ($routes) {
     $routes->get('manajemen/delete/(:any)', 'Admin::del_manajemen/$1');
 
     $routes->get('log', 'Admin::log');
+
+    $routes->get('tahun-ajaran', 'Admin::tahun_ajaran');
+    $routes->post('tahun-ajaran/save', 'Admin::save_tahun_ajaran');
+    $routes->post('tahun-ajaran/cedit/(:any)', 'Admin::cedit_tahun_ajaran/$1');
+    $routes->post('tahun-ajaran/delete/(:any)', 'Admin::del_tahun_ajaran/$1');
+
+    $routes->get('program-studi', 'Admin::program_studi');
+
 });
 
 //____________________________________________________________________________________________________

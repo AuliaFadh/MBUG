@@ -76,7 +76,7 @@
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
                                             <td class="th-nm"><?= $value['nama']; ?></td>
                                             <td class="th-sm"><?= $value['npm']; ?></td>
-                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-nm"><?= $value['nama_prodi']; ?></td>
                                             <td class="th-lg"><?= $value['alamat']; ?></td>
                                             <td class="th-nm"><?= $value['no_hp']; ?></td>
                                             <td class="th-sm"><?= $value['jenis_kelamin'] == "1" ? "Laki-laki" : "Perempuan"; ?></td>
