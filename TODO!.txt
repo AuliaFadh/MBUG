@@ -29,7 +29,11 @@ TODO :
 
 
 DONE :
-
+ADMIN {
+1. daftar Penerima beasiswa;
+  
+}
+MAHASISWA :
 
 
 

@@ -29,20 +29,17 @@
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="npm" class="label-form">NPM</label>
-                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input required type="text" id="npm-input"
-                                                class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3 <?= $validation->hasError('npm') ? ' is-invalid is-test' : '' ?>"
-                                                id="npm" name="npm" autofocus
-                                                value="<?= old('npm', isset($input['npm']) ? $input['npm'] : '') ?>">
-                                            <div id="npm-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-8"
+                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12"> 
+                                            <input required type="text" id="find-npm" class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3 <?= $validation->hasError('npm') ? ' is-invalid is-test' : '' ?>" 
+                                            name="npm" autofocus value="<?= old('npm', isset($input['npm']) ? $input['npm'] : '') ?>">
+                                            <div id="box-find-npm" class="dropdown-custom col-lg-8 col-md-8 col-sm-8"
                                                 style="display: none;">
-
                                                 <?php foreach ($penerima as $key => $value) : ?>
                                                 <a id="npm-data"
                                                     onclick="fillInputNPM('<?= $value['npm'] ?>','<?= $value['nama'] ?>','<?= $value['nama_prodi'] ?>')"><?= $value['npm'] ?></a>
                                                 <?php endforeach; ?>
 
-                                                <span id="npm-noData" style="display: none;">Data tidak ada</span>
+                                                <span id="no-data-find-npm" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('npm') ?>
@@ -53,7 +50,7 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input required type="text" readonly id="npm-name"
+                                            <input required type="text" readonly 
                                                 class="form-control custom-textfield <?= $validation->hasError('nama') ? ' is-invalid is-test' : '' ?>"
                                                 id="nama" name="nama"
                                                 value="<?= old('nama', isset($input['nama']) ? $input['nama'] : '') ?>">
@@ -115,18 +112,18 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Ajaran</label>
                                         <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
-                                            <input required type="text" id="search-input"
+                                            <input required type="text" id="find-ta" 
                                                 class="form-control custom-textfield " name="TA"
                                                 >
-                                            <div id="search-box" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
+                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
 
 
-                                                <a id="search-data" onclick="fillInputSearch('PTA 2021/2022')">PTA 2021/2022</a>
-                                                <a id="search-data" onclick="fillInputSearch('ATA 2022/2023')">ATA 2022/2023</a>
-                                                <a id="search-data" onclick="fillInputSearch('PTA 2023/2024')">PTA 2023/2024</a>                                                    
+                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','PTA 2021/2022')">PTA 2021/2022</a>
+                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','ATA 2022/2023')">ATA 2022/2023</a>
+                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','PTA 2023/2024')">PTA 2023/2024</a>                                                    
 
-                                                <span id="search-noData" style="display: none;">Data tidak ada</span>
+                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
                                                 
@@ -220,8 +217,29 @@
     </div>
 </div>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+
+const findNPM = document.getElementById('find-npm');
+findNPM.addEventListener('input', function() {
+    findResult('find-npm');
+});
+findNPM.addEventListener('blur', function() {
+    hideResult('find-npm');
+});
+
+const findTA = document.getElementById('find-ta');
+findTA.addEventListener('input', function() {
+    findResult('find-ta');
+});
+findTA.addEventListener('blur', function() {
+    hideResult('find-ta');
+});
+
+});
+
+
     
 </script>
 
-<script src="<?= base_url('asset/js/custom-npm-search.js') ?>"></script>
+
 <?= $this->endSection('content') ?>

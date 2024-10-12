@@ -95,20 +95,23 @@
                                     </div>
 
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Tahun Ajaran</label>
-                                        <div style="display: block;" class="col-lg-4 col-md-4 col-sm-5">
-                                            <input type="text" name="TA" 
-                                                id="search-input" class="form-control custom-textfield ">
-                                            <div id="search-box" class="dropdown-custom col-lg-12 col-md-12 col-sm-12"
+                                    <label class="label-form" for="TA">Tahun Ajaran</label>
+                                        <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
+                                            <input required type="text" id="find-ta" 
+                                                class="form-control custom-textfield " name="TA"
+                                                >
+                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
 
-                                                <a id="search-data" onclick="fillInputSearch('PTA 2021/2022')">PTA 2021/2022</a>
-                                                <a id="search-data" onclick="fillInputSearch('ATA 2022/2023')">ATA 2022/2023</a>
-                                                <a id="search-data" onclick="fillInputSearch('PTA 2023/2024')">PTA 2023/2024</a>   
-                                                <span id="search-noData" style="display: none;">Data tidak ada</span>
+
+                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','PTA 2021/2022')">PTA 2021/2022</a>
+                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','ATA 2022/2023')">ATA 2022/2023</a>
+                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','PTA 2023/2024')">PTA 2023/2024</a>                                                    
+
+                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -202,4 +205,19 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+
+const findTA = document.getElementById('find-ta');
+findTA.addEventListener('input', function() {
+    findResult('find-ta');
+});
+findTA.addEventListener('blur', function() {
+    hideResult('find-ta');
+});
+
+});
+</script>
+<script src="<?= base_url('asset/js/custom-find-and-fill.js') ?>"></script>
 <?= $this->endSection('content') ?>

@@ -49,7 +49,7 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Program Studi</label>
+                                        <label for="prodi" class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <input value="<?= $mhs->nama_prodi; ?>" type="text" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi">
                                             <div class="invalid-feedback">
@@ -124,4 +124,16 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+const findprodi = document.getElementById('find-prodi');
+findprodi.addEventListener('input', function() {
+    findResult('find-prodi');
+});
+findprodi.addEventListener('blur', function() {
+    hideResult('find-prodi');
+});
+    });
+</script>
 <?= $this->endSection('content') ?>

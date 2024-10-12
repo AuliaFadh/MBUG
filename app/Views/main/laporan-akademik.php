@@ -168,14 +168,16 @@
                                     <div class="btn-group col-md-12" role="group"
                                         aria-label="Basic outlined example  ">
                                         <button type="button"
-                                            class="custom-btn-status btn btn-outline-primary col-md-4"
-                                            onclick="filterTableAkademik('Disetujui')">Disetuji</button>
+                                            class="custom-btn-status btn btn-outline-primary col-md-4"                                            
+                                            onclick="filterTableStatus('status-akademik','Disetujui')">Disetujui</button>  
                                         <button type="button"
                                             class="custom-btn-status btn btn-outline-primary col-md-4"
-                                            onclick="filterTableAkademik('Diproses')">Diproses</button>
+                                            
+                                            onclick="filterTableStatus('status-akademik','Diproses')">Diproses</button>  
                                         <button type="button"
                                             class="custom-btn-status btn btn-outline-primary col-md-4"
-                                            onclick="filterTableAkademik('Ditolak')">Ditolak</button>
+                                            
+                                            onclick="filterTableStatus('status-akademik','Ditolak')">Ditolak</button>  
                                     </div>
 
                                 </div>

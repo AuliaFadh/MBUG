@@ -1,11 +1,19 @@
 
-function filterTableAkademik(status) {
+function test1(label,hasil){
+    console.log(label+' = '+ hasil);
+}
+// document.addEventListener('DOMContentLoaded', function() {
+//     var rows = document.querySelectorAll('table tbody tr');
+//     document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + rows.length;
+// });
+// Status Filter 
+function filterTableStatus(Class,statusTextValue) {
     var rows = document.querySelectorAll('table tbody tr');
     var displayedRowCount = 0;
-    
+    var classSpan=`span.${Class}`;
     rows.forEach(function(row) {
-        var statusCell = row.querySelector('span.status_akademik');
-        if (statusCell && statusCell.textContent.trim() === status) {
+        var statusCell = row.querySelector(classSpan);
+        if (statusCell && statusCell.textContent.trim() === statusTextValue) {
             row.style.display = 'table-row'; // Menampilkan baris
             displayedRowCount++;
         } else {
@@ -16,11 +24,55 @@ function filterTableAkademik(status) {
     // Update jumlah baris yang ditampilkan
     document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
 }
-document.addEventListener('DOMContentLoaded', function() {
-    var rows = document.querySelectorAll('table tbody tr');
-    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + rows.length;
-});
 
+function FillterScoreSingle(low1Id,highId1,coloum){    
+    var low1 = document.getElementById(low1Id).value;
+    var high1 = document.getElementById(highId1).value;
+    var varcoloum = parseInt(coloum, 10);
+        var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        var CellValue= parseInt(row.cells[varcoloum].innerText);
+       
+        
+
+        if (CellValue >=low1  &&
+            CellValue <= high1) {
+            row.style.display = ''; // Tampilkan baris jika memenuhi kriteria
+        } else {
+            row.style.display = 'none'; // Sembunyikan baris jika tidak memenuhi kriteria
+        }
+    }
+};
+function FillterScoreDouble(low1Id,lowColoum,highId1,highColoum,type){    
+    var low1 = document.getElementById(low1Id).value;
+    var high1 = document.getElementById(highId1).value;
+    if(type=='date'){
+        test1('tgl1', low1);
+        test1('tgl2', high1);
+    }
+    var low1 = document.getElementById(low1Id).value;
+    var high1 = document.getElementById(highId1).value;
+    var varlowColoum = parseInt(lowColoum, 10);
+    var varhighColoum = parseInt(highColoum, 10);
+        var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        var lowCellValue= parseInt(row.cells[varlowColoum].innerText);
+        var highCellValue= parseInt(row.cells[varhighColoum].innerText);
+       
+        
+
+        if (lowCellValue >=low1  &&
+            highCellValue <= high1) {
+            row.style.display = ''; // Tampilkan baris jika memenuhi kriteria
+        } else {
+            row.style.display = 'none'; // Sembunyikan baris jika tidak memenuhi kriteria
+        }
+    }
+};
 
 
 
