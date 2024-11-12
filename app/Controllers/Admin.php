@@ -610,7 +610,7 @@ class Admin extends BaseController
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
             return redirect()->to(base_url('/admin/login'));
         }
-
+        $TA = $this->tahunModel->AllData();
         $jb = $this->jbModel->AllData();
         $pb = $this->pbModel->AllData();
         $data = [
@@ -619,6 +619,7 @@ class Admin extends BaseController
             'former' => $this->laModel->DetailData($id_akademik),
             'penerima' => $pb,
             'jenis_beasiswa' => $jb,
+            'TA'=>$TA,
         ];
 
         return view('main/edit-akademik', $data);
