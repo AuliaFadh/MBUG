@@ -558,7 +558,7 @@ class Admin extends BaseController
         
         $DataDiproses = $this->laModel->GetProcessData();
         $data = [
-            'title' => 'Akademik | Admin',
+            'title' => 'Konfirmasi Akademik | Admin',
             'la' => $DataDiproses,
            
         ];
@@ -1183,13 +1183,49 @@ class Admin extends BaseController
         }
 
         $ka = $this->kaModel->AllData();
+        $DataDiproses = $this->kaModel->GetProcessData();
         $data = [
             'title' => 'Keaktifan per Semester | Admin',
             'ka' => $ka,
+            'DataDiproses'=>$DataDiproses,
         ];
 
         return view('main/keaktifan', $data);
     }
+    public function confirm_keaktifan()
+    {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        
+        $DataDiproses = $this->kaModel->GetProcessData();
+        $data = [
+            'title' => 'keaktifan | Admin',
+            'ka' => $DataDiproses,           
+        ];
+
+        return view('main/confirm-keaktifan', $data);
+    }
+
+    public function save_confirm_keaktifan() {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+    
+        $konfirmasi = $this->request->getPost('status_data');
+        $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
+    
+        foreach ($konfirmasi as $id => $status) {
+            $ket_konf = isset($keterangan[$id]) ? $keterangan[$id] : ''; // Ambil keterangan yang sesuai
+            $this->kaModel->update_konfirmasi_keaktifan($id, $status, $ket_konf);
+        }
+    
+        return redirect()->to(base_url('/admin/keaktifan'));
+    }
+   
 
     public function add_keaktifan()
     {
@@ -1286,13 +1322,16 @@ class Admin extends BaseController
 
         $jb = $this->jbModel->AllData();
         $pb = $this->pbModel->AllData();
+        $TA = $this->tahunModel->AllData();
         $data = [
             'title' => 'Form Edit Keaktifan | Admin',
             'validation' => \Config\Services::validation(),
             'former' => $this->kaModel->DetailData($id_keaktifan),
             'penerima' => $pb,
             'jenis_beasiswa' => $jb,
+            'TA'=>$TA,
         ];
+        
 
         return view('main/edit-keaktifan', $data);
     }

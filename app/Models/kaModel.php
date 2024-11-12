@@ -12,6 +12,22 @@ class kaModel extends Model
     protected $returnType       = 'array';
     protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'semester', 'tahun_ajaran', 'krs', 'jumlah_ditagihkan', 'jumlah_potongan', 'blanko_pembayaran', 'bukti_pembayaran','konf_ket_keaktifan','konfirmasi_keaktifan'];
 
+    public function GetProcessData(){
+        return $this->db->table('laporan_keaktifan')
+            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_keaktifan.id_beasiswa', 'left')
+            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_keaktifan.id_penerima', 'left')
+            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
+            ->where('konfirmasi_keaktifan',2)->Get()->getResultArray();
+    }
+    public function update_konfirmasi_keaktifan($id, $status,$ket_konf) {
+        // Memperbarui status konfirmasi keaktifan berdasarkan ID yang diberikan
+        $data = [
+            'konfirmasi_keaktifan' => $status,
+            'konf_ket_keaktifan' => $ket_konf
+        ];
+        $this->db->table('laporan_keaktifan')->where('id_keaktifan', $id)->update($data);
+        
+    }
     public function AllData()
     {
         return $this->db->table('laporan_keaktifan')

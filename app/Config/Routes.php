@@ -62,8 +62,16 @@ $routes->group('admin', function ($routes) {
     $routes->get('keaktifan', 'Admin::keaktifan');
     $routes->get('keaktifan/add', 'Admin::add_keaktifan');
     $routes->get('keaktifan/edit/(:any)', 'Admin::edit_keaktifan/$1');
+    $routes->get('keaktifan/confirm', 'Admin::confirm_keaktifan');
     $routes->post('keaktifan/cedit/(:any)', 'Admin::cedit_keaktifan/$1');
+    $routes->post('keaktifan/confirm/all', 'Admin::save_confirm_keaktifan');
     $routes->post('keaktifan/save', 'Admin::save_keaktifan');
+    
+    
+    
+    
+    
+    
 
     $routes->get('gform', 'Admin::gform');
     $routes->get('gform/add', 'Admin::add_gform');
