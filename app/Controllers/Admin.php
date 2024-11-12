@@ -592,11 +592,13 @@ class Admin extends BaseController
 
         $jb = $this->jbModel->AllData();
         $pb = $this->pbModel->AllData();
+        $TA = $this->tahunModel->AllData();
         $data = [
             'title' => 'Form Input Akademik | Admin',
             'validation' => \Config\Services::validation(),
             'penerima' => $pb,
             'jenis_beasiswa' => $jb,
+            'TA'=>$TA,
         ];
 
         return view('main/tambah-akademik', $data);

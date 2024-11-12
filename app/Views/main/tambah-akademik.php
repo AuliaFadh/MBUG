@@ -113,21 +113,21 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Ajaran</label>
                                         <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
+
                                             <input required type="text" id="find-ta" 
                                                 class="form-control custom-textfield " name="TA"
                                                 >
                                             <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
-
-
-                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','PTA 2021/2022')">PTA 2021/2022</a>
-                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','ATA 2022/2023')">ATA 2022/2023</a>
-                                                <a id="data-find-ta" onclick="fillFindInput('find-ta','PTA 2023/2024')">PTA 2023/2024</a>                                                    
+                                                <?php foreach ($TA as $key => $TAval) : ?>
+                                                    <a id="ta-data"
+                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
+                                                <?php endforeach; ?>                                                   
 
                                                 <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-                                                
+                                            <?= $validation->getError('nama_tahun') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +217,14 @@
         </div>
     </div>
 </div>
+<script src="<?= base_url('asset/js/custom-search-ta.js'); ?>"></script>
 <script>
+    
+
+
+
+
+
     
 const npmInput = document.getElementById('find-npm');
 const npmName = document.getElementById('nama');
