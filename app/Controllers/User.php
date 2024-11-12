@@ -306,7 +306,7 @@ class User extends BaseController
             'former' => $this->laModel->DetailData($id_akademik),
             'jenis_beasiswa' => $jb,
         ];
-
+        
         return view('user-main/edit-akademik', $data);
     }
 

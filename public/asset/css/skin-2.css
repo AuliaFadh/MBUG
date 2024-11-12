@@ -1024,6 +1024,9 @@ span#counter {
 .test{
   border: 2px solid red;
 }
+.test2{
+  border: 2px solid green;
+}
 /* 
 #example3 thead tr th ,#example3 tbody tr th{
   min-width: 200px;

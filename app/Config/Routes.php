@@ -96,6 +96,9 @@ $routes->group('admin', function ($routes) {
     $routes->post('tahun-ajaran/delete/(:any)', 'Admin::del_tahun_ajaran/$1');
 
     $routes->get('program-studi', 'Admin::program_studi');
+    $routes->post('program-studi/save', 'Admin::save_program_studi');
+    $routes->post('program-studi/cedit/(:any)', 'Admin::cedit_program_studi/$1');
+    $routes->post('program-studi/delete/(:any)', 'Admin::del_program_studi/$1');
 
 });
 

@@ -566,16 +566,20 @@ class Admin extends BaseController
         return view('main/confirm-akademik', $data);
     }
 
-    public function save_confirm_akademik(){
+    public function save_confirm_akademik() {
         if (session()->get('hak_akses') != "1") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
             return redirect()->to(base_url('/admin/login'));
         }
-        $konfirmasi = $this->request->GetPost('status_data');        
-        foreach ($konfirmasi as $id => $status) {   
-            
-            $this->laModel->update_konfirmasi_akademik($id, $status);
+    
+        $konfirmasi = $this->request->getPost('status_data');
+        $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
+    
+        foreach ($konfirmasi as $id => $status) {
+            $ket_konf = isset($keterangan[$id]) ? $keterangan[$id] : ''; // Ambil keterangan yang sesuai
+            $this->laModel->update_konfirmasi_akademik($id, $status, $ket_konf);
         }
+    
         return redirect()->to(base_url('/admin/akademik'));
     }
 
@@ -675,8 +679,7 @@ class Admin extends BaseController
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
             'TA' => 'required',
-            'bef' => 'required',
-            'af' => 'required',
+           
             'ipk' => 'required',
             'ipk_lokal' => 'required',
             'ipk_uu' => 'required',
@@ -689,7 +692,7 @@ class Admin extends BaseController
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
                 'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'tahun_ajaran' => $this->request->getPost('TA'),
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
@@ -1652,19 +1655,131 @@ class Admin extends BaseController
     }
 
     public function tahun_ajaran()
-    {
-        if (session()->get('hak_akses') != "1") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
-            return redirect()->to(base_url('/admin/login'));
-        }
+{
+    if (session()->get('hak_akses') != "1") {
+        session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+        return redirect()->to(base_url('/admin/login'));
+    }
 
-        
+    $TA = $this->tahunModel->AllData();
+    
+    $data = [
+        'title' => 'Tahun Ajaran | Admin',
+        'tahunAjaran' => $TA, // Kirim data ke view
+    ];
+
+    return view('main/tahun-ajaran', $data);
+}
+public function save_tahun_ajaran()
+{
+    if (session()->get('hak_akses') != "1") {
+        session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+        return redirect()->to(base_url('/admin/login'));
+    }
+
+    // Create a unique name and queue before validation
+    $semester_tahun = $this->request->getPost('TA');
+    $mulai_tahun_ajaran = $this->request->getPost('TAawal_get');
+    $selesai_tahun_ajaran = $this->request->getPost('TAakhir_get');
+    
+    // Determine nama_tahun and queue_tahun
+    $nama_tahun = ($semester_tahun == 0 ? 'PTA' : 'ATA') . ' ' . $mulai_tahun_ajaran . '/' . $selesai_tahun_ajaran;
+    $queue_tahun = intval($mulai_tahun_ajaran . $selesai_tahun_ajaran . '0' . $semester_tahun);
+
+    // Set validation rules with dynamic data
+    $this->validate([
+        'TA' => 'required',
+        'TAawal_get' => 'required|integer',
+        'TAakhir_get' => 'required|integer|greater_than[TAawal_get]',
+        'nama_tahun' => 'required|is_unique[tahun_ajaran.nama_tahun]',
+        'queue_tahun' => 'required|is_unique[tahun_ajaran.queue_tahun]',
+    ]);
+
+    // Check for validation errors
+    if ($this->validator->getErrors()) {
+        $session = session();
+        $session->setFlashdata('input', $this->request->getPost());
+        $session->setFlashdata('errors', $this->validator->getErrors());
+
         $data = [
-            'title' => 'Tahun Ajaran | Admin',
-          
+            'title' => 'Tambah Beasiswa | Admin',
+            'validation' => \Config\Services::validation(),
+            'input' => $session->getFlashdata('input'),
         ];
 
-        return view('main/tahun-ajaran', $data);
+        return view('admin/tahun-ajaran', $data);
     }
+
+    // Prepare data for insertion
+    $data = [
+        'semester_tahun' => $semester_tahun,
+        'mulai_tahun_ajaran' => $mulai_tahun_ajaran,
+        'selesai_tahun_ajaran' => $selesai_tahun_ajaran,
+        'nama_tahun' => $nama_tahun,
+        'queue_tahun' => $queue_tahun,
+    ];
+
+    // Insert data into the database
+    $this->tahunModel->InsertData($data);
+    session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+    return redirect()->to(base_url('/admin/tahun-ajaran'));
+}
+public function program_studi()
+{
+    if (session()->get('hak_akses') != "1") {
+        session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+        return redirect()->to(base_url('/admin/login'));
+    }
+
+    $PS = $this->prodiModel->AllData();
+    
+    $data = [
+        'title' => 'Program Studi | Admin',
+        'programStudi' => $PS, // Kirim data ke view
+    ];
+
+    return view('main/program-studi', $data);
+}
+public function save_program_studi()
+{
+    if (session()->get('hak_akses') != "1") {
+        session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+        return redirect()->to(base_url('/admin/login'));
+    }
+
+    // Create a unique name and queue before validation
+  
+
+    // Set validation rules with dynamic data
+    $this->validate([
+        
+    ]);
+
+    // Check for validation errors
+    if ($this->validator->getErrors()) {
+        $session = session();
+        $session->setFlashdata('input', $this->request->getPost());
+        $session->setFlashdata('errors', $this->validator->getErrors());
+
+        $data = [
+            'title' => 'Tambah Beasiswa | Admin',
+            'validation' => \Config\Services::validation(),
+            
+        ];
+
+        return view('admin/program-studi', $data);
+    }
+
+    // Prepare data for insertion
+    
+
+    // Insert data into the database
+    
+    session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+    return redirect()->to(base_url('/admin/program-studi'));
+}
+
 
 }

@@ -1,13 +1,13 @@
 TODO :
 1. Laporan Akademik Admin {
   -advance filter tahun akademik belum selesai
-  -bikin kolom di database untuk keterangan
-  -post nilai keterangan ke database (halaman add+ Edit + konfirm)
+  +bikin kolom di database untuk keterangan 
+  +post nilai keterangan ke database (halaman add+ Edit + konfirm)
 }
 2. Laporan Akademik MHS {
-  -gak perlu advance filter
-  -MHS gak bisa edit yang udah di setujui
-  -MHS melhat keterangan berwarna merah jika ada revisi dan kondisi data ditolak
+  +gak perlu advance filter 
+  +MHS gak bisa edit yang udah di setujui
+  +MHS melhat keterangan berwarna merah jika ada revisi dan kondisi data ditolak
 }
 3. Manajemen Pengguna Admin{
   -Foto profile harus ada untuk MHS, kalo Admin pake Default aja(foto default nanti diganti yang normal fotonya)
@@ -24,6 +24,9 @@ TODO :
   - Kalo yang dimasukin ke tabel lain bentuknya string aja gak usah pake joinan dari tabel Tahun Ajaran, 
       +misal : add Laporan Akademik itu perlu tahun ajaran, maka masukinnya teks aja. berarti pas get data dari tabel Tahun ajaran untuk form add itu ta+" "+thn_awal+"/"+tahun_akhir
       + jangan lupa untuk tampilin PTA ATA nya yang statusnya Aktif di form form yang ada tahun ajaran
+  ? Itu semester tahun "PTA"/"ATA" atau boolean atau ganjil/genap
+  ? status tahun perlu?
+  
 }
 
 
