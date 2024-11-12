@@ -166,7 +166,7 @@
                                                 </a>
                                             </td>
                                             <td class="th-nm">
-                                                <textarea name="keterangan_" rows="2"></textarea>
+                                                <textarea name="konfirmasi_keterangan[<?=$value['id_akademik']?>]" rows="2"><?=$value['konf_ket_akademik'] ?></textarea>
 
                                             </td>
                                             <td class="th-sm">

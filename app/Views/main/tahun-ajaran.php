@@ -63,7 +63,7 @@
                     <div class="card-body ">
 
                         <div class="container border p-2">
-                            <form>
+                            <form method="post" action="/admin/tahun-ajaran/save">
                                 <label for="">Form Tambah Tahun Ajaran</label>
                                 <div class="row pr-4 pl-4">
                                     <select required name="TA" class="p-0 m-0  col-lg-2 col-md-2 col-sm-8"
@@ -79,12 +79,6 @@
                                     <input required placeholder="Thn Akhir"type="number"
                                         class="form-control custom-textfield col-lg-2 col-md-3 col-sm-8"
                                         id="TAakhir_get" name="TAakhir_get" value="">
-
-                                    <select name="TAstatus" class="p-0 m-0  col-lg-2 col-md-3 col-sm-8" id="TA_get">
-                                        <option></option>
-                                        <option value="1">Aktif</option>
-                                        <option value="0">Tidak Aktif</option>
-                                    </select>
                                     <button type="submit"
                                         class="btn btn-primary-add-data m-0  ml-2 mr-2  col-lg-2 col-md-2 col-sm-8">Submit</button>
                                 </div>
@@ -127,7 +121,7 @@
                                     <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
                                         onclick="filterTableTahunAjaran('Aktif')">Aktif</button>
                                     <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
-                                        onclick="filterTableTahunAjaran('Tidak Aktif')">Tidak Aktif</button>                                    
+                                        onclick="filterTableTahunAjaran('Tidak Aktif')">Tidak Aktif</button>
                                 </div>
 
                             </div>
@@ -139,54 +133,52 @@
                         </div>
 
                         <div class="table-responsive">
-                            <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
+                            <p id="rowCount">Jumlah baris yang ditampilkan: <?= count($tahunAjaran) ?></p>
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
                                         <th class="th-sm">No</th>
                                         <th class="th-sm">Tahun Ajaran</th>
+                                        <th class="th-sm">Semester Tahun</th>
                                         <th class="th-sm">Tahun Mulai</th>
                                         <th class="th-sm">Tahun Berakhir</th>
-                                        <th class="th-sm">Status</th>
                                         <th class="th-sm">Aksi</th>
-
-
-
                                     </tr>
                                 </thead>
-                                <!-- Loop data laporan akademik -->
                                 <tbody>
-                                    <?php $no = 0; ?>
-
-                                    <?php for ($id = 1; $id <= 5; $id++): ?>
+                                    <?php $no = 0;?>
+                                    <?php foreach ($tahunAjaran as $tahun) : ?>
                                     <?php $no++; ?>
                                     <tr>
-                                        <td class="th-sm"><strong><?= $no ?></strong></td>
-
-                                        <td id="TA_<?= $no ?>" data-value=1 class="th-sm">ATA</td>
-                                        <!-- <td id="TA_<?= $no ?>" data-value=0 class="th-sm">PTA</td> -->
-
-                                        <td id="TAawal_<?= $no ?>" data-value='2022' class="th-sm">2022</td>
-                                        <td id="TAakhir_<?= $no ?>" data-value='2023' class="th-sm">2023</td>
-                                        <td class="th-sm">
-                                            <span id="TA_status_<?= $no ?>" data-value=1
-                                                class="status_TA badge badge-rounded badge-success">Aktif</span>
-                                            <!-- <span id="TA_status<?= $no ?>" class="status_TA badge badge-rounded badge-danger">Tidak Aktif</span> -->
+                                        <td class="th-sm"><strong
+                                                id="id_tahun_<?= $tahun['id_tahun'] ?>"><?= $tahun['id_tahun'] ?></strong>
                                         </td>
+                                        <td class="th-sm"><?= $tahun['nama_tahun'] ?></td>
+                                        
+                                        <?php if ($tahun['semester_tahun'] == "0") {
+                                                $status = 'PTA';
+                                            } else if ($tahun['semester_tahun'] == "1") {
+                                                $status = 'ATA';
+                                            } else {
+                                                $status = '-';
+                                            };
+                                            ?>
+                                        <td class="th-sm"><?= $status; ?></td>
+
+                                        <td class="th-sm"><?= $tahun['mulai_tahun_ajaran'] ?></td>
+                                        <td class="th-sm"><?= $tahun['selesai_tahun_ajaran'] ?></td>
+                                        
                                         <td class="th-sm">
                                             <button type="button" class="btn btn-sm btn-primary"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                onclick="openEditModal('<?= $id ?>','<?= $no ?>')">
+                                                onclick="openEditModal('<?= $tahun['id_tahun'] ?>', '<?= $no ?>')">
                                                 <i class="la la-pencil"></i>
                                             </button>
                                         </td>
                                     </tr>
-                                    <?php endfor; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
-
                             </table>
-
-
                         </div>
                     </div>
                 </div>
@@ -198,10 +190,10 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 class="modal-title " id="exampleModalLabel">Edit Tahun Ajaran</h3>                                    
+                                    <h3 class="modal-title " id="exampleModalLabel">Edit Tahun Ajaran</h3>
                                     <h6>PTA 2023/2024</h6>
                                 </div>
-                                                                        
+
                                 <div class="modal-body">
 
                                     <div class="mb-3">
@@ -223,14 +215,14 @@
                                             id="TA_akhir_input">
                                     </div>
 
-                                    <div class="mb-3">
+                                    <!-- <div class="mb-3">
                                         <div class="row">
                                             <input type="radio" id="TAactive" class="margin-custom"
                                                 name="TA_status_cedit" value="1"> Aktif<br>
                                             <input type="radio" id="TAunactive" class="margin-custom"
                                                 name="TA_status_cedit" value="0"> Tidak Aktif<br>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
