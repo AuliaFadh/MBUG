@@ -80,8 +80,10 @@
 
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Kelamin</label>
-                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="1"> Laki-Laki<br>
-                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="0"> Perempuan<br>
+                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="1"<?php echo (isset($mhs->jenis_kelamin) && $mhs->jenis_kelamin == '1') ? 'checked' : ''; ?>> Laki-Laki<br>
+                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="0"<?php echo (isset($mhs->jenis_kelamin) && $mhs->jenis_kelamin == '0') ? 'checked' : ''; ?>> Perempuan<br>
+
+                                        
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -96,9 +98,9 @@
 
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="status_penerima" value="2"> Lulus<br>
-                                        <input type="radio" class="margin-custom" name="status_penerima" value="1"> Aktif<br>
-                                        <input type="radio" class="margin-custom" name="status_penerima" value="0"> Tidak Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="2"<?php echo (isset($mhs->status_penerima) && $mhs->status_penerima == '2') ? 'checked' : ''; ?>> Lulus<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="1"<?php echo (isset($mhs->status_penerima) && $mhs->status_penerima == '1') ? 'checked' : ''; ?>> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="0"<?php echo (isset($mhs->status_penerima) && $mhs->status_penerima == '0') ? 'checked' : ''; ?>> Tidak Aktif<br>
                                     </div>
 
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
