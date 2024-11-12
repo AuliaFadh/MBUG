@@ -783,15 +783,21 @@ class Admin extends BaseController
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
             $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
+
+            $capaianValue = $this->request->getPost('capaian');
+
+        // Jika "Lainnya" dipilih, ambil nilai dari input "other_form"
+        if ($capaianValue === 'Lainnya') {
+            $capaianValue = $this->request->getPost('other_form'); // Ambil nilai custom dari input teks
+        }
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->lpModel->getIDp($this->request->getPost('npm')),
                 'tingkat' => $this->request->getPost('tingkat'),
                 'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
                 'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
-                'capaian' => $this->request->getPost('capaian'), 
-                // Task-BE di sini atur2 ul
-                // Disini terdapat logika jika value capaian = Lainnya, maka yang diambil adalah value dari elemen id="capaian-other"
+                'capaian' => $capaianValue, 
+               
                 'tempat' => $this->request->getPost('tempat'),
                 'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
