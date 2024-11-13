@@ -11,6 +11,11 @@ class prodiModel extends Model
 
     protected $returnType       = 'array';
     protected $allowedFields    = ['nama_prodi', 'fakultas_prodi','akreditasi_prodi','jenjang_prodi','status_prodi'];
+    
+    public function GetActiveProdi(){
+        return $this->db->table('program_studi')            
+            ->where('status_prodi',1)->Get()->getResultArray();
+    }
 
     public function AllData()
     {

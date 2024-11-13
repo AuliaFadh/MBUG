@@ -18,7 +18,7 @@ TODO :
     + Range Last Login
 }
 4. Tahun Ajaran ADMIN{
-  -Front end udah oke
+  
   - buat controler untuk add data tahun Ajaran sesuai tabel tampilkan
   - buat Tabel Tahun Ajaran (kode(increment aja),ta(bolean PTA(0)/ATA(1), thn_awal,thn_akhir,status_ta))
   - Kalo yang dimasukin ke tabel lain bentuknya string aja gak usah pake joinan dari tabel Tahun Ajaran, 
@@ -26,6 +26,7 @@ TODO :
       + jangan lupa untuk tampilin PTA ATA nya yang statusnya Aktif di form form yang ada tahun ajaran
   ? Itu semester tahun "PTA"/"ATA" atau boolean atau ganjil/genap
   ? status tahun perlu?
+  ? add id_tahun out of range value anjay
   
 }
 

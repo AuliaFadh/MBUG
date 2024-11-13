@@ -231,11 +231,13 @@ class User extends BaseController
             return redirect()->to(base_url('/user/login'));
         }
 
-        $jb = $this->jbModel->AllData();
+        $jb = $this->jbModel->AllData();                
+        $TA = $this->tahunModel->AllData();
         $data = [
             'title' => 'Form Input Akademik | User',
             'validation' => \Config\Services::validation(),
-            'jenis_beasiswa' => $jb
+            'jenis_beasiswa' => $jb,
+            'TA'=>$TA,
         ];
 
         return view('user-main/tambah-akademik', $data);
@@ -252,8 +254,7 @@ class User extends BaseController
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
             'TA' => 'required',
-            'bef' => 'required',
-            'af' => 'required',
+            
             'ipk' => 'required',
             'ipk_lokal' => 'required',
             'ipk_uu' => 'required',
@@ -266,7 +267,7 @@ class User extends BaseController
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp(session()->get('username')),
                 'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'tahun_ajaran' => $this->request->getPost('TA'),
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
@@ -281,11 +282,14 @@ class User extends BaseController
         } else {
             $session = session();
             $session->setFlashdata('input', $this->request->getPost());
+            $jb = $this->jbModel->AllData();  
+            $TA = $this->tahunModel->AllData();   
 
             $data = [
                 'title' => 'Form Input Akademik | User',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
+                'jenis_beasiswa'=>$jb,
             ];
 
             return view('user-main/tambah-akademik', $data);
@@ -298,6 +302,8 @@ class User extends BaseController
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
+                   
+        $TA = $this->tahunModel->AllData();
 
         $jb = $this->jbModel->AllData();
         $data = [
@@ -305,6 +311,7 @@ class User extends BaseController
             'validation' => \Config\Services::validation(),
             'former' => $this->laModel->DetailData($id_akademik),
             'jenis_beasiswa' => $jb,
+            'TA'=>$TA
         ];
         
         return view('user-main/edit-akademik', $data);
@@ -321,8 +328,7 @@ class User extends BaseController
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
             'TA' => 'required',
-            'bef' => 'required',
-            'af' => 'required',
+            
             'ipk' => 'required',
             'ipk_lokal' => 'required',
             'ipk_uu' => 'required',
@@ -346,7 +352,7 @@ class User extends BaseController
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp(session()->get('username')),
                 'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'tahun_ajaran' => $this->request->getPost('TA'),
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),

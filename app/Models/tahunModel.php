@@ -12,6 +12,7 @@ class tahunModel extends Model
     protected $returnType       = 'array';
     protected $allowedFields    = ['nama_tahun', 'semester_tahun','mulai_tahun_ajaran','selesai_tahun_ajaran','queue_tahun'];
 
+
     public function AllData()
     {
         return $this->db->table('tahun_ajaran')->Get()->getResultArray();
