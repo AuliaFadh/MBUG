@@ -1,28 +1,30 @@
-TODO :
-1. Laporan Akademik Admin {
-  -advance filter tahun akademik belum selesai
-  +bikin kolom di database untuk keterangan 
-  +post nilai keterangan ke database (halaman add+ Edit + konfirm)
+CHECKPOINT TODO 13/11/2024:
+1. Program Studi {
+  - Belum bisa tambah prodi
+  - Belum bisa edit prodi
+  - Belum terhubung ke halman lain
 }
-2. Laporan Akademik MHS {
-  +gak perlu advance filter 
-  +MHS gak bisa edit yang udah di setujui
-  +MHS melhat keterangan berwarna merah jika ada revisi dan kondisi data ditolak
+2. Tahun Ajaran {
+  - Belum bisa tambah tahun ajaran
+  - Belum bisa edit tahun ajaran
+  + Udah terhubung ke form-form yang lain
 }
-3. Manajemen Pengguna Admin{
-  -Foto profile harus ada untuk MHS, kalo Admin pake Default aja(foto default nanti diganti yang normal fotonya)
-  -Nama untuk MHS itu pake nama dari tabel penerima_beaisswa di join pake NPM, kalo Admin pake username aja
-  -advance filter :
-    + filter tampilkan Hak Akses
-    + Filter tampilkan status
-    + Range Last Login
+3. Data Penerima Beasiswa{
+  - tadi dicoba tambah mahasiswa lewat form kaga bisa karena prodinya belum terhubung
+  - fitur Import belum dicoba lagi
 }
-4. Tahun Ajaran ADMIN{
-  
-  ? add id_tahun out of range value anjay
-  
+4. Profile MHS{
+  - tadi ganti foto masih eror karena prodi
 }
 
+5. Advance Filter {
+  -itumah kerjaan FE
+}
+6. Security Id {
+  -Enkripsi Id belum di terapkan
+  -masih lemah keamanannya (kayanya)
+}
+7. Hosting :)
 
 
 
