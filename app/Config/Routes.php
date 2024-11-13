@@ -52,12 +52,18 @@ $routes->group('admin', function ($routes) {
     $routes->get('prestasi/edit/(:any)', 'Admin::edit_prestasi/$1');
     $routes->post('prestasi/cedit/(:any)', 'Admin::cedit_prestasi/$1');
     $routes->post('prestasi/save', 'Admin::save_prestasi');
+    $routes->get('prestasi/confirm', 'Admin::confirm_prestasi');
+    $routes->post('prestasi/confirm/all', 'Admin::save_confirm_prestasi');
+    
+    
 
     $routes->get('mbkm', 'Admin::mbkm');
     $routes->get('mbkm/add', 'Admin::add_mbkm');
     $routes->get('mbkm/edit/(:any)', 'Admin::edit_mbkm/$1');
     $routes->post('mbkm/cedit/(:any)', 'Admin::cedit_mbkm/$1');
     $routes->post('mbkm/save', 'Admin::save_mbkm');
+    $routes->get('mbkm/confirm', 'Admin::confirm_mbkm');
+    $routes->post('mbkm/confirm/all', 'Admin::save_confirm_mbkm');
 
     $routes->get('keaktifan', 'Admin::keaktifan');
     $routes->get('keaktifan/add', 'Admin::add_keaktifan');

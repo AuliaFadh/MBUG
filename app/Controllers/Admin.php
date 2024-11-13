@@ -768,9 +768,12 @@ class Admin extends BaseController
         }
 
         $lp = $this->lpModel->AllData();
+        
+        $DataDiproses = $this->lpModel->GetProcessData();
         $data = [
             'title' => 'Laporan Prestasi | Admin',
             'lp' => $lp,
+            'DataDiproses' => $DataDiproses,
         ];
 
         return view('main/laporan-prestasi', $data);
@@ -956,6 +959,58 @@ class Admin extends BaseController
             session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
             return redirect()->to(base_url('/admin/prestasi'));
         }
+    }
+
+    public function confirm_prestasi()
+    {
+        if (session()->get('hak_akses') != '1') {
+            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        $DataDiproses = $this->lpModel->GetProcessData();
+        $data = [
+            'title' => 'Konfirmasi prestasi | Admin',
+            'lp' => $DataDiproses,
+        ];
+
+        return view('main/confirm-prestasi', $data);
+    }
+    public function save_confirm_prestasi()
+    {
+        if (session()->get('hak_akses') != '1') {
+            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        // Ambil data konfirmasi dan keterangan
+        $konfirmasi = $this->request->getPost('status_data');
+        $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
+        $jumlah_berhasil_dikonfirmasi = 0;
+        
+
+        // Validasi jika tidak ada data konfirmasi atau keterangan
+        if (empty($konfirmasi) || empty($keterangan)) {
+            // Jika tidak ada konfirmasi atau keterangan, arahkan kembali ke halaman prestasi dengan pesan error
+            session()->setFlashdata('gagal', 'Tidak ada Data yang Dikonfirmasi');
+            return redirect()->to(base_url('/admin/prestasi'));
+        }
+        
+
+        // Jika ada konfirmasi dan keterangan, lakukan update
+        foreach ($konfirmasi as $id => $status) {
+            // Cek apakah ada keterangan untuk setiap konfirmasi
+            $ket_konf = isset($keterangan[$id]) ? $keterangan[$id] : '-'; // Ambil keterangan yang sesuai
+            $this->lpModel->update_konfirmasi_prestasi($id, $status, $ket_konf);
+            $jumlah_berhasil_dikonfirmasi++; // Increment jika data berhasil dikonfirmasi
+        }
+
+        // Jika data berhasil disimpan, beri notifikasi sukses
+
+        // Jika ada data yang berhasil dikonfirmasi, beri notifikasi sukses
+        session()->setFlashdata('berhasil', "$jumlah_berhasil_dikonfirmasi data berhasil dikonfirmasi.");
+
+        return redirect()->to(base_url('/admin/prestasi'));
     }
 
     public function mbkm()
@@ -1813,13 +1868,7 @@ class Admin extends BaseController
         if (session()->get('hak_akses') != '1') {
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
-        }
-        $semester_tahun = $this->request->getPost('TA');
-        $mulai_tahun_ajaran = $this->request->getPost('TAawal_get');
-        $selesai_tahun_ajaran = $this->request->getPost('TAakhir_get');
-        $nama_tahun = ($semester_tahun == 0 ? 'PTA' : 'ATA') . ' ' . $mulai_tahun_ajaran . '/' . $selesai_tahun_ajaran;
-        $queue_tahun = intval($mulai_tahun_ajaran . $selesai_tahun_ajaran . '0' . $semester_tahun);
-
+        }    
         // Lakukan validasi
         if (
             $this->validate([
@@ -1828,6 +1877,11 @@ class Admin extends BaseController
                 'TAakhir_get' => 'required',
             ])
         ) {
+            $semester_tahun = $this->request->getPost('TA');
+        $mulai_tahun_ajaran = $this->request->getPost('TAawal_get');
+        $selesai_tahun_ajaran = $this->request->getPost('TAakhir_get');
+        $nama_tahun = ($semester_tahun == 0 ? 'PTA' : 'ATA') . ' ' . $mulai_tahun_ajaran . '/' . $selesai_tahun_ajaran;
+        $queue_tahun = intval($mulai_tahun_ajaran . $selesai_tahun_ajaran . '0' . $semester_tahun);
             // Proses data jika validasi berhasil
 
             $data = [
@@ -1845,13 +1899,19 @@ class Admin extends BaseController
             session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
             return redirect()->to(base_url('/admin/tahun-ajaran')); // Redirect ke halaman lain
         } else {
-            // Jika validasi gagal, set flashdata dengan input dan errors
-            session()->setFlashdata('input', $this->request->getPost());
-            session()->setFlashdata('error', $this->validator->getErrors());
-            
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());              
+            $TA = $this->tahunModel->AllData();   
 
-            // Redirect kembali ke halaman yang sama
-            return redirect()->to(base_url('/admin/tahun-ajaran'))->withInput();
+            $data = [
+                'title' => 'Form Input Akademik | User',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),                
+                'TA'=>$TA,
+            ];
+
+            return view('/admin/tahun-ajaran', $data);
+            
         }
     }
     public function program_studi()

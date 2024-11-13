@@ -19,19 +19,11 @@ TODO :
 }
 4. Tahun Ajaran ADMIN{
   
-  - buat controler untuk add data tahun Ajaran sesuai tabel tampilkan
-  - buat Tabel Tahun Ajaran (kode(increment aja),ta(bolean PTA(0)/ATA(1), thn_awal,thn_akhir,status_ta))
-  - Kalo yang dimasukin ke tabel lain bentuknya string aja gak usah pake joinan dari tabel Tahun Ajaran, 
-      +misal : add Laporan Akademik itu perlu tahun ajaran, maka masukinnya teks aja. berarti pas get data dari tabel Tahun ajaran untuk form add itu ta+" "+thn_awal+"/"+tahun_akhir
-      + jangan lupa untuk tampilin PTA ATA nya yang statusnya Aktif di form form yang ada tahun ajaran
-  ? Itu semester tahun "PTA"/"ATA" atau boolean atau ganjil/genap
-  ? status tahun perlu?
   ? add id_tahun out of range value anjay
   
 }
 
-5. Laporan Prestasi
-- Add tanggal masih error di format ke databasenya
+
 
 
 

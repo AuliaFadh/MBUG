@@ -167,7 +167,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal Pelaksanaan</label>
                                         <div style="display: block;margin-left:15px;"
                                             class=" col-lg-8 col-md-12 col-sm-12">
@@ -217,6 +217,36 @@
                                             <input type="url" name="publikasi" value="<?= $former->publikasi ?>"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Konfirmasi Dokumen</label>
+                                        <div style="display: block; margin-left:20px;"
+                                            class=" col-lg-8 col-md-10 col-sm-12 ">
+                                            <div class="row ">
+                                                <select name="konfirmasi_prestasi"
+                                                    class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
+                                                    <option value="2" <?php if ($former->konfirmasi_prestasi == 2) {
+                                                        echo 'selected';
+                                                    } ?>>Diproses</option>
+                                                    <option value="1" <?php if ($former->konfirmasi_prestasi == 1) {
+                                                        echo 'selected';
+                                                    } ?>>Disetujui</option>
+                                                    <option value="0" <?php if ($former->konfirmasi_prestasi == 0) {
+                                                        echo 'selected';
+                                                    } ?>>Ditolak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label for="keterangan" class="label-form-txa">Keterangan</label>
+                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+                                            <textarea class="form-control custom-textfield " id="keterangan" name="konf_ket_prestasi" autofocus="" value=""
+                                                rows="2"><?= $former->konf_ket_prestasi ?></textarea>
+                                            <div class="invalid-feedback">
 
                                             </div>
                                         </div>

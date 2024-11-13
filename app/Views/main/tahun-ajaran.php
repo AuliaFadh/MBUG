@@ -63,7 +63,7 @@
                     <div class="card-body ">
 
                         <div class="container border p-2">
-                            <form method="post" action="/admin/tahun-ajaran/save">
+                            <form method="post" action="/admin/tahun-ajaran/save" enctype="multipart/form-data">
                                 <label for="">Form Tambah Tahun Ajaran</label>
                                 <div class="row pr-4 pl-4">
                                     <select required name="TA" class="p-0 m-0  col-lg-2 col-md-2 col-sm-8"

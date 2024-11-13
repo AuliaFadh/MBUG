@@ -20,9 +20,32 @@
                             <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/prestasi.png'); ?>" alt="">
                             <h3>Laporan Prestasi</h3>
                         </div>
-                        <div>
-                            <a href="/admin/prestasi/add" class="btn btn-primary-add-data">Tambah Data</a>
-                            <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
+                        <div class="row container col-md-6">
+                            <div class="col-lg-4 col-md-4 col-sm-12     m-0 p-0">
+                                <a href="/admin/prestasi/add" class="btn btn-primary-add-data float-right">Tambah
+                                    Data</a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12     m-0 p-0 pr-2">
+                                <a href="/admin/prestasi/confirm"
+                                    class="btn btn-primary-confirm position-relative float-right"> Konfirmasi
+                                    
+                                    
+                                        <?php $count_notif = 0; ?>
+                                        <?php foreach ($DataDiproses as $key => $value) : ?>
+                                            <?php $count_notif++; ?>
+                                        <?php endforeach; ?>
+                                        <?php if ($count_notif > 0): ?>
+                                            <span style="color: white;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                <?= $count_notif ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    <!-- TASK-BE Ul ini tambahin fitur jumlah notif -->
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12    m-0 p-0">
+                                <button onclick="exportToCSV()"
+                                    class="btn btn-primary-download-excel  float-right">Download CSV</button>
+                            </div>
                         </div>
                     </div>
 
@@ -105,6 +128,7 @@
                                         <th class="th-nm">Penyelenggara</th>
                                         <th class="th-sm">Bukti Prestasi</th>
                                         <th class="th-nm">Tautan Publikasi</th>
+                                        <th class="th-sm">Status Konfirmasi</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
@@ -143,6 +167,15 @@
                                                 </a>
                                             </td>
                                             <td class="th-sm"><?= $value['publikasi']; ?></td>
+                                            <?php if ($value['konfirmasi_prestasi'] == "1") {
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-success">Disetujui</span>';
+                                                } else if ($value['konfirmasi_prestasi'] == "0") {
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-danger">Ditolak</span>';
+                                                } else if ($value['konfirmasi_prestasi'] == "2") {
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-warning">Diproses<span>';
+                                                };
+                                                ?>
+                                                <td class="th-sm"><?= $confirm; ?></td>
                                             <td class="th-sm"> <a href="<?= base_url('/admin/prestasi/edit/' . $value['id_prestasi']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
