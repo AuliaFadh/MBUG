@@ -60,18 +60,22 @@
                                     <?php foreach ($mbkm as $key => $value) : ?>
                                         <?php if ($value["npm"] == session()->get('username')) : ?>
                                             <?php $no++; ?>
-                                            <tr>
+                                            <tr
+                                            <?php if($value['konfirmasi_mbkm'] == "0")
+                                                echo 'style="background-color: #ffdfdf!important;"'
+                                            ?>
+                                            >
                                                 <td class="th-sm"><strong><?= $no; ?></strong></td>
                                                 <td class="th-lg"><?= $value['nama_mbkm']; ?></td>
                                                 <td class="th-nm"><?= $value['jenis_mbkm']; ?></td>
                                                 <td class="th-sm"><?= $value['periode']; ?></td>
                                                 <td class="th-nm"><?= $value['keterangan_mbkm']; ?></td>
                                                 <?php if ($value['konfirmasi_mbkm'] == "1") {
-                                                    $confirm = '<span class="badge badge-rounded badge-success">Diterima</span>';
+                                                    $confirm = '<span class="status_mbkm badge badge-rounded badge-success">Disetujui</span>';
                                                 } else if ($value['konfirmasi_mbkm'] == "0") {
-                                                    $confirm = '<span class="badge badge-rounded badge-danger">Ditolak</span>';
+                                                    $confirm = '<span class="status_mbkm badge badge-rounded badge-danger">Ditolak</span>';
                                                 } else if ($value['konfirmasi_mbkm'] == "2") {
-                                                    $confirm = '<span class="badge badge-rounded badge-primary">Pending<span>';
+                                                    $confirm = '<span class="status_mbkm badge badge-rounded badge-warning">Diproses<span>';
                                                 };
                                                 ?>
                                                 <td class="th-sm"><?= $confirm; ?></td>

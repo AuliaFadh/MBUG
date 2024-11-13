@@ -1412,6 +1412,7 @@ class Admin extends BaseController
             $this->validate([
                 'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
                 'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+                
                 'semester' => 'required',
                 'TA' => 'required',
 

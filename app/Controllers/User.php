@@ -707,14 +707,16 @@ class User extends BaseController
         }
 
         $jb = $this->jbModel->AllData();
+        $TA = $this->tahunModel->AllData();
         $data = [
             'title' => 'Form Input Keaktifan | User',
             'validation' => \Config\Services::validation(),
             'jenis_beasiswa' => $jb,
+            'TA' => $TA,
         ];
         return view('user-main/tambah-keaktifan', $data);
     }
-
+    
     public function user_save_keaktifan()
     {
         if (session()->get('hak_akses') != "0") {
@@ -724,15 +726,13 @@ class User extends BaseController
 
         if ($this->validate([
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
-            'semester' => 'required',
-            'TA' => 'required',
-            'bef' => 'required',
-            'af' => 'required',
-            'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
-            'jumlah_ditagihkan' => 'required',
-            'jumlah_potongan' => 'required',
-            'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
-            'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
+                'semester' => 'required',
+                'TA' => 'required',
+                'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
+                'jumlah_ditagihkan' => 'required',
+                'jumlah_potongan' => 'required',
+                'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
+                'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
         ])) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
@@ -750,7 +750,7 @@ class User extends BaseController
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->kaModel->getIDp(session()->get('username')),
                 'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'tahun_ajaran' => $this->request->getPost('TA'),
                 'krs' => $nama_krs,
                 'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
@@ -759,20 +759,26 @@ class User extends BaseController
                 'konfirmasi_keaktifan' => 2,
             ];
 
-            $this->kaModel->InsertData($data);
+            $this->kaModel->InsertData($data);            
             session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
 
             return redirect()->to(base_url('/user/keaktifan'));
         } else {
             $session = session();
             $session->setFlashdata('input', $this->request->getPost());
+            
+            $jb = $this->jbModel->AllData();
+            $TA = $this->tahunModel->AllData();
 
             $data = [
                 'title' => 'Form Input Keaktifan | User',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
+                'jenis_beasiswa' => $jb,
+                'TA' => $TA,
+                
             ];
-
+            
             return view('user-main/tambah-keaktifan', $data);
         }
     }
@@ -785,11 +791,13 @@ class User extends BaseController
         }
 
         $jb = $this->jbModel->AllData();
+        $TA = $this->tahunModel->AllData();
         $data = [
             'title' => 'Form Edit Keaktifan per Semester | User',
             'validation' => \Config\Services::validation(),
             'former' => $this->kaModel->DetailData($id_keaktifan),
             'jenis_beasiswa' => $jb,
+            'TA' => $TA,
         ];
 
         return view('user-main/edit-keaktifan', $data);
@@ -806,8 +814,7 @@ class User extends BaseController
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
             'TA' => 'required',
-            'bef' => 'required',
-            'af' => 'required',
+            
             'krs' => 'max_size[krs,4096]|ext_in[krs,pdf]',
             'jumlah_ditagihkan' => 'required',
             'jumlah_potongan' => 'required',
@@ -854,7 +861,7 @@ class User extends BaseController
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->kaModel->getIDp(session()->get('username')),
                 'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'tahun_ajaran' => $this->request->getPost('TA'),
                 'krs' => $nama_krs,
                 'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),

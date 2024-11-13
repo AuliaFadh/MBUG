@@ -97,11 +97,11 @@
                                                 </td>
                                                 <td class="th-nm"><?= $value['publikasi']; ?></td>
                                                 <?php if ($value['konfirmasi_prestasi'] == "1") {
-                                                    $confirm = '<span class="badge badge-rounded badge-success">Diterima</span>';
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-success">Disetujui</span>';
                                                 } else if ($value['konfirmasi_prestasi'] == "0") {
-                                                    $confirm = '<span class="badge badge-rounded badge-danger">Ditolak</span>';
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-danger">Ditolak</span>';
                                                 } else if ($value['konfirmasi_prestasi'] == "2") {
-                                                    $confirm = '<span class="badge badge-rounded badge-primary">Pending<span>';
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-warning">Diproses<span>';
                                                 };
                                                 ?>
                                                 <td class="th-sm"><?= $confirm; ?></td>
