@@ -31,6 +31,7 @@
 
     <!-- Javascript -->
     <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-find-and-fill.js') ?>"></script>
     <script src="<?= base_url('asset/js/custom-search-npm.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-search-jb.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/global/global.min.js'); ?>"></script>

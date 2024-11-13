@@ -49,11 +49,11 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Program Studi</label>
+                                        <label for="prodi" class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= $mhs->prodi; ?>" type="text" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi">
+                                            <input value="<?= $mhs->nama_prodi; ?>" type="text" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi">
                                             <div class="invalid-feedback">
-                                                <?= $validation->getError('prodi'); ?>
+                                                <?= $validation->getError('nama_prodi'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -80,8 +80,10 @@
 
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Jenis Kelamin</label>
-                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="1"> Laki-Laki<br>
-                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="0"> Perempuan<br>
+                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="1"<?php echo (isset($mhs->jenis_kelamin) && $mhs->jenis_kelamin == '1') ? 'checked' : ''; ?>> Laki-Laki<br>
+                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="0"<?php echo (isset($mhs->jenis_kelamin) && $mhs->jenis_kelamin == '0') ? 'checked' : ''; ?>> Perempuan<br>
+
+                                        
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -96,9 +98,9 @@
 
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="status_penerima" value="2"> Lulus<br>
-                                        <input type="radio" class="margin-custom" name="status_penerima" value="1"> Aktif<br>
-                                        <input type="radio" class="margin-custom" name="status_penerima" value="0"> Tidak Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="2"<?php echo (isset($mhs->status_penerima) && $mhs->status_penerima == '2') ? 'checked' : ''; ?>> Lulus<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="1"<?php echo (isset($mhs->status_penerima) && $mhs->status_penerima == '1') ? 'checked' : ''; ?>> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="0"<?php echo (isset($mhs->status_penerima) && $mhs->status_penerima == '0') ? 'checked' : ''; ?>> Tidak Aktif<br>
                                     </div>
 
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -124,4 +126,16 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+const findprodi = document.getElementById('find-prodi');
+findprodi.addEventListener('input', function() {
+    findResult('find-prodi');
+});
+findprodi.addEventListener('blur', function() {
+    hideResult('find-prodi');
+});
+    });
+</script>
 <?= $this->endSection('content') ?>

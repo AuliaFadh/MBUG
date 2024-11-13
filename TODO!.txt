@@ -1,0 +1,148 @@
+CHECKPOINT TODO 13/11/2024:
+1. Program Studi {
+  - Belum bisa tambah prodi
+  - Belum bisa edit prodi
+  - Belum terhubung ke halman lain
+}
+2. Tahun Ajaran {
+  - Belum bisa tambah tahun ajaran
+  - Belum bisa edit tahun ajaran
+  + Udah terhubung ke form-form yang lain
+}
+3. Data Penerima Beasiswa{
+  - tadi dicoba tambah mahasiswa lewat form kaga bisa karena prodinya belum terhubung
+  - fitur Import belum dicoba lagi
+}
+4. Profile MHS{
+  - tadi ganti foto masih eror karena prodi
+}
+
+5. Advance Filter {
+  -itumah kerjaan FE
+}
+6. Security Id {
+  -Enkripsi Id belum di terapkan
+  -masih lemah keamanannya (kayanya)
+}
+7. Hosting :)
+
+
+
+
+DONE :
+ADMIN {
+1. daftar Penerima beasiswa;
+  
+}
+MAHASISWA :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+o Search berdasarkan field tertentu (gampang)
+
+o Foto user belum bisa(aul) + tiap 
+
+o Template import csv (gampang)+nanya format data asli
+o import data, jk dan status pakai angka, kasih 
+  keterangan di sheet ke-2 (gampang)
+
+o buat tabel db program studi
+
+o import data penerima beasiswa langsung generate akun (aman)
+
+o Kalo edit pengumuman gausah masukin tanggal terbit lg (done) tinggal BE
+
+o Kolom Konfirmasi di bagian user [ditolak, diterima, pending] 
+o Admin bisa konfirmasi inputan user
+o Admin bisa memberikan keterangan konfirmasi
+- user tidak bisa merubah data jika status sudah "diterima"
+
+o Kalau edit file pdf/img lama dihapus USER (aul)
+  o profile pic
+  o prestasi
+  o akademik
+  o keaktifan 
+
+- Kalau edit file pdf/img lama dihapus ADMIN (aul)
+  - blanko_pembayaran
+  - bukti_pembayaran
+  - bukti_prestasi
+  - KRS
+  - Rangkuman Nilai
+
+- ada beberapa yg perlu tanggal mulai & tanggal akhir (done) tinggal BE
+  (laporan prestasi) (aman)
+  o USER
+  - ADMIN
+
+- Tanggal gaboleh mundur
+  o pengumuman
+  o laporan prestasi USER
+  o laporan prestasi ADMIN (tambah)
+  - laporan prestasi ADMIN (edit)
+
+- Tahun Ajaran Benerin
+  0 buat tabel tahun ajaran
+  - join id tahun ajaran
+  - Akademik
+
+o program studi Benerin
+  o buat tabel program studi
+  o masukin data 
+  o join id_prodi
+  o import penerima benerin
+  - import pake id apa nama prodi?
+
+- Lain-lain bisa input manual (aman) tinggal BE
+  - USER (lap prestasi)
+  - ADMIN (lap prestasi)
+
+- manajemen pengguna - tambah data untuk admin aja (onrpogres Gampang)
+  + tambah halaman
+
+o Data inputan penerima bahasiswa diberikan status
+  (pending, diterima, ditolak)(aul)
+
+o Laporan akademik kalo udh disetujui gabisa diedit (aul)
+  o Pesan ditolak pada halaman edit akademin USER
+  o laporan akademik disetujui tidak bisa diedit
+  - kalo diproses bisa diedit engga?
+
+- keaktifan kasih konfirmasi
+  - pesan ditolak
+
+- Tahun Penerimaan pake queue ?
+  - sesuaikan dengan tahun masuk USER
+  - tahun sebelumnya tidak keluar di form
+  - laporan akademik, satu mahasiswa satu data tiap tahun ajaran
+  - keaktifan, satu mahasiswa satu data tiap tahun ajaran
+
+x periode (Tambah MBKM), kalo bisa otomatis pas masukin 
+  NPM
+
+- form ADMIN
+  - Keaktifan, tahun ajaran (tambah dan edit)
+
+- form USER
+  - lap akademik, tahun ajaran (tambah dan edit)
+  - keaktifan, tahun ajaran (tambah dan edit)
+
+
+

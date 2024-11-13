@@ -46,7 +46,8 @@
                                 <thead>
                                     <tr>
                                         <th class="th-sm">No.</th>
-                                        <th class="th-nm">Tanggal</th>
+                                        <th class="th-nm">Tanggal Mulai</th>
+                                        <th class="th-nm">Tanggal Selesai</th>
                                         <th class="th-lg">Nama Kegiatan</th>
                                         <th class="th-nm">Tingkat</th>
                                         <th class="th-sm">Jenis Prestasi</th>
@@ -55,6 +56,7 @@
                                         <th class="th-nm">Penyelenggara</th>
                                         <th class="th-sm">Bukti Prestasi</th>
                                         <th class="th-nm">Tautan Publikasi</th>
+                                        <th class="th-nm">Status Konfirmasi</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
@@ -64,12 +66,18 @@
                                     <?php foreach ($lp as $key => $value) : ?>
                                         <?php if ($value["npm"] == session()->get('username')) : ?>
                                             <?php $no++; ?>
-                                            <tr>
+                                            <tr
+                                            <?php if($value['konfirmasi_prestasi'] == "0")
+                                                echo 'style="background-color: #ffdfdf!important;"'
+                                            ?>
+                                            >
                                                 <td class="th-sm"><strong><?= $no; ?></strong></td>
                                                 <?php
-                                                $tgl = date_create_from_format('Y-m-d', $value['tanggal']);
+                                                $tgl_mulai = date_create_from_format('Y-m-d', $value['tanggal_mulai']);
+                                                $tgl_selesai = date_create_from_format('Y-m-d', $value['tanggal_selesai']);
                                                 ?>
-                                                <td class="th-nm"><?= $tgl->format('d M Y'); ?></td>
+                                                <td class="th-nm"><?= $tgl_mulai->format('d M Y'); ?></td>
+                                                <td class="th-nm"><?= $tgl_selesai->format('d M Y'); ?></td>
                                                 <td class="th-lg"><?= $value['nama_kegiatan']; ?></td>
                                                 <td class="th-nm"><?= $value['tingkat']; ?></td>
                                                 <?php if ($value['jenis_prestasi'] == "1") {
@@ -88,6 +96,15 @@
                                                     </a>
                                                 </td>
                                                 <td class="th-nm"><?= $value['publikasi']; ?></td>
+                                                <?php if ($value['konfirmasi_prestasi'] == "1") {
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-success">Disetujui</span>';
+                                                } else if ($value['konfirmasi_prestasi'] == "0") {
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-danger">Ditolak</span>';
+                                                } else if ($value['konfirmasi_prestasi'] == "2") {
+                                                    $confirm = '<span class="status_prestasi badge badge-rounded badge-warning">Diproses<span>';
+                                                };
+                                                ?>
+                                                <td class="th-sm"><?= $confirm; ?></td>
                                                 <td> <a href="<?= base_url('/user/prestasi/edit/' . $value['id_prestasi']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                             </tr>
                                         <?php endif; ?>

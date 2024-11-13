@@ -66,10 +66,11 @@
                                         </div>
                                     </div>
 
+                                    
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tanggal Pembuatan</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input name="datepicker" class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-7" id="datepicker">
+                                            <input name="datepicker" value="<?=date('d F, Y', strtotime($former->tanggal_pembuatan));?>"  class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-7" id="datepicker">
                                             <div class=" invalid-feedback">
 
                                             </div>

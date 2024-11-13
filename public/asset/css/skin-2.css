@@ -617,14 +617,25 @@ span#counter {
   border-radius: 10px;
 }
 
-.nav-custome {
-  background-color: #C4C4C4;
-}
-
 .btn-primary-add-data:hover {
 
   background-color: #d000fa;
   border-color: #d000fa;
+  color: white;
+
+}
+
+.btn-primary-confirm {
+  background-color: #57e780;
+  border-color: #57e780;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.btn-primary-confirm:hover {
+
+  background-color: #22fb5f;
+  border-color: #22fb5f;
   color: white;
 
 }
@@ -648,7 +659,13 @@ span#counter {
   margin: 5px;
   border-radius: 10px;
 }
+.custom-btn-status {
+  cursor: pointer;
+}
 
+.nav-custome {
+  background-color: #C4C4C4;
+}
 
 
 .container1 {
@@ -778,6 +795,9 @@ span#counter {
 
 }
 
+.custom-other-option{
+  border-radius: 6px;
+}
 .custom-textfield{
   border: 3px solid #BEBDBD;
 }
@@ -913,6 +933,61 @@ span#counter {
 .no-mg{margin: 0!important ; }
 .no-pd{ padding: 0!important ;}
 
+.hidden-other-option {
+  display: none;
+}
+
+/* Accepting Button */
+
+.radio-buttons-confirm {
+  display: flex;
+  gap: 2px;
+}
+
+.radio-input-confirm {
+  display: none;
+}
+
+.radio-label-confirm {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border: 2px solid #ccc;
+  border-radius: 100%;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.radio-input-confirm:checked + .radio-label-confirm {
+  color: white;
+}
+
+.no-color{
+  background-color: transparent;
+  border: transparent;
+}
+.radio-input-confirm:checked + .accepted-label-confirm {
+  background-color: #40ff00; /* Hijau */
+  border-color: #00ff3c;
+}
+
+.radio-input-confirm:checked + .accepted-label-confirm .icon-confirm {
+  color: white;
+}
+
+.radio-input-confirm:checked + .rejected-label-confirm {
+  background-color: #ff0019; /* Merah */
+  border-color: #ff0019;
+}
+
+.radio-input-confirm:checked + .rejected-label .icon-confirm {
+  color: white;
+}
+
+
  /* Styling untuk elemen hasil (default di sembunyikan) */
 .dropdown-custom {
   display: none;
@@ -924,6 +999,13 @@ span#counter {
   border-radius: 3px;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.5);
 }
+.dropdown-custom a{
+  cursor: pointer;  
+}
+.dropdown-custom a, .dropdown-custom span{
+  padding: 5px 10px 5px 10px;
+}
+
 #npm-data,#jb-data{
   cursor: pointer;
   padding: 5px 10px 5px 10px;
@@ -941,6 +1023,9 @@ span#counter {
  
 .test{
   border: 2px solid red;
+}
+.test2{
+  border: 2px solid green;
 }
 /* 
 #example3 thead tr th ,#example3 tbody tr th{

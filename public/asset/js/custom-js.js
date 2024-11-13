@@ -48,3 +48,26 @@ function exportToCSV() {
   link.click();
   document.body.removeChild(link);
 }
+
+// Untuk text input other option
+function checkOther() {
+  var select = document.getElementById("capaian");
+  var otherInput = document.getElementById("capaian-other");
+  if (select.value === "Lainnya") {
+      otherInput.classList.remove("hidden-other-option");
+  } else {
+      otherInput.classList.add("hidden-other-option");
+  }
+}
+
+// Toggle filter
+function toggleFilter() {
+  var filterDiv = document.getElementById('advance-filter');
+  if (filterDiv.style.display === 'none') {
+      filterDiv.style.display = 'block';
+  } else {
+      filterDiv.style.display = 'none';
+  }
+}
+
+// Advance Filter Laporan Akademik

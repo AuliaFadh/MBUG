@@ -50,7 +50,71 @@
 
                     <!-- Tabel -->
                     <div class="card-body">
+                        <div class="row p-0 m-0">
+                            <div class="col"></div>
+                            <button title="Advance Filter" type="button" class="  no-color m-2 float-right"
+                                id="toggle-filter" onclick="toggleFilter()">
+                                Advanced Filter
+                                <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
+                                <!-- Icon gear -->
+                            </button>
+                        </div>
+
+                        <div id="advance-filter" style="display:none; transition: all 0.3s ease;"
+                            class="container pt-2 border rounded  mt-0">
+                            <h6>Advanced Filter</h6>
+                            <div class="row pb-0 d-flex justify-content-center align-items-center">
+
+                                <div class="col-md-3 col-12 mb-3">
+                                    <h7 class="d-flex justify-content-center align-items-center ">Tahun Penerimaan</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" min=0 value=0 id="low-tp"
+                                            class="col-md-4 col-4 mb-3 p-1" placeholder="tahun awal">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number"min=0 value=2030 id="high-tp" placeholder="tahun akhir"
+                                            class="col-md-4 col-4 mb-3 p-1">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row  pb-2 d-flex justify-content-center align-items-center">
+
+                                <div class="btn-group col-md-12" role="group" aria-label="Basic outlined example  ">
+                                <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
+                                        onclick="filterTableStatus('status-peserta','Lulus')">Lulus</button>    
+                                <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
+                                        onclick="filterTableStatus('status-peserta','Aktif')">Aktif</button>
+                                        
+                                        <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
+                                        onclick="filterTableStatus('status-peserta','Tidak Aktif')">Tidak Aktif</button>
+                                                                        
+                                </div>
+
+                            </div>
+                            <div class="row  pb-2 d-flex justify-content-center align-items-center">
+
+                                <div class="btn-group col-md-12" role="group" aria-label="Basic outlined example  ">
+                                <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
+                                        onclick="filterTableStatus('status-jk','Laki-laki')">Laki-laki</button>    
+                                <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
+                                        onclick="filterTableStatus('status-jk','Perempuan')">Perempuan</button>
+                                        
+                                        
+                                                                        
+                                </div>
+
+                            </div>
+
+
+
+
+
+                        </div>
+
                         <div class="table-responsive">
+                        <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -76,17 +140,17 @@
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
                                             <td class="th-nm"><?= $value['nama']; ?></td>
                                             <td class="th-sm"><?= $value['npm']; ?></td>
-                                            <td class="th-nm"><?= $value['prodi']; ?></td>
+                                            <td class="th-nm"><?= $value['nama_prodi']; ?></td>
                                             <td class="th-lg"><?= $value['alamat']; ?></td>
                                             <td class="th-nm"><?= $value['no_hp']; ?></td>
-                                            <td class="th-sm"><?= $value['jenis_kelamin'] == "1" ? "Laki-laki" : "Perempuan"; ?></td>
+                                            <td class="th-sm"><?= $value['jenis_kelamin'] == "1" ? '<span class="status-jk">Laki-laki</span>' : '<span class="status-jk">Perempuan</span>'; ?></td>
                                             <td class="th-sm"><?= $value['tahun_diterima']; ?></td>
                                             <?php if ($value['status_penerima'] == "1") {
-                                                $status = '<span class="badge badge-rounded badge-primary">Aktif</span>';
+                                                $status = '<span class="status-peserta badge badge-rounded badge-primary">Aktif</span>';
                                             } else if ($value['status_penerima'] == "0") {
-                                                $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
+                                                $status = '<span class="status-peserta badge badge-rounded badge-danger">Tidak Aktif</span>';
                                             } else if ($value['status_penerima'] == "2") {
-                                                $status = '<span class="badge badge-rounded badge-success">Lulus<span>';
+                                                $status = '<span class="status-peserta badge badge-rounded badge-success">Lulus<span>';
                                             };
                                             ?>
                                             <td class="th-sm"><?= $status; ?></td>
@@ -108,4 +172,18 @@
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const lowTP = document.getElementById('low-tp');
+    lowTP.addEventListener('input', function() {
+        FillterScoreSingle('low-tp','high-tp','7');
+    });
+    const highTP = document.getElementById('high-tp');
+    highTP.addEventListener('input', function() {
+        FillterScoreSingle('low-tp','high-tp','7');
+    });
+
+});
+
+</script>
 <?= $this->endSection('content') ?>

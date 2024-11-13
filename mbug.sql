@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2023 at 11:38 AM
+-- Generation Time: Oct 11, 2024 at 05:06 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -59,18 +59,20 @@ CREATE TABLE `laporan_akademik` (
   `ipk` float NOT NULL,
   `ipk_lokal` float NOT NULL,
   `ipk_uu` float NOT NULL,
-  `rangkuman_nilai` varchar(255) DEFAULT NULL
+  `rangkuman_nilai` varchar(255) DEFAULT NULL,
+  `konf_ket_akademik` varchar(200) DEFAULT NULL,
+  `konfirmasi_akademik` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_akademik`
 --
 
-INSERT INTO `laporan_akademik` (`id_akademik`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `ipk`, `ipk_lokal`, `ipk_uu`, `rangkuman_nilai`) VALUES
-(1, 1, 1, 6, 'ATA 2022/2023', 3.93, 3.91, 4, '1692897903_910b004fd3c8d3d0a589.pdf'),
-(2, 1, 1, 5, 'PTA 2022/2023', 4, 4, 4, 'PTA'),
-(4, 1, 4, 4, 'ATA 2021/2022', 3.5, 3, 4, '1692847785_07f8b275b22cd39df515.pdf'),
-(5, 17, 1, 8, 'ATA 2023/2024', 4, 4, 4, 'ATA');
+INSERT INTO `laporan_akademik` (`id_akademik`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `ipk`, `ipk_lokal`, `ipk_uu`, `rangkuman_nilai`, `konf_ket_akademik`, `konfirmasi_akademik`) VALUES
+(1, 1, 1, 6, 'ATA 2022/2023', 3.93, 3.91, 4, '1692897903_910b004fd3c8d3d0a589.pdf', 'rangkuman nilai upload ulang', 0),
+(2, 1, 1, 5, 'ATA 2023/2024', 4, 4, 4, '1717600725_64e67d3716770ed67774.pdf', NULL, 1),
+(4, 1, 4, 4, 'ATA 2021/2022', 3.5, 3, 4, '1692847785_07f8b275b22cd39df515.pdf', NULL, 2),
+(5, 17, 1, 8, 'PTA 2023/2024', 4, 4, 4, '1717598173_c3bb8583207ead478b0f.pdf', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -89,18 +91,19 @@ CREATE TABLE `laporan_keaktifan` (
   `jumlah_potongan` int(11) NOT NULL,
   `blanko_pembayaran` varchar(255) DEFAULT NULL,
   `bukti_pembayaran` varchar(255) DEFAULT NULL,
-  `status_keaktifan` tinyint(1) NOT NULL
+  `konf_ket_keaktifan` varchar(200) DEFAULT NULL,
+  `konfirmasi_keaktifan` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_keaktifan`
 --
 
-INSERT INTO `laporan_keaktifan` (`id_keaktifan`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `krs`, `jumlah_ditagihkan`, `jumlah_potongan`, `blanko_pembayaran`, `bukti_pembayaran`, `status_keaktifan`) VALUES
-(1, 1, 1, 6, 'ATA 2022/2023', '', 11000000, 10000000, '', '', 1),
-(2, 17, 4, 6, 'PTA 2022/2023', '-', 8000000, 4000000, '-', '-', 1),
-(3, 17, 1, 4, 'ATA 2021/2022', '1692865568_151a7909860328b5c7a2.pdf', 10000000, 6000000, '1692865568_4084607a77ac6a271e42.pdf', '1692865568_aabdcf12683eaa66a763.pdf', 1),
-(4, 1, 1, 3, 'PTA 2021/2022', '1692865896_e80f30f80d2447665486.pdf', 11680000, 0, '1692865896_3859679e8a0f73abed92.pdf', '1692865896_1c7b18eca5bcf197aac8.pdf', 1);
+INSERT INTO `laporan_keaktifan` (`id_keaktifan`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `krs`, `jumlah_ditagihkan`, `jumlah_potongan`, `blanko_pembayaran`, `bukti_pembayaran`, `konf_ket_keaktifan`, `konfirmasi_keaktifan`) VALUES
+(1, 1, 1, 6, 'PTA 2023/2024', '1717601345_d86a9b78658c5572f041.pdf', 11000000, 10000000, '1717601345_6f4dbb06af31b8be4ee1.pdf', '1717601345_4e47edf8aa5281dd078f.pdf', NULL, 2),
+(2, 17, 4, 6, 'PTA 2022/2023', 'ATA.pdf', 8000000, 4000000, 'ATA.pdf', 'ATA.pdf', NULL, 2),
+(3, 17, 1, 4, 'ATA 2021/2022', '1692865568_151a7909860328b5c7a2.pdf', 10000000, 6000000, '1692865568_4084607a77ac6a271e42.pdf', '1692865568_aabdcf12683eaa66a763.pdf', NULL, 1),
+(4, 1, 1, 3, 'PTA 2021/2022', '1692865896_e80f30f80d2447665486.pdf', 11680000, 0, '1692865896_3859679e8a0f73abed92.pdf', '1692865896_1c7b18eca5bcf197aac8.pdf', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -115,17 +118,19 @@ CREATE TABLE `laporan_mbkm` (
   `nama_mbkm` varchar(100) NOT NULL,
   `jenis_mbkm` varchar(100) NOT NULL,
   `periode` int(4) NOT NULL,
-  `keterangan_mbkm` varchar(255) DEFAULT NULL
+  `keterangan_mbkm` varchar(255) DEFAULT NULL,
+  `konf_ket_mbkm` varchar(200) DEFAULT NULL,
+  `konfirmasi_mbkm` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_mbkm`
 --
 
-INSERT INTO `laporan_mbkm` (`id_mbkm`, `id_beasiswa`, `id_penerima`, `nama_mbkm`, `jenis_mbkm`, `periode`, `keterangan_mbkm`) VALUES
-(1, 1, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2023, 'Lulus Machine learning Path'),
-(2, 17, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2021, '--'),
-(3, 18, 1, 'Bangkit Academy 2024', 'Studi/Proyek Independen', 2024, 'Lulus Mobile Development Path');
+INSERT INTO `laporan_mbkm` (`id_mbkm`, `id_beasiswa`, `id_penerima`, `nama_mbkm`, `jenis_mbkm`, `periode`, `keterangan_mbkm`, `konf_ket_mbkm`, `konfirmasi_mbkm`) VALUES
+(1, 1, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2023, 'Lulus Machine learning Path', NULL, 0),
+(2, 17, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2021, '--', NULL, 1),
+(3, 18, 1, 'Bangkit Academy 2024', 'Studi/Proyek Independen', 2024, 'Lulus Mobile Development Path', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -142,21 +147,24 @@ CREATE TABLE `laporan_prestasi` (
   `nama_kegiatan` varchar(100) NOT NULL,
   `capaian` varchar(255) NOT NULL,
   `tempat` varchar(255) NOT NULL,
-  `tanggal` date NOT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
   `penyelenggara` varchar(255) NOT NULL,
   `bukti_prestasi` varchar(255) DEFAULT NULL,
-  `publikasi` varchar(255) NOT NULL
+  `publikasi` varchar(255) NOT NULL,
+  `konf_ket_prestasi` varchar(200) DEFAULT NULL,
+  `konfirmasi_prestasi` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_prestasi`
 --
 
-INSERT INTO `laporan_prestasi` (`id_prestasi`, `id_beasiswa`, `id_penerima`, `tingkat`, `jenis_prestasi`, `nama_kegiatan`, `capaian`, `tempat`, `tanggal`, `penyelenggara`, `bukti_prestasi`, `publikasi`) VALUES
-(1, 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2023-08-24', 'Google, GoTo, Traveloka', '1692849294_e1a325a37618e9ffe000.pdf', 'https://www.google.com/'),
-(4, 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2023-08-20', 'Traveloka', '-', 'https://www.google.com/'),
-(5, 1, 4, 'Provinsi', 0, 'Magang Mandiri', 'Lainnya', 'Rumah', '2023-08-18', 'Isa', '-', 'https://www.google.com/'),
-(6, 18, 1, 'Nasional', 0, 'Bangkit Academy 2024', 'Partisipatif', 'Gedung D', '2023-08-23', 'Traveloka', '-', 'https://www.google.com/');
+INSERT INTO `laporan_prestasi` (`id_prestasi`, `id_beasiswa`, `id_penerima`, `tingkat`, `jenis_prestasi`, `nama_kegiatan`, `capaian`, `tempat`, `tanggal_mulai`, `tanggal_selesai`, `penyelenggara`, `bukti_prestasi`, `publikasi`, `konf_ket_prestasi`, `konfirmasi_prestasi`) VALUES
+(1, 18, 1, 'Internasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2024-10-04', '2024-10-01', 'Google, GoTo, Traveloka', '1717597260_b94feee346ed4657f456.pdf', 'https://www.google.com/', NULL, 2),
+(4, 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2023-08-20', '2023-08-20', 'Traveloka', '-', 'https://www.google.com/', NULL, 1),
+(5, 1, 4, 'Provinsi', 0, 'Magang Mandiri', 'Lainnya', 'Rumah', '2023-08-18', '2023-08-19', 'Isa', '-', 'https://www.google.com/', NULL, 1),
+(6, 18, 1, 'Nasional', 0, 'Bangkit Academy 2024', 'Partisipatif', 'Gedung D', '2023-08-23', '2023-08-24', 'Traveloka', '-', 'https://www.google.com/', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -244,7 +252,42 @@ INSERT INTO `log_aktivitas` (`id_log`, `log_last_login`, `log_username`) VALUES
 (46, '2023-09-04 11:42:32', '10120700'),
 (47, '2023-09-14 22:07:06', '10120700'),
 (48, '2023-09-15 01:34:24', '10120700'),
-(49, '2023-09-20 12:18:22', '10120700');
+(49, '2023-09-20 12:18:22', '10120700'),
+(50, '2024-05-15 12:06:05', '10120698'),
+(51, '2024-05-15 13:34:35', '10120698'),
+(52, '2024-05-15 13:34:59', '10120700'),
+(53, '2024-06-03 11:32:51', '10120700'),
+(54, '2024-06-03 11:33:17', '10120698'),
+(55, '2024-06-05 10:07:11', '10120700'),
+(56, '2024-06-05 10:07:26', '10120698'),
+(57, '2024-06-05 10:46:52', '10120698'),
+(58, '2024-06-05 11:09:25', '10120698'),
+(59, '2024-06-05 11:34:39', '10120699'),
+(60, '2024-06-05 11:43:50', '10120698'),
+(61, '2024-06-05 11:44:17', '10120699'),
+(62, '2024-06-05 12:04:38', '10120700'),
+(63, '2024-06-05 17:18:19', '10120700'),
+(64, '2024-06-05 17:41:01', '10120701'),
+(65, '2024-06-05 17:41:53', '10120701'),
+(66, '2024-06-05 20:22:53', '10120698'),
+(67, '2024-10-06 16:26:48', '10120698'),
+(68, '2024-10-07 12:49:48', '10120698'),
+(69, '2024-10-07 12:58:55', '10120700'),
+(70, '2024-10-07 13:02:37', '10120698'),
+(71, '2024-10-10 15:13:31', '10120698'),
+(72, '2024-10-10 17:56:11', '10120700'),
+(73, '2024-10-10 18:13:45', '10120698'),
+(74, '2024-10-10 18:50:55', '10120700'),
+(75, '2024-10-10 18:51:41', '10120698'),
+(76, '2024-10-10 18:54:15', '10120700'),
+(77, '2024-10-11 08:08:31', '10120698'),
+(78, '2024-10-11 08:09:24', '10120698'),
+(79, '2024-10-11 17:30:06', '10120698'),
+(80, '2024-10-11 17:32:49', '10120700'),
+(81, '2024-10-11 19:51:39', '10120698'),
+(82, '2024-10-11 19:58:47', '10120700'),
+(83, '2024-10-11 20:09:46', '10120698'),
+(84, '2024-10-11 20:12:29', '10120700');
 
 -- --------------------------------------------------------
 
@@ -256,9 +299,10 @@ CREATE TABLE `penerima_beasiswa` (
   `id_penerima` int(8) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `npm` varchar(10) NOT NULL,
-  `prodi` varchar(50) NOT NULL,
+  `id_prodi` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
+  `ppicture` varchar(255) DEFAULT NULL,
   `jenis_kelamin` tinyint(1) NOT NULL,
   `tahun_diterima` int(4) NOT NULL,
   `status_penerima` tinyint(1) NOT NULL,
@@ -269,9 +313,10 @@ CREATE TABLE `penerima_beasiswa` (
 -- Dumping data for table `penerima_beasiswa`
 --
 
-INSERT INTO `penerima_beasiswa` (`id_penerima`, `nama`, `npm`, `prodi`, `alamat`, `no_hp`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
-(1, 'Muhammad Aulia Nur Fadhillah', '10120698', 'Sistem Informasi', 'Depok Tiga', '081237275191', 1, 2022, 2, ''),
-(4, 'Isa Tarmana Mustopa', '10120699', 'Teknik Informatika', 'sddasfasdas', '081288889999', 1, 1981, 2, '-');
+INSERT INTO `penerima_beasiswa` (`id_penerima`, `nama`, `npm`, `id_prodi`, `alamat`, `no_hp`, `ppicture`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
+(1, 'Muhammad Aulia Nur Fadhillah', '10120698', '57201', 'Depok Tiga', '081237275191', '1728608942_6bd2594155544f735ce1.png', 1, 2022, 2, ''),
+(4, 'Isa Tarmana Mustopa', '10120699', '55201', 'sddasfasdas', '081288889999', '1717562096_50311d87853dd230e5ac.jpg', 1, 1981, 1, '-'),
+(13, 'Naufal Nur', '10120701', '20201', 'bandung', '081266778899', NULL, 1, 2024, 1, '');
 
 -- --------------------------------------------------------
 
@@ -293,8 +338,88 @@ CREATE TABLE `pengumuman` (
 --
 
 INSERT INTO `pengumuman` (`id_pengumuman`, `judul_pengumuman`, `tanggal_terbit`, `tanggal_tarik`, `penulis`, `deskripsi`) VALUES
-(1, 'Batas Akhir pengumpulan SR dan SPTJM', '2023-08-18', '2023-08-22', '10120700', 'Batas Akhir Pengumpulan SR dan SPTJM untuk Kampus Merdeka Batch 6'),
-(2, 'Jadwal UAS Penyetaraan MBKM', '2023-08-20', '2023-08-29', '-', 'UAS Penyetaraan untuk mahasiswa yang mengikuti MBKM akan dilaksanakan mulai 22 Agustus 2023 - 29 Agustus 2023.');
+(1, 'Batas Akhir pengumpulan SR dan SPTJM', '2023-08-18', '2024-07-09', '10120700', 'Batas Akhir Pengumpulan SR dan SPTJM untuk Kampus Merdeka Batch 6'),
+(2, 'Jadwal UAS Penyetaraan MBKM', '2023-08-20', '2024-06-19', '-', 'UAS Penyetaraan untuk mahasiswa yang mengikuti MBKM akan dilaksanakan mulai 22 Agustus 2023 - 29 Agustus 2023.'),
+(5, 'Staycation 01', '2024-06-05', '2024-06-13', '10120700', 'Staycation lagi lah');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `program_studi`
+--
+
+CREATE TABLE `program_studi` (
+  `id_prodi` int(11) NOT NULL,
+  `nama_prodi` varchar(100) NOT NULL,
+  `fakultas_prodi` varchar(100) NOT NULL,
+  `akreditasi_prodi` varchar(50) NOT NULL,
+  `jenjang_prodi` varchar(10) NOT NULL,
+  `status_prodi` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `program_studi`
+--
+
+INSERT INTO `program_studi` (`id_prodi`, `nama_prodi`, `fakultas_prodi`, `akreditasi_prodi`, `jenjang_prodi`, `status_prodi`) VALUES
+(11201, 'S1-Kedokteran', 'Fakultas Kedokteran', 'B', 'S1', 1),
+(11901, 'PR-Pendidikan Profesi Dokter', 'Fakultas Kedokteran', 'C', 'PR', 1),
+(15201, 'S1-Kebidanan', 'Fakultas Ilmu Kesehatan dan Farmasi', 'Baik', 'S1', 1),
+(15901, 'PR-Pendidikan Profesi Bidan', 'Fakultas Ilmu Kesehatan dan Farmasi', 'Baik', 'PR', 1),
+(20201, 'S1-Teknik Elektro', 'Fakultas Teknologi Industri', 'Unggul', 'S1', 1),
+(21201, 'S1-Teknik Mesin', 'Fakultas Teknologi Industri', 'A', 'S1', 1),
+(22201, 'S1-Teknik Sipil', 'Fakultas Teknik Sipil dan Perencanaan', 'Unggul', 'S1', 1),
+(22204, 'S1-Teknik Sipil (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(23201, 'S1-Arsitektur', 'Fakultas Teknik Sipil dan Perencanaan', 'Unggul', 'S1', 1),
+(23202, 'S1-Arsitektur (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(26201, 'S1-Teknik Industri', 'Fakultas Teknologi Industri', 'Unggul', 'S1', 1),
+(48201, 'S1-Farmasi', 'Fakultas Ilmu Kesehatan dan Farmasi', 'Baik Sekali', 'S1', 1),
+(54211, 'S1-Agroteknologi', 'Fakultas Teknologi Industri', 'B', 'S1', 1),
+(55201, 'S1-Informatika', 'Fakultas Teknologi Industri', 'Unggul', 'S1', 1),
+(55210, 'S1-Informatika (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(56201, 'S1-Sistem Komputer', 'Fakultas Ilmu Komputer dan Teknologi Informasi', 'Unggul', 'S1', 1),
+(56401, 'D3-Teknik Komputer', 'Program Diploma', 'Unggul', 'D3', 1),
+(57201, 'S1-Sistem Informasi', 'Fakultas Ilmu Komputer dan Teknologi Informasi', 'Unggul', 'S1', 1),
+(57208, 'S1-Sistem Informasi (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(57401, 'D3-Manajemen Informatika', 'Program Diploma', 'Unggul', 'D3', 1),
+(60202, 'S1-Ekonomi Syariah', 'Fakultas Ekonomi', 'Baik Sekali', 'S1', 1),
+(61201, 'S1-Manajemen', 'Fakultas Ekonomi', 'Unggul', 'S1', 1),
+(61217, 'S1-Manajemen (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(61404, 'D3-Manajemen Pemasaran', 'Program Diploma', 'Baik Sekali', 'D3', 1),
+(61406, 'D3-Manajemen Keuangan', 'Program Diploma', 'Baik Sekali', 'D3', 1),
+(62201, 'S1-Akuntansi', 'Fakultas Ekonomi', 'Unggul', 'S1', 1),
+(62208, 'S1-Akuntansi (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(62401, 'D3-Akuntansi', 'Program Diploma', 'Baik Sekali', 'D3', 1),
+(70201, 'S1-Ilmu Komunikasi', 'Fakultas Ilmu Komunikasi', 'A', 'S1', 1),
+(70206, 'S1-Ilmu Komunikasi (KPPU)', 'Progra Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(73201, 'S1-Psikologi', 'Fakultas Psikologi', 'A', 'S1', 1),
+(73203, 'S1-Psikologi (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(79202, 'S1-Sastra Inggris', 'Fakultas Sastra dan Budaya', 'Unggul', 'S1', 1),
+(79209, 'S1-Sastra Tiongkok', 'Fakultas Sastra dan Budaya', 'B', 'S1', 1),
+(90221, 'S1-Desain Interior', 'Fakultas Teknik Sipil dan Perencanaan', 'B', 'S1', 1),
+(93202, 'S1-Pariwisata', 'Fakultas Sastra dan Budaya', 'B', 'S1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tahun_ajaran`
+--
+
+CREATE TABLE `tahun_ajaran` (
+  `id_tahun` int(11) NOT NULL,
+  `nama_tahun` varchar(50) NOT NULL,
+  `semester_tahun` varchar(10) NOT NULL,
+  `mulai_tahun_ajaran` date NOT NULL,
+  `selesai_tahun_ajaran` date NOT NULL,
+  `queue_tahun` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tahun_ajaran`
+--
+
+INSERT INTO `tahun_ajaran` (`id_tahun`, `nama_tahun`, `semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `queue_tahun`) VALUES
+(2147483647, 'PTA 2000/2001', 'ganjil', '2000-09-02', '2001-02-02', 2000200101);
 
 -- --------------------------------------------------------
 
@@ -316,10 +441,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `hak_akses`, `last_login`, `status_user`) VALUES
-(1, '10120698', 'owlowl', 0, '2023-08-28', 1),
-(2, '10120699', 'isaisaisa', 0, '2023-08-23', 1),
-(3, '10120700', 'umul', 1, '2023-09-20', 1),
-(8, 'bebek_an_u', 'kwekkwek', 1, '2023-08-23', 1);
+(1, '10120698', 'owlowl', 0, '2024-10-11', 1),
+(2, '10120699', 'isaisaisa', 0, '2024-06-05', 1),
+(3, '10120700', 'umul', 1, '2024-10-11', 1),
+(8, '19120701', 'kwekkwek', 1, '2023-08-23', 1),
+(9, '10120701', '10120701.beasiswa', 0, '2024-06-05', 1);
 
 --
 -- Indexes for dumped tables
@@ -383,6 +509,21 @@ ALTER TABLE `pengumuman`
   ADD KEY `penulis` (`penulis`) USING BTREE;
 
 --
+-- Indexes for table `program_studi`
+--
+ALTER TABLE `program_studi`
+  ADD PRIMARY KEY (`id_prodi`),
+  ADD UNIQUE KEY `nama_prodi` (`nama_prodi`);
+
+--
+-- Indexes for table `tahun_ajaran`
+--
+ALTER TABLE `tahun_ajaran`
+  ADD PRIMARY KEY (`id_tahun`),
+  ADD UNIQUE KEY `nama_tahun` (`nama_tahun`),
+  ADD UNIQUE KEY `queue_tahun` (`queue_tahun`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -433,25 +574,31 @@ ALTER TABLE `link_gform`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `penerima_beasiswa`
 --
 ALTER TABLE `penerima_beasiswa`
-  MODIFY `id_penerima` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_penerima` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id_pengumuman` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pengumuman` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tahun_ajaran`
+--
+ALTER TABLE `tahun_ajaran`
+  MODIFY `id_tahun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2147483648;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

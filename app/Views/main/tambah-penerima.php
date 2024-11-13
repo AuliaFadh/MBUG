@@ -51,10 +51,22 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="prodi" class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="prodi" name="prodi" autofocus value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
+                                            <input type="text" class="form-control custom-textfield <?= ($validation->hasError('prodi')) ? ' is-invalid is-test' : ''; ?>" id="find-prodi" name="prodi" autofocus value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : ''); ?>">
+                                            
+                                            <div id="box-find-prodi" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
+                                                style="display: none;">
+
+
+                                                <a id="data-find-prodi" onclick="fillFindInput('find-prodi','Sistem')">Sistem</a>
+                                                <a id="data-find-prodi" onclick="fillFindInput('find-prodi','XX')">ATA 2022/2023</a>
+                                                <a id="data-find-prodi" onclick="fillFindInput('find-prodi','XXXXX')">PTAXXX024</a>                                                    
+
+                                                <span id="no-data-find-prodi" style="display: none;">Data tidak ada</span>
+                                            </div>
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('prodi'); ?>
                                             </div>
+                                            
                                         </div>
                                     </div>
 
@@ -126,4 +138,16 @@
 </div>
 </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+const findprodi = document.getElementById('find-prodi');
+findprodi.addEventListener('input', function() {
+    findResult('find-prodi');
+});
+findprodi.addEventListener('blur', function() {
+    hideResult('find-prodi');
+});
+    });
+</script>
 <?= $this->endSection('content') ?>

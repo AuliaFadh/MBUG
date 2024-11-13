@@ -40,9 +40,11 @@ $routes->group('admin', function ($routes) {
     $routes->post('penerima/save', 'Admin::save_penerima');
 
     $routes->get('akademik', 'Admin::akademik');
+    $routes->get('akademik/confirm', 'Admin::confirm_akademik');
     $routes->get('akademik/add', 'Admin::add_akademik');
     $routes->get('akademik/edit/(:any)', 'Admin::edit_akademik/$1');
     $routes->post('akademik/cedit/(:any)', 'Admin::cedit_akademik/$1');
+    $routes->post('akademik/confirm/all', 'Admin::save_confirm_akademik');
     $routes->post('akademik/save', 'Admin::save_akademik');
 
     $routes->get('prestasi', 'Admin::prestasi');
@@ -50,18 +52,32 @@ $routes->group('admin', function ($routes) {
     $routes->get('prestasi/edit/(:any)', 'Admin::edit_prestasi/$1');
     $routes->post('prestasi/cedit/(:any)', 'Admin::cedit_prestasi/$1');
     $routes->post('prestasi/save', 'Admin::save_prestasi');
+    $routes->get('prestasi/confirm', 'Admin::confirm_prestasi');
+    $routes->post('prestasi/confirm/all', 'Admin::save_confirm_prestasi');
+    
+    
 
     $routes->get('mbkm', 'Admin::mbkm');
     $routes->get('mbkm/add', 'Admin::add_mbkm');
     $routes->get('mbkm/edit/(:any)', 'Admin::edit_mbkm/$1');
     $routes->post('mbkm/cedit/(:any)', 'Admin::cedit_mbkm/$1');
     $routes->post('mbkm/save', 'Admin::save_mbkm');
+    $routes->get('mbkm/confirm', 'Admin::confirm_mbkm');
+    $routes->post('mbkm/confirm/all', 'Admin::save_confirm_mbkm');
 
     $routes->get('keaktifan', 'Admin::keaktifan');
     $routes->get('keaktifan/add', 'Admin::add_keaktifan');
     $routes->get('keaktifan/edit/(:any)', 'Admin::edit_keaktifan/$1');
+    $routes->get('keaktifan/confirm', 'Admin::confirm_keaktifan');
     $routes->post('keaktifan/cedit/(:any)', 'Admin::cedit_keaktifan/$1');
+    $routes->post('keaktifan/confirm/all', 'Admin::save_confirm_keaktifan');
     $routes->post('keaktifan/save', 'Admin::save_keaktifan');
+    
+    
+    
+    
+    
+    
 
     $routes->get('gform', 'Admin::gform');
     $routes->get('gform/add', 'Admin::add_gform');
@@ -87,6 +103,17 @@ $routes->group('admin', function ($routes) {
     $routes->get('manajemen/delete/(:any)', 'Admin::del_manajemen/$1');
 
     $routes->get('log', 'Admin::log');
+
+    $routes->get('tahun-ajaran', 'Admin::tahun_ajaran');
+    $routes->post('tahun-ajaran/save', 'Admin::save_tahun_ajaran');
+    $routes->post('tahun-ajaran/cedit/(:any)', 'Admin::cedit_tahun_ajaran/$1');
+    $routes->post('tahun-ajaran/delete/(:any)', 'Admin::del_tahun_ajaran/$1');
+
+    $routes->get('program-studi', 'Admin::program_studi');
+    $routes->post('program-studi/save', 'Admin::save_program_studi');
+    $routes->post('program-studi/cedit/(:any)', 'Admin::cedit_program_studi/$1');
+    $routes->post('program-studi/delete/(:any)', 'Admin::del_program_studi/$1');
+
 });
 
 //____________________________________________________________________________________________________

@@ -53,7 +53,8 @@
                                         <th class="th-nm">Jumlah Potongan</th>
                                         <th class="th-sm">Blanko Pembayaran</th>
                                         <th class="th-sm">Bukti Pembayaran</th>
-                                        <th class="th-sm">Status</th>
+                                        <th class="th-sm">Status Penerima Beasiswa</th>
+                                        <th class="th-sm">Status Konfirmasi</th>
                                         <th class="th-sm">Aksi</th>
                                     </tr>
                                 </thead>
@@ -63,7 +64,11 @@
                                     <?php foreach ($ka as $key => $value) : ?>
                                         <?php if ($value["npm"] == session()->get('username')) : ?>
                                             <?php $no++; ?>
-                                            <tr>
+                                            <tr
+                                            <?php if($value['konfirmasi_keaktifan'] == "0")
+                                                echo 'style="background-color: #ffdfdf!important;"'
+                                            ?>
+                                            >
                                                 <td class="th-sm"><strong><?= $no; ?></strong></td>
                                                 <td class="th-lg"><?= $value['jenis']; ?></td>
                                                 <td class="th-sm"><?= $value['semester']; ?></td>
@@ -94,6 +99,16 @@
                                                 };
                                                 ?>
                                                 <td class="th-sm"><?= $status; ?></td>
+
+                                                <?php if ($value['konfirmasi_keaktifan'] == "1") {
+                                                    $confirm = '<span class="status_keaktifan badge badge-rounded badge-success">Disetujui</span>';
+                                                } else if ($value['konfirmasi_keaktifan'] == "0") {
+                                                    $confirm = '<span class="status_keaktifan badge badge-rounded badge-danger">Ditolak</span>';
+                                                } else if ($value['konfirmasi_keaktifan'] == "2") {
+                                                    $confirm = '<span class="status_keaktifan badge badge-rounded badge-warning">Diproses<span>';
+                                                };
+                                                ?>
+                                                <td class="th-sm"><?= $confirm; ?></td>
                                                 <td class="th-sm"> <a href="<?= base_url('/user/keaktifan/edit/' . $value['id_keaktifan']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
                                             </tr>
                                         <?php endif; ?>
