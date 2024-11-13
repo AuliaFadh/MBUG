@@ -74,11 +74,12 @@
                                     </select>
                                     <input required placeholder="Thn Awal" type="number"
                                         class="form-control custom-textfield col-lg-2 col-md-3 col-sm-8" id="TAawal_get"
-                                        name="TAawal_get" value="">
+                                        name="TAawal_get" value="" type="number">
 
-                                    <input required placeholder="Thn Akhir"type="number"
+                                    <input required placeholder="Thn Akhir" type="number"
                                         class="form-control custom-textfield col-lg-2 col-md-3 col-sm-8"
                                         id="TAakhir_get" name="TAakhir_get" value="">
+
                                     <button type="submit"
                                         class="btn btn-primary-add-data m-0  ml-2 mr-2  col-lg-2 col-md-2 col-sm-8">Submit</button>
                                 </div>
