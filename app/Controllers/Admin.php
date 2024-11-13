@@ -949,6 +949,7 @@ class Admin extends BaseController
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
                 'konfirmasi_prestasi' => 2,
+                'konf_ket_prestasi' => $this->request->getPost('konf_ket_prestasi'),
             ];
 
             $this->lpModel->UpdateData($id_prestasi, $data);
@@ -1021,9 +1022,11 @@ class Admin extends BaseController
         }
 
         $mbkm = $this->mbkmModel->AllData();
+        $DataDiproses = $this->mbkmModel->GetProcessData();
         $data = [
             'title' => 'Magang Bersertifikat Kampus Merdeka | Admin',
             'mbkm' => $mbkm,
+            'DataDiproses' => $DataDiproses,
         ];
 
         return view('main/laporan-mbkm', $data);
@@ -1139,6 +1142,7 @@ class Admin extends BaseController
                 'periode' => $this->request->getPost('periode'),
                 'keterangan_mbkm' => $this->request->getPost('keterangan_mbkm'),
                 'konfirmasi_mbkm' => 2,
+                'konf_ket_mbkm' => $this->request->getPost('konf_ket_mbkm'),
             ];
 
             $this->mbkmModel->UpdateData($id_mbkm, $data);
@@ -1149,6 +1153,58 @@ class Admin extends BaseController
             session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
             return redirect()->to(base_url('/admin/mbkm'));
         }
+    }
+
+    public function confirm_mbkm()
+    {
+        if (session()->get('hak_akses') != '1') {
+            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        $DataDiproses = $this->mbkmModel->GetProcessData();
+        $data = [
+            'title' => 'Konfirmasi mbkm | Admin',
+            'mbkm' => $DataDiproses,
+        ];
+
+        return view('main/confirm-mbkm', $data);
+    }
+    public function save_confirm_mbkm()
+    {
+        if (session()->get('hak_akses') != '1') {
+            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        // Ambil data konfirmasi dan keterangan
+        $konfirmasi = $this->request->getPost('status_data');
+        $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
+        $jumlah_berhasil_dikonfirmasi = 0;
+        
+
+        // Validasi jika tidak ada data konfirmasi atau keterangan
+        if (empty($konfirmasi) || empty($keterangan)) {
+            // Jika tidak ada konfirmasi atau keterangan, arahkan kembali ke halaman mbkm dengan pesan error
+            session()->setFlashdata('gagal', 'Tidak ada Data yang Dikonfirmasi');
+            return redirect()->to(base_url('/admin/mbkm'));
+        }
+        
+
+        // Jika ada konfirmasi dan keterangan, lakukan update
+        foreach ($konfirmasi as $id => $status) {
+            // Cek apakah ada keterangan untuk setiap konfirmasi
+            $ket_konf = isset($keterangan[$id]) ? $keterangan[$id] : '-'; // Ambil keterangan yang sesuai
+            $this->mbkmModel->update_konfirmasi_mbkm($id, $status, $ket_konf);
+            $jumlah_berhasil_dikonfirmasi++; // Increment jika data berhasil dikonfirmasi
+        }
+
+        // Jika data berhasil disimpan, beri notifikasi sukses
+
+        // Jika ada data yang berhasil dikonfirmasi, beri notifikasi sukses
+        session()->setFlashdata('berhasil', "$jumlah_berhasil_dikonfirmasi data berhasil dikonfirmasi.");
+
+        return redirect()->to(base_url('/admin/mbkm'));
     }
 
     public function manajemen()
