@@ -62,7 +62,7 @@ class lpModel extends Model
 
     public function getDate($data)
     {
-        $tglformat = date_create_from_format('d M, Y', $data);
+        $tglformat = date_create_from_format('d F, Y', $data);
         return $tglformat->format('Y-m-d');
     }
 

@@ -43,7 +43,7 @@
                                     <div class="container1 custom-container-form col-lg-8 col-md-8 col-sm-8 ">
                                         <label class="label-form">Batas Waktu Pengumuman </label>
                                         <div style="display: block;" class=" col-lg-3 col-md-3 col-sm-3">
-                                            <input name="tanggal_tarik" class="custom-textfield datepicker-default form-control ">
+                                            <input name="tanggal_tarik" value="<?=date('d F, Y', strtotime($former->tanggal_tarik));?>"  class="custom-textfield datepicker-default form-control ">
                                             <div class=" invalid-feedback">
 
                                             </div>

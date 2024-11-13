@@ -87,25 +87,25 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Jenis Program MBKM</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <select name="jenis_mbkm" class="form-control  custom-textfield col-lg-7 col-md-12 col-sm-12">
-                                                <option></option>
-                                                <option value="Pertukaran Pelajar">Pertukaran Pelajar</option>
-                                                <option value="Magang / Praktik Kerja">Magang / Praktik Kerja</option>
-                                                <option value="Mengajar di Sekolah">Mengajar di Sekolah</option>
-                                                <option value="Penelitian / Riset">Penelitian / Riset</option>
-                                                <option value="Proyek Kemanusiaan">Proyek Kemanusiaan</option>
-                                                <option value="Proyek Desa">Proyek Desa</option>
-                                                <option value="Wirausaha">Wirausaha</option>
-                                                <option value="Studi/Proyek Independen">Studi/Proyek Independen</option>
-                                                <option value="Pengabdian Mahasiswa kepada Masyarakat">Pengabdian Mahasiswa kepada Masyarakat</option>
-                                            </select>
-                                            <div class=" invalid-feedback">
+    <label class="label-form">Jenis Program MBKM</label>
+    <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
+        <select name="jenis_mbkm" class="form-control custom-textfield col-lg-7 col-md-12 col-sm-12">
+            <option value="" <?php echo empty($former->jenis_mbkm) ? 'selected' : ''; ?>>Pilih Jenis Program</option>
+            <option value="Pertukaran Pelajar" <?php echo $former->jenis_mbkm == 'Pertukaran Pelajar' ? 'selected' : ''; ?>>Pertukaran Pelajar</option>
+            <option value="Magang / Praktik Kerja" <?php echo $former->jenis_mbkm == 'Magang / Praktik Kerja' ? 'selected' : ''; ?>>Magang / Praktik Kerja</option>
+            <option value="Mengajar di Sekolah" <?php echo $former->jenis_mbkm == 'Mengajar di Sekolah' ? 'selected' : ''; ?>>Mengajar di Sekolah</option>
+            <option value="Penelitian / Riset" <?php echo $former->jenis_mbkm == 'Penelitian / Riset' ? 'selected' : ''; ?>>Penelitian / Riset</option>
+            <option value="Proyek Kemanusiaan" <?php echo $former->jenis_mbkm == 'Proyek Kemanusiaan' ? 'selected' : ''; ?>>Proyek Kemanusiaan</option>
+            <option value="Proyek Desa" <?php echo $former->jenis_mbkm == 'Proyek Desa' ? 'selected' : ''; ?>>Proyek Desa</option>
+            <option value="Wirausaha" <?php echo $former->jenis_mbkm == 'Wirausaha' ? 'selected' : ''; ?>>Wirausaha</option>
+            <option value="Studi/Proyek Independen" <?php echo $former->jenis_mbkm == 'Studi/Proyek Independen' ? 'selected' : ''; ?>>Studi/Proyek Independen</option>
+            <option value="Pengabdian Mahasiswa kepada Masyarakat" <?php echo $former->jenis_mbkm == 'Pengabdian Mahasiswa kepada Masyarakat' ? 'selected' : ''; ?>>Pengabdian Mahasiswa kepada Masyarakat</option>
+        </select>
+        <div class="invalid-feedback">
+        </div>
+    </div>
+</div>
 
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Periode</label>

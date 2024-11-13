@@ -808,14 +808,14 @@ class Admin extends BaseController
                 'nama_kegiatan' => 'required',
                 'capaian' => 'required',
                 'tempat' => 'required',
-                'datepicker-mulai' => 'required',
-                'datepicker-selesai' => 'required',
+                'tanggal-mulai' => 'required',
+                'tanggal-selesai' => 'required',
                 'penyelenggara' => 'required',
                 'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
                 'publikasi' => 'required',
             ])
         ) {
-            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('datepicker-mulai')), $this->lpModel->getDate($this->request->getPost('datepicker-selesai'))) < 0) {
+            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('tanggal-mulai')), $this->lpModel->getDate($this->request->getPost('tanggal-selesai'))) < 0) {
                 session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
                 return redirect()->to(base_url('/admin/prestasi'));
             }
@@ -823,12 +823,18 @@ class Admin extends BaseController
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
             $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
+            $tanggal_mulai = $this->request->getPost('tanggal-mulai');
+            $tanggal_selesai = $this->request->getPost('tanggal-selesai');
+            $formatted_mulai = date('d F, Y', strtotime($tanggal_mulai)); // Pastikan format yang diterima valid
+            $formatted_selesai = date('d F, Y', strtotime($tanggal_selesai));
+
 
             $capaianValue = $this->request->getPost('capaian');
 
             // Jika "Lainnya" dipilih, ambil nilai dari input "other_form"
             if ($capaianValue === 'Lainnya') {
                 $capaianValue = $this->request->getPost('other_form'); // Ambil nilai custom dari input teks
+                dd($capaianValue);
             }
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -839,7 +845,9 @@ class Admin extends BaseController
                 'capaian' => $capaianValue,
 
                 'tempat' => $this->request->getPost('tempat'),
-                'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
+                
+                'tanggal_mulai' => $this->lpModel->getDate($formatted_mulai),
+                'tanggal_selesai' => $this->lpModel->getDate($formatted_selesai),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
@@ -900,15 +908,29 @@ class Admin extends BaseController
                 'nama_kegiatan' => 'required',
                 'capaian' => 'required',
                 'tempat' => 'required',
-                'datepicker' => 'required',
+                'tanggal-mulai' => 'required',
+                'tanggal-selesai' => 'required',
                 'penyelenggara' => 'required',
                 'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
                 'publikasi' => 'required',
             ])
         ) {
+            $tanggal_mulai = $this->request->getPost('tanggal-mulai');
+            $tanggal_selesai = $this->request->getPost('tanggal-selesai');
+            $formatted_mulai = date('d F, Y', strtotime($tanggal_mulai)); // Pastikan format yang diterima valid
+            $formatted_selesai = date('d F, Y', strtotime($tanggal_selesai));
+
+            
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
             $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
+            $capaianValue = $this->request->getPost('capaian');
+
+            // Jika "Lainnya" dipilih, ambil nilai dari input "other_form"
+            if ($capaianValue === 'Lainnya') {
+                $capaianValue = $this->request->getPost('other_form'); // Ambil nilai custom dari input teks
+                
+            }
             $data = [
                 'id_prestasi' => $id_prestasi,
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -916,9 +938,10 @@ class Admin extends BaseController
                 'tingkat' => $this->request->getPost('tingkat'),
                 'jenis_prestasi' => $this->request->getPost('jenis_prestasi'),
                 'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
-                'capaian' => $this->request->getPost('capaian'),
+                'capaian' => $capaianValue,
                 'tempat' => $this->request->getPost('tempat'),
-                'tanggal' => $this->lpModel->getDate($this->request->getPost('datepicker')),
+                'tanggal_mulai' => $this->lpModel->getDate($formatted_mulai),
+                'tanggal_selesai' => $this->lpModel->getDate($formatted_selesai),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),

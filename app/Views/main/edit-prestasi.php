@@ -141,10 +141,12 @@
                                                 <option value="Harapan IV" <?php echo isset($former->capaian) && $former->capaian == 'Harapan IV' ? 'selected' : ''; ?>>Harapan IV</option>
                                                 <option value="Partisipatif" <?php echo isset($former->capaian) && $former->capaian == 'Partisipatif' ? 'selected' : ''; ?>>Partisipatif</option>
                                                 <option value="Finalis" <?php echo isset($former->capaian) && $former->capaian == 'Finalis' ? 'selected' : ''; ?>>Finalis</option>
-                                                <option value="Lainnya" <?php echo isset($former->capaian) && $former->capaian == 'Lainnya' ? 'selected' : ''; ?>>Lainnya</option>
+
+                                                <option value="Lainnya" <?php echo isset($former->capaian) && !in_array($former->capaian, ['Juara I', 'Juara II', 'Juara III', 'Harapan I', 'Harapan II', 'Harapan III', 'Harapan IV', 'Partisipatif', 'Finalis']) ? 'selected' : ''; ?>>Lainnya</option>
                                             </select>
                                             <input type="text" id="capaian-other" name="other_form"
-                                                class="form-control custom-textfield col-lg-6 col-md-6 col-sm-6 custom-other-option <?php echo isset($former->capaian) && $former->capaian == 'Lainnya' ? '' : 'hidden-other-option'; ?>"
+                                                value="<?= isset($former->capaian) && !in_array($former->capaian, ['Juara I', 'Juara II', 'Juara III', 'Harapan I', 'Harapan II', 'Harapan III', 'Harapan IV', 'Partisipatif', 'Finalis']) ? $former->capaian : '' ?>"
+                                                class="form-control custom-textfield col-lg-6 col-md-6 col-sm-6 custom-other-option <?= isset($former->capaian) && !in_array($former->capaian, ['Juara I', 'Juara II', 'Juara III', 'Harapan I', 'Harapan II', 'Harapan III', 'Harapan IV', 'Partisipatif', 'Finalis']) ? '' : 'hidden-other-option' ?> "
                                                 placeholder="Isi pencapaian lain..." value="<?php echo isset($former->other_form) ? $former->other_form : ''; ?>">
                                             <!-- Task-BE -->
                                             <div class="invalid-feedback">
@@ -164,15 +166,21 @@
                                         </div>
                                     </div>
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label class="label-form">Tanggal Pembuatan</label>
-                                        <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input name="datepicker"
-                                                class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6"
-                                                id="datepicker">
-                                            <div class=" invalid-feedback">
-
+                                    <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                        <label class="label-form">Tanggal Pelaksanaan</label>
+                                        <div style="display: block;margin-left:15px;"
+                                            class=" col-lg-8 col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <input id="tgl_mulai_pelaksana" name="tanggal-mulai" type="text"
+                                                    value="<?= date('d F, Y', strtotime($former->tanggal_mulai)) ?>"
+                                                    class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
+                                                <pre>  Sampai dengan  </pre>
+                                                <input id="tgl_akhir_pelaksana" name="tanggal-selesai"
+                                                    value="<?= date('d F, Y', strtotime($former->tanggal_selesai)) ?>"
+                                                    type="text"
+                                                    class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
                                             </div>
+
                                         </div>
                                     </div>
 
