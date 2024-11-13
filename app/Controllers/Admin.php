@@ -670,9 +670,7 @@ class Admin extends BaseController
                 'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
                 'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
                 'semester' => 'required',
-                'TA' => 'required',
-                'bef' => 'required',
-                'af' => 'required',
+                'TA' => 'required',                
                 'ipk' => 'required',
                 'ipk_lokal' => 'required',
                 'ipk_uu' => 'required',
@@ -687,7 +685,7 @@ class Admin extends BaseController
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
                 'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->laModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'tahun_ajaran' => $this->request->getPost('TA'),
                 'ipk' => $this->request->getPost('ipk'),
                 'ipk_lokal' => $this->request->getPost('ipk_lokal'),
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
@@ -1369,6 +1367,7 @@ class Admin extends BaseController
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
                 'konfirmasi_keaktifan' => $this->request->getPost('konfirmasi_keaktifan'),
+                'konf_ket_keaktifan' => $this->request->getPost('konf_ket_keaktifan'),
             ];
 
             $this->kaModel->UpdateData($id_keaktifan, $data);

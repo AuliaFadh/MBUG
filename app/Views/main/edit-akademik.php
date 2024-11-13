@@ -54,8 +54,8 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly name="prodi" value="<?= $former->nama_prodi ?>" type="text"
-                                                class="form-control custom-textfield ">
+                                            <input readonly name="prodi" value="<?= $former->nama_prodi ?>"
+                                                type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
 
                                             </div>
@@ -94,25 +94,24 @@
                                         </div>
                                     </div>
 
-                                    
+
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form"for="TA">Tahun Ajaran</label>
                                         <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
-                                            <input required type="text" id="find-ta" 
+                                            <input required type="text" id="find-ta"
                                                 class="form-control custom-textfield " name="TA"
-                                                value="<?= $former->tahun_ajaran ?>"
-                                                >
+                                                value="<?= $former->tahun_ajaran ?>">
                                             <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
                                                 <?php foreach ($TA as $key => $TAval) : ?>
-                                                    <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
-                                                <?php endforeach; ?>                                                   
+                                                <a id="ta-data"
+                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>
+                                                <?php endforeach; ?>
 
                                                 <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-                                            <?= $validation->getError('nama_tahun') ?>
+                                                <?= $validation->getError('nama_tahun') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -158,7 +157,7 @@
                                                     id="doc-search" class="btn btn-sm btn-success"
                                                     src="<?= base_url('asset/img/doc-search.png') ?>"
                                                     alt=""></a>
-                                            <input name="rangkuman_nilai" type="file" class="dropify"
+                                            <input require name="rangkuman_nilai" type="file" class="dropify"
                                                 data-default-file="">
                                         </div>
                                     </div>
@@ -185,9 +184,11 @@
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="keterangan" class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea class="form-control custom-textfield " id="keterangan" name="keterangan" autofocus="" value="" rows="2"></textarea>
+                                            <textarea class="form-control custom-textfield " id="keterangan" name="konf_ket_akademik" autofocus="" value=""
+                                                rows="2"><?= $former->konf_ket_akademik ?></textarea>
                                             <div class="invalid-feedback">
-                                                                                            </div>
+
+                                            </div>
                                         </div>
                                     </div>
 
@@ -207,5 +208,5 @@
     </div>
 </div>
 
-<script src="<?= base_url('asset/js/custom-search-ta.js'); ?>"></script>
+<script src="<?= base_url('asset/js/custom-search-ta.js') ?>"></script>
 <?= $this->endSection('content') ?>
