@@ -658,6 +658,7 @@ class Admin extends BaseController
                 'ipk_uu' => $this->request->getPost('ipk_uu'),
                 'rangkuman_nilai' => $nama_rn,
                 'konfirmasi_akademik' => 2,
+                'konf_ket_akademik'=> $this->request->getPost('konf_ket_akademik'),
             ];
 
             $this->laModel->UpdateData($id_akademik, $data);
@@ -1283,9 +1284,7 @@ class Admin extends BaseController
             'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
             'semester' => 'required',
-            'TA' => 'required',
-            'bef' => 'required',
-            'af' => 'required',
+            'TA' => 'required',            
             'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
             'jumlah_ditagihkan' => 'required',
             'jumlah_potongan' => 'required',
@@ -1309,13 +1308,14 @@ class Admin extends BaseController
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->kaModel->getIDp($this->request->getPost('npm')),
                 'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
+                'tahun_ajaran' => $this->request->getPost('TA'),
                 'krs' => $nama_krs,
                 'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
                 'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
-                'konfirmasi_keaktifan' => 2,
+                'konfirmasi_keaktifan' => $this->request->getPost('konfirmasi_keaktifan'),
+                
             ];
 
             $this->kaModel->UpdateData($id_keaktifan, $data);
@@ -1369,6 +1369,7 @@ class Admin extends BaseController
                 'blanko_pembayaran' => $nama_blanko,
                 'bukti_pembayaran' => $nama_bukti,
                 'konfirmasi_keaktifan' => 2,
+                
             ];
 
             $this->kaModel->InsertData($data);
