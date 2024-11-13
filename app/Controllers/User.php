@@ -290,6 +290,7 @@ class User extends BaseController
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
                 'jenis_beasiswa'=>$jb,
+                'TA'=>$TA,
             ];
 
             return view('user-main/tambah-akademik', $data);
@@ -546,17 +547,19 @@ class User extends BaseController
             'nama_kegiatan' => 'required',
             'capaian' => 'required',
             'tempat' => 'required',
-            'datepicker-mulai' => 'required',
-            'datepicker-selesai' => 'required',
+            'tanggal-mulai' => 'required',
+            'tanggal-selesai' => 'required',
             'penyelenggara' => 'required',
             'bukti_prestasi' => 'uploaded[bukti_prestasi]|max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
+            
 
-            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('datepicker-mulai')), $this->lpModel->getDate($this->request->getPost('datepicker-selesai'))) < 0) {
+            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('tanggal-mulai')), $this->lpModel->getDate($this->request->getPost('tanggal-selesai'))) < 0) {
                 session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
                 return redirect()->to(base_url('/user/prestasi'));
             }
+
 
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
@@ -569,13 +572,14 @@ class User extends BaseController
                 'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
                 'capaian' => $this->request->getPost('capaian'),
                 'tempat' => $this->request->getPost('tempat'),
-                'tanggal_mulai' => $this->lpModel->getDate($this->request->getPost('datepicker-mulai')),
-                'tanggal_selesai' => $this->lpModel->getDate($this->request->getPost('datepicker-selesai')),
+                'tanggal_mulai' => $this->lpModel->getDate($this->request->getPost('tanggal-mulai')),
+                'tanggal_selesai' => $this->lpModel->getDate($this->request->getPost('tanggal-selesai')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),
                 'konfirmasi_prestasi' => 2,
             ];
+            
 
             $this->lpModel->InsertData($data);
             session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
@@ -584,7 +588,6 @@ class User extends BaseController
         } else {
             $session = session();
             $session->setFlashdata('input', $this->request->getPost());
-
             $data = [
                 'title' => 'Form Input Prestasi | User',
                 'validation' => \Config\Services::validation(),
@@ -601,6 +604,7 @@ class User extends BaseController
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
+        $TA = $this->tahunModel->AllData();
 
         $jb = $this->jbModel->AllData();
         $data = [
@@ -608,6 +612,7 @@ class User extends BaseController
             'validation' => \Config\Services::validation(),
             'former' => $this->lpModel->DetailData($id_prestasi),
             'jenis_beasiswa' => $jb,
+            'TA' => $TA,
         ];
 
         return view('user-main/edit-prestasi', $data);
@@ -626,14 +631,14 @@ class User extends BaseController
             'nama_kegiatan' => 'required',
             'capaian' => 'required',
             'tempat' => 'required',
-            'datepicker-mulai' => 'required',
-            'datepicker-selesai' => 'required',
+            'tanggal-mulai' => 'required',
+            'tanggal-selesai' => 'required',
             'penyelenggara' => 'required',
             'bukti_prestasi' => 'max_size[bukti_prestasi,4096]|ext_in[bukti_prestasi,pdf]',
             'publikasi' => 'required',
         ])) {
 
-            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('datepicker-mulai')), $this->lpModel->getDate($this->request->getPost('datepicker-selesai'))) < 0) {
+            if ($this->lpModel->calc($this->lpModel->getDate($this->request->getPost('tanggal-mulai')), $this->lpModel->getDate($this->request->getPost('tanggal-selesai'))) < 0) {
                 session()->setFlashdata('gagal', 'Tanggal terbit setelah batas pengumuman');
                 return redirect()->to(base_url('/user/prestasi'));
             }
@@ -660,8 +665,8 @@ class User extends BaseController
                 'nama_kegiatan' => $this->request->getPost('nama_kegiatan'),
                 'capaian' => $this->request->getPost('capaian'),
                 'tempat' => $this->request->getPost('tempat'),
-                'tanggal_mulai' => $this->lpModel->getDate($this->request->getPost('datepicker-mulai')),
-                'tanggal_selesai' => $this->lpModel->getDate($this->request->getPost('datepicker-selesai')),
+                'tanggal_mulai' => $this->lpModel->getDate($this->request->getPost('tanggal-mulai')),
+                'tanggal_selesai' => $this->lpModel->getDate($this->request->getPost('tanggal-selesai')),
                 'penyelenggara' => $this->request->getPost('penyelenggara'),
                 'bukti_prestasi' => $nama_bp,
                 'publikasi' => $this->request->getPost('publikasi'),

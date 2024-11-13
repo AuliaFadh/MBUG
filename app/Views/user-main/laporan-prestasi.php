@@ -66,7 +66,11 @@
                                     <?php foreach ($lp as $key => $value) : ?>
                                         <?php if ($value["npm"] == session()->get('username')) : ?>
                                             <?php $no++; ?>
-                                            <tr>
+                                            <tr
+                                            <?php if($value['konfirmasi_prestasi'] == "0")
+                                                echo 'style="background-color: #ffdfdf!important;"'
+                                            ?>
+                                            >
                                                 <td class="th-sm"><strong><?= $no; ?></strong></td>
                                                 <?php
                                                 $tgl_mulai = date_create_from_format('Y-m-d', $value['tanggal_mulai']);

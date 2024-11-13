@@ -96,6 +96,7 @@
                                                 <option value="Internal" <?php echo $former->tingkat == 'Internal' ? 'selected' : ''; ?>>Internal</option>
                                             </select>
                                             <div class="invalid-feedback">
+                                            <?= $validation->getError('tingkat') ?>
                                             </div>
                                         </div>
                                     </div>
