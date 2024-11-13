@@ -710,6 +710,7 @@ class Admin extends BaseController
         } else {
             $session = session();
             $session->setFlashdata('input', $this->request->getPost());
+            
 
             $data = [
                 'title' => 'Form Input Akademik | Admin',
@@ -1244,74 +1245,11 @@ class Admin extends BaseController
             'validation' => \Config\Services::validation(),
             'penerima' => $pb,
             'jenis_beasiswa' => $jb,
-            'TA'=>$TA,
+            'TA'=>$TA,            
         ];
-
         return view('main/tambah-keaktifan', $data);
     }
 
-    public function save_keaktifan()
-    {
-        if (session()->get('hak_akses') != "1") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
-            return redirect()->to(base_url('/admin/login'));
-        }
-
-        if ($this->validate([
-            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
-            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
-            'semester' => 'required',
-            'TA' => 'required',
-            'bef' => 'required',
-            'af' => 'required',
-            'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
-            'jumlah_ditagihkan' => 'required',
-            'jumlah_potongan' => 'required',
-            'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
-            'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
-        ])) {
-            $krs = $this->request->getFile('krs');
-            $nama_krs = $krs->getRandomName();
-            $krs->move('asset/doc/database/krs', $nama_krs);
-
-            $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
-            $nama_blanko = $blanko_pembayaran->getRandomName();
-            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
-
-            $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
-            $nama_bukti = $bukti_pembayaran->getRandomName();
-            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
-
-            $data = [
-                'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
-                'id_penerima' => $this->kaModel->getIDp($this->request->getPost('npm')),
-                'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->kaModel->getTA($this->request->getPost('TA'), $this->request->getPost('bef'), $this->request->getPost('af')),
-                'krs' => $nama_krs,
-                'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
-                'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
-                'blanko_pembayaran' => $nama_blanko,
-                'bukti_pembayaran' => $nama_bukti,
-                'konfirmasi_keaktifan' => 2,
-            ];
-
-            $this->kaModel->InsertData($data);
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
-
-            return redirect()->to(base_url('/admin/keaktifan'));
-        } else {
-            $session = session();
-            $session->setFlashdata('input', $this->request->getPost());
-
-            $data = [
-                'title' => 'Form Input Keaktifan | Admin',
-                'validation' => \Config\Services::validation(),
-                'input' => $session->getFlashdata('input'),
-            ];
-
-            return view('main/tambah-keaktifan', $data);
-        }
-    }
 
     public function edit_keaktifan($id_keaktifan)
     {
@@ -1331,8 +1269,6 @@ class Admin extends BaseController
             'jenis_beasiswa' => $jb,
             'TA'=>$TA,
         ];
-        
-
         return view('main/edit-keaktifan', $data);
     }
 
@@ -1389,6 +1325,73 @@ class Admin extends BaseController
         } else {
             session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
             return redirect()->to(base_url('/admin/keaktifan'));
+        }
+    }
+    public function save_keaktifan()
+    {
+        if (session()->get('hak_akses') != "1") {
+            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai Admin");
+            return redirect()->to(base_url('/admin/login'));
+        }
+ 
+        if ($this->validate([
+            'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+            'semester' => 'required',
+            'TA' => 'required',
+            
+            'krs' => 'uploaded[krs]|max_size[krs,4096]|ext_in[krs,pdf]',
+            'jumlah_ditagihkan' => 'required',
+            'jumlah_potongan' => 'required',
+            'blanko_pembayaran' => 'uploaded[blanko_pembayaran]|max_size[blanko_pembayaran,4096]|ext_in[blanko_pembayaran,pdf]',
+            'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|max_size[bukti_pembayaran,4096]|ext_in[bukti_pembayaran,pdf]',
+        ])) {
+            $krs = $this->request->getFile('krs');
+            $nama_krs = $krs->getRandomName();
+            $krs->move('asset/doc/database/krs', $nama_krs);
+
+            $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
+            $nama_blanko = $blanko_pembayaran->getRandomName();
+            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+
+            $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
+            $nama_bukti = $bukti_pembayaran->getRandomName();
+            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+
+            $data = [
+                'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->kaModel->getIDp($this->request->getPost('npm')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->request->getPost('TA'),
+                'krs' => $nama_krs,
+                'jumlah_ditagihkan' => $this->request->getPost('jumlah_ditagihkan'),
+                'jumlah_potongan' => $this->request->getPost('jumlah_potongan'),
+                'blanko_pembayaran' => $nama_blanko,
+                'bukti_pembayaran' => $nama_bukti,
+                'konfirmasi_keaktifan' => 2,
+            ];
+
+            $this->kaModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/keaktifan'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+            $jb = $this->jbModel->AllData();
+            $pb = $this->pbModel->AllData();
+            $TA = $this->tahunModel->AllData();
+
+            $data = [
+                'title' => 'Form Input Keaktifan | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+                'jenis_beasiswa' => $jb,
+                'TA'=>$TA,
+                'penerima' => $pb,
+            ];
+
+            return view('main/tambah-keaktifan', $data);
         }
     }
 
