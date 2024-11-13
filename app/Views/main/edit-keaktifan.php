@@ -236,4 +236,5 @@
         </div>
     </div>
     <script src="<?= base_url('asset/js/custom-search-ta.js') ?>"></script>
+    <script src="<?= base_url('asset/js/custom-currency.js') ?>"></script>
     <?= $this->endSection('content') ?>
