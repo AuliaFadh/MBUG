@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title><?= $title; ?></title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="https://gunadarma.ac.id/assets/images/logosmall.png">
+    <link rel="icon" type="image/png" sizes="16x16"href="<?= base_url('asset/img/MBUG-ico.ico'); ?>" >
     <link rel="stylesheet" href="<?= base_url('asset/vendor/jqvmap/css/jqvmap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/vendor/chartist/css/chartist.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/vendor/bootstrap-select/dist/css/bootstrap-select.min.css'); ?>">
