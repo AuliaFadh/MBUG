@@ -145,40 +145,42 @@
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center  p-2">
 
-                                            <input required type="text" id="find-ta" 
-                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6" name="TA"
-                                                >
-                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
-                                                style="display: none;">
-                                                <?php foreach ($TA as $key => $TAval) : ?>
-                                                    <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
-                                                <?php endforeach; ?>                                                   
+                                            <input type="text" id="find-ta-awal" name="TA"
+                                                value=""
+                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6 "
+                                                autofocus>
 
-                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
+                                            <div id="box-find-ta-awal"
+                                                class="dropdown-custom col-lg-5 col-md-45 col-sm-7"
+                                                style="display: none;">
+                                                <?php foreach ($TA as $key => $TAValue) : ?>
+                                                <a id="data-find-ta-awal"
+                                                    onclick="fillFindInput('find-ta-awal','<?= $TAValue['nama_tahun'] ?>')"><?= $TAValue['nama_tahun'] ?></a>
+                                                <?php endforeach; ?>
+                                                <span id="no-data-find-ta-awal" style="display: none;">Data tidak
+                                                    ada</span>
                                             </div>
+                                            
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center">
                                                 ~
                                             </h6>
-                                            <input required type="text" id="find-ta" 
-                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6" name="TA"
-                                                >
-                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
+                                            <input required type="text" id="find-ta-akhir"
+                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6"
+                                                name="TA">
+                                            <div id="box-find-ta-akhir"
+                                                class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
                                                 <?php foreach ($TA as $key => $TAval) : ?>
-                                                    <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
-                                                <?php endforeach; ?>                                                   
+                                                <a id="ta-data"
+                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>
+                                                <?php endforeach; ?>
 
-                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
+                                                <span id="no-data-find-ta-akhir" style="display: none;">Data tidak
+                                                    ada</span>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
                             </div>
                         </div>
 
@@ -261,6 +263,29 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
-<script src="<?= base_url('asset/js/custom-search-ta.js'); ?>"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const findtaAwal = document.getElementById('find-ta-awal');
+        findtaAwal.addEventListener('input', function() {
+            findResult('find-ta-awal');
+        });
+        findtaAwal.addEventListener('blur', function() {
+            hideResult('find-ta-awal');
+        });
+        
+        const findtaAkhir = document.getElementById('find-ta-akhir');
+        findtaAkhir.addEventListener('input', function() {
+            findResult('find-ta-akhir');
+        });
+        findtaAkhir.addEventListener('blur', function() {
+            hideResult('find-ta-akhir');
+        });
+
+
+       
+    });
+</script>
 
 <?= $this->endSection('content') ?>
