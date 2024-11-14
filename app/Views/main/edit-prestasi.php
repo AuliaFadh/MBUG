@@ -62,26 +62,32 @@
                                         </div>
                                     </div>
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div name="input-find&fill-jenis_beasiswa"
+                                        class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
+
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" name="jenis_beasiswa" value="<?= $former->jenis ?>"
-                                                id="jb-input" class="form-control custom-textfield ">
-                                            <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7"
+
+                                            <input type="text" id="find-jb" name="jenis_beasiswa"
+                                                value="<?= $former->jenis ?>"
+                                                class="form-control custom-textfield <?= $validation->hasError('jenis_beasiswa') ? ' is-invalid is-test' : '' ?>"
+                                                autofocus>
+
+                                            <div id="box-find-jb" class="dropdown-custom col-lg-10 col-md-10 col-sm-7"
                                                 style="display: none;">
-
-                                                <?php foreach ($jenis_beasiswa as $key => $value) : ?>
-                                                <a id="jb-data"
-                                                    onclick="fillInputJB('<?= $value['jenis'] ?>')"><?= $value['jenis'] ?></a>
+                                                <?php foreach ($jenis_beasiswa as $key => $jenis_beasiswaValue) : ?>
+                                                <a id="data-find-jb"
+                                                    onclick="fillFindInput('find-jb','<?= $jenis_beasiswaValue['jenis'] ?>')"><?= $jenis_beasiswaValue['jenis'] ?></a>
                                                 <?php endforeach; ?>
-
-                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                                <span id="no-data-find-jb" style="display: none;">Data tidak
+                                                    ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-
+                                                <?= $validation->getError('jenis_beasiswa') ?>
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12">
                                         <label class="label-form">Tingkat</label>
@@ -96,7 +102,7 @@
                                                 <option value="Internal" <?php echo $former->tingkat == 'Internal' ? 'selected' : ''; ?>>Internal</option>
                                             </select>
                                             <div class="invalid-feedback">
-                                            <?= $validation->getError('tingkat') ?>
+                                                <?= $validation->getError('tingkat') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -244,8 +250,8 @@
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="keterangan" class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea class="form-control custom-textfield " id="keterangan" name="konf_ket_prestasi" autofocus="" value=""
-                                                rows="2"><?= $former->konf_ket_prestasi ?></textarea>
+                                            <textarea class="form-control custom-textfield " id="keterangan" name="konf_ket_prestasi" autofocus=""
+                                                value="" rows="2"><?= $former->konf_ket_prestasi ?></textarea>
                                             <div class="invalid-feedback">
 
                                             </div>
@@ -266,4 +272,18 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const findjb = document.getElementById('find-jb');
+            findjb.addEventListener('input', function() {
+                findResult('find-jb');
+            });
+            findjb.addEventListener('blur', function() {
+                hideResult('find-jb');
+            });
+
+
+
+        });
+    </script>
     <?= $this->endSection('content') ?>

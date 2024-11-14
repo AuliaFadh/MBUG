@@ -28,7 +28,7 @@
                             <?= csrf_field() ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div name="input-find&fill-npm"
+                                    <div name="input-find&fill-npm"
                                         class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
@@ -75,7 +75,7 @@
                                     <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" readonly 
+                                            <input type="text" readonly
                                                 class="form-control custom-textfield <?= $validation->hasError('prodi') ? ' is-invalid is-test' : '' ?>"
                                                 id="prodi" name="prodi"
                                                 value="<?= old('nama_prodi', isset($input['nama_prodi']) ? $input['nama_prodi'] : '') ?>">
