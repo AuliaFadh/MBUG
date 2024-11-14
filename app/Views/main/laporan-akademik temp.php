@@ -3,6 +3,7 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
+
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/home">
@@ -15,6 +16,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+
                     <div class="card-header">
                         <div class="container1">
                             <img class="logo-abbr logo-beasiswa" src="<?= base_url('asset/img/akademik.png') ?>"
@@ -67,122 +69,114 @@
 
                     <!-- Tabel -->
                     <div class="card-body ">
+                        <div class="row p-0 m-0">
+                            <div class="col"></div>
+                            <button title="Advance Filter" type="button" class="  no-color m-2 float-right"
+                                id="toggle-filter" onclick="toggleFilter()">
+                                Advanced Filter
+                                <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
+                                <!-- Icon gear -->
+                            </button>
+                        </div>
 
-                        <div name="advance-filter" class="d-flex flex-column align-items-end">
-                            <!-- Tombol berada di kanan -->
-                            <p class="d-inline-flex p-0 m-0">
-                                <button class="no-color m-0" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseExample" aria-expanded="false"
-                                    aria-controls="collapseExample">
-                                    Advance Filter
-                                    <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
-                                </button>
-                            </p>
+                        <div id="advance-filter" style="display:none; transition: all 0.3s ease;"
+                            class="container pt-2 border rounded  mt-0">
+                            <h6>Advanced Filter</h6>
+                            <div class="row pb-0 d-flex justify-content-center align-items-center">
 
-                            <!-- Konten yang dapat collapse, berada di bawah tombol -->
-                            <div name="box-filter" class="collapse container pt-2 border rounded  mt-0 "
-                                id="collapseExample">
-                                <h6>Advanced Filter</h6>
-
-                                <div class="row p-0 d-flex justify-content-center align-items-center">
-
-                                    <div class="col-md-3 col-12 mb-3">
-                                        <h7 class="d-flex justify-content-center align-items-center ">IPK</h7>
-                                        <div
-                                            class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk"
-                                                class="col-md-3 col-4 mb-3 p-1">
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                            </h6>
-                                            <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk"
-                                                class="col-md-3 col-4 mb-3 p-1">
-                                        </div>
+                                <div class="col-md-3 col-12 mb-3">
+                                    <h7 class="d-flex justify-content-center align-items-center ">IPK</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk"
+                                            class="col-md-3 col-4 mb-3 p-1">
                                     </div>
-                                    <div class="col-md-3 col-12 mb-3">
-                                        <h7 class="d-flex justify-content-center align-items-center ">IPK Lokal</h7>
-                                        <div
-                                            class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-lokal"
-                                                class="col-md-3 col-4 mb-3 p-1">
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                            </h6>
-                                            <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
-                                                class="col-md-3 col-4 mb-3 p-1">
-                                        </div>
+                                </div>
+                                <div class="col-md-3 col-12 mb-3">
+                                    <h7 class="d-flex justify-content-center align-items-center ">IPK Lokal</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-lokal"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
+                                            class="col-md-3 col-4 mb-3 p-1">
                                     </div>
-                                    <div class="col-md-3 col-12 mb-3">
-                                        <h7 class="d-flex justify-content-center align-items-center ">IPK UU</h7>
-                                        <div
-                                            class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-uu"
-                                                class="col-md-3 col-4 mb-3 p-1">
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                            </h6>
-                                            <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-uu"
-                                                class="col-md-3 col-4 mb-3 p-1">
-                                        </div>
+                                </div>
+                                <div class="col-md-3 col-12 mb-3">
+                                    <h7 class="d-flex justify-content-center align-items-center ">IPK UU</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-uu"
+                                            class="col-md-3 col-4 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-uu"
+                                            class="col-md-3 col-4 mb-3 p-1">
                                     </div>
-
                                 </div>
 
-                                <div class="row pb-0 d-flex justify-content-center align-items-center">
+                            </div>
 
-                                    <div class="col-md-6 col-12 mb-3  ">
-                                        <h7 class="d-flex justify-content-center align-items-center ">Semester</h7>
-                                        <div
-                                            class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" id="low-semester" min=0 max=20 value="0"
-                                                class="col-md-2 col-2 mb-3 p-1">
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                            </h6>
-                                            <input type="number" id="high-semester" min=0 max=20 value="20"
-                                                class="col-md-2 col-2 mb-3 p-1">
-                                        </div>
+                            <div class="row pb-0 d-flex justify-content-center align-items-center">
+
+                                <div class="col-md-6 col-12 mb-3  ">
+                                    <h7 class="d-flex justify-content-center align-items-center ">Semester</h7>
+                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
+                                        <input type="number" id="low-semester" min=0 max=20 value="0"
+                                            class="col-md-2 col-2 mb-3 p-1">
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                        </h6>
+                                        <input type="number" id="high-semester" min=0 max=20 value="20"
+                                            class="col-md-2 col-2 mb-3 p-1">
                                     </div>
-
-                                    <div class="col-md-6 col-12 mb-3  ">
-                                        <h7 class="d-flex justify-content-center align-items-center ">Tahun Ajaran</h7>
-                                        <div
-                                            class="row border-bottom d-flex justify-content-center align-items-center  p-2">
-
-                                            <input required type="text" id="find-ta" 
-                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6" name="TA"
-                                                >
-                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
-                                                style="display: none;">
-                                                <?php foreach ($TA as $key => $TAval) : ?>
-                                                    <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
-                                                <?php endforeach; ?>                                                   
-
-                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
-                                            </div>
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center">
-                                                ~
-                                            </h6>
-                                            <input required type="text" id="find-ta" 
-                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6" name="TA"
-                                                >
-                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
-                                                style="display: none;">
-                                                <?php foreach ($TA as $key => $TAval) : ?>
-                                                    <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
-                                                <?php endforeach; ?>                                                   
-
-                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="col-md-6 col-12 mb-3  ">
+                                    <h7 class="d-flex justify-content-center align-items-center ">Tahun Ajaran</h7>
+                                    <div
+                                        class="row border-bottom d-flex justify-content-center align-items-center  p-2">
+                                        <select name="low-ajaran" id="low-ajaran"
+                                            class="form-control   custom-textfield col-lg-4 col-md-4 col-sm-6">
+                                            <option></option>
+                                            <option value="PTA 2020/2021">PTA 2020/2021</option>
+                                            <option value="ATA 2021/2022">ATA 2021/2022</option>
+                                            <option value="PTA 2022/2023">ATA 2021/2022</option>
+                                            <option value="ATA 2023/2024">ATA 2021/2022</option>
+                                        </select>
+                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center">
+                                            ~
+                                        </h6>
+                                        <select name="high-ajaran" id="high-ajaran"
+                                            class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-6 ">
+                                            <option></option>
+                                            <option value="PTA 2020/2021">PTA 2020/2021</option>
+                                            <option value="ATA 2021/2022">ATA 2021/2022</option>
+                                            <option value="PTA 2022/2023">ATA 2021/2022</option>
+                                            <option value="ATA 2023/2024">ATA 2021/2022</option>
+                                        </select>
                                     </div>
-
-
                                 </div>
 
 
                             </div>
+
+                            <div class="row  pb-2 d-flex justify-content-center align-items-center">
+
+                                <div class="btn-group col-md-12" role="group"
+                                    aria-label="Basic outlined example  ">
+                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4"
+                                        onclick="filterTableStatus('status-akademik','Disetujui')">Disetujui</button>
+                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4"
+                                        onclick="filterTableStatus('status-akademik','Diproses')">Diproses</button>
+                                    <button type="button" class="custom-btn-status btn btn-outline-primary col-md-4"
+                                        onclick="filterTableStatus('status-akademik','Ditolak')">Ditolak</button>
+                                </div>
+
+                            </div>
+
                         </div>
-
-
 
                         <div class="table-responsive">
                             <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
@@ -258,9 +252,6 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
-<script src="<?= base_url('asset/js/custom-search-ta.js'); ?>"></script>
+<script></script>
 
 <?= $this->endSection('content') ?>

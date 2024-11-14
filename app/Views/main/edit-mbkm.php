@@ -61,23 +61,28 @@
                                         </div>
                                     </div>
 
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div name="input-find&fill-jenis_beasiswa"
+                                        class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
+
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" name="jenis_beasiswa" value="<?= $former->jenis ?>"
-                                                id="jb-input" class="form-control custom-textfield ">
-                                            <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7"
+
+                                            <input type="text" id="find-jb" name="jenis_beasiswa"
+                                                value="<?= $former->jenis ?>"
+                                                class="form-control custom-textfield <?= $validation->hasError('jenis_beasiswa') ? ' is-invalid is-test' : '' ?>"
+                                                autofocus>
+
+                                            <div id="box-find-jb" class="dropdown-custom col-lg-10 col-md-10 col-sm-7"
                                                 style="display: none;">
-
-                                                <?php foreach ($jenis_beasiswa as $key => $value) : ?>
-                                                <a id="jb-data"
-                                                    onclick="fillInputJB('<?= $value['jenis'] ?>')"><?= $value['jenis'] ?></a>
+                                                <?php foreach ($jenis_beasiswa as $key => $jenis_beasiswaValue) : ?>
+                                                <a id="data-find-jb"
+                                                    onclick="fillFindInput('find-jb','<?= $jenis_beasiswaValue['jenis'] ?>')"><?= $jenis_beasiswaValue['jenis'] ?></a>
                                                 <?php endforeach; ?>
-
-                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                                <span id="no-data-find-jb" style="display: none;">Data tidak
+                                                    ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-
+                                                <?= $validation->getError('jenis_beasiswa') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -189,4 +194,18 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const findjb = document.getElementById('find-jb');
+        findjb.addEventListener('input', function() {
+            findResult('find-jb');
+        });
+        findjb.addEventListener('blur', function() {
+            hideResult('find-jb');
+        });
+
+
+
+    });
+</script>
 <?= $this->endSection('content') ?>

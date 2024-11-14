@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title><?= $title; ?></title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16"href="<?= base_url('asset/img/MBUG-ico.ico'); ?>" >d
+    <link rel="icon" type="image/png" sizes="16x16"href="<?= base_url('asset/img/MBUG-ico.ico'); ?>" >
     <link rel="stylesheet" href="<?= base_url('asset/vendor/jqvmap/css/jqvmap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/vendor/chartist/css/chartist.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/vendor/bootstrap-select/dist/css/bootstrap-select.min.css'); ?>">
@@ -30,10 +30,8 @@
 
 
     <!-- Javascript -->
-    <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/custom-search-npm.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/custom-find-and-fill.js') ?>"></script>
-    <script src="<?= base_url('asset/js/custom-search-jb.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>    
+    <script src="<?= base_url('asset/js/custom-find-and-fill.js') ?>"></script>    
     <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-csv-file.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-advance-filter.js'); ?>"></script>
