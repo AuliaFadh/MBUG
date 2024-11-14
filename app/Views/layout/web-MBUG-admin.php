@@ -30,10 +30,8 @@
 
 
     <!-- Javascript -->
-    <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/custom-search-npm.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/custom-find-and-fill.js') ?>"></script>
-    <script src="<?= base_url('asset/js/custom-search-jb.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>    
+    <script src="<?= base_url('asset/js/custom-find-and-fill.js') ?>"></script>    
     <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-csv-file.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-advance-filter.js'); ?>"></script>
