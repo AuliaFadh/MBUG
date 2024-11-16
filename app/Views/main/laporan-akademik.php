@@ -139,42 +139,38 @@
                                                 class="col-md-2 col-2 mb-3 p-1">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6 col-12 mb-3  ">
-                                        <h7 class="d-flex justify-content-center align-items-center ">Tahun Ajaran</h7>
+                                    <a href="" onclick="tes();tes2()">tes</a>
+                                    <div class="col-md-6 col-12 mb-3">
+                                        <h7 class="d-flex justify-content-center align-items-center">Tahun Ajaran</h7>
                                         <div
-                                            class="row border-bottom d-flex justify-content-center align-items-center  p-2">
-
-                                            <input type="text" id="find-ta-awal" name="TA"
-                                                value=""
-                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6 "
+                                            class="row border-bottom d-flex justify-content-center align-items-center p-2">
+                                            <input type="text" id="find-ta-awal" name="TA" value=""
+                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6"
                                                 autofocus>
-
                                             <div id="box-find-ta-awal"
                                                 class="dropdown-custom col-lg-5 col-md-45 col-sm-7"
                                                 style="display: none;">
                                                 <?php foreach ($TA as $key => $TAValue) : ?>
                                                 <a id="data-find-ta-awal"
-                                                    onclick="fillFindInput('find-ta-awal','<?= $TAValue['nama_tahun'] ?>')"><?= $TAValue['nama_tahun'] ?></a>
+                                                    onclick="fillFindInput('find-ta-awal','<?= $TAValue['nama_tahun'] ?>');
+                                                    handleFilterAkademik()"><?= $TAValue['nama_tahun'] ?></a>
                                                 <?php endforeach; ?>
                                                 <span id="no-data-find-ta-awal" style="display: none;">Data tidak
                                                     ada</span>
                                             </div>
-                                            
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center">
-                                                ~
+                                            <h6 class="col-3 mb-3 d-flex justify-content-center align-items-center">~
                                             </h6>
-                                            <input required type="text" id="find-ta-akhir"
+                                            <input type="text" id="find-ta-akhir" name="TA" value=""
                                                 class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6"
-                                                name="TA">
+                                                autofocus>
                                             <div id="box-find-ta-akhir"
-                                                class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
+                                                class="dropdown-custom col-lg-5 col-md-45 col-sm-7"
                                                 style="display: none;">
-                                                <?php foreach ($TA as $key => $TAval) : ?>
-                                                <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>
+                                                <?php foreach ($TA as $key => $TAValue) : ?>
+                                                <a id="data-find-ta-akhir"
+                                                    onclick="fillFindInput('find-ta-akhir','<?= $TAValue['nama_tahun'] ?>');handleFilterAkademik()"
+                                                    ><?= $TAValue['nama_tahun'] ?></a>
                                                 <?php endforeach; ?>
-
                                                 <span id="no-data-find-ta-akhir" style="display: none;">Data tidak
                                                     ada</span>
                                             </div>
@@ -265,8 +261,19 @@
 </script>
 
 <script>
+    
+function t(text,value){
+    console.log(text,"=",value)
+}
+function tes(){
+    t("tes1=","berjalan");
+};
+function tes2(){
+    t("tes2=","berjalan");
+};
+
     document.addEventListener('DOMContentLoaded', function() {
-        
+
         const findtaAwal = document.getElementById('find-ta-awal');
         findtaAwal.addEventListener('input', function() {
             findResult('find-ta-awal');
@@ -274,7 +281,7 @@
         findtaAwal.addEventListener('blur', function() {
             hideResult('find-ta-awal');
         });
-        
+
         const findtaAkhir = document.getElementById('find-ta-akhir');
         findtaAkhir.addEventListener('input', function() {
             findResult('find-ta-akhir');
@@ -284,8 +291,180 @@
         });
 
 
-       
+
     });
+</script>
+<script>
+var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+var displayedRowCount=0;
+for (var i = 1; i < tableRows.length; i++) {
+    displayedRowCount++;
+}
+document.getElementById('rowCount').textContent = 'Jumlah Data :' + displayedRowCount;
+
+
+function t(index,label,hasil){
+    console.log(index,label,'=',hasil);
+}
+
+
+
+function filterTableStatus(Class,statusTextValue) {
+    var rows = document.querySelectorAll('table tbody tr');
+    var displayedRowCount = 0;
+    var classSpan=`span.${Class}`;
+    rows.forEach(function(row) {
+        var statusCell = row.querySelector(classSpan);
+        if (statusCell && statusCell.textContent.trim() === statusTextValue) {
+            row.style.display = 'table-row'; // Menampilkan baris
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none'; // Menyembunyikan baris
+        }
+    });
+
+    // Update jumlah baris yang ditampilkan
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}
+
+function FillterScoreSingle(low1Id,highId1,coloum){    
+    var low1 = document.getElementById(low1Id).value;
+    var high1 = document.getElementById(highId1).value;
+    var varcoloum = parseInt(coloum, 10);
+        var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        var CellValue= parseInt(row.cells[varcoloum].innerText);
+       
+        
+
+        if (CellValue >=low1  &&
+            CellValue <= high1) {
+            row.style.display = ''; // Tampilkan baris jika memenuhi kriteria
+        } else {
+            row.style.display = 'none'; // Sembunyikan baris jika tidak memenuhi kriteria
+        }
+    }
+};
+function FillterScoreDouble(low1Id,lowColoum,highId1,highColoum,type){    
+    var low1 = document.getElementById(low1Id).value;
+    var high1 = document.getElementById(highId1).value;
+    if(type=='date'){
+        test1('tgl1', low1);
+        test1('tgl2', high1);
+    }
+    var low1 = document.getElementById(low1Id).value;
+    var high1 = document.getElementById(highId1).value;
+    var varlowColoum = parseInt(lowColoum, 10);
+    var varhighColoum = parseInt(highColoum, 10);
+        var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        var lowCellValue= parseInt(row.cells[varlowColoum].innerText);
+        var highCellValue= parseInt(row.cells[varhighColoum].innerText);
+       
+        
+
+        if (lowCellValue >=low1  &&
+            highCellValue <= high1) {
+            row.style.display = ''; // Tampilkan baris jika memenuhi kriteria
+        } else {
+            row.style.display = 'none'; // Sembunyikan baris jika tidak memenuhi kriteria
+        }
+    }
+};
+
+function TAQ(value) {
+    let jenis = value.split(" ")[0] === "PTA" ? 0 : 1;
+    let tahun = value.split(" ")[1].split("/");
+    let tahunAwal = tahun[0];
+    let tahunAkhir = tahun[1];
+    let queue = tahunAwal + tahunAkhir + jenis;
+    return queue;
+}
+
+function handleFilterAkademik() {    
+    // Ambil nilai dari input IPK rendah dan tinggi
+    
+    var lowIpk = parseFloat(document.getElementById('low-ipk').value);
+    var highIpk = parseFloat(document.getElementById('high-ipk').value);
+    var lowIpkLokal = parseFloat(document.getElementById('low-ipk-lokal').value);
+    var highIpkLokal = parseFloat(document.getElementById('high-ipk-lokal').value);
+    var lowIpkUU = parseFloat(document.getElementById('low-ipk-uu').value);
+    var highIpkUU = parseFloat(document.getElementById('high-ipk-uu').value);
+    var lowSemester = parseFloat(document.getElementById('low-semester').value);
+    var highSemester = parseFloat(document.getElementById('high-semester').value);
+
+    var lowTA = document.getElementById('find-ta-awal').value.trim().toUpperCase();
+    var highTA = document.getElementById('find-ta-akhir').value.trim().toUpperCase();
+    var displayedRowCount = 0;
+    t("tes2=","berjalan");
+    
+
+    
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        var semesterCell = parseInt(row.cells[5].innerText);
+        var TACell= row.cells[6].innerText;
+        var ipkCell = parseFloat(row.cells[7].innerText); // Mengambil nilai IPK dari sel yang ke-7
+        var ipk_lokal_Cell = parseFloat(row.cells[8].innerText);
+        var ipk_uu_Cell = parseFloat(row.cells[9].innerText);
+
+        if(lowTA==""){
+           lowTA="PTA 0000/0000";
+           t("awal null",lowTA);
+         };
+         if(highTA==""){
+            highTA="ATA 9999/9999";
+            t("akhir null",highTA);
+        };
+        var TAQueueCell= TAQ(TACell);
+        var TAQueueAwal= TAQ(lowTA);
+        var TAQueueAkhir= TAQ(highTA);
+        
+
+        if (ipkCell >= lowIpk &&
+            ipkCell <= highIpk &&
+            ipk_lokal_Cell >= lowIpkLokal &&
+            ipk_lokal_Cell <= highIpkLokal &&
+            ipk_uu_Cell >= lowIpkUU &&
+            ipk_uu_Cell <= highIpkUU &&
+            semesterCell >= lowSemester &&
+            semesterCell <= highSemester && TAQueueAwal<=TAQueueCell&&TAQueueAkhir>=TAQueueCell
+            
+        ) {
+            row.style.display = '';
+            displayedRowCount++;
+             // Tampilkan baris jika memenuhi kriteria
+        } else {
+            row.style.display = 'none'; // Sembunyikan baris jika tidak memenuhi kriteria
+        }
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+
+}
+
+// Tampilkan hasilnya
+
+// Tambahkan event listener untuk memanggil fungsi handleFilterAkademik saat nilai input IPK berubah
+document.getElementById('low-ipk-lokal').addEventListener('input', handleFilterAkademik);
+document.getElementById('high-ipk-lokal').addEventListener('input', handleFilterAkademik);
+document.getElementById('low-ipk-uu').addEventListener('input', handleFilterAkademik);
+document.getElementById('high-ipk-uu').addEventListener('input', handleFilterAkademik);
+document.getElementById('low-semester').addEventListener('input', handleFilterAkademik);
+document.getElementById('high-semester').addEventListener('input', handleFilterAkademik);
+document.getElementById('low-ipk').addEventListener('input', handleFilterAkademik);
+document.getElementById('high-ipk').addEventListener('input', handleFilterAkademik);
+
+
+
+
+
 </script>
 
 <?= $this->endSection('content') ?>
