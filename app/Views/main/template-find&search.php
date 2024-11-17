@@ -130,7 +130,20 @@
 </div>
 
 
+<div class="row pb-2 d-flex justify-content-center align-items-center">
 
+                                    
+                                        <input type="checkbox" name="checkbox1" id="checkbox1" class=" custom-checkbox">
+                                        <label for="checkbox1" class=" col-lg-4 col-nm-4 col-sm-4 custom-checkbox-label">Disetujui</label>
+                                        <input type="checkbox" name="checkbox2" id="checkbox2" class=" custom-checkbox">
+                                        <label for="checkbox2" class=" col-lg-4 col-nm-4 col-sm-4 custom-checkbox-label">Diproses</label>
+                                        <input type="checkbox" name="checkbox3" id="checkbox3" class=" custom-checkbox">
+                                        <label for="checkbox3" class=" col-lg-4 col-nm-4 col-sm-4 custom-checkbox-label">Ditolak</label>
+
+                                    
+
+
+                                </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

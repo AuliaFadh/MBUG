@@ -1020,6 +1020,51 @@ span#counter {
 #npm-data:active,#jb-data:active{
   background-color: #BE8ED7;
 }
+
+.custom-checkbox {
+  display: none;
+}
+
+/* Styling untuk label yang berfungsi sebagai tombol */
+.custom-checkbox:checked + .custom-checkbox-label {
+  border: 1px solid #BE8ED7;
+  background-color: #BE8ED7;
+  color: white; /* Warna latar belakang default */
+}
+.chk-input-proccess:checked + .custom-checkbox-proccess{
+  border: 1px solid #FFAA16;
+  background-color: #FFAA16; 
+  color: black; /* Warna latar belakang default *//* Warna latar belakang default */
+}
+.chk-input-canceled:checked + .custom-checkbox-canceled{
+  border: 1px solid #FF1616;
+  background-color: #FF1616;
+  color: white; /* Warna latar belakang default */ /* Warna latar belakang default */
+}
+
+.custom-checkbox-label {
+  display: inline-block;
+  border: 1px solid #BE8ED7;
+  color: #BE8ED7; /* Warna latar belakang default */
+      width: 100;  /* Menggunakan lebar 100% untuk memaksimalkan ruang */
+      height: 40px; /* Sesuaikan tinggi */    
+      background-color: none;
+      border-radius: px; /* Sudut melengkung */
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s ease;
+      text-align: center; /* Agar teks di tengah */
+      line-height: 40px; /* Vertikal center teks */
+      
+}
+
+/* Mengubah warna latar belakang saat checkbox dalam keadaan tercentang */
+
+
+/* Menambahkan efek hover untuk memperindah */
+.custom-checkbox-label:hover {
+  background-color: #f3dcff;
+  color: #70577e; /* Warna saat hover */
+}
  
 .test{
   border: 2px solid red;
