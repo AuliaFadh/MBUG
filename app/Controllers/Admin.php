@@ -1355,12 +1355,13 @@ class Admin extends BaseController
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
-
+        $TA = $this->tahunModel->AllData();
         $ka = $this->kaModel->AllData();
         $DataDiproses = $this->kaModel->GetProcessData();
         $data = [
             'title' => 'Keaktifan per Semester | Admin',
             'ka' => $ka,
+            'TA'=>$TA,
             'DataDiproses' => $DataDiproses,
         ];
 

@@ -266,7 +266,18 @@
         findnpm.addEventListener('blur', function() {
             hideResult('find-npm');
         });
+        document.querySelector("form").addEventListener("submit", function(e) {
+            let jumlahDitagihkan = document.getElementById("jumlah_ditagihkan");
+            let jumlahPotongan = document.getElementById("jumlah_potongan");
+
+            // Mengubah inputan kembali ke nilai numerik saat form disubmit
+            jumlahDitagihkan.value = getNumericalValue(jumlahDitagihkan);
+            jumlahPotongan.value = getNumericalValue(jumlahPotongan);
+        });
     });
 </script>
-<script src="<?= base_url('asset/js/custom-currency.js') ?>"></script>
+<script src="<?= base_url('asset/js/custom-currency.js') ?>">
+
+</script>
+
 <?= $this->endSection('content') ?>

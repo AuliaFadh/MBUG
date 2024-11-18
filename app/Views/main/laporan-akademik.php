@@ -119,6 +119,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row pb-0 d-flex justify-content-center align-items-center">
 
                                     <div class="col-md-6 col-12 mb-3  ">
@@ -172,6 +173,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-12 col-12">
                                 <h7 class="d-flex justify-content-center align-items-center">Status Konfirmasi</h7>
                                 <div class="row p-2  d-flex justify-content-center align-items-center">
