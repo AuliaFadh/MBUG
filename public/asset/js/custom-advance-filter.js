@@ -357,3 +357,53 @@ function handleFilterMBKM() {
     }
     document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
 }
+function handleFilterPB() {    
+
+    var lowTP = parseFloat(document.getElementById('low-TP').value);
+    var highTP = parseFloat(document.getElementById('high-TP').value);
+    var checkLulus = document.getElementById('checkbox1');
+    var checkAktif = document.getElementById('checkbox2');
+    var checkTAktif = document.getElementById('checkbox3');
+    var checkCewe = document.getElementById('checkbox5');
+    var checkCowo = document.getElementById('checkbox4');
+    
+    var displayedRowCount = 0;
+
+    // Ambil semua baris tabel
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+        lowTP = lowTP || 1981;
+        highTP = highTP || 5000;        
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        // Ambil nilai dari kolom yang relevan
+        var GRCell = row.cells[6].innerText;
+        var TPCell = parseInt(row.cells[7].innerText);        
+        var statusCell = row.cells[8].innerText;
+    
+
+
+        var Lulus = statusCheck(checkLulus,"Lulus");
+        var Aktif = statusCheck(checkAktif,"Aktif");
+        var TAktif = statusCheck(checkTAktif,"Tidak Aktif");
+        var Cewe = statusCheck(checkCewe,"Perempuan");
+        var Cowo = statusCheck(checkCowo,"Laki-laki");
+        
+        
+    
+        if (
+            TPCell >= lowTP &&
+            TPCell <= highTP &&
+            (statusCell==Lulus|| statusCell==Aktif || statusCell==TAktif )
+            &&
+            (GRCell==Cowo || GRCell==Cewe )
+            ) { // Menambahkan filter status
+            row.style.display = '';
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}
