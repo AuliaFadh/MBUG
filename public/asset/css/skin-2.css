@@ -755,20 +755,15 @@ span#counter {
 }
 .add-btn-custom{
   background-color: #DDDDDD;
-  display: flex;
+  height: fit-content;
   justify-content: center;
   align-items: center;
   border-radius: 13px;
-  max-width: 180px;
-  height: 35px;
-  position: relative;
-  top: 55px;
-  left: 20px;
-  z-index: 2;
+  
 }
 .add-btn-custom img{
   width: 25px;
-  margin-right: 11px;
+  
 }
 
 .add-btn-custom:hover{

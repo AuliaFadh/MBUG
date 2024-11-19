@@ -187,15 +187,13 @@ function handleFilterPrestasi() {
     var checkIndividu = document.getElementById('checkbox5');        
     var displayedRowCount = 0;        
     var tableRows = document.getElementById('example3').getElementsByTagName('tr');
-    t("lowTglMulai",lowTglMulai);
-    t("highTglMulai",highTglMulai);
+    
     
     lowTglMulai = lowTglMulai || "1 Januar,1982";
     highTglMulai = highTglMulai || "30 December,5000";
     lowTglSelesai = lowTglSelesai || "1 Januar,1982";
     highTglSelesai = highTglSelesai || "30 December,5000";
-    t("lowTglMulai2",lowTglMulai);
-    t("highTglMulai2",highTglMulai);
+    
     
     
 
@@ -207,7 +205,7 @@ function handleFilterPrestasi() {
         var TglSelesaiCell = row.cells[11].innerText;                        
         var statusCell = row.cells[15].innerText;
 
-        t("TglMulaiCell",TglMulaiCell);
+        
         var Disetujui = statusCheck(checkDisetujui,"Disetujui");
         var Diproses = statusCheck(checkDiproses,"Diproses");
         var Ditolak = statusCheck(checkDitolak,"Ditolak");
@@ -227,6 +225,41 @@ function handleFilterPrestasi() {
             TglSelesaiCell <= highTglSelesaiDate &&
             (statusCell==Disetujui|| statusCell==Diproses || statusCell==Ditolak ) &&
             (JenisCell==Tim|| JenisCell==Individu )
+            ) { // Menambahkan filter status
+            row.style.display = '';
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}
+function handleFilterGform() {    
+    var lowTglPembuatan = document.getElementById('low-TglPembuatan').value;
+    var highTglPembuatan = document.getElementById('high-TglPembuatan').value;    
+
+    var displayedRowCount = 0;     
+    var tableRows = document.getElementById('example2').getElementsByTagName('tr');    
+    
+    lowTglPembuatan = lowTglPembuatan || "1 Januar,1982";
+    highTglPembuatan = highTglPembuatan || "30 December,5000";
+
+    
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        // Ambil nilai dari kolom yang relevan                          
+        var TglPembuatanCell = row.cells[4].innerText;
+
+
+        var lowTglPembuatanDate = parseDate(lowTglPembuatan);
+        var highTglPembuatanDate = parseDate(highTglPembuatan);
+        var TglPembuatanCell = parseDate(TglPembuatanCell);
+
+       
+        
+        if (TglPembuatanCell >= lowTglPembuatanDate &&
+            TglPembuatanCell <= highTglPembuatanDate
             ) { // Menambahkan filter status
             row.style.display = '';
             displayedRowCount++;
