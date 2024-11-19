@@ -75,7 +75,7 @@
                                             <input required type="text" id="find-ta"
                                                 class="form-control custom-textfield " name="TA"
                                                 value="<?= $former->tahun_ajaran ?>">
-                                            
+
                                             <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
                                                 <?php foreach ($TA as $key => $TAval) : ?>

@@ -312,8 +312,9 @@
                                                 <label for="fakultas_prodi_cedit" class="col-3 p-0">Fakultas</label>
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
-                                                        class="form-control custom-textfield " id="fakultas_prodi_cedit"
-                                                        name="fakultas_prodi" value="">
+                                                        class="form-control custom-textfield "
+                                                        id="fakultas_prodi_cedit" name="fakultas_prodi"
+                                                        value="">
                                                     <div class="invalid-feedback">
 
                                                     </div>
@@ -330,11 +331,13 @@
 
 
                                             <div class="row p-3 ">
-                                                <label for="akreditasi_prodi_cedit" class="col-3 p-0">Akreditasi</label>
+                                                <label for="akreditasi_prodi_cedit"
+                                                    class="col-3 p-0">Akreditasi</label>
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
-                                                        class="form-control custom-textfield " id="akreditasi_prodi_cedit"
-                                                        name="akreditasi_prodi" value="">
+                                                        class="form-control custom-textfield "
+                                                        id="akreditasi_prodi_cedit" name="akreditasi_prodi"
+                                                        value="">
                                                     <div class="invalid-feedback">
 
                                                     </div>
@@ -345,8 +348,8 @@
                                                 <label for="jenjang_prodi_cedit" class="col-3 p-0">Jenjang</label>
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
-                                                        class="form-control custom-textfield " id="jenjang_prodi_cedit"
-                                                        name="jenjang_prodi" value="">
+                                                        class="form-control custom-textfield "
+                                                        id="jenjang_prodi_cedit" name="jenjang_prodi" value="">
                                                     <div class="invalid-feedback">
 
                                                     </div>
@@ -360,7 +363,7 @@
                                                         class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
 
                                                         <option value="1">Aktif</option>
-                                                        <option value="0" >Tidak Aktif</option>
+                                                        <option value="0">Tidak Aktif</option>
                                                     </select>
 
                                                 </div>
@@ -444,10 +447,10 @@
         document.getElementById('fakultas_prodi_cedit').value = fakultas;
         document.getElementById('akreditasi_prodi_cedit').value = akreditasi;
         document.getElementById('jenjang_prodi_cedit').value = jenjang;
-        
+
         // Set status berdasarkan nilai yang diterima
         var statusSelect = document.getElementById('status_prodi_cedit');
-        statusSelect.value = status;  // Mengatur value status di select box
+        statusSelect.value = status; // Mengatur value status di select box
         // (Jika status bukan 1 atau 0, Anda bisa menambah logika tambahan jika diperlukan)
     }
 </script>

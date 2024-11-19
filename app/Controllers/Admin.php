@@ -550,10 +550,12 @@ class Admin extends BaseController
         }
 
         $la = $this->laModel->AllData();
+        $TA = $this->tahunModel->AllData();
         $DataDiproses = $this->laModel->GetProcessData();
         $data = [
             'title' => 'Akademik | Admin',
             'la' => $la,
+            'TA' => $TA,
             'DataDiproses' => $DataDiproses,
         ];
 
@@ -568,9 +570,11 @@ class Admin extends BaseController
         }
 
         $DataDiproses = $this->laModel->GetProcessData();
+        $TA = $this->tahunModel->AllData();
         $data = [
             'title' => 'Konfirmasi Akademik | Admin',
             'la' => $DataDiproses,
+            'TA' => $TA
         ];
 
         return view('main/confirm-akademik', $data);
@@ -587,7 +591,6 @@ class Admin extends BaseController
         $konfirmasi = $this->request->getPost('status_data');
         $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
         $jumlah_berhasil_dikonfirmasi = 0;
-        
 
         // Validasi jika tidak ada data konfirmasi atau keterangan
         if (empty($konfirmasi) || empty($keterangan)) {
@@ -595,7 +598,6 @@ class Admin extends BaseController
             session()->setFlashdata('gagal', 'Tidak ada Data yang Dikonfirmasi');
             return redirect()->to(base_url('/admin/akademik'));
         }
-        
 
         // Jika ada konfirmasi dan keterangan, lakukan update
         foreach ($konfirmasi as $id => $status) {
@@ -768,7 +770,7 @@ class Admin extends BaseController
         }
 
         $lp = $this->lpModel->AllData();
-        
+
         $DataDiproses = $this->lpModel->GetProcessData();
         $data = [
             'title' => 'Laporan Prestasi | Admin',
@@ -839,7 +841,6 @@ class Admin extends BaseController
             // Jika "Lainnya" dipilih, ambil nilai dari input "other_form"
             if ($capaianValue === 'Lainnya') {
                 $capaianValue = $this->request->getPost('other_form'); // Ambil nilai custom dari input teks
-                
             }
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -968,10 +969,10 @@ class Admin extends BaseController
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
-
+        
         $DataDiproses = $this->lpModel->GetProcessData();
         $data = [
-            'title' => 'Konfirmasi prestasi | Admin',
+            'title' => 'Konfirmasi Prestasi | Admin',
             'lp' => $DataDiproses,
         ];
 
@@ -988,7 +989,6 @@ class Admin extends BaseController
         $konfirmasi = $this->request->getPost('status_data');
         $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
         $jumlah_berhasil_dikonfirmasi = 0;
-        
 
         // Validasi jika tidak ada data konfirmasi atau keterangan
         if (empty($konfirmasi) || empty($keterangan)) {
@@ -996,7 +996,6 @@ class Admin extends BaseController
             session()->setFlashdata('gagal', 'Tidak ada Data yang Dikonfirmasi');
             return redirect()->to(base_url('/admin/prestasi'));
         }
-        
 
         // Jika ada konfirmasi dan keterangan, lakukan update
         foreach ($konfirmasi as $id => $status) {
@@ -1164,7 +1163,7 @@ class Admin extends BaseController
 
         $DataDiproses = $this->mbkmModel->GetProcessData();
         $data = [
-            'title' => 'Konfirmasi mbkm | Admin',
+            'title' => 'Konfirmasi MBKM | Admin',
             'mbkm' => $DataDiproses,
         ];
 
@@ -1181,7 +1180,6 @@ class Admin extends BaseController
         $konfirmasi = $this->request->getPost('status_data');
         $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
         $jumlah_berhasil_dikonfirmasi = 0;
-        
 
         // Validasi jika tidak ada data konfirmasi atau keterangan
         if (empty($konfirmasi) || empty($keterangan)) {
@@ -1189,7 +1187,6 @@ class Admin extends BaseController
             session()->setFlashdata('gagal', 'Tidak ada Data yang Dikonfirmasi');
             return redirect()->to(base_url('/admin/mbkm'));
         }
-        
 
         // Jika ada konfirmasi dan keterangan, lakukan update
         foreach ($konfirmasi as $id => $status) {
@@ -1360,12 +1357,13 @@ class Admin extends BaseController
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
-
+        $TA = $this->tahunModel->AllData();
         $ka = $this->kaModel->AllData();
         $DataDiproses = $this->kaModel->GetProcessData();
         $data = [
             'title' => 'Keaktifan per Semester | Admin',
             'ka' => $ka,
+            'TA'=>$TA,
             'DataDiproses' => $DataDiproses,
         ];
 
@@ -1377,11 +1375,14 @@ class Admin extends BaseController
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
+        $TA = $this->tahunModel->AllData();
+
 
         $DataDiproses = $this->kaModel->GetProcessData();
         $data = [
-            'title' => 'keaktifan | Admin',
+            'title' => 'Konfirmasi Keaktifan | Admin',
             'ka' => $DataDiproses,
+            'TA'=> $TA
         ];
 
         return view('main/confirm-keaktifan', $data);
@@ -1523,7 +1524,7 @@ class Admin extends BaseController
             $this->validate([
                 'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
                 'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
-                
+
                 'semester' => 'required',
                 'TA' => 'required',
 
@@ -1812,7 +1813,6 @@ class Admin extends BaseController
             'terbit' => $this->newsModel->convDate($former->tanggal_terbit),
         ];
 
-        
         return view('main/edit-pengumuman', $data);
     }
 
@@ -1924,7 +1924,7 @@ class Admin extends BaseController
         if (session()->get('hak_akses') != '1') {
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
-        }    
+        }
         // Lakukan validasi
         if (
             $this->validate([
@@ -1934,11 +1934,12 @@ class Admin extends BaseController
             ])
         ) {
             $semester_tahun = $this->request->getPost('TA');
-        $mulai_tahun_ajaran = $this->request->getPost('TAawal_get');
-        $selesai_tahun_ajaran = $this->request->getPost('TAakhir_get');
-        $nama_tahun = ($semester_tahun == 0 ? 'PTA' : 'ATA') . ' ' . $mulai_tahun_ajaran . '/' . $selesai_tahun_ajaran;
-        $queue_tahun = intval($mulai_tahun_ajaran . $selesai_tahun_ajaran . '0' . $semester_tahun);
+            $mulai_tahun_ajaran = $this->request->getPost('TAawal_get');
+            $selesai_tahun_ajaran = $this->request->getPost('TAakhir_get');
+            $nama_tahun = ($semester_tahun == 0 ? 'PTA' : 'ATA') . ' ' . $mulai_tahun_ajaran . '/' . $selesai_tahun_ajaran;
+            $queue_tahun = intval($mulai_tahun_ajaran . $selesai_tahun_ajaran . '0' . $semester_tahun);
             // Proses data jika validasi berhasil
+            
 
             $data = [
                 'semester_tahun' => $semester_tahun,
@@ -1956,18 +1957,17 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/tahun-ajaran')); // Redirect ke halaman lain
         } else {
             $session = session();
-            $session->setFlashdata('input', $this->request->getPost());              
-            $TA = $this->tahunModel->AllData();   
+            $session->setFlashdata('input', $this->request->getPost());
+            $TA = $this->tahunModel->AllData();
 
             $data = [
                 'title' => 'Form Input Akademik | User',
                 'validation' => \Config\Services::validation(),
-                'input' => $session->getFlashdata('input'),                
-                'TA'=>$TA,
+                'input' => $session->getFlashdata('input'),
+                'TA' => $TA,
             ];
 
             return view('/admin/tahun-ajaran', $data);
-            
         }
     }
     public function program_studi()

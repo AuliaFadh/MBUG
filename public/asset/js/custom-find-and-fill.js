@@ -1,58 +1,3 @@
-// document.addEventListener('DOMContentLoaded', function() {
-
-//     const findProvinsi = document.getElementById('find-provinsi');
-//     findProvinsi.addEventListener('input', function() {
-//         findResult('find-provinsi');
-//     });
-//     findProvinsi.addEventListener('blur', function() {
-//         hideResult('find-provinsi');
-//     });
-
-//     const findKabkot = document.getElementById('find-kabkot');
-//     findKabkot.addEventListener('input', function() {
-//         findResult('find-kabkot');
-//     });
-//     findKabkot.addEventListener('blur', function() {
-//         hideResult('find-kabkot');
-//     });
-
-//     const findkecamatan = document.getElementById('find-kecamatan');
-//     findkecamatan.addEventListener('input', function() {
-//         findResult('find-kecamatan');
-//     });
-//     findkecamatan.addEventListener('blur', function() {
-//         hideResult('find-kecamatan');
-//     });
-
-//     const findkelurahan = document.getElementById('find-kelurahan');
-//     findkelurahan.addEventListener('input', function() {
-//         findResult('find-kelurahan');
-//     });
-//     findkelurahan.addEventListener('blur', function() {
-//         hideResult('find-kelurahan');
-//     });
-
-//     const findProvinsiSekolah = document.getElementById('find-provinsi-sekolah');
-//     findProvinsiSekolah.addEventListener('input', function() {
-//         findResult('find-provinsi-sekolah');
-//     });
-//     findProvinsiSekolah.addEventListener('blur', function() {
-//         hideResult('find-provinsi-sekolah');
-//     });
-
-//     const findkotakab_sekolah = document.getElementById('find-kotakab_sekolah');
-//     findkotakab_sekolah.addEventListener('input', function() {
-//         findResult('find-kotakab_sekolah');
-//     });
-//     findkotakab_sekolah.addEventListener('blur', function() {
-//         hideResult('find-kotakab_sekolah');
-//     });
-    
-// });
-
-
-
-
 // Do not modification, except in if condition
 function findResult(inputId){
     let hasMatchingData = false;
@@ -104,7 +49,7 @@ function fillFindInput(Id,result1) {
     findInput.value = result1;            
 }
 
-function fillFindInput(Id1,result1,Id2,result2,Id3,result3) {
+function fillFindInput3(Id1,result1,Id2,result2,Id3,result3) {
     const findInput1 = document.getElementById(Id1);            
     const findInput2 = document.getElementById(Id2);
     const findInput3 = document.getElementById(Id3);

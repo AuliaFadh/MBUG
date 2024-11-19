@@ -147,7 +147,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 0;?>
+                                    <?php $no = 0; ?>
                                     <?php foreach ($tahunAjaran as $tahun) : ?>
                                     <?php $no++; ?>
                                     <tr>
@@ -155,20 +155,20 @@
                                                 id="id_tahun_<?= $tahun['id_tahun'] ?>"><?= $tahun['id_tahun'] ?></strong>
                                         </td>
                                         <td class="th-sm"><?= $tahun['nama_tahun'] ?></td>
-                                        
-                                        <?php if ($tahun['semester_tahun'] == "0") {
-                                                $status = 'PTA';
-                                            } else if ($tahun['semester_tahun'] == "1") {
-                                                $status = 'ATA';
-                                            } else {
-                                                $status = '-';
-                                            };
-                                            ?>
-                                        <td class="th-sm"><?= $status; ?></td>
+
+                                        <?php if ($tahun['semester_tahun'] == '0') {
+                                            $status = 'PTA';
+                                        } elseif ($tahun['semester_tahun'] == '1') {
+                                            $status = 'ATA';
+                                        } else {
+                                            $status = '-';
+                                        }
+                                        ?>
+                                        <td class="th-sm"><?= $status ?></td>
 
                                         <td class="th-sm"><?= $tahun['mulai_tahun_ajaran'] ?></td>
                                         <td class="th-sm"><?= $tahun['selesai_tahun_ajaran'] ?></td>
-                                        
+
                                         <td class="th-sm">
                                             <button type="button" class="btn btn-sm btn-primary"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal"
