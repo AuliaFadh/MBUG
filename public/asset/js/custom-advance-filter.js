@@ -407,3 +407,50 @@ function handleFilterPB() {
     }
     document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
 }
+
+function handleFilterJB() {    
+
+    var lowTP = parseFloat(document.getElementById('low-TP').value);
+    var highTP = parseFloat(document.getElementById('high-TP').value);
+    var checkAktif = document.getElementById('checkbox1');
+    var checkTAktif = document.getElementById('checkbox2');
+    
+    
+    var displayedRowCount = 0;
+
+    // Ambil semua baris tabel
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+        lowTP = lowTP || 1981;
+        highTP = highTP || 5000;        
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        // Ambil nilai dari kolom yang relevan
+        
+        var TPCell = parseInt(row.cells[4].innerText);        
+        var statusCell = row.cells[5].innerText;
+        
+    
+
+
+        var Aktif = statusCheck(checkAktif,"Aktif");        
+        var TAktif = statusCheck(checkTAktif,"Tidak Aktif");
+        
+        
+        
+    
+        if (
+            TPCell >= lowTP &&
+            TPCell <= highTP &&
+            (statusCell==Aktif|| statusCell==TAktif )
+            
+            ) { // Menambahkan filter status
+            row.style.display = '';
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}
