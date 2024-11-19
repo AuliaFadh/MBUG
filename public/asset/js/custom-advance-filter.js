@@ -269,3 +269,52 @@ function handleFilterGform() {
     }
     document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
 }
+function handleFilterNews() {    
+    var lowTglTerbit = document.getElementById('low-TglTerbit').value;
+    var highTglTerbit = document.getElementById('high-TglTerbit').value;    
+    var lowTglBatas = document.getElementById('low-TglBatas').value;
+    var highTglBatas = document.getElementById('high-TglBatas').value;            
+          
+    var displayedRowCount = 0;        
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    
+    
+    lowTglTerbit = lowTglTerbit || "1 Januar,1982";
+    highTglTerbit = highTglTerbit || "30 December,5000";
+    lowTglBatas = lowTglBatas || "1 Januar,1982";
+    highTglBatas = highTglBatas || "30 December,5000";
+    
+    
+    
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        // Ambil nilai dari kolom yang relevan                  
+        
+        var TglTerbitCell = row.cells[1].innerText;
+        var TglBatasCell = row.cells[2].innerText;                        
+        
+
+        
+        
+        var lowTglTerbitDate = parseDate(lowTglTerbit);
+        var highTglTerbitDate = parseDate(highTglTerbit);
+        var TglTerbitCell = parseDate(TglTerbitCell);
+        var lowTglBatasDate = parseDate(lowTglBatas);
+        var highTglBatasDate = parseDate(highTglBatas);
+        var TglBatasCell = parseDate(TglBatasCell);
+       
+        
+        if (TglTerbitCell >= lowTglTerbitDate &&
+            TglTerbitCell <= highTglTerbitDate &&
+            TglBatasCell >= lowTglBatasDate &&
+            TglBatasCell <= highTglBatasDate 
+            ) { // Menambahkan filter status
+            row.style.display = '';
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}

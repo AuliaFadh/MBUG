@@ -136,7 +136,6 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
 <script>
-    
     var tableRows = document.getElementById('example2').getElementsByTagName('tr');
     var displayedRowCount = 0;
     for (var i = 1; i < tableRows.length; i++) {
