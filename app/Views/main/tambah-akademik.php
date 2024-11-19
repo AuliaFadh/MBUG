@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
 
-                                    
+
 
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Nama</label>

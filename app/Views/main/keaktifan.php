@@ -86,23 +86,23 @@
                                         <h7 class="d-flex justify-content-center align-items-center ">Ditagihkan</h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="text" id="low-ditagihkan" min=0  placeholder="Rp.0"
+                                            <input type="text" id="low-ditagihkan" min=0 placeholder="Rp.0"
                                                 class="col-md-4 col-2 mb-3 p-1" onkeyup="formatRupiah(this)">
                                             <h6 class=" col-2 mb-2  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="text" id="high-ditagihkan" min=0  placeholder="Rp.0"
+                                            <input type="text" id="high-ditagihkan" min=0 placeholder="Rp.0"
                                                 class="col-md-4 col-4 mb-3 p-1" onkeyup="formatRupiah(this)">
                                         </div>
                                     </div>
-                                     <div class="col-md-6 col-12 mb-3  ">
+                                    <div class="col-md-6 col-12 mb-3  ">
                                         <h7 class="d-flex justify-content-center align-items-center ">Potongan</h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="text" id="low-potongan" min=0  placeholder="Rp.0"
+                                            <input type="text" id="low-potongan" min=0 placeholder="Rp.0"
                                                 class="col-md-4 col-2 mb-3 p-1" onkeyup="formatRupiah(this)">
                                             <h6 class=" col-2 mb-2  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="text" id="high-potongan" min=0  placeholder="Rp.0"
+                                            <input type="text" id="high-potongan" min=0 placeholder="Rp.0"
                                                 class="col-md-4 col-4 mb-3 p-1" onkeyup="formatRupiah(this)">
                                         </div>
                                     </div>
@@ -161,7 +161,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-12">
-                                    
+
                                     <h7 class="d-flex justify-content-center align-items-center">Status Konfirmasi</h7>
                                     <div class="row p-2  d-flex justify-content-center align-items-center">
                                         <input checked onclick="handleFilterKeaktifan()" type="checkbox"
@@ -183,7 +183,7 @@
                                 </div>
 
                                 <div class="col-md-12 col-12">
-                                    
+
                                     <h7 class="d-flex justify-content-center align-items-center">Status Mahasiswa</h7>
                                     <div class="row p-2  d-flex justify-content-center align-items-center">
                                         <input checked onclick="handleFilterKeaktifan()" type="checkbox"
@@ -200,13 +200,14 @@
                                             name="checkbox6" id="checkbox6"
                                             class=" custom-checkbox chk-input-canceled">
                                         <label for="checkbox6"
-                                            class=" col-lg-3 col-nm-3 col-sm-3  custom-checkbox-label m-1">Tidak Aktif</label>
+                                            class=" col-lg-3 col-nm-3 col-sm-3  custom-checkbox-label m-1">Tidak
+                                            Aktif</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="table-responsive">
-                        <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
+                            <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -304,8 +305,8 @@
         document.getElementById('high-ditagihkan').addEventListener('input', handleFilterKeaktifan);
         document.getElementById('low-potongan').addEventListener('input', handleFilterKeaktifan);
         document.getElementById('high-potongan').addEventListener('input', handleFilterKeaktifan);
-        document.getElementById('low-semester').addEventListener('input', handleFilterAkademik);
-        document.getElementById('high-semester').addEventListener('input', handleFilterAkademik);
+        document.getElementById('low-semester').addEventListener('input', handleFilterKeaktifan);
+        document.getElementById('high-semester').addEventListener('input', handleFilterKeaktifan);
         const findtaAwal = document.getElementById('find-ta-awal');
         findtaAwal.addEventListener('input', function() {
             findResult('find-ta-awal');
@@ -329,8 +330,6 @@
         displayedRowCount++;
     }
     document.getElementById('rowCount').textContent = 'Jumlah Data :' + displayedRowCount;
-
-
 </script>
 <script src="<?= base_url('asset/js/custom-currency.js') ?>"></script>
 

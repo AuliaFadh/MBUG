@@ -173,23 +173,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-12 col-12">
-                                <h7 class="d-flex justify-content-center align-items-center">Status Konfirmasi</h7>
-                                <div class="row p-2  d-flex justify-content-center align-items-center">
-                                    <input checked onclick="handleFilterAkademik()" type="checkbox" name="checkbox1"
-                                        id="checkbox1" class=" custom-checkbox chk-input-success">
-                                    <label for="checkbox1"
-                                        class=" col-lg-3 col-nm-3 col-sm-3    custom-checkbox-label m-1">Disetujui</label>
-                                    <input checked onclick="handleFilterAkademik()" type="checkbox" name="checkbox2"
-                                        id="checkbox2" class=" custom-checkbox chk-input-proccess">
-                                    <label for="checkbox2"
-                                        class=" col-lg-3 col-nm-3 col-sm-3   custom-checkbox-label m-1">Diproses</label>
-                                    <input checked onclick="handleFilterAkademik()" type="checkbox" name="checkbox3"
-                                        id="checkbox3" class=" custom-checkbox chk-input-canceled">
-                                    <label for="checkbox3"
-                                        class=" col-lg-3 col-nm-3 col-sm-3  custom-checkbox-label m-1">Ditolak</label>
-                                </div>
+                                    <h7 class="d-flex justify-content-center align-items-center">Status Konfirmasi</h7>
+                                    <div class="row p-2  d-flex justify-content-center align-items-center">
+                                        <input checked onclick="handleFilterAkademik()" type="checkbox"
+                                            name="checkbox1" id="checkbox1"
+                                            class=" custom-checkbox chk-input-success">
+                                        <label for="checkbox1"
+                                            class=" col-lg-3 col-nm-3 col-sm-3    custom-checkbox-label m-1">Disetujui</label>
+                                        <input checked onclick="handleFilterAkademik()" type="checkbox"
+                                            name="checkbox2" id="checkbox2"
+                                            class=" custom-checkbox chk-input-proccess">
+                                        <label for="checkbox2"
+                                            class=" col-lg-3 col-nm-3 col-sm-3   custom-checkbox-label m-1">Diproses</label>
+                                        <input checked onclick="handleFilterAkademik()" type="checkbox"
+                                            name="checkbox3" id="checkbox3"
+                                            class=" custom-checkbox chk-input-canceled">
+                                        <label for="checkbox3"
+                                            class=" col-lg-3 col-nm-3 col-sm-3  custom-checkbox-label m-1">Ditolak</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

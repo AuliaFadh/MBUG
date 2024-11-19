@@ -570,9 +570,11 @@ class Admin extends BaseController
         }
 
         $DataDiproses = $this->laModel->GetProcessData();
+        $TA = $this->tahunModel->AllData();
         $data = [
             'title' => 'Konfirmasi Akademik | Admin',
             'la' => $DataDiproses,
+            'TA' => $TA
         ];
 
         return view('main/confirm-akademik', $data);
@@ -967,10 +969,10 @@ class Admin extends BaseController
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
-
+        
         $DataDiproses = $this->lpModel->GetProcessData();
         $data = [
-            'title' => 'Konfirmasi prestasi | Admin',
+            'title' => 'Konfirmasi Prestasi | Admin',
             'lp' => $DataDiproses,
         ];
 
@@ -1161,7 +1163,7 @@ class Admin extends BaseController
 
         $DataDiproses = $this->mbkmModel->GetProcessData();
         $data = [
-            'title' => 'Konfirmasi mbkm | Admin',
+            'title' => 'Konfirmasi MBKM | Admin',
             'mbkm' => $DataDiproses,
         ];
 
@@ -1373,11 +1375,14 @@ class Admin extends BaseController
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
+        $TA = $this->tahunModel->AllData();
+
 
         $DataDiproses = $this->kaModel->GetProcessData();
         $data = [
-            'title' => 'keaktifan | Admin',
+            'title' => 'Konfirmasi Keaktifan | Admin',
             'ka' => $DataDiproses,
+            'TA'=> $TA
         ];
 
         return view('main/confirm-keaktifan', $data);

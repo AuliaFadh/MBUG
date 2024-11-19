@@ -79,12 +79,12 @@
                             <div name="box-filter" class="collapse shadow container pt-2 border rounded  m-0 "
                                 id="collapseExample">
                                 <h6>Advanced Filter</h6>
-                                <div class="row p-0 pb-3 d-flex justify-content-center align-items-center border-bottom">
+                                <div
+                                    class="row p-0 pb-3 d-flex justify-content-center align-items-center border-bottom">
 
                                     <div class="col-md-6 col-12   ">
                                         <h7 class="d-flex justify-content-center align-items-center ">Tanggal Mulai</h7>
-                                        <div
-                                            class="row  d-flex justify-content-center align-items-center ">
+                                        <div class="row  d-flex justify-content-center align-items-center ">
                                             <input type="text" id="low-TglMulai" name="datepicker"
                                                 class="datepicker-default col-md-4 col-2 mb-3 p-1">
                                             <h6 class=" col-2 mb-2  d-flex justify-content-center align-items-center">
@@ -93,13 +93,12 @@
                                             <input type="text" id="high-TglMulai" name="datepicker"
                                                 class="datepicker-default col-md-4 col-2 mb-3 p-1">
                                         </div>
-                                        
+
                                     </div>
                                     <div class="col-md-6 col-12  ">
                                         <h7 class="d-flex justify-content-center align-items-center ">Tanggal Selesai
                                         </h7>
-                                        <div
-                                            class="row  d-flex justify-content-center align-items-center ">
+                                        <div class="row  d-flex justify-content-center align-items-center ">
                                             <input type="text" id="low-TglSelesai" name="datepicker"
                                                 class="datepicker-default col-md-4 col-2 mb-3  p-1">
                                             <h6 class=" col-2 mb-2  d-flex justify-content-center align-items-center">
@@ -110,7 +109,8 @@
                                         </div>
 
                                     </div>
-                                    <button class="btn btn btn-primary-add-data" onclick="handleFilterPrestasi()"> Filter Tanggal</button>
+                                    <button class="btn btn btn-primary-add-data" onclick="handleFilterPrestasi()">
+                                        Filter Tanggal</button>
 
                                 </div>
 
@@ -118,16 +118,16 @@
 
                                     <h7 class="d-flex justify-content-center align-items-center">Status Konfirmasi</h7>
                                     <div class="row p-2  d-flex justify-content-center align-items-center">
-                                        <input checked onclick="handleFilterPrestasi()" type="checkbox"
-                                            name="checkbox1" id="checkbox1" class=" custom-checkbox chk-input-success">
+                                        <input checked onclick="handleFilterPrestasi()" type="checkbox" name="checkbox1"
+                                            id="checkbox1" class=" custom-checkbox chk-input-success">
                                         <label for="checkbox1"
                                             class=" col-lg-3 col-nm-3 col-sm-3    custom-checkbox-label m-1">Disetujui</label>
-                                        <input checked onclick="handleFilterPrestasi()" type="checkbox"
-                                            name="checkbox2" id="checkbox2" class=" custom-checkbox chk-input-proccess">
+                                        <input checked onclick="handleFilterPrestasi()" type="checkbox" name="checkbox2"
+                                            id="checkbox2" class=" custom-checkbox chk-input-proccess">
                                         <label for="checkbox2"
                                             class=" col-lg-3 col-nm-3 col-sm-3   custom-checkbox-label m-1">Diproses</label>
-                                        <input checked onclick="handleFilterPrestasi()" type="checkbox"
-                                            name="checkbox3" id="checkbox3" class=" custom-checkbox chk-input-canceled">
+                                        <input checked onclick="handleFilterPrestasi()" type="checkbox" name="checkbox3"
+                                            id="checkbox3" class=" custom-checkbox chk-input-canceled">
                                         <label for="checkbox3"
                                             class=" col-lg-3 col-nm-3 col-sm-3  custom-checkbox-label m-1">Ditolak</label>
                                     </div>
@@ -147,17 +147,14 @@
                                             class=" custom-checkbox chk-input-proccess">
                                         <label for="checkbox5"
                                             class=" col-lg-3 col-nm-3 col-sm-3   custom-checkbox-label m-1">Individu</label>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                      
-
-                        
                         <div class="table-responsive">
-                        <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
+                            <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -244,8 +241,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
 <script>
-    
-    document.addEventListener('DOMContentLoaded', function() {        
+    document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('low-TglMulai').addEventListener('input', handleFilterPrestasi);
         document.getElementById('high-TglMulai').addEventListener('input', handleFilterPrestasi);
         document.getElementById('low-TglSelesai').addEventListener('input', handleFilterPrestasi);

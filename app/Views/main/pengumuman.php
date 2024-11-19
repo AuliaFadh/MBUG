@@ -47,7 +47,7 @@
 
                     <!-- Tabel -->
                     <div class="card-body">
-                    <div name="advance-filter" class="d-flex mb-4 flex-column align-items-end">
+                        <div name="advance-filter" class="d-flex mb-4 flex-column align-items-end">
                             <!-- Tombol berada di kanan -->
                             <p class="d-inline-flex p-0 m-0">
                                 <button class="no-color m-0" type="button" data-bs-toggle="collapse"
@@ -60,12 +60,13 @@
                             <div name="box-filter" class="collapse shadow container pt-2 border rounded  m-0 "
                                 id="collapseExample">
                                 <h6>Advanced Filter</h6>
-                                <div class="row p-0 pb-3 d-flex justify-content-center align-items-center border-bottom">
+                                <div
+                                    class="row p-0 pb-3 d-flex justify-content-center align-items-center border-bottom">
 
                                     <div class="col-md-6 col-12   ">
-                                        <h7 class="d-flex justify-content-center align-items-center ">Tanggal Terbit</h7>
-                                        <div
-                                            class="row  d-flex justify-content-center align-items-center ">
+                                        <h7 class="d-flex justify-content-center align-items-center ">Tanggal Terbit
+                                        </h7>
+                                        <div class="row  d-flex justify-content-center align-items-center ">
                                             <input type="text" id="low-TglTerbit" name="datepicker"
                                                 class="datepicker-default col-md-4 col-2 mb-3 p-1">
                                             <h6 class=" col-2 mb-2  d-flex justify-content-center align-items-center">
@@ -74,13 +75,13 @@
                                             <input type="text" id="high-TglTerbit" name="datepicker"
                                                 class="datepicker-default col-md-4 col-2 mb-3 p-1">
                                         </div>
-                                        
+
                                     </div>
                                     <div class="col-md-6 col-12  ">
-                                        <h7 class="d-flex justify-content-center align-items-center ">Tanggal Batas Terbit
+                                        <h7 class="d-flex justify-content-center align-items-center ">Tanggal Batas
+                                            Terbit
                                         </h7>
-                                        <div
-                                            class="row  d-flex justify-content-center align-items-center ">
+                                        <div class="row  d-flex justify-content-center align-items-center ">
                                             <input type="text" id="low-TglBatas" name="datepicker"
                                                 class="datepicker-default col-md-4 col-2 mb-3  p-1">
                                             <h6 class=" col-2 mb-2  d-flex justify-content-center align-items-center">
@@ -91,13 +92,14 @@
                                         </div>
 
                                     </div>
-                                    <button class="btn btn btn-primary-add-data" onclick="handleFilterNews()"> Filter Tanggal</button>
+                                    <button class="btn btn btn-primary-add-data" onclick="handleFilterNews()"> Filter
+                                        Tanggal</button>
 
-                                </div>                                
+                                </div>
                             </div>
                         </div>
                         <div class="table-responsive">
-                        <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
+                            <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -144,8 +146,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
 <script>
-    
-    document.addEventListener('DOMContentLoaded', function() {        
+    document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('low-TglTerbit').addEventListener('input', handleFilterNews);
         document.getElementById('high-TglTerbit').addEventListener('input', handleFilterNews);
         document.getElementById('low-TglBatas').addEventListener('input', handleFilterNews);

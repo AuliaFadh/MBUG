@@ -82,7 +82,7 @@
                                             <input type="text" name="periode" value="<?= $former->periode ?>"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('periode') ?>
+                                                <?= $validation->getError('periode') ?>
 
                                             </div>
                                         </div>
@@ -91,9 +91,11 @@
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea name="keterangan_mbkm" class="form-control custom-textfield <?= ($validation->hasError('keterangan_mbkm')) ? ' is-invalid is-test' : ''; ?>" rows="2"><?= $former->keterangan_mbkm ?></textarea>
+                                            <textarea name="keterangan_mbkm"
+                                                class="form-control custom-textfield <?= $validation->hasError('keterangan_mbkm') ? ' is-invalid is-test' : '' ?>"
+                                                rows="2"><?= $former->keterangan_mbkm ?></textarea>
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('keterangan_mbkm') ?>
+                                                <?= $validation->getError('keterangan_mbkm') ?>
 
                                             </div>
                                         </div>
