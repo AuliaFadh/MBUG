@@ -68,7 +68,7 @@
                     <!-- Tabel -->
                     <div class="card-body ">
 
-                        <div name="advance-filter" class="d-flex flex-column align-items-end">
+                        <div name="advance-filter" class="d-flex mb-4 flex-column align-items-end">
                             <!-- Tombol berada di kanan -->
                             <p class="d-inline-flex p-0 m-0">
                                 <button class="no-color m-0" type="button" data-bs-toggle="collapse"
@@ -78,23 +78,19 @@
                                     <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
                                 </button>
                             </p>
-
-                            <!-- Konten yang dapat collapse, berada di bawah tombol -->
-                            <div name="box-filter" class="collapse container pt-2 border rounded  mt-0 "
+                            <div name="box-filter" class="collapse shadow container pt-2 border rounded  m-0 "
                                 id="collapseExample">
                                 <h6>Advanced Filter</h6>
-
                                 <div class="row p-0 d-flex justify-content-center align-items-center">
-
                                     <div class="col-md-3 col-12 mb-3">
                                         <h7 class="d-flex justify-content-center align-items-center ">IPK</h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk"
-                                                class="col-md-3 col-4 mb-3 p-1">
+                                            <input type="number" min=0 max=4 step=0.01 id="low-ipk"
+                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk"
+                                            <input type="number"min=0 max=4 step=0.01 id="high-ipk" placeholder="0.00"
                                                 class="col-md-3 col-4 mb-3 p-1">
                                         </div>
                                     </div>
@@ -102,27 +98,26 @@
                                         <h7 class="d-flex justify-content-center align-items-center ">IPK Lokal</h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-lokal"
-                                                class="col-md-3 col-4 mb-3 p-1">
+                                            <input type="number" min=0 max=4 step=0.01 id="low-ipk-lokal"
+                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
-                                                class="col-md-3 col-4 mb-3 p-1">
+                                            <input type="number"min=0 max=4 step=0.01 id="high-ipk-lokal"
+                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-12 mb-3">
                                         <h7 class="d-flex justify-content-center align-items-center ">IPK UU</h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" min=0 max=4 step=0.01 value=0.00 id="low-ipk-uu"
-                                                class="col-md-3 col-4 mb-3 p-1">
+                                            <input type="number" min=0 max=4 step=0.01 id="low-ipk-uu"
+                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-uu"
-                                                class="col-md-3 col-4 mb-3 p-1">
+                                            <input type="number"min=0 max=4 step=0.01 id="high-ipk-uu"
+                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="row pb-0 d-flex justify-content-center align-items-center">
@@ -131,54 +126,74 @@
                                         <h7 class="d-flex justify-content-center align-items-center ">Semester</h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" id="low-semester" min=0 max=20 value="0"
+                                            <input type="number" id="low-semester" min=0 max=20 placeholder="1"
                                                 class="col-md-2 col-2 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="number" id="high-semester" min=0 max=20 value="20"
+                                            <input type="number" id="high-semester" min=0 max=20 placeholder="1"
                                                 class="col-md-2 col-2 mb-3 p-1">
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12 mb-3  ">
-                                        <h7 class="d-flex justify-content-center align-items-center ">Tahun Ajaran</h7>
+                                    <div class="col-md-6 col-12 mb-3">
+                                        <h7 class="d-flex justify-content-center align-items-center">Tahun Ajaran</h7>
                                         <div
-                                            class="row border-bottom d-flex justify-content-center align-items-center  p-2">
-
-                                            <input required type="text" id="find-ta" 
-                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6" name="TA"
-                                                >
-                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
+                                            class="row border-bottom d-flex justify-content-center align-items-center p-2">
+                                            <input type="text" id="find-ta-awal" name="TA" value=""
+                                                placeholder="PTA 1982/1983"
+                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6"
+                                                autofocus>
+                                            <div id="box-find-ta-awal"
+                                                class="dropdown-custom col-lg-5 col-md-45 col-sm-7"
                                                 style="display: none;">
-                                                <?php foreach ($TA as $key => $TAval) : ?>
-                                                    <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
-                                                <?php endforeach; ?>                                                   
-
-                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
+                                                <?php foreach ($TA as $key => $TAValue) : ?>
+                                                <a id="data-find-ta-awal"
+                                                    onclick="fillFindInput('find-ta-awal','<?= $TAValue['nama_tahun'] ?>');
+                                                    handleFilterAkademik()"><?= $TAValue['nama_tahun'] ?></a>
+                                                <?php endforeach; ?>
+                                                <span id="no-data-find-ta-awal" style="display: none;">Data tidak
+                                                    ada</span>
                                             </div>
-                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center">
-                                                ~
+                                            <h6 class="col-3 mb-3 d-flex justify-content-center align-items-center">~
                                             </h6>
-                                            <input required type="text" id="find-ta" 
-                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6" name="TA"
-                                                >
-                                            <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
+                                            <input type="text" id="find-ta-akhir" name="TA" value=""
+                                                placeholder="PTA 1982/1983"
+                                                class="form-control custom-textfield col-lg-4 col-md-4 col-sm-6"
+                                                autofocus>
+                                            <div id="box-find-ta-akhir"
+                                                class="dropdown-custom col-lg-5 col-md-45 col-sm-7"
                                                 style="display: none;">
-                                                <?php foreach ($TA as $key => $TAval) : ?>
-                                                    <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>                                               
-                                                <?php endforeach; ?>                                                   
-
-                                                <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
+                                                <?php foreach ($TA as $key => $TAValue) : ?>
+                                                <a id="data-find-ta-akhir"
+                                                    onclick="fillFindInput('find-ta-akhir','<?= $TAValue['nama_tahun'] ?>');handleFilterAkademik()"><?= $TAValue['nama_tahun'] ?></a>
+                                                <?php endforeach; ?>
+                                                <span id="no-data-find-ta-akhir" style="display: none;">Data tidak
+                                                    ada</span>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
 
-
+                                <div class="col-md-12 col-12">
+                                    <h7 class="d-flex justify-content-center align-items-center">Status Konfirmasi</h7>
+                                    <div class="row p-2  d-flex justify-content-center align-items-center">
+                                        <input checked onclick="handleFilterAkademik()" type="checkbox"
+                                            name="checkbox1" id="checkbox1"
+                                            class=" custom-checkbox chk-input-success">
+                                        <label for="checkbox1"
+                                            class=" col-lg-3 col-nm-3 col-sm-3    custom-checkbox-label m-1">Disetujui</label>
+                                        <input checked onclick="handleFilterAkademik()" type="checkbox"
+                                            name="checkbox2" id="checkbox2"
+                                            class=" custom-checkbox chk-input-proccess">
+                                        <label for="checkbox2"
+                                            class=" col-lg-3 col-nm-3 col-sm-3   custom-checkbox-label m-1">Diproses</label>
+                                        <input checked onclick="handleFilterAkademik()" type="checkbox"
+                                            name="checkbox3" id="checkbox3"
+                                            class=" custom-checkbox chk-input-canceled">
+                                        <label for="checkbox3"
+                                            class=" col-lg-3 col-nm-3 col-sm-3  custom-checkbox-label m-1">Ditolak</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -261,6 +276,43 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
-<script src="<?= base_url('asset/js/custom-search-ta.js'); ?>"></script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const findtaAwal = document.getElementById('find-ta-awal');
+        findtaAwal.addEventListener('input', function() {
+            findResult('find-ta-awal');
+        });
+        findtaAwal.addEventListener('blur', function() {
+            hideResult('find-ta-awal');
+        });
+
+        const findtaAkhir = document.getElementById('find-ta-akhir');
+        findtaAkhir.addEventListener('input', function() {
+            findResult('find-ta-akhir');
+        });
+        findtaAkhir.addEventListener('blur', function() {
+            hideResult('find-ta-akhir');
+        });
+
+
+        document.getElementById('low-ipk-lokal').addEventListener('input', handleFilterAkademik);
+        document.getElementById('high-ipk-lokal').addEventListener('input', handleFilterAkademik);
+        document.getElementById('low-ipk-uu').addEventListener('input', handleFilterAkademik);
+        document.getElementById('high-ipk-uu').addEventListener('input', handleFilterAkademik);
+        document.getElementById('low-semester').addEventListener('input', handleFilterAkademik);
+        document.getElementById('high-semester').addEventListener('input', handleFilterAkademik);
+        document.getElementById('low-ipk').addEventListener('input', handleFilterAkademik);
+        document.getElementById('high-ipk').addEventListener('input', handleFilterAkademik);
+
+
+    });
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    var displayedRowCount = 0;
+    for (var i = 1; i < tableRows.length; i++) {
+        displayedRowCount++;
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah Data :' + displayedRowCount;
+</script>
 <?= $this->endSection('content') ?>

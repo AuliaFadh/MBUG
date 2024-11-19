@@ -46,56 +46,62 @@
 
                     <!-- Tabel -->
                     <div class="card-body">
-                    <div class="row p-0 m-0">
-                        <div class="col">
-                            <button title="Advance Filter" type="button" class="  no-color m-2 float-right"
-                                id="toggle-filter" onclick="toggleFilter()">
-                                Advanced Filter
-                                <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
-                                <!-- Icon gear -->
-                            </button>
-                        </div>
+                    <div name="advance-filter" class="d-flex mb-4 flex-column align-items-end">
+                            <!-- Tombol berada di kanan -->
+                            <p class="d-inline-flex p-0 m-0">
+                                <button class="no-color m-0" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseExample" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Advance Filter
+                                    <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
+                                </button>
+                            </p>
+                            <div name="box-filter" class="collapse shadow container pt-2 border rounded  m-0 "
+                                id="collapseExample">
+                                <h6>Advanced Filter</h6>
+                                
 
-                        <div id="advance-filter" style="display:none; transition: all 0.3s ease;"
-                            class="container pt-2 border rounded  mt-0">
-                            <h6>Advanced Filter</h6>
-                            <div class="row pb-0 d-flex justify-content-center align-items-center">
+                                <div class="row pb-0 d-flex justify-content-center align-items-center">
 
-                                <div class="col-md-3 col-12 mb-3">
-                                    <h7 class="d-flex justify-content-center align-items-center ">Tahun Penerimaan</h7>
-                                    <div class="row border-bottom d-flex justify-content-center align-items-center ">
-                                        <input type="number" min=0 value=0 id="low-tp"
-                                            class="col-md-4 col-4 mb-3 p-1" placeholder="tahun awal">
-                                        <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
-                                        </h6>
-                                        <input type="number"min=0 value=2030 id="high-tp" placeholder="tahun akhir"
-                                            class="col-md-4 col-4 mb-3 p-1">
+                                    <div class="col-md-6 col-12 mb-3  ">
+                                        <h7 class="d-flex justify-content-center align-items-center ">Tahun Penerimaan
+                                        </h7>
+                                        <div
+                                            class="row border-bottom d-flex justify-content-center align-items-center ">
+                                            <input type="number" id="low-TP" placeholder="1"
+                                                class="col-md-2 col-2 mb-3 p-1">
+                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                            </h6>
+                                            <input type="number" id="high-TP" placeholder="1"
+                                                class="col-md-2 col-2 mb-3 p-1">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-12 col-12">
+                                    <h7 class="d-flex justify-content-center align-items-center">Status</h7>
+                                    <div class="row p-2  d-flex justify-content-center align-items-center">
+                                        <input checked onclick="handleFilterJB()" type="checkbox" name="checkbox1"
+                                            id="checkbox1" class=" custom-checkbox chk-input-success">
+                                        <label for="checkbox1"
+                                            class=" col-lg-3 col-nm-3 col-sm-3 custom-checkbox-label m-1">Aktif</label>
+                                        <input checked onclick="handleFilterJB()" type="checkbox" name="checkbox2"
+                                            id="checkbox2" class=" custom-checkbox chk-input-proccess">
+                                        <label for="checkbox2"
+                                            class=" col-lg-3 col-nm-3 col-sm-3   custom-checkbox-label m-1">Tidak Aktif</label>
+                                        
                                     </div>
                                 </div>
-
-
+                               
                             </div>
-                            <div class="row  pb-2 d-flex justify-content-center align-items-center">
-
-                                <div class="btn-group col-md-12" role="group" aria-label="Basic outlined example  ">
-                                
-                                <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
-                                        onclick="filterTableStatus('status_jb','Aktif')">Aktif</button>
-                                        
-                                        <button type="button" class="custom-btn-status btn btn-outline-primary col-md-6"
-                                        onclick="filterTableStatus('status_jb','Tidak Aktif')">Tidak Aktif</button>
-                                                                        
-                                </div>
-
-                            </div>
-                           
-
-
-
-
                         </div>
+                    
+                        
 
                         <div class="table-responsive">
+                        <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -120,7 +126,7 @@
                                             <td class="th-nm"><?= $value['asal']; ?></td>
                                             <td class="th-sm"><?= $value['tahun_penerimaan']; ?></td>
                                             <?php if ($value['status_beasiswa'] == "1") {
-                                                $status = '<span  style="color:white;"class="status_jb badge badge-rounded badge-success"> Aktif</span>';
+                                                $status = '<span  style="color:white;"class="status_jb badge badge-rounded badge-success">Aktif</span>';
                                             } else if ($value['status_beasiswa'] == "0") {
                                                 $status = '<span class=" status_jb badge badge-rounded badge-danger">Tidak Aktif</span>';
                                             }
@@ -136,23 +142,26 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    const lowTP = document.getElementById('low-tp');
-    lowTP.addEventListener('input', function() {
-        FillterScoreSingle('low-tp','high-tp','4');
+        document.getElementById('low-TP').addEventListener('input', handleFilterJB);
+        document.getElementById('high-TP').addEventListener('input', handleFilterJB);        
     });
-    const highTP = document.getElementById('high-tp');
-    highTP.addEventListener('input', function() {
-        FillterScoreSingle('low-tp','high-tp','4');
-    });
-
-});
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    var displayedRowCount = 0;
+    for (var i = 1; i < tableRows.length; i++) {
+        displayedRowCount++;
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah Data :' + displayedRowCount;
 </script>
 <?= $this->endSection('content') ?>

@@ -149,10 +149,13 @@
                                         <td>
                                             <div class="header-profile">
                                                 [Foto profil harus joinTable user+penerima Beasiswa]
-                                            <img id="profile-img-nav" src="<?= base_url('asset/img/database/default-profile.jpg'); ?>" style="height: 50px; width: 50px;" alt="" />
+                                                <img id="profile-img-nav"
+                                                    src="<?= base_url('asset/img/database/default-profile.jpg') ?>"
+                                                    style="height: 50px; width: 50px;" alt="" />
                                             </div>
                                         </td>
-                                        <td>[Nama Penggunanya harus jointabel user + Penerima Beasiswa / kalo Admin pake username aja]</td>
+                                        <td>[Nama Penggunanya harus jointabel user + Penerima Beasiswa / kalo Admin pake
+                                            username aja]</td>
                                         <?php if ($value['hak_akses'] == '0') {
                                             $hak_akses = '<span  style="color:white;"class="badge badge-rounded badge-success"> Penerima Beasiswa </span>';
                                         } elseif ($value['hak_akses'] == '1') {

@@ -40,16 +40,16 @@
                                             class=" col-lg-8 col-md-12 col-sm-12">
                                             <div class="row">
                                                 <input id="tgl_mulai_pelaksana" name="tanggal-mulai" type="text"
-                                                value="<?= date('d F, Y', strtotime($former->tanggal_mulai)) ?>"
+                                                    value="<?= date('d F, Y', strtotime($former->tanggal_mulai)) ?>"
                                                     class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
                                                 <pre>  Sampai dengan  </pre>
                                                 <input id="tgl_akhir_pelaksana" name="tanggal-selesai" type="text"
-                                                value="<?= date('d F, Y', strtotime($former->tanggal_selesai)) ?>"
+                                                    value="<?= date('d F, Y', strtotime($former->tanggal_selesai)) ?>"
                                                     class="custom-textfield datepicker-default form-control col-lg-4 col-md-5 col-sm-6 ">
                                             </div>
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('tanggal_mulai') ?>
-                                            <?= $validation->getError('tanggal_selesai') ?>
+                                                <?= $validation->getError('tanggal_mulai') ?>
+                                                <?= $validation->getError('tanggal_selesai') ?>
 
                                             </div>
                                         </div>
@@ -62,7 +62,7 @@
                                                 value="<?= $former->nama_kegiatan ?>"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('nama_kegiatan') ?>
+                                                <?= $validation->getError('nama_kegiatan') ?>
 
                                             </div>
                                         </div>
@@ -81,7 +81,7 @@
                                                 <option value="Internal" <?php echo $former->tingkat == 'Internal' ? 'selected' : ''; ?>>Internal</option>
                                             </select>
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('tingkat') ?>
+                                                <?= $validation->getError('tingkat') ?>
 
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@
                                             <input type="text" name="tempat" value="<?= $former->tempat ?>"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('tempat') ?>
+                                                <?= $validation->getError('tempat') ?>
 
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                                                 value="<?= $former->penyelenggara ?>"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('penyelenggara') ?>
+                                                <?= $validation->getError('penyelenggara') ?>
 
                                             </div>
                                         </div>
@@ -173,7 +173,7 @@
                                             <input type="url" name="publikasi" value="<?= $former->publikasi ?>"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
-                                            <?= $validation->getError('publikasi') ?>
+                                                <?= $validation->getError('publikasi') ?>
 
                                             </div>
                                         </div>

@@ -54,7 +54,8 @@
                                         </div>
                                     </div>
 
-                                    <div name="input-find&fill-prodi" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div name="input-find&fill-prodi"
+                                        class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="prodi" class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <input type="text"

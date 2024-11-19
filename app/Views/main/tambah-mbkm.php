@@ -42,7 +42,7 @@
                                                 style="display: none;">
                                                 <?php foreach ($penerima as $key => $penerimaValue) : ?>
                                                 <a id="data-find-npm"
-                                                    onclick="fillFindInput(
+                                                    onclick="fillFindInput3(
                                                     'find-npm','<?= $penerimaValue['npm'] ?>',
                                                     'nama','<?= $penerimaValue['nama'] ?>',
                                                     'prodi','<?= $penerimaValue['nama_prodi'] ?>',

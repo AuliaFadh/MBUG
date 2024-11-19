@@ -49,7 +49,7 @@ function fillFindInput(Id,result1) {
     findInput.value = result1;            
 }
 
-function fillFindInput(Id1,result1,Id2,result2,Id3,result3) {
+function fillFindInput3(Id1,result1,Id2,result2,Id3,result3) {
     const findInput1 = document.getElementById(Id1);            
     const findInput2 = document.getElementById(Id2);
     const findInput3 = document.getElementById(Id3);
