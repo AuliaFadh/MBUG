@@ -25,6 +25,10 @@ function statusCheck(Value,TrueValue){
     }
     return "False";
 }
+function parseDate(dateStr) {
+    // Format tanggal pada TglMulaiCell dan lowTglMulai dalam format yang bisa diterima oleh konstruktor Date
+    return new Date(dateStr);
+}
 
 function handleFilterAkademik() {    
     var lowIpk = parseFloat(document.getElementById('low-ipk').value);
@@ -44,6 +48,17 @@ function handleFilterAkademik() {
 
     // Ambil semua baris tabel
     var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+        lowSemester = lowSemester || 0;
+        highSemester = highSemester || 20;
+        lowTA = lowTA || "PTA 0000/0000";
+        highTA = highTA || "ATA 9999/9999";
+        lowIpk = lowIpk || 0;
+        highIpk = highIpk || 9;
+        lowIpkLokal = lowIpkLokal || 0;
+        highIpkLokal = highIpkLokal || 9;
+        lowIpkUU = lowIpkUU || 0;
+        highIpkUU = highIpkUU || 9;    
+        
 
     for (var i = 1; i < tableRows.length; i++) {
         var row = tableRows[i];
@@ -56,16 +71,6 @@ function handleFilterAkademik() {
         var ipk_uu_Cell = parseFloat(row.cells[9].innerText);
         var statusCell = row.cells[11].innerText;
 
-        lowSemester = lowSemester || 0;
-        highSemester = highSemester || 20;
-        lowTA = lowTA || "PTA 0000/0000";
-        highTA = highTA || "ATA 9999/9999";
-        lowIpk = lowIpk || 0;
-        highIpk = highIpk || 9;
-        lowIpkLokal = lowIpkLokal || 0;
-        highIpkLokal = highIpkLokal || 9;
-        lowIpkUU = lowIpkUU || 0;
-        highIpkUU = highIpkUU || 9;    
         
         var TAQueueCell = TAQ(TACell);
         var TAQueueAwal = TAQ(lowTA);
@@ -96,8 +101,7 @@ function handleFilterAkademik() {
 }
 function handleFilterKeaktifan() {    
     var lowDitagihkan = document.getElementById('low-ditagihkan').value;
-    var highDitagihkan = document.getElementById('high-ditagihkan').value;
-    
+    var highDitagihkan = document.getElementById('high-ditagihkan').value; 
     var lowPotongan = document.getElementById('low-potongan').value;
     var highPotongan = document.getElementById('high-potongan').value;        
     var lowSemester = parseFloat(document.getElementById('low-semester').value);
@@ -114,6 +118,14 @@ function handleFilterKeaktifan() {
     
     // Ambil semua baris tabel
     var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    lowSemester = lowSemester || 0;
+        highSemester = highSemester || 20;
+        lowTA = lowTA || "PTA 0000/0000";
+        highTA = highTA || "ATA 9999/9999";        
+        lowDitagihkan = (lowDitagihkan && lowDitagihkan !== "Rp") ? lowDitagihkan : "Rp 0";
+        highDitagihkan = (highDitagihkan && highDitagihkan !== "Rp") ? highDitagihkan : "Rp 999999999999";
+        lowPotongan = (lowPotongan && lowPotongan !== "Rp") ? lowPotongan : "Rp 0";
+        highPotongan = (highPotongan && highPotongan !== "Rp") ? highPotongan : "Rp 999999999999";
 
     for (var i = 1; i < tableRows.length; i++) {
         var row = tableRows[i];
@@ -127,14 +139,7 @@ function handleFilterKeaktifan() {
         var statusCell = row.cells[13].innerText;
         
         
-        lowSemester = lowSemester || 0;
-        highSemester = highSemester || 20;
-        lowTA = lowTA || "PTA 0000/0000";
-        highTA = highTA || "ATA 9999/9999";        
-        lowDitagihkan = (lowDitagihkan && lowDitagihkan !== "Rp") ? lowDitagihkan : "Rp 0";
-        highDitagihkan = (highDitagihkan && highDitagihkan !== "Rp") ? highDitagihkan : "Rp 999999999999";
-        lowPotongan = (lowPotongan && lowPotongan !== "Rp") ? lowPotongan : "Rp 0";
-        highPotongan = (highPotongan && highPotongan !== "Rp") ? highPotongan : "Rp 999999999999";
+        
 
         var RpLowDitagihkan =  RpValue(lowDitagihkan);
         var RpHighDitagihkan =  RpValue(highDitagihkan);
@@ -161,6 +166,67 @@ function handleFilterKeaktifan() {
             TAQueueAkhir >= TAQueueCell &&
             (statusCell==Disetujui|| statusCell==Diproses || statusCell==Ditolak ) &&
             (statusMHSCell==Lulus|| statusMHSCell==Aktif || statusMHSCell==NoAktif )
+            ) { // Menambahkan filter status
+            row.style.display = '';
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}
+function handleFilterPrestasi() {    
+    var lowTglMulai = document.getElementById('low-TglMulai').value;
+    var highTglMulai = document.getElementById('high-TglMulai').value;    
+    var lowTglSelesai = document.getElementById('low-TglSelesai').value;
+    var highTglSelesai = document.getElementById('high-TglSelesai').value;            
+    var checkDisetujui = document.getElementById('checkbox1');
+    var checkDiproses = document.getElementById('checkbox2');
+    var checkDitolak = document.getElementById('checkbox3');
+    var checkTim = document.getElementById('checkbox4');
+    var checkIndividu = document.getElementById('checkbox5');        
+    var displayedRowCount = 0;        
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    t("lowTglMulai",lowTglMulai);
+    t("highTglMulai",highTglMulai);
+    
+    lowTglMulai = lowTglMulai || "1 Januar,1982";
+    highTglMulai = highTglMulai || "30 December,5000";
+    lowTglSelesai = lowTglSelesai || "1 Januar,1982";
+    highTglSelesai = highTglSelesai || "30 December,5000";
+    t("lowTglMulai2",lowTglMulai);
+    t("highTglMulai2",highTglMulai);
+    
+    
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        // Ambil nilai dari kolom yang relevan                  
+        var JenisCell = row.cells[6].innerText;
+        var TglMulaiCell = row.cells[10].innerText;
+        var TglSelesaiCell = row.cells[11].innerText;                        
+        var statusCell = row.cells[15].innerText;
+
+        t("TglMulaiCell",TglMulaiCell);
+        var Disetujui = statusCheck(checkDisetujui,"Disetujui");
+        var Diproses = statusCheck(checkDiproses,"Diproses");
+        var Ditolak = statusCheck(checkDitolak,"Ditolak");
+        var Tim = statusCheck(checkTim,"Tim");
+        var Individu = statusCheck(checkIndividu,"Individu");
+        var lowTglMulaiDate = parseDate(lowTglMulai);
+        var highTglMulaiDate = parseDate(highTglMulai);
+        var TglMulaiCell = parseDate(TglMulaiCell);
+        var lowTglSelesaiDate = parseDate(lowTglSelesai);
+        var highTglSelesaiDate = parseDate(highTglSelesai);
+        var TglSelesaiCell = parseDate(TglSelesaiCell);
+       
+        
+        if (TglMulaiCell >= lowTglMulaiDate &&
+            TglMulaiCell <= highTglMulaiDate &&
+            TglSelesaiCell >= lowTglSelesaiDate &&
+            TglSelesaiCell <= highTglSelesaiDate &&
+            (statusCell==Disetujui|| statusCell==Diproses || statusCell==Ditolak ) &&
+            (JenisCell==Tim|| JenisCell==Individu )
             ) { // Menambahkan filter status
             row.style.display = '';
             displayedRowCount++;
