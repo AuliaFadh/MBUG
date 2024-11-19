@@ -318,3 +318,42 @@ function handleFilterNews() {
     }
     document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
 }
+function handleFilterMBKM() {    
+
+    var lowPeriode = parseFloat(document.getElementById('low-Periode').value);
+    var highPeriode = parseFloat(document.getElementById('high-Periode').value);
+    var checkDisetujui = document.getElementById('checkbox1');
+    var checkDiproses = document.getElementById('checkbox2');
+    var checkDitolak = document.getElementById('checkbox3');
+    
+    var displayedRowCount = 0;
+
+    // Ambil semua baris tabel
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+        lowPeriode = lowPeriode || 1981;
+        highPeriode = highPeriode || 5000;        
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+
+        // Ambil nilai dari kolom yang relevan
+        var PeriodeCell = parseInt(row.cells[7].innerText);        
+        var statusCell = row.cells[9].innerText;
+
+        var Disetujui = statusCheck(checkDisetujui,"Disetujui");
+        var Diproses = statusCheck(checkDiproses,"Diproses");
+        var Ditolak = statusCheck(checkDitolak,"Ditolak");
+    
+        if (
+            PeriodeCell >= lowPeriode &&
+            PeriodeCell <= highPeriode &&
+            (statusCell==Disetujui|| statusCell==Diproses || statusCell==Ditolak )
+            ) { // Menambahkan filter status
+            row.style.display = '';
+            displayedRowCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah baris yang ditampilkan: ' + displayedRowCount;
+}

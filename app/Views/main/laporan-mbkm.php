@@ -64,7 +64,59 @@
 
                     <!-- Tabel -->
                     <div class="card-body">
+                    <div name="advance-filter" class="d-flex mb-4 flex-column align-items-end">
+                            <!-- Tombol berada di kanan -->
+                            <p class="d-inline-flex p-0 m-0">
+                                <button class="no-color m-0" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseExample" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Advance Filter
+                                    <img width="20px" src="<?= base_url('asset/img/gear.png') ?>" alt="">
+                                </button>
+                            </p>
+                            <div name="box-filter" class="collapse shadow container pt-2 border rounded  m-0 "
+                                id="collapseExample">
+                                <h6>Advanced Filter</h6>
+                                
+                                <div class="row pb-0 d-flex justify-content-center align-items-center">
+
+                                    <div class="col-md-6 col-12 mb-3  ">
+                                        <h7 class="d-flex justify-content-center align-items-center ">Periode</h7>
+                                        <div
+                                            class="row border-bottom d-flex justify-content-center align-items-center ">
+                                            <input type="number" id="low-Periode" 
+                                                class="col-md-2 col-2 mb-3 p-1">
+                                            <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
+                                            </h6>
+                                            <input type="number" id="high-Periode"  
+                                                class="col-md-2 col-2 mb-3 p-1">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                
+                                <div class="col-md-12 col-12">
+                                <h7 class="d-flex justify-content-center align-items-center">Status Konfirmasi</h7>
+                                <div class="row p-2  d-flex justify-content-center align-items-center">
+                                    <input checked onclick="handleFilterMBKM()" type="checkbox" name="checkbox1"
+                                        id="checkbox1" class=" custom-checkbox chk-input-success">
+                                    <label for="checkbox1"
+                                        class=" col-lg-3 col-nm-3 col-sm-3    custom-checkbox-label m-1">Disetujui</label>
+                                    <input checked onclick="handleFilterMBKM()" type="checkbox" name="checkbox2"
+                                        id="checkbox2" class=" custom-checkbox chk-input-proccess">
+                                    <label for="checkbox2"
+                                        class=" col-lg-3 col-nm-3 col-sm-3   custom-checkbox-label m-1">Diproses</label>
+                                    <input checked onclick="handleFilterMBKM()" type="checkbox" name="checkbox3"
+                                        id="checkbox3" class=" custom-checkbox chk-input-canceled">
+                                    <label for="checkbox3"
+                                        class=" col-lg-3 col-nm-3 col-sm-3  custom-checkbox-label m-1">Ditolak</label>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive">
+                        <p id="rowCount">Jumlah baris yang ditampilkan: 0</p>
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -117,4 +169,22 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        document.getElementById('low-Periode').addEventListener('input', handleFilterMBKM);
+        document.getElementById('high-Periode').addEventListener('input', handleFilterMBKM);
+
+    });
+    var tableRows = document.getElementById('example3').getElementsByTagName('tr');
+    var displayedRowCount = 0;
+    for (var i = 1; i < tableRows.length; i++) {
+        displayedRowCount++;
+    }
+    document.getElementById('rowCount').textContent = 'Jumlah Data :' + displayedRowCount;
+</script>
 <?= $this->endSection('content') ?>
