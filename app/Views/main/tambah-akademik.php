@@ -41,8 +41,7 @@
                                             <div id="box-find-npm" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
                                                 <?php foreach ($penerima as $key => $penerimaValue) : ?>
-                                                <a id="data-find-npm"
-                                                    onclick="fillFindInput3(
+                                                <a id="data-find-npm" onclick="fillFindInput3(
                                                     'find-npm','<?= $penerimaValue['npm'] ?>',
                                                     'nama','<?= $penerimaValue['nama'] ?>',
                                                     'prodi','<?= $penerimaValue['nama_prodi'] ?>',
@@ -214,8 +213,8 @@
                                     <div class="container1 row custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="keterangan" class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea class="form-control custom-textfield " id="keterangan" name="keterangan_akademik" autofocus=""
-                                                value="" rows="2"></textarea>
+                                            <textarea class="form-control custom-textfield " id="keterangan"
+                                                name="keterangan_akademik" autofocus="" value="" rows="2"></textarea>
                                             <div class="invalid-feedback">
                                             </div>
                                         </div>
@@ -238,31 +237,31 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 
-        const findta = document.getElementById('find-ta');
-        findta.addEventListener('input', function() {
-            findResult('find-ta');
-        });
-        findta.addEventListener('blur', function() {
-            hideResult('find-ta');
-        });
-
-        const findjb = document.getElementById('find-jb');
-        findjb.addEventListener('input', function() {
-            findResult('find-jb');
-        });
-        findjb.addEventListener('blur', function() {
-            hideResult('find-jb');
-        });
-
-        const findnpm = document.getElementById('find-npm');
-        findnpm.addEventListener('input', function() {
-            findResult('find-npm');
-        });
-        findnpm.addEventListener('blur', function() {
-            hideResult('find-npm');
-        });
+    const findta = document.getElementById('find-ta');
+    findta.addEventListener('input', function() {
+        findResult('find-ta');
     });
+    findta.addEventListener('blur', function() {
+        hideResult('find-ta');
+    });
+
+    const findjb = document.getElementById('find-jb');
+    findjb.addEventListener('input', function() {
+        findResult('find-jb');
+    });
+    findjb.addEventListener('blur', function() {
+        hideResult('find-jb');
+    });
+
+    const findnpm = document.getElementById('find-npm');
+    findnpm.addEventListener('input', function() {
+        findResult('find-npm');
+    });
+    findnpm.addEventListener('blur', function() {
+        hideResult('find-npm');
+    });
+});
 </script>
 <?= $this->endSection('content') ?>

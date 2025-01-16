@@ -1,14 +1,6 @@
 CHECKPOINT TODO 13/11/2024:
-1. Program Studi {
-  - Belum bisa tambah prodi
-  - Belum bisa edit prodi
-  - Belum terhubung ke halman lain
-}
-2. Tahun Ajaran {
-  - Belum bisa tambah tahun ajaran
-  - Belum bisa edit tahun ajaran
-  + Udah terhubung ke form-form yang lain
-}
+
+
 3. Data Penerima Beasiswa{
   - tadi dicoba tambah mahasiswa lewat form kaga bisa karena prodinya belum terhubung
   - fitur Import belum dicoba lagi

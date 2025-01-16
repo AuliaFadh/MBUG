@@ -57,28 +57,36 @@
                                     <div name="input-find&fill-prodi"
                                         class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="prodi" class="label-form">Program Studi</label>
-                                        <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input type="text"
-                                                class="form-control custom-textfield <?= $validation->hasError('prodi') ? ' is-invalid is-test' : '' ?>"
-                                                id="find-prodi" name="prodi" autofocus
-                                                value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : '') ?>">
+                                        <div style="display: block;" class="  col-lg-12 col-md-12 col-sm-12">
 
-                                            <div id="box-find-prodi" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
-                                                style="display: none;">
+                                            <div class="mx-3 border">
+                                                <div class="row">
 
 
-                                                <a id="data-find-prodi"
-                                                    onclick="fillFindInput('find-prodi','Sistem')">Sistem</a>
-                                                <a id="data-find-prodi" onclick="fillFindInput('find-prodi','XX')">ATA
-                                                    2022/2023</a>
-                                                <a id="data-find-prodi"
-                                                    onclick="fillFindInput('find-prodi','XXXXX')">PTAXXX024</a>
 
-                                                <span id="no-data-find-prodi" style="display: none;">Data tidak
-                                                    ada</span>
-                                            </div>
-                                            <div class="invalid-feedback">
-                                                <?= $validation->getError('prodi') ?>
+                                                    <input type="text"
+                                                        class="form-control  custom-textfield col-lg-4 col-md-4 col-sm-12  <?= $validation->hasError('prodi') ? ' is-invalid is-test' : '' ?>"
+                                                        id="find-prodi" name="prodi" autofocus
+                                                        value="<?= old('prodi', isset($input['prodi']) ? $input['prodi'] : '') ?>">
+                                                    <h4 id="find-text-prodi"
+                                                        class="pt-1 col-lg-7 col-md-7 text-center col-sm-12"> ... </h4>
+
+
+                                                    <div id="box-find-prodi"
+                                                        class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
+                                                        style="display: none;">
+                                                        <?php foreach ($prodi as $key => $PSValue) : ?>
+                                                        <a id="data-find-prodi"
+                                                            onclick="fillFindInput2('find-prodi','<?= $PSValue['id_prodi'] ?>','find-text-prodi','<?= $PSValue['nama_prodi'] ?>')"><?= $PSValue['id_prodi'] ?> : <?= $PSValue['nama_prodi'] ?></a>
+                                                            <?php endforeach; ?>
+                                                        <span id="no-data-find-prodi" style="display: none;">Data tidak
+                                                            ada</span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <?= $validation->getError('prodi') ?>
+                                                    </div>
+
+                                                </div>
                                             </div>
 
                                         </div>
@@ -115,8 +123,8 @@
                                         <label for="status" class="label-form">Jenis Kelamin</label>
                                         <input type="radio" class="margin-custom" name="jenis_kelamin" value="1">
                                         Laki-Laki<br>
-                                        <input type="radio" class="margin-custom" name="jenis_kelamin"
-                                            value="0"> Perempuan<br>
+                                        <input type="radio" class="margin-custom" name="jenis_kelamin" value="0">
+                                        Perempuan<br>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -135,20 +143,22 @@
                                     <div style="padding-left : 15px"
                                         class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status_penerima" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="status_penerima"
-                                            value="2"> Lulus<br>
-                                        <input type="radio" class="margin-custom" name="status_penerima"
-                                            value="1"> Aktif<br>
-                                        <input type="radio" class="margin-custom" name="status_penerima"
-                                            value="0"> Tidak Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="2">
+                                        Lulus<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="1">
+                                        Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_penerima" value="0">
+                                        Tidak Aktif<br>
                                     </div>
 
                                     <div class="container1-up custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="keterangan" class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <textarea class="form-control custom-textfield <?= $validation->hasError('keterangan') ? ' is-invalid is-test' : '' ?>"
+                                            <textarea
+                                                class="form-control custom-textfield <?= $validation->hasError('keterangan') ? ' is-invalid is-test' : '' ?>"
                                                 id="keterangan" name="keterangan" autofocus
-                                                value="<?= old('keterangan', isset($input['keterangan']) ? $input['keterangan'] : '') ?>" rows="2"></textarea>
+                                                value="<?= old('keterangan', isset($input['keterangan']) ? $input['keterangan'] : '') ?>"
+                                                rows="2"></textarea>
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('keterangan') ?>
                                             </div>
@@ -173,15 +183,15 @@
 </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 
-        const findprodi = document.getElementById('find-prodi');
-        findprodi.addEventListener('input', function() {
-            findResult('find-prodi');
-        });
-        findprodi.addEventListener('blur', function() {
-            hideResult('find-prodi');
-        });
+    const findprodi = document.getElementById('find-prodi');
+    findprodi.addEventListener('input', function() {
+        findResult('find-prodi');
     });
+    findprodi.addEventListener('blur', function() {
+        hideResult('find-prodi');
+    });
+});
 </script>
 <?= $this->endSection('content') ?>

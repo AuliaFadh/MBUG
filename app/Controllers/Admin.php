@@ -311,10 +311,13 @@ class Admin extends BaseController
             session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
         }
+        
+        $PS = $this->prodiModel->AllData();
 
         $data = [
             'title' => 'Form Input Penerima | Admin',
             'validation' => \Config\Services::validation(),
+            'prodi' => $PS,
         ];
 
         return view('main/tambah-penerima', $data);
@@ -406,7 +409,7 @@ class Admin extends BaseController
             $data = [
                 'nama' => $this->request->getPost('nama'),
                 'npm' => $npm,
-                'id_prodi' => $this->prodiModel->getIDprodi($this->request->getPost('prodi')),
+                'id_prodi' => $this->request->getPost('prodi'),
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
                 'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
