@@ -74,11 +74,11 @@
                                     </select>
                                     <input required placeholder="Thn Awal" type="number"
                                         class="form-control custom-textfield col-lg-2 col-md-3 col-sm-8" id="TAawal_get"
-                                        name="TAawal_get" value="" type="number">
+                                        name="TAawal_get" min=1986 value="" type="number">
 
                                     <input required placeholder="Thn Akhir" type="number"
                                         class="form-control custom-textfield col-lg-2 col-md-3 col-sm-8"
-                                        id="TAakhir_get" name="TAakhir_get" value="">
+                                        id="TAakhir_get" min=1987 name="TAakhir_get" value="">
 
                                     <button type="submit"
                                         class="btn btn-primary-add-data m-0  ml-2 mr-2  col-lg-2 col-md-2 col-sm-8">Submit</button>
@@ -199,25 +199,22 @@
                                     
 
                                     <div class="mb-3">
-                                        <label for="Status" class="col-3 p-0">Semester Tahun</label>
-                                                <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
-                                                    <select name="TA_cedit" id="TA_cedit"
-                                                        class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
+                                    <div class="row">
+                                            <input type="radio" id="ptaRadio" class="margin-custom"
+                                                name="TA_cedit" value="0"> PTA<br>
+                                            <input type="radio" id="ataRadio" class="margin-custom"
+                                                name="TA_cedit" value="1"> ATA<br>
+                                        </div>
 
-                                                        <option value="1">ATA</option>
-                                                        <option value="0">PTA</option>
-                                                    </select>
-
-                                                </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Tahun Awal</label>
-                                        <input required type="number" name="TA_awal_cedit" class="form-control"
+                                        <input required type="number" min=1986 name="TA_awal_cedit" class="form-control"
                                             id="TA_awal_cedit">
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Tahun Akhir</label>
-                                        <input required type="number" name="TA_akhir_cedit" class="form-control"
+                                        <input required type="number" min=1987 name="TA_akhir_cedit" class="form-control"
                                             id="TA_akhir_cedit">
                                     </div>
 
@@ -305,9 +302,20 @@
         
 
         // Set status berdasarkan nilai yang diterima
-        var semester = document.getElementById('TA_cedit');
-        console.log(SemesterTA)
-        semester.value = SemesterTA; // Mengatur value status di select box
+       
+        if (SemesterTA == 1) {
+      
+            document.querySelector('input[name="TA_cedit"][value="1"]').checked = true;
+            document.querySelector('input[name="TA_cedit"][value="0"]').checked = false;
+            
+        } else {
+            document.querySelector('input[name="TA_cedit"][value="0"]').checked = true;
+            document.querySelector('input[name="TA_cedit"][value="1"]').checked = false;
+            console.log('false')
+        }
+        document.getElementById('formModalEditTA').action = `/admin/tahun-ajaran/cedit/${id}`;
+
+        // Mengatur value status di select box
         // (Jika status bukan 1 atau 0, Anda bisa menambah logika tambahan jika diperlukan)
     }
 

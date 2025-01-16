@@ -63,12 +63,12 @@
                                                 <div class="col-6">
 
                                                     <div class="row p-3">
-                                                        <label for="id_prodi" class="col-3 p-0">Id Prodi</label>
+                                                        <label for="id_prodi_input" class="col-3 p-0">Id Prodi</label>
                                                         <div style="display: block;"
                                                             class=" col-lg-9 col-md-9 col-sm-9">
                                                             <input required type="text"
-                                                                class="form-control custom-textfield " id="id_prodi"
-                                                                name="id_prodi" value="">
+                                                                class="form-control custom-textfield " id="id_prodi_input"
+                                                                name="id_prodi_input" value="">
                                                             <div class="invalid-feedback">
 
                                                             </div>
@@ -76,12 +76,12 @@
                                                     </div>
 
                                                     <div class="row p-3 ">
-                                                        <label for="nama_prodi" class="col-3 p-0">Program Studi</label>
+                                                        <label for="nama_prodi_input" class="col-3 p-0">Program Studi</label>
                                                         <div style="display: block;"
                                                             class=" col-lg-9 col-md-9 col-sm-9">
                                                             <input required type="text"
-                                                                class="form-control custom-textfield " id="nama_prodi"
-                                                                name="nama_prodi" value="">
+                                                                class="form-control custom-textfield " id="nama_prodi_input"
+                                                                name="nama_prodi_input" value="">
                                                             <div class="invalid-feedback">
 
                                                             </div>
@@ -89,12 +89,12 @@
                                                     </div>
 
                                                     <div class="row p-3 ">
-                                                        <label for="fakultas_prodi" class="col-3 p-0">Fakultas</label>
+                                                        <label for="fakultas_prodi_input" class="col-3 p-0">Fakultas</label>
                                                         <div style="display: block;"
                                                             class=" col-lg-9 col-md-9 col-sm-9">
                                                             <input required type="text"
                                                                 class="form-control custom-textfield "
-                                                                id="fakultas_prodi" name="fakultas_prodi"
+                                                                id="fakultas_prodi_input" name="fakultas_prodi_input"
                                                                 value="">
                                                             <div class="invalid-feedback">
 
@@ -112,13 +112,13 @@
 
 
                                                     <div class="row p-3 ">
-                                                        <label for="akreditasi_prodi"
+                                                        <label for="akreditasi_prodi_input"
                                                             class="col-3 p-0">Akreditasi</label>
                                                         <div style="display: block;"
                                                             class=" col-lg-9 col-md-9 col-sm-9">
                                                             <input required type="text"
                                                                 class="form-control custom-textfield "
-                                                                id="akreditasi_prodi" name="akreditasi_prodi"
+                                                                id="akreditasi_prodi_input" name="akreditasi_prodi_input"
                                                                 value="">
                                                             <div class="invalid-feedback">
 
@@ -127,12 +127,12 @@
                                                     </div>
 
                                                     <div class="row p-3 ">
-                                                        <label for="jenjang_prodi" class="col-3 p-0">Jenjang</label>
+                                                        <label for="jenjang_prodi_input" class="col-3 p-0">Jenjang</label>
                                                         <div style="display: block;"
                                                             class=" col-lg-9 col-md-9 col-sm-9">
                                                             <input required type="text"
                                                                 class="form-control custom-textfield "
-                                                                id="jenjang_prodi" name="jenjang_prodi" value="">
+                                                                id="jenjang_prodi_input" name="jenjang_prodi_input" value="">
                                                             <div class="invalid-feedback">
 
                                                             </div>
@@ -140,10 +140,10 @@
                                                     </div>
 
                                                     <div class="row p-3 ">
-                                                        <label for="Status" class="col-3 p-0">Status</label>
+                                                        <label for="status_prodi_input" id="status_prodi_input" class="col-3 p-0">Status</label>
                                                         <div style="display: block;"
                                                             class=" col-lg-9 col-md-9 col-sm-9">
-                                                            <select name="konfirmasi_akademik"
+                                                            <select name="status_prodi_input" id="status_prodi_input"
                                                                 class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
 
                                                                 <option value="1">Aktif</option>
@@ -271,7 +271,7 @@
                     aria-hidden="true">
 
 
-                    <form id="formModalEditTA" method="post" action="/admin/program-studi/cedit/">
+                    <form id="formModalEditPS" method="post" action="/admin/program-studi/cedit/">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -289,7 +289,7 @@
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
                                                         class="form-control custom-textfield " id="id_prodi_cedit"
-                                                        name="id_prodi" value="">
+                                                        name="id_prodi_cedit" value="">
                                                     <div class="invalid-feedback">
 
                                                     </div>
@@ -301,7 +301,7 @@
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
                                                         class="form-control custom-textfield " id="nama_prodi_cedit"
-                                                        name="nama_prodi" value="">
+                                                        name="nama_prodi_cedit" value="">
                                                     <div class="invalid-feedback">
 
                                                     </div>
@@ -313,7 +313,7 @@
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
                                                         class="form-control custom-textfield "
-                                                        id="fakultas_prodi_cedit" name="fakultas_prodi"
+                                                        id="fakultas_prodi_cedit" name="fakultas_prodi_cedit"
                                                         value="">
                                                     <div class="invalid-feedback">
 
@@ -336,7 +336,7 @@
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
                                                         class="form-control custom-textfield "
-                                                        id="akreditasi_prodi_cedit" name="akreditasi_prodi"
+                                                        id="akreditasi_prodi_cedit" name="akreditasi_prodi_cedit"
                                                         value="">
                                                     <div class="invalid-feedback">
 
@@ -349,7 +349,7 @@
                                                 <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
                                                     <input required type="text"
                                                         class="form-control custom-textfield "
-                                                        id="jenjang_prodi_cedit" name="jenjang_prodi" value="">
+                                                        id="jenjang_prodi_cedit" name="jenjang_prodi_cedit" value="">
                                                     <div class="invalid-feedback">
 
                                                     </div>
@@ -357,17 +357,10 @@
                                             </div>
 
                                             <div class="row p-3 ">
-                                                <label for="Status" class="col-3 p-0">Status</label>
-                                                <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
-                                                    <select name="status_prodi" id="status_prodi_cedit"
-                                                        class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
-
-
-                                                        <option value="0">Tidak Aktif</option>
-                                                        <option value="1">Aktif</option>
-                                                    </select>
-
-                                                </div>
+                                            <input type="radio" id="status_prodi_cedit" class="margin-custom"
+                                                name="status_prodi_cedit" value="0"> Tidak Aktif<br>
+                                            <input type="radio" id="status_prodi_cedit" class="margin-custom"
+                                                name="status_prodi_cedit" value="1"> Aktif<br>
                                             </div>
 
 
@@ -450,9 +443,20 @@
         document.getElementById('jenjang_prodi_cedit').value = jenjang;
 
         // Set status berdasarkan nilai yang diterima
-        var statusSelect = document.getElementById('status_prodi_cedit');
-        statusSelect.value = status; // Mengatur value status di select box
+       
         // (Jika status bukan 1 atau 0, Anda bisa menambah logika tambahan jika diperlukan)
+        if (status == 1) {
+      
+      document.querySelector('input[name="status_prodi_cedit"][value="1"]').checked = true;
+      document.querySelector('input[name="status_prodi_cedit"][value="0"]').checked = false;
+      
+  } else {
+      document.querySelector('input[name="status_prodi_cedit"][value="0"]').checked = true;
+      document.querySelector('input[name="status_prodi_cedit"][value="1"]').checked = false;
+      console.log('false')
+  }
+  document.getElementById('formModalEditPS').action = `/admin/program-studi/cedit/${id}`;
+        
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

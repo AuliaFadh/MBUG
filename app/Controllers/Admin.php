@@ -1961,13 +1961,14 @@ class Admin extends BaseController
             $TA = $this->tahunModel->AllData();
 
             $data = [
-                'title' => 'Form Input Akademik | User',
+                'title' => 'Tahun Ajaran | Admin',
                 'validation' => \Config\Services::validation(),
                 'input' => $session->getFlashdata('input'),
-                'TA' => $TA,
+                'tahunAjaran' => $TA,
             ];
+            session()->setFlashdata('gagal', 'Data tidak berhasil ditambahkan');
 
-            return view('/admin/tahun-ajaran', $data);
+            return view('/main/tahun-ajaran', $data);
         }
     }
 
@@ -1980,40 +1981,45 @@ class Admin extends BaseController
 
         if (
             $this->validate([
-                'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
-                'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
-                'semester' => 'required',
-                'TA' => 'required',
-                'ipk' => 'required',
-                'ipk_lokal' => 'required',
-                'ipk_uu' => 'required',
-                'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
+                'TA_cedit' => 'required',
+                'TA_awal_cedit' => 'required',
+                'TA_akhir_cedit' => 'required',
             ])
         ) {
-            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
-            $nama_rn = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
+            $semester_tahun = $this->request->getPost('TA_cedit');
+            $mulai_tahun_ajaran = $this->request->getPost('TA_awal_cedit');
+            $selesai_tahun_ajaran = $this->request->getPost('TA_akhir_cedit');
+            $nama_tahun = ($semester_tahun == 0 ? 'PTA' : 'ATA') . ' ' . $mulai_tahun_ajaran . '/' . $selesai_tahun_ajaran;
+            $queue_tahun = intval($mulai_tahun_ajaran . $selesai_tahun_ajaran . '0' . $semester_tahun);
+            // Proses data jika validasi berhasil
             $data = [
-                'id_akademik' => $id_akademik,
-                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
-                'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
-                'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->request->getPost('TA'),
-                'ipk' => $this->request->getPost('ipk'),
-                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
-                'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $nama_rn,
-                'konfirmasi_akademik' => 2,
-                'konf_ket_akademik' => $this->request->getPost('konf_ket_akademik'),
+                'id_tahun' => $id_tahun,
+                'semester_tahun' => $semester_tahun,
+                'mulai_tahun_ajaran' => $mulai_tahun_ajaran,
+                'selesai_tahun_ajaran' => $selesai_tahun_ajaran,
+                'nama_tahun' => $nama_tahun,
+                'queue_tahun' => $queue_tahun,
             ];
 
-            $this->laModel->UpdateData($id_akademik, $data);
+            $this->tahunModel->UpdateData($id_tahun, $data);
             session()->setFlashdata('berhasil', 'Data berhasil diubah');
 
-            return redirect()->to(base_url('/admin/akademik'));
+            return redirect()->to(base_url('/admin/tahun-ajaran'));
         } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+            $TA = $this->tahunModel->AllData();
+
+            $data = [
+                'title' => 'Tahun Ajaran | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+                'tahunAjaran' => $TA,
+            ];
             session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
-            return redirect()->to(base_url('/admin/akademik'));
+
+            return view('/main/tahun-ajaran', $data);
+            return redirect()->to(base_url('/admin/tahun-ajaran'));
         }
     }
 
@@ -2041,31 +2047,97 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/login'));
         }
 
-        // Create a unique name and queue before validation
+        if (
+            $this->validate([
+                'id_prodi_input' => 'required',
+                'nama_prodi_input' => 'required',
+                'fakultas_prodi_input' => 'required',
+                'akreditasi_prodi_input' => 'required',
 
-        // Set validation rules with dynamic data
-        $this->validate([]);
+                'jenjang_prodi_input' => 'required',
+                'status_prodi_input' => 'required',
+                
+            ])
+        ) {
+            
+            $data = [
+                'id_prodi' => $this->request->getPost('id_prodi_input'),
+                'nama_prodi' => $this->request->getPost('nama_prodi_input'),
+                'fakultas_prodi' => $this->request->getPost('fakultas_prodi_input'),
+                'akreditasi_prodi' => $this->request->getPost('akreditasi_prodi_input'),
+                'jenjang_prodi' => $this->request->getPost('jenjang_prodi_input'),
+                'status_prodi' => $this->request->getPost('status_prodi_input'),
+            ];
+       
 
-        // Check for validation errors
-        if ($this->validator->getErrors()) {
+            $this->prodiModel->InsertData($data);
+            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+
+            return redirect()->to(base_url('/admin/program-studi'));
+        } else {
             $session = session();
             $session->setFlashdata('input', $this->request->getPost());
-            $session->setFlashdata('errors', $this->validator->getErrors());
+            $PS = $this->prodiModel->AllData();
 
             $data = [
-                'title' => 'Tambah Beasiswa | Admin',
+            'title' => 'Program Studi | Admin',
+            'programStudi' => $PS,
                 'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
             ];
-
-            return view('admin/program-studi', $data);
+            session()->setFlashdata('gagal', 'Data tidak berhasil ditambahkan');
+            return view('main/program-studi', $data);
+        }
+    }
+    public function cedit_program_studi($id_prodi)
+    {
+        if (session()->get('hak_akses') != '1') {
+            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
+            return redirect()->to(base_url('/admin/login'));
         }
 
-        // Prepare data for insertion
+        if (
+            $this->validate([
+                'id_prodi_cedit' => 'required',
+                'nama_prodi_cedit' => 'required',
+                'fakultas_prodi_cedit' => 'required',
+                'akreditasi_prodi_cedit' => 'required',
 
-        // Insert data into the database
+                'jenjang_prodi_cedit' => 'required',
+                'status_prodi_cedit' => 'required',
+            ])
+        ) {
+            
+            $data = [
+                'id_prodi' => $this->request->getPost('id_prodi_cedit'),
+                'nama_prodi' => $this->request->getPost('nama_prodi_cedit'),
+                'fakultas_prodi' => $this->request->getPost('fakultas_prodi_cedit'),
+                'akreditasi_prodi' => $this->request->getPost('akreditasi_prodi_cedit'),
+                'jenjang_prodi' => $this->request->getPost('jenjang_prodi_cedit'),
+                'status_prodi' => $this->request->getPost('status_prodi_cedit'),
+            ];
 
-        session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+            $this->prodiModel->UpdateData($id_prodi, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
 
-        return redirect()->to(base_url('/admin/program-studi'));
+            return redirect()->to(base_url('/admin/program-studi'));
+        } else {
+            $session = session();
+            $session->setFlashdata('input', $this->request->getPost());
+            $PS = $this->prodiModel->AllData();
+
+
+            $data = [
+                'title' => 'Tahun Ajaran | Admin',
+                'validation' => \Config\Services::validation(),
+                'input' => $session->getFlashdata('input'),
+                'programStudi' => $PS,
+                
+            ];
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+
+            return view('/main/program-studi', $data);
+       
+        }
     }
 }
