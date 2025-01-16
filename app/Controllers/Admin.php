@@ -1970,6 +1970,54 @@ class Admin extends BaseController
             return view('/admin/tahun-ajaran', $data);
         }
     }
+
+    public function cedit_tahun_ajaran($id_tahun)
+    {
+        if (session()->get('hak_akses') != '1') {
+            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
+            return redirect()->to(base_url('/admin/login'));
+        }
+
+        if (
+            $this->validate([
+                'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
+                'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+                'semester' => 'required',
+                'TA' => 'required',
+                'ipk' => 'required',
+                'ipk_lokal' => 'required',
+                'ipk_uu' => 'required',
+                'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
+            ])
+        ) {
+            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
+            $nama_rn = $rangkuman_nilai->getRandomName();
+            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
+            $data = [
+                'id_akademik' => $id_akademik,
+                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
+                'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
+                'semester' => $this->request->getPost('semester'),
+                'tahun_ajaran' => $this->request->getPost('TA'),
+                'ipk' => $this->request->getPost('ipk'),
+                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+                'ipk_uu' => $this->request->getPost('ipk_uu'),
+                'rangkuman_nilai' => $nama_rn,
+                'konfirmasi_akademik' => 2,
+                'konf_ket_akademik' => $this->request->getPost('konf_ket_akademik'),
+            ];
+
+            $this->laModel->UpdateData($id_akademik, $data);
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+
+            return redirect()->to(base_url('/admin/akademik'));
+        } else {
+            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
+            return redirect()->to(base_url('/admin/akademik'));
+        }
+    }
+
+
     public function program_studi()
     {
         if (session()->get('hak_akses') != '1') {

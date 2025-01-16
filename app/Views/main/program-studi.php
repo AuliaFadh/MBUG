@@ -362,8 +362,9 @@
                                                     <select name="status_prodi" id="status_prodi_cedit"
                                                         class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
 
-                                                        <option value="1">Aktif</option>
+
                                                         <option value="0">Tidak Aktif</option>
+                                                        <option value="1">Aktif</option>
                                                     </select>
 
                                                 </div>

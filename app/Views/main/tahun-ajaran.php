@@ -172,7 +172,7 @@
                                         <td class="th-sm">
                                             <button type="button" class="btn btn-sm btn-primary"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                onclick="openEditModal('<?= $tahun['id_tahun'] ?>', '<?= $no ?>')">
+                                                onclick="editTAModal(<?= $tahun['id_tahun'] ?>, <?= $tahun['mulai_tahun_ajaran'] ?>, <?= $tahun['selesai_tahun_ajaran'] ?>, <?= $tahun['semester_tahun'] ?>)">
                                                 <i class="la la-pencil"></i>
                                             </button>
                                         </td>
@@ -196,24 +196,29 @@
                                 </div>
 
                                 <div class="modal-body">
+                                    
 
                                     <div class="mb-3">
-                                        <div class="row">
-                                            <input type="radio" id="ptaRadio" class="margin-custom"
-                                                name="TA_cedit" value="0"> PTA<br>
-                                            <input type="radio" id="ataRadio" class="margin-custom"
-                                                name="TA_cedit" value="1"> ATA<br>
-                                        </div>
+                                        <label for="Status" class="col-3 p-0">Semester Tahun</label>
+                                                <div style="display: block;" class=" col-lg-9 col-md-9 col-sm-9">
+                                                    <select name="TA_cedit" id="TA_cedit"
+                                                        class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
+
+                                                        <option value="1">ATA</option>
+                                                        <option value="0">PTA</option>
+                                                    </select>
+
+                                                </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Tahun Awal</label>
                                         <input required type="number" name="TA_awal_cedit" class="form-control"
-                                            id="TA_awal_input">
+                                            id="TA_awal_cedit">
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Tahun Akhir</label>
                                         <input required type="number" name="TA_akhir_cedit" class="form-control"
-                                            id="TA_akhir_input">
+                                            id="TA_akhir_cedit">
                                     </div>
 
                                     <!-- <div class="mb-3">
@@ -291,42 +296,23 @@
     document.getElementById('low-tahun').addEventListener('input', handlerFilterTahunAjaran);
     document.getElementById('high-tahun').addEventListener('input', handlerFilterTahunAjaran);
 
+    function editTAModal(id, TAawal, TAakhir, SemesterTA) {
+        // Mengisi data ke dalam input field modal
+        
+        document.getElementById('TA_awal_cedit').value = TAawal;
+        document.getElementById('TA_akhir_cedit').value = TAakhir;
+        
+        
 
-    function openEditModal(id, order) {
-        // Mengubah URL action form modal
-        var getdata1 = document.getElementById('TA_' + order);
-        var getdata2 = document.getElementById('TAawal_' + order);
-        var getdata3 = document.getElementById('TAakhir_' + order);
-        var getdata4 = document.getElementById('TA_status_' + order);
-
-        var ThnAjaran = getdata1.getAttribute('data-value');
-        var TAawal = getdata2.getAttribute('data-value');
-        var TAakhir = getdata3.getAttribute('data-value');
-        var TAstatus = getdata4.getAttribute('data-value');
-
-
-        var inputTAawal = document.getElementById('TA_awal_input');
-        var inputTAakhir = document.getElementById('TA_akhir_input');
-
-        var form = document.getElementById('formModalEditTA');
-        form.action = '/admin/tahun-ajaran/cedit/' + id;
-
-        if (ThnAjaran == 0) {
-            document.getElementById('ptaRadio').checked = true;
-        } else {
-            document.getElementById('ataRadio').checked = true;
-        }
-        inputTAawal.value = TAawal;
-        inputTAakhir.value = TAakhir;
-        if (TAstatus == 0) {
-            document.getElementById('TAunactive').checked = true;
-        } else {
-            document.getElementById('TAactive').checked = true;
-        }
-
-
-
+        // Set status berdasarkan nilai yang diterima
+        var semester = document.getElementById('TA_cedit');
+        console.log(SemesterTA)
+        semester.value = SemesterTA; // Mengatur value status di select box
+        // (Jika status bukan 1 atau 0, Anda bisa menambah logika tambahan jika diperlukan)
     }
+
+
+    
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
