@@ -1,0 +1,83 @@
+INFO - 2025-01-16 01:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:53:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:53:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:53:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:53:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:54:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:55:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-16 01:55:47 --> mysqli_sql_exception: Out of range value for column 'id_tahun' at row 1 in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `ta...', 0)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ta...')
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ta...')
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ta...', Array, false)
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\tahunModel.php(23): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\Admin.php(1953): App\Models\tahunModel->InsertData(Array)
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\Admin->save_tahun_ajaran()
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#11 {main}
+CRITICAL - 2025-01-16 01:55:47 --> Out of range value for column 'id_tahun' at row 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'0\', \'2004\', \'20005\', \'PTA 2004/20005\', 20042000500)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'0\', \'2004\', \'20005\', \'PTA 2004/20005\', 20042000500)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'0\', \'2004\', \'20005\', \'PTA 2004/20005\', 20042000500)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (:semester_tahun:, :mulai_tahun_ajaran:, :selesai_tahun_ajaran:, :nama_tahun:, :queue_tahun:)', [...], false)
+ 5 APPPATH\Models\tahunModel.php(23): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\Admin.php(1953): App\Models\tahunModel->InsertData([...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Admin->save_tahun_ajaran()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\OneDrive\\Dokumen\\Tugas\\Semester_8\\MBUG dev\\MBUG\\public\\index.php')
+INFO - 2025-01-16 01:58:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:59:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 01:59:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-16 01:59:37 --> mysqli_sql_exception: Out of range value for column 'id_tahun' at row 1 in C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `ta...', 0)
+#1 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ta...')
+#2 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ta...')
+#3 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ta...', Array, false)
+#4 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Models\tahunModel.php(23): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\app\Controllers\Admin.php(1953): App\Models\tahunModel->InsertData(Array)
+#6 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\Admin->save_tahun_ajaran()
+#7 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\isata\OneDrive\Dokumen\Tugas\Semester_8\MBUG dev\MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\...')
+#11 {main}
+CRITICAL - 2025-01-16 01:59:37 --> Out of range value for column 'id_tahun' at row 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'1\', \'9998\', \'9999\', \'ATA 9998/9999\', 9998999901)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'1\', \'9998\', \'9999\', \'ATA 9998/9999\', 9998999901)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'1\', \'9998\', \'9999\', \'ATA 9998/9999\', 9998999901)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (:semester_tahun:, :mulai_tahun_ajaran:, :selesai_tahun_ajaran:, :nama_tahun:, :queue_tahun:)', [...], false)
+ 5 APPPATH\Models\tahunModel.php(23): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\Admin.php(1953): App\Models\tahunModel->InsertData([...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Admin->save_tahun_ajaran()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\isata\\OneDrive\\Dokumen\\Tugas\\Semester_8\\MBUG dev\\MBUG\\public\\index.php')
+INFO - 2025-01-16 02:09:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:10:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:10:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:10:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:10:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:16:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:29:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:35:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:37:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:40:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:40:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:41:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:41:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:41:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 02:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 03:02:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 03:02:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
