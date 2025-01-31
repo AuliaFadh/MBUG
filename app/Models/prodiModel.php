@@ -45,7 +45,12 @@ class prodiModel extends Model
     public function getIDprodi($data)
     {
         $p = $this->db->table('program_studi')->where('nama_prodi', $data)->get()->getRow();
+        if (!$p) {
+            $p = $this->db->table('program_studi')->where('id_prodi', $data)->get()->getRow();
+        }
+        
         $p = get_object_vars($p);
         return $p['id_prodi'];
     }
+    
 }

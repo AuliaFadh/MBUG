@@ -21,6 +21,10 @@ class userModel extends Model
     {
         $this->db->table('user')->insert(($data));
     }
+    public function insertBatchData($data)
+{
+    return $this->db->table('user')->insertBatch($data);
+}
 
     public function DetailData($id_user)
     {
