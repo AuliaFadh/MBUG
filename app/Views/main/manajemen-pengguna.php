@@ -61,7 +61,7 @@
                                         class="col-md-3 col-4 mb-3 p-1">
                                     <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                     </h6>
-                                    <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk"
+                                    <input type="number" min=0 max=4 step=0.01 value=4.00 id="high-ipk"
                                         class="col-md-3 col-4 mb-3 p-1">
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                         class="col-md-3 col-4 mb-3 p-1">
                                     <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                     </h6>
-                                    <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
+                                    <input type="number" min=0 max=4 step=0.01 value=4.00 id="high-ipk-lokal"
                                         class="col-md-3 col-4 mb-3 p-1">
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                         class="col-md-3 col-4 mb-3 p-1">
                                     <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                     </h6>
-                                    <input type="number"min=0 max=4 step=0.01 value=4.00 id="high-ipk-uu"
+                                    <input type="number" min=0 max=4 step=0.01 value=4.00 id="high-ipk-uu"
                                         class="col-md-3 col-4 mb-3 p-1">
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
 
                     </div>
                     <div class="row add-btn-behav-custom">
-                        <a class="add-btn-custom " href="/admin/manajemen/add" aria-expanded="false">
+                        <a class="add-btn-custom p-2 m-4" href="/admin/manajemen/add" aria-expanded="false">
                             <img src="<?= base_url('asset/img/cross-icon.png') ?>">Tambah Admin
                         </a>
                     </div>
@@ -148,14 +148,29 @@
                                     <tr>
                                         <td>
                                             <div class="header-profile">
-                                                [Foto profil harus joinTable user+penerima Beasiswa]
+                                                
+                                            <?php if ($value['ppicture'] == null) : ?>
                                                 <img id="profile-img-nav"
-                                                    src="<?= base_url('asset/img/database/default-profile.jpg') ?>"
+                                                    src="<?= base_url('asset/img/database/default-profile.jpg'); ?>"
                                                     style="height: 50px; width: 50px;" alt="" />
+                                                <?php elseif ($value['ppicture'] !== null) : ?>
+                                                <img id="profile-img-nav"
+                                                    src="<?= base_url('asset/img/database/picture/' . $value['ppicture']); ?>"
+                                                    style="height: 50px; width: 50px;" alt="" />
+                                                <?php endif; ?>
+
+                                                
                                             </div>
                                         </td>
-                                        <td>[Nama Penggunanya harus jointabel user + Penerima Beasiswa / kalo Admin pake
-                                            username aja]</td>
+                                        <td>
+                                        <?php if ($value['nama'] == null) : ?>
+                                            <?= $value['username']; ?>
+                                            <?php elseif ($value['nama'] !== null) : ?>
+                                            <?= $value['nama']; ?>
+                                            <?php endif; ?>
+                                       
+                                        
+                                        </td>
                                         <?php if ($value['hak_akses'] == '0') {
                                             $hak_akses = '<span  style="color:white;"class="badge badge-rounded badge-success"> Penerima Beasiswa </span>';
                                         } elseif ($value['hak_akses'] == '1') {
@@ -193,14 +208,14 @@
 </div>
 
 <script>
-    // Toggle filter
-    function toggleFilter() {
-        var filterDiv = document.getElementById('advance-filter');
-        if (filterDiv.style.display === 'none') {
-            filterDiv.style.display = 'block';
-        } else {
-            filterDiv.style.display = 'none';
-        }
+// Toggle filter
+function toggleFilter() {
+    var filterDiv = document.getElementById('advance-filter');
+    if (filterDiv.style.display === 'none') {
+        filterDiv.style.display = 'block';
+    } else {
+        filterDiv.style.display = 'none';
     }
+}
 </script>
 <?= $this->endSection('content') ?>

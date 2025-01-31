@@ -76,8 +76,9 @@ class User extends BaseController
             session()->set('nama_user', $check["nama"]);
             session()->set('hak_akses', $check["hak_akses"]);
             $pp = $this->pbModel->getPictureN($username);
+            
             session()->set('pp', $pp);
-
+            
             return redirect()->to(base_url('/user/home'));
         } elseif ($check["hak_akses"] == "1") {
             session()->setFlashdata('admin', 'Akun terdaftar sebagai Admin');
@@ -113,7 +114,8 @@ class User extends BaseController
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
-
+        $sessionData = session()->get();
+        
         $uname = session()->get('username');
         $profile = $this->userModel->getData_username($uname);
         $data = [
@@ -150,12 +152,13 @@ class User extends BaseController
             } else {
                 $nama_pp = $pp;
             }
+            
 
             $data = [
                 'id_penerima' => $id_penerima,
                 'nama' => $penerima->nama,
                 'npm' => $penerima->npm,
-                'prodi' => $penerima->prodi,
+                'id_prodi' => $penerima->id_prodi,
                 'alamat' => $this->request->getPost('alamat'),
                 'no_hp' => $this->request->getPost('no_hp'),
                 'ppicture' => $nama_pp,
@@ -166,11 +169,20 @@ class User extends BaseController
             ];
 
             $this->pbModel->UpdateData($id_penerima, $data);
+            
+            
+
+            session()->set([
+                'nama_user' => $penerima->nama, // Update nama di session
+                'pp' => $nama_pp, // Update foto profil di session
+            ]);
+    
+            
             session()->setFlashdata('berhasil', 'Data berhasil diubah');
 
             return redirect()->to(base_url('/user/profile'));
         } else {
-            dd($this->request->getPost('password_baru'));
+            
             session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
             return redirect()->to(base_url('/user/profile'));
         }

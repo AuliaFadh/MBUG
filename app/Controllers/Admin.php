@@ -162,6 +162,7 @@ class Admin extends BaseController
         }
 
         $jb = $this->jbModel->AllData();
+        
         $data = [
             'title' => 'Jenis Beasiswa | Admin',
             'jb' => $jb,
@@ -213,7 +214,7 @@ class Admin extends BaseController
                 'jenis' => 'required',
                 'asal' => 'required',
                 'tahun' => 'required',
-                'status' => 'required',
+                'status_beasiswa' => 'required',
             ])
         ) {
             $data = [
@@ -221,7 +222,7 @@ class Admin extends BaseController
                 'jenis' => $this->request->getPost('jenis'),
                 'asal' => $this->request->getPost('asal'),
                 'tahun_penerimaan' => $this->request->getPost('tahun'),
-                'status_beasiswa' => $this->request->getPost('status'),
+                'status_beasiswa' => $this->request->getPost('status_beasiswa'),
             ];
 
             $this->jbModel->UpdateData($id_beasiswa, $data);
@@ -1214,10 +1215,13 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/login'));
         }
 
-        $user = $this->userModel->AllData();
+        $user = $this->userModel->getAllUsersWithProfile();
+        
+        
         $data = [
             'title' => 'User Manajemen | Admin',
             'user' => $user,
+            
         ];
 
         return view('main/manajemen-pengguna', $data);

@@ -34,6 +34,14 @@ class userModel extends Model
         ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
         ->where('username', $uname)->get()->getRow();
     }
+    public function getAllUsersWithProfile()
+{
+    return $this->db->table('user')
+        ->select('user.*, penerima_beasiswa.ppicture, penerima_beasiswa.nama') // Tambahkan nama dari tabel penerima_beasiswa
+        ->join('penerima_beasiswa', 'penerima_beasiswa.npm = user.username', 'left') // Left Join dengan kondisi username = npm
+        ->get()
+        ->getResultArray(); // Ambil semua hasil dalam bentuk array asosiatif
+}
 
     public function UpdateData($id, $data)
     {
