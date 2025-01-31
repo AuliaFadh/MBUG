@@ -497,7 +497,7 @@ class Admin extends BaseController
                             'npm' => $npm,
                             'id_prodi' => $id_prodi,
                             'alamat' => $alamat,
-                            'no_hp' => $no_hp,
+                            'no_hp' => '0'.$no_hp,
                             'ppicture' => $ppicture,
                             'jenis_kelamin' => $jenis_kelamin,
                             'tahun_diterima' => $tahun_diterima,
