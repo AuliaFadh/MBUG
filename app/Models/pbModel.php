@@ -28,6 +28,10 @@ class pbModel extends Model
     {
         $this->db->table('penerima_beasiswa')->insert(($data));
     }
+    public function insertBatchData($data)
+{
+    return $this->db->table('penerima_beasiswa')->insertBatch($data);
+}
 
     public function DetailData($id_penerima)
     {

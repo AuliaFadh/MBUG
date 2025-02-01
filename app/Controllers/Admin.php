@@ -466,63 +466,68 @@ class Admin extends BaseController
         }
 
         if ($this->request->getPost()) {
-            $con = mysqli_connect('localhost', 'root', '');
-
-            mysqli_select_db($con, 'mbug');
-
             $filename = $_FILES['csv-file-input']['tmp_name'];
 
             if ($_FILES['csv-file-input']['size'] > 0) {
                 $file = fopen($filename, 'r');
-
                 $num = 0;
+
+                $penerimaData = [];
+                $userData = [];
+
                 while (($column = fgetcsv($file, 5000, ',')) !== false) {
                     if ($num == 0) {
                         $num++;
                     } else {
-                        $nama = $column[1];
-                        $npm = $column[2];
-                        $prodi = $column[3];
+                        $nama = $column[0];
+                        $npm = $column[1];
+                        $prodi = $column[2];
                         $id_prodi = $this->prodiModel->getIDprodi($prodi);
-                        $alamat = $column[4];
-                        $no_hp = $column[5];
-                        if ($column[6] == 'Perempuan') {
-                            $jk = '0';
-                        } else {
-                            $jk = '1';
-                        }
+                        $alamat = $column[3];
+                        $no_hp = $column[4];
                         $ppicture = null;
-                        $jenis_kelamin = $column[6];
-                        $tahun_diterima = $column[7];
-                        if ($column[8] == 'Lulus') {
-                            $status = '2';
-                        } elseif ($column[8] == 'Aktif') {
-                            $status = '1';
-                        } else {
-                            $status = '0';
-                        }
-                        $status_penerima = $column[8];
-                        $keterangan = $column[9];
+                        $jenis_kelamin = $column[5];
+                        $tahun_diterima = $column[6];
+                        $status_penerima = $column[7];
+                        $keterangan = $column[8];
 
-                        mysqli_query(
-                            $con,
-                            "INSERT INTO penerima_beasiswa
-                        (nama,npm,prodi,alamat,no_hp,ppicture,jenis_kelamin,tahun_diterima,status_penerima,keterangan)
-                        VALUES ('$nama','$npm','$id_prodi','$alamat','$no_hp','$ppicture,'$jenis_kelamin','$tahun_diterima',
-                        '$status_penerima','$keterangan')",
-                        );
+                        // Siapkan data untuk insert penerima_beasiswa
+                        $penerimaData[] = [
+                            'nama' => $nama,
+                            'npm' => $npm,
+                            'id_prodi' => $id_prodi,
+                            'alamat' => $alamat,
+                            'no_hp' => '0'.$no_hp,
+                            'ppicture' => $ppicture,
+                            'jenis_kelamin' => $jenis_kelamin,
+                            'tahun_diterima' => $tahun_diterima,
+                            'status_penerima' => $status_penerima,
+                            'keterangan' => $keterangan
+                        ];
 
+                        // Siapkan data untuk insert user
                         $hak_akses_pb = 0;
                         $status_user = 1;
                         $last_login = $this->userModel->getCurrentDate();
                         $default_password = $npm . '.beasiswa';
-                        mysqli_query(
-                            $con,
-                            "INSERT INTO user
-                        (username,password,hak_akses, last_login, status_user)
-                        VALUES ('$npm','$default_password','$hak_akses_pb','$last_login','$status_user')",
-                        );
+
+                        $userData[] = [
+                            'username' => $npm,
+                            'password' => $default_password,  // Enkripsi password
+                            'hak_akses' => $hak_akses_pb,
+                            'last_login' => $last_login,
+                            'status_user' => $status_user
+                        ];
                     }
+                }
+
+                // Batch insert ke database menggunakan query builder
+                if (!empty($penerimaData)) {
+                    $this->pbModel->insertBatchData($penerimaData);
+                }
+
+                if (!empty($userData)) {
+                    $this->userModel->table('user')->insertBatchData($userData);
                 }
             }
         }

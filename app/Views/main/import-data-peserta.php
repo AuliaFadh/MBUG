@@ -35,6 +35,19 @@
                                 <li>klik import data jika sudah dipastikan benar data tersebut</li>
                             </ol>
                         </div>
+                        <div class="container">
+                            <h4>Aturan file Data</h4>
+                            <ol class="how-to" type="1">
+                               <li>File Harus dalam bentuk CSV</li>
+                               <li>Data harus sesuai atribut pada file template dan tidak boleh diubah atributnya</li>
+                               <li>Maksimal data atau baris yang dapat diimport adalah 5000</li>
+                               <li>Gunakan Id_prodi untuk mengisi program studi sesuai dengan data prodi pada halaman <a href="/admin/program-studi">Program Studi</a></li>
+                               <li>Gunakan langsung angka 8 untuk nomor hp Contoh 0812345689 menjadi 812345689</li>
+                               <li>Pada atribut Jenis Kelamin gunakan angka 1 untuk Laki-laki dan 0 untuk perempuan</li>
+                               <li>Pada atribut Status gunakan angka 1 untuk Aktif dan 0 untuk tidak aktif dan 2 untuk lulus</li>
+                               <li>dapat menambahkan keterangan jika diperlukan</li>
+                            </ol>
+                        </div>
 
                         <!-- Form import data penerima beasiswa -->
                         <form action="/admin/penerima/cimport" id="csv-form" class="row" method="post" enctype="multipart/form-data">
