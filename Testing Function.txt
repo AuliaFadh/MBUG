@@ -1,5 +1,7 @@
 ADMIN
 o login
+ o login admin
+ - status login (user tidak aktif masih bisa login)
 
 o profile (ubah password)
 
@@ -28,8 +30,13 @@ o pengumuman
  - manajemen pengguna (otomatis dibuat)
 
 - manajemen pengguna
- - tambah (masih bisa milih penerima beasiswa)
- - edit
- - hapus
+ - tambah (masih bisa memilih penerima beasiswa)
+ - edit (edit admin masih perlu "mengganti password" dan "memilih hak akses user",
+         edit user juga masih perlu "mengganti password" dan "memilih hak akses user")
+ - hapus (bisa menghapus user yang sudah ada datanya pada tabel lain)
+ - Filter (filter tidak sesuai)
+ o search
+
+- laporan akademik
 
 USER
