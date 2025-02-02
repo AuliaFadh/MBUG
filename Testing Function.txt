@@ -1,0 +1,35 @@
+ADMIN
+o login
+
+o profile (ubah password)
+
+o pengumuman
+ o tambah
+ o edit
+ o hapus
+ o dashboard
+
+- jenis beasiswa
+ o tambah
+ o edit
+ - hapus (masih bisa hapus ketika ada link ke data pada tabel lain)
+ o csv
+ o Filter
+ o search
+
+- data penerima beasiswa
+ - tambah
+ - edit
+ - hapus
+ o csv
+ o Filter
+ o search
+ - import
+ - manajemen pengguna (otomatis dibuat)
+
+- manajemen pengguna
+ - tambah (masih bisa milih penerima beasiswa)
+ - edit
+ - hapus
+
+USER
