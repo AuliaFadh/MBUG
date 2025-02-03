@@ -76,6 +76,7 @@ class User extends BaseController
             session()->set('nama_user', $check["nama"]);
             session()->set('hak_akses', $check["hak_akses"]);
             $pp = $this->pbModel->getPictureN($username);
+            $prodi=$this->pbModel->
             
             session()->set('pp', $pp);
             
@@ -139,7 +140,7 @@ class User extends BaseController
 
         ])) {
             $penerima = $this->pbModel->DetailData($id_penerima);
-
+            dd($penerima);
             $pp = $this->pbModel->getPicture($id_penerima);
 
             $foto_pp = $this->request->getFile('file-input');

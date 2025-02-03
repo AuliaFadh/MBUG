@@ -39,6 +39,12 @@ class pbModel extends Model
         join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
         ->where('id_penerima', $id_penerima)->get()->getRow();
     }
+    public function DetailDataMhs($id_penerima)
+    {
+        return $this->db->table('penerima_beasiswa')->
+        join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
+        ->where('id_penerima', $id_penerima)->get()->getRow();
+    }
 
     public function UpdateData($id, $data)
     {
@@ -57,6 +63,12 @@ class pbModel extends Model
         $b = $this->db->table('penerima_beasiswa')->where('npm', $npm)->get()->getRow();
         $b = get_object_vars($b);
         return $b['ppicture'];
+    }
+    public function getProdi($npm)
+    {
+        $b = $this->db->table('penerima_beasiswa')->where('npm', $npm)->get()->getRow();
+        $b = get_object_vars($b);
+        return $b['id_prodi'];
     }
 
     public function DeleteData($data)
