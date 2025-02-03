@@ -1,4 +1,9 @@
+- KURANG
+o AMAN
+----------
+
 ADMIN
+
 o login
  o login admin
  - status login (user tidak aktif masih bisa login)
@@ -11,6 +16,8 @@ o pengumuman
  o hapus
  o dashboard
 
+- posisi search dan next page tabel (ini emang engga ngikutin tabel ya?)
+
 - jenis beasiswa
  o tambah
  o edit
@@ -20,7 +27,7 @@ o pengumuman
  o search
 
 - data penerima beasiswa
- - tambah
+ o tambah
  - edit
  - hapus
  o csv
@@ -38,5 +45,30 @@ o pengumuman
  o search
 
 - laporan akademik
+ - tambah (mungkin untuk admin tidak perlu upload file)
+ o edit
+ o csv
+ - filter (tinggal tahun ajaran)
+ o search
+ o konfirmasi
+
+- laporan prestasi
+ - tambah (mungkin untuk admin tidak perlu upload file)
+ - edit (tidak bisa, mungkin tubrukan dengan konfirmasi)
+ o csv
+ o filter
+ o search
+ o konfirmasi
+
+- laporan mbkm
+ - tambah
+ - edit
+ - csv
+ - filter
+ - search
+ - konfirmasi
+----------
 
 USER
+
+- login

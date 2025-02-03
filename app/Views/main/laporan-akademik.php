@@ -87,10 +87,10 @@
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
                                             <input type="number" min=0 max=4 step=0.01 id="low-ipk"
-                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
+                                                placeholder="" class="col-md-3 col-4 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="number"min=0 max=4 step=0.01 id="high-ipk" placeholder="0.00"
+                                            <input type="number"min=0 max=4 step=0.01 id="high-ipk" placeholder=""
                                                 class="col-md-3 col-4 mb-3 p-1">
                                         </div>
                                     </div>
@@ -99,11 +99,11 @@
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
                                             <input type="number" min=0 max=4 step=0.01 id="low-ipk-lokal"
-                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
+                                                placeholder="" class="col-md-3 col-4 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
                                             <input type="number"min=0 max=4 step=0.01 id="high-ipk-lokal"
-                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
+                                                placeholder="" class="col-md-3 col-4 mb-3 p-1">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-12 mb-3">
@@ -111,11 +111,11 @@
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
                                             <input type="number" min=0 max=4 step=0.01 id="low-ipk-uu"
-                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
+                                                placeholder="" class="col-md-3 col-4 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
                                             <input type="number"min=0 max=4 step=0.01 id="high-ipk-uu"
-                                                placeholder="0.00" class="col-md-3 col-4 mb-3 p-1">
+                                                placeholder="" class="col-md-3 col-4 mb-3 p-1">
                                         </div>
                                     </div>
                                 </div>
@@ -126,11 +126,11 @@
                                         <h7 class="d-flex justify-content-center align-items-center ">Semester</h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" id="low-semester" min=0 max=20 placeholder="1"
+                                            <input type="number" id="low-semester" min=0 max=20 placeholder=""
                                                 class="col-md-2 col-2 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="number" id="high-semester" min=0 max=20 placeholder="1"
+                                            <input type="number" id="high-semester" min=0 max=20 placeholder=""
                                                 class="col-md-2 col-2 mb-3 p-1">
                                         </div>
                                     </div>
