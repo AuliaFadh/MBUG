@@ -156,7 +156,7 @@ class User extends BaseController
 
         ])) {
             $penerima = $this->pbModel->DetailData($id_penerima);
-
+            
             $pp = $this->pbModel->getPicture($id_penerima);
 
             $foto_pp = $this->request->getFile('file-input');
