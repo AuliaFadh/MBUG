@@ -121,12 +121,13 @@ $routes->group('admin', function ($routes) {
 // Route untuk penerima beasiswa
 $routes->group('user', function ($routes) {
     $routes->get('login', 'User::user_login');
-    $routes->get('logout', 'User::user_logout');
+    $routes->get('logout', 'User::user_logout',['filter' => 'authJWT']);
     $routes->post('login_check', 'User::user_login_check');
-    $routes->get('profile', 'User::user_profile');
-    $routes->post('profile/cedit/(:any)', 'User::cedit_user_profile/$1');
-    $routes->post('profile/pass/(:any)', 'User::cedit_password_profile/$1');
+    $routes->get('profile', 'User::user_profile',['filter' => 'authJWT']);
     $routes->get('home', 'User::user_home');
+    $routes->post('profile/cedit/(:any)', 'User::cedit_user_profile/$1',['filter' => 'authJWT']);
+    $routes->post('profile/pass/(:any)', 'User::cedit_password_profile/$1',['filter' => 'authJWT']);
+   
 
     $routes->get('akademik', 'User::user_akademik');
     $routes->get('akademik/add', 'User::user_add_akademik');

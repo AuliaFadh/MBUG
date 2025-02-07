@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Helpers\JwtHelper;
 
 class User extends BaseController
 {
@@ -49,37 +50,25 @@ class User extends BaseController
     {
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
-
-        $check = $this->loginModel->login_check_u($username, $password);
-
+        $check = $this->loginModel->login_check_u($username, $password);        
         if (is_null($check)) {
             session()->setFlashdata('no_data', 'Username atau Password Salah');
             return redirect()->to(base_url('/user/login'));
         } elseif ($check["hak_akses"] == "0") {
-            $datalog = [
-                'log_last_login' => $this->logModel->getCurrentDate(),
-                'log_username' => $check["username"],
-            ];
-            $this->logModel->InsertData($datalog);
-
-            $datamnj = [
+            $userData = [
                 'id_user' => $check["id_user"],
                 'username' => $check["username"],
-                'password' => $check["password"],
                 'hak_akses' => $check["hak_akses"],
-                'last_login' => $this->userModel->getCurrentDate(),
                 'status_user' => $check["status_user"],
-            ];
-            $this->userModel->UpdateData($check["id_user"], $datamnj);
+                'pp' => $check["ppicture"],
+            ];            
+            $token = JwtHelper::generateToken($userData, 7200);   
+                                           
+            setcookie('token', $token, time() + 7200, "/", "", false, true);
 
-            session()->set('username', $check["username"]);
-            session()->set('nama_user', $check["nama"]);
-            session()->set('hak_akses', $check["hak_akses"]);
-            $pp = $this->pbModel->getPictureN($username);
-            
-            session()->set('pp', $pp);
             
             return redirect()->to(base_url('/user/home'));
+
         } elseif ($check["hak_akses"] == "1") {
             session()->setFlashdata('admin', 'Akun terdaftar sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
@@ -88,38 +77,66 @@ class User extends BaseController
 
     public function user_logout()
     {
-        session()->destroy();
+        setcookie("token", "", time() - 7200, "/", "", false, true);
         return redirect()->to(base_url('/user/login'));
     }
 
     public function user_home()
     {
-        if (session()->get('hak_akses') != "0") {
+        $jwt = $this->request->getCookie('token');
+        
+        $userData = JwtHelper::verifyToken($jwt);
+
+        if ($userData['hak_akses']!="0") {
+            // Token tidak ditemukan, arahkan ke halaman login dengan pesan error
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
+        if (!$userData) {
+            // Jika token tidak valid atau expired, arahkan ke halaman login
+            session()->setFlashdata("error", "Token tidak valid atau telah expired.");
+            return redirect()->to(base_url('/user/login'));
+        }
+        
 
-        $news = $this->newsModel->AllData();
-        $data = [
-            'title' => 'Dashboard | MBUG',
-            'news' => $news,
-        ];
+        try{
 
-        return view('user-main/dashboard', $data);
+            $news = $this->newsModel->AllData();
+            $data = [
+                'title' => 'Dashboard | MBUG',
+                'news' => $news,
+            ];
+            
+            return view('user-main/dashboard', $data);
+        } catch(\Exception $e){
+        log_message('error', 'Error saat mengambil data berita: ' . $e->getMessage());
+
+            // Tampilkan error pada halaman user
+            session()->setFlashdata("error", "Terjadi kesalahan saat memuat data berita.");
+            return redirect()->to(base_url('/user/home'));}
+
     }
 
     public function  user_profile()
     {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
+        $userData = $this->request->getGlobal('userData');
+        if (!$userData) {
+            session()->setFlashdata("belum_login", "Anda Belum Login");
             return redirect()->to(base_url('/user/login'));
         }
-        $sessionData = session()->get();
         
-        $uname = session()->get('username');
+        $uname = $userData['username'];
+        $data = [
+            'title' => 'Profile | MBUG',
+            
+        ];
+
         $profile = $this->userModel->getData_username($uname);
         $data = [
             'title' => 'Profile | MBUG',
+            'username' => $uname,
+            'status_user' => $userData['status_user'],
+            'pp' => $userData['pp'],
             'profile' => $profile,
         ];
 
