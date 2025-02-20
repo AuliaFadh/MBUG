@@ -67,6 +67,37 @@ o pengumuman
  - filter
  - search
  - konfirmasi
+
+- Keaktifan per semester
+ - tambah
+ - edit
+ - csv
+ - filter
+ - search
+ -konfirmasi
+
+- Daftar Link GForm
+ - tambah
+ - edit
+ - hapus
+ - filter
+ - search
+
+- log aktivitas
+ - search
+
+- program studi
+ - tambah
+ - edit
+ - csv
+ - filter
+ - search
+
+- tahun ajaran
+ - tambah (masih error)
+ - edit (masih perlu ngisi ulang, belom ada route ke controller)
+ - filter
+ - search
 ----------
 
 USER
