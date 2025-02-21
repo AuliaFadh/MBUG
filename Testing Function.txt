@@ -79,24 +79,27 @@ o pengumuman
  - Potongan dan Tagihan belum format Rupiah
 
 - Daftar Link GForm
- - tambah
- - edit
- - hapus
- - filter
- - search
+ - tambah (jenis beasiswa belum milih, masih error exception kalau salah inout beasiswa)
+ o edit
+ o hapus
+ o filter
+ o search
 
-- log aktivitas
- - search
+o log aktivitas
+ o search
+
+- Buku Panduan
+ - Belom di Upload
 
 - program studi
  - tambah
  - edit
- - csv
- - filter
- - search
+ o csv
+ - filter (aktif-tidak aktif, tahun) -> belum sesuai
+ o search
 
 - tahun ajaran
- - tambah (masih error)
+ - tambah (masih error) 
  - edit (masih perlu ngisi ulang, belom ada route ke controller)
  - filter
  - search
@@ -105,3 +108,7 @@ o pengumuman
 USER
 
 - login
+ - login user
+ - status login
+
+- 
