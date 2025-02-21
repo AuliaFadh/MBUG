@@ -61,20 +61,22 @@ o pengumuman
  o konfirmasi
 
 - laporan mbkm
- - tambah
- - edit
- - csv
- - filter
- - search
- - konfirmasi
+ - tambah (- ErrorException saat tidak sesuai mengisi NPM (setelah memilih ubah lg)
+           - ErrorException saat tidak sesuai mengisi jenis beasiswa)
+ - edit (tidak bisa, mungkin tubrukan dengan konfirmasi)
+ o csv
+ o filter
+ o search
+ o konfirmasi
 
 - Keaktifan per semester
  - tambah
  - edit
- - csv
- - filter
- - search
- -konfirmasi
+ o csv
+ - filter (Tahun Ajaran)
+ o search
+ o konfirmasi
+ - Potongan dan Tagihan belum format Rupiah
 
 - Daftar Link GForm
  - tambah
