@@ -66,7 +66,7 @@ o Kalo edit pengumuman gausah masukin tanggal terbit lg (done) tinggal BE
 o Kolom Konfirmasi di bagian user [ditolak, diterima, pending] 
 o Admin bisa konfirmasi inputan user
 o Admin bisa memberikan keterangan konfirmasi
-- user tidak bisa merubah data jika status sudah "diterima"
+o user tidak bisa merubah data jika status sudah "diterima"
 
 o Kalau edit file pdf/img lama dihapus USER (aul)
   o profile pic

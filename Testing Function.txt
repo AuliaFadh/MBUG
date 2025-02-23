@@ -1,0 +1,114 @@
+- KURANG
+o AMAN
+----------
+
+ADMIN
+
+o login
+ o login admin
+ - status login (user tidak aktif masih bisa login)
+
+o profile (ubah password)
+
+o pengumuman
+ o tambah
+ o edit
+ o hapus
+ o dashboard
+
+- posisi search dan next page tabel (ini emang engga ngikutin tabel ya?)
+
+- jenis beasiswa
+ o tambah
+ o edit
+ - hapus (masih bisa hapus ketika ada link ke data pada tabel lain)
+ o csv
+ o Filter
+ o search
+
+- data penerima beasiswa
+ o tambah
+ - edit
+ - hapus
+ o csv
+ o Filter
+ o search
+ - import
+ - manajemen pengguna (otomatis dibuat)
+
+- manajemen pengguna
+ - tambah (masih bisa memilih penerima beasiswa)
+ - edit (edit admin masih perlu "mengganti password" dan "memilih hak akses user",
+         edit user juga masih perlu "mengganti password" dan "memilih hak akses user")
+ - hapus (bisa menghapus user yang sudah ada datanya pada tabel lain)
+ - Filter (filter tidak sesuai)
+ o search
+
+- laporan akademik
+ - tambah (mungkin untuk admin tidak perlu upload file)
+ o edit
+ o csv
+ - filter (tinggal tahun ajaran)
+ o search
+ o konfirmasi
+
+- laporan prestasi
+ - tambah (mungkin untuk admin tidak perlu upload file)
+ - edit (tidak bisa, mungkin tubrukan dengan konfirmasi)
+ o csv
+ o filter
+ o search
+ o konfirmasi
+
+- laporan mbkm
+ - tambah (- ErrorException saat tidak sesuai mengisi NPM (setelah memilih ubah lg)
+           - ErrorException saat tidak sesuai mengisi jenis beasiswa)
+ - edit (tidak bisa, mungkin tubrukan dengan konfirmasi)
+ o csv
+ o filter
+ o search
+ o konfirmasi
+
+- Keaktifan per semester
+ - tambah
+ - edit
+ o csv
+ - filter (Tahun Ajaran)
+ o search
+ o konfirmasi
+ - Potongan dan Tagihan belum format Rupiah
+
+- Daftar Link GForm
+ - tambah (jenis beasiswa belum milih, masih error exception kalau salah inout beasiswa)
+ o edit
+ o hapus
+ o filter
+ o search
+
+o log aktivitas
+ o search
+
+- Buku Panduan
+ - Belom di Upload
+
+- program studi
+ - tambah
+ - edit
+ o csv
+ - filter (aktif-tidak aktif, tahun) -> belum sesuai
+ o search
+
+- tahun ajaran
+ - tambah (masih error) 
+ - edit (masih perlu ngisi ulang, belom ada route ke controller)
+ - filter
+ - search
+----------
+
+USER
+
+- login
+ - login user
+ - status login
+
+- 

@@ -75,8 +75,8 @@
 
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="status_user" value="1">Aktif<br>
-                                        <input type="radio" class="margin-custom" name="status_user" value="0" checked>Tidak Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_user" value="1" <?php echo (isset($former->status_user) && $former->status_user == '1') ? 'checked' : ''; ?>>Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_user" value="0" <?php echo (isset($former->status_user) && $former->status_user == '0') ? 'checked' : ''; ?>>Tidak Aktif<br>
                                     </div>
                                 </div>
 

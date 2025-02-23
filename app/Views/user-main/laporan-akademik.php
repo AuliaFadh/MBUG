@@ -93,7 +93,7 @@
                                         <td class="th-sm"><?= $confirm ?></td>
                                         <td class="th-sm">
                                             <?php if ($value['konfirmasi_akademik'] == 1): ?>
-                                            <a href="#" class="btn btn-sm btn-primary disabled"
+                                            <a href="#" class="btn btn-sm btn-secondary disabled"
                                                 style="opacity: 0.5;">
                                                 <i class="la la-pencil"></i>
                                             </a>

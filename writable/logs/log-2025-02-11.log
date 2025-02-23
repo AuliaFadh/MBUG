@@ -1,0 +1,42 @@
+INFO - 2025-02-11 07:23:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:23:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:23:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:23:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:25:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:26:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:27:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:27:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:28:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:28:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:29:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:29:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:33:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-11 07:35:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-02-11 07:35:08 --> mysqli_sql_exception: Failed to read auto-increment value from storage engine in C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `ta...', 0)
+#1 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ta...')
+#2 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ta...')
+#3 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ta...', Array, false)
+#4 C:\xampp\htdocs\codeigniter-MBUG\app\Models\tahunModel.php(23): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\codeigniter-MBUG\app\Controllers\Admin.php(1965): App\Models\tahunModel->InsertData(Array)
+#6 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\Admin->save_tahun_ajaran()
+#7 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\codeigniter-MBUG\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\codeigniter-MBUG\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2025-02-11 07:35:08 --> Failed to read auto-increment value from storage engine
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'1\', \'2000\', \'2001\', \'ATA 2000/2001\', 2000200101)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'1\', \'2000\', \'2001\', \'ATA 2000/2001\', 2000200101)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (\'1\', \'2000\', \'2001\', \'ATA 2000/2001\', 2000200101)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tahun_ajaran` (`semester_tahun`, `mulai_tahun_ajaran`, `selesai_tahun_ajaran`, `nama_tahun`, `queue_tahun`) VALUES (:semester_tahun:, :mulai_tahun_ajaran:, :selesai_tahun_ajaran:, :nama_tahun:, :queue_tahun:)', [...], false)
+ 5 APPPATH\Models\tahunModel.php(23): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\Admin.php(1965): App\Models\tahunModel->InsertData([...])
+ 7 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Admin->save_tahun_ajaran()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 9 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\codeigniter-MBUG\\public\\index.php')
+INFO - 2025-02-11 07:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

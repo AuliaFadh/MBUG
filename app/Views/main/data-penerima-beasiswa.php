@@ -73,11 +73,11 @@
                                         </h7>
                                         <div
                                             class="row border-bottom d-flex justify-content-center align-items-center ">
-                                            <input type="number" id="low-TP" placeholder="1"
+                                            <input type="number" id="low-TP" placeholder=""
                                                 class="col-md-2 col-2 mb-3 p-1">
                                             <h6 class=" col-3 mb-3  d-flex justify-content-center align-items-center"> ~
                                             </h6>
-                                            <input type="number" id="high-TP" placeholder="1"
+                                            <input type="number" id="high-TP" placeholder=""
                                                 class="col-md-2 col-2 mb-3 p-1">
                                         </div>
                                     </div>

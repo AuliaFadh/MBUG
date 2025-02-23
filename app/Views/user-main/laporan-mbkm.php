@@ -79,8 +79,14 @@
                                         }
                                         ?>
                                         <td class="th-sm"><?= $confirm ?></td>
+                                        <?php if ($value['konfirmasi_mbkm'] == '1') : ?>
+                                        <td> <a href="<?= base_url('/user/mbkm/edit/' . $value['id_mbkm']) ?>"
+                                                class="btn btn-sm btn-secondary disabled"><i class="la la-pencil"></i></a></td>
+                                        <?php endif; ?>
+                                        <?php if ($value['konfirmasi_mbkm'] != '1') : ?>
                                         <td> <a href="<?= base_url('/user/mbkm/edit/' . $value['id_mbkm']) ?>"
                                                 class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                        <?php endif; ?>
                                     </tr>
                                     <?php endif; ?>
                                     <?php endforeach; ?>
