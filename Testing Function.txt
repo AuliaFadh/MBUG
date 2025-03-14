@@ -61,12 +61,12 @@ o pengumuman
  o konfirmasi
 
 - laporan mbkm
- - tambah
- - edit
- - csv
- - filter
- - search
- - konfirmasi
+ - mbkm tambah
+ - mbkm edit
+ - mbkm csv
+ - mbkm filter
+ - mbkm search
+ - mbkm konfirmasi
 ----------
 
 USER
