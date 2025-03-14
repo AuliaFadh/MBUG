@@ -28,15 +28,15 @@
 
                     <!-- Notifikasi -->
                     <?php if (session()->getFlashdata('berhasil')) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= session()->getFlashdata('berhasil') ?>
-                    </div>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('berhasil') ?>
+                        </div>
                     <?php endif; ?>
 
                     <?php if (session()->getFlashdata('gagal')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= session()->getFlashdata('gagal') ?>
-                    </div>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('gagal') ?>
+                        </div>
                     <?php endif; ?>
 
                     <!-- Tabel -->
@@ -63,63 +63,70 @@
                                 <tbody>
                                     <?php $no = 0; ?>
                                     <?php foreach ($ka as $key => $value) : ?>
-                                    <?php if ($value["npm"] == session()->get('username')) : ?>
-                                    <?php $no++; ?>
-                                    <tr <?php if ($value['konfirmasi_keaktifan'] == '0') {
-                                        echo 'style="background-color: #ffdfdf!important;"';
-                                    }
-                                    ?>>
-                                        <td class="th-sm"><strong><?= $no ?></strong></td>
-                                        <td class="th-lg"><?= $value['jenis'] ?></td>
-                                        <td class="th-sm"><?= $value['semester'] ?></td>
-                                        <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
-                                        <td class="th-sm">
-                                            <a title="Lihat File"
-                                                href="<?= base_url('asset/doc/database/krs/' . $value['krs']) ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success"
-                                                    src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="th-nm"><?= $value['jumlah_ditagihkan'] ?></td>
-                                        <td class="th-nm"><?= $value['jumlah_potongan'] ?></td>
-                                        <td class="th-sm">
-                                            <a title="Lihat File"
-                                                href="<?= base_url('asset/doc/database/blanko_pembayaran/' . $value['blanko_pembayaran']) ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success"
-                                                    src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="th-sm">
-                                            <a title="Lihat File"
-                                                href="<?= base_url('asset/doc/database/bukti_pembayaran/' . $value['bukti_pembayaran']) ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success"
-                                                    src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
-                                            </a>
-                                        </td>
-                                        <?php if ($value['status_penerima'] == '1') {
-                                            $status = '<span class="badge badge-rounded badge-primary"> Aktif</span>';
-                                        } elseif ($value['status_penerima'] == '0') {
-                                            $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
-                                        } elseif ($value['status_penerima'] == '2') {
-                                            $status = '<span class="badge badge-rounded badge-success">lulus</span>';
-                                        }
-                                        ?>
-                                        <td class="th-sm"><?= $status ?></td>
+                                        <?php if ($value["npm"] == session()->get('username')) : ?>
+                                            <?php $no++; ?>
+                                            <tr <?php if ($value['konfirmasi_keaktifan'] == '0') {
+                                                    echo 'style="background-color: #ffdfdf!important;"';
+                                                }
+                                                ?>>
+                                                <td class="th-sm"><strong><?= $no ?></strong></td>
+                                                <td class="th-lg"><?= $value['jenis'] ?></td>
+                                                <td class="th-sm"><?= $value['semester'] ?></td>
+                                                <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
+                                                <td class="th-sm">
+                                                    <a title="Lihat File"
+                                                        href="<?= base_url('asset/doc/database/krs/' . $value['krs']) ?>">
+                                                        <img id="doc-search" class="btn btn-sm btn-success"
+                                                            src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
+                                                    </a>
+                                                </td>
+                                                <td class="th-nm"><?= $value['jumlah_ditagihkan'] ?></td>
+                                                <td class="th-nm"><?= $value['jumlah_potongan'] ?></td>
+                                                <td class="th-sm">
+                                                    <a title="Lihat File"
+                                                        href="<?= base_url('asset/doc/database/blanko_pembayaran/' . $value['blanko_pembayaran']) ?>">
+                                                        <img id="doc-search" class="btn btn-sm btn-success"
+                                                            src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
+                                                    </a>
+                                                </td>
+                                                <td class="th-sm">
+                                                    <a title="Lihat File"
+                                                        href="<?= base_url('asset/doc/database/bukti_pembayaran/' . $value['bukti_pembayaran']) ?>">
+                                                        <img id="doc-search" class="btn btn-sm btn-success"
+                                                            src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
+                                                    </a>
+                                                </td>
+                                                <?php if ($value['status_penerima'] == '1') {
+                                                    $status = '<span class="badge badge-rounded badge-primary"> Aktif</span>';
+                                                } elseif ($value['status_penerima'] == '0') {
+                                                    $status = '<span class="badge badge-rounded badge-danger">Tidak Aktif</span>';
+                                                } elseif ($value['status_penerima'] == '2') {
+                                                    $status = '<span class="badge badge-rounded badge-success">lulus</span>';
+                                                }
+                                                ?>
+                                                <td class="th-sm"><?= $status ?></td>
 
-                                        <?php if ($value['konfirmasi_keaktifan'] == '1') {
-                                            $confirm = '<span class="status_keaktifan badge badge-rounded badge-success">Disetujui</span>';
-                                        } elseif ($value['konfirmasi_keaktifan'] == '0') {
-                                            $confirm = '<span class="status_keaktifan badge badge-rounded badge-danger">Ditolak</span>';
-                                        } elseif ($value['konfirmasi_keaktifan'] == '2') {
-                                            $confirm = '<span class="status_keaktifan badge badge-rounded badge-warning">Diproses<span>';
-                                        }
-                                        ?>
-                                        <td class="th-sm"><?= $confirm ?></td>
-                                        <td class="th-sm"> <a
-                                                href="<?= base_url('/user/keaktifan/edit/' . $value['id_keaktifan']) ?>"
-                                                class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
-                                    </tr>
-                                    <?php endif; ?>
+                                                <?php if ($value['konfirmasi_keaktifan'] == '1') {
+                                                    $confirm = '<span class="status_keaktifan badge badge-rounded badge-success">Disetujui</span>';
+                                                } elseif ($value['konfirmasi_keaktifan'] == '0') {
+                                                    $confirm = '<span class="status_keaktifan badge badge-rounded badge-danger">Ditolak</span>';
+                                                } elseif ($value['konfirmasi_keaktifan'] == '2') {
+                                                    $confirm = '<span class="status_keaktifan badge badge-rounded badge-warning">Diproses<span>';
+                                                }
+                                                ?>
+                                                <td class="th-sm"><?= $confirm ?></td>
+                                                <?php if ($value['konfirmasi_keaktifan'] == '1') : ?>
+                                                    <td class="th-sm"> <a
+                                                            href="<?= base_url('/user/keaktifan/edit/' . $value['id_keaktifan']) ?>"
+                                                            class="btn btn-sm btn-secondary disabled"><i class="la la-pencil"></i></a></td>
+                                                <?php endif; ?>
+                                                <?php if ($value['konfirmasi_keaktifan'] != '1') : ?>
+                                                    <td class="th-sm"> <a
+                                                            href="<?= base_url('/user/keaktifan/edit/' . $value['id_keaktifan']) ?>"
+                                                            class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a></td>
+                                                <?php endif; ?>
+                                            </tr>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
