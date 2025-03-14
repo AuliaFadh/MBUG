@@ -236,9 +236,9 @@
                                         <td class="th-lg"><?= $value['jenis'] ?></td>
                                         <td class="th-sm"><?= $value['semester'] ?></td>
                                         <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
-                                        <td class="th-sm"><?= $value['ipk'] ?></td>
-                                        <td class="th-sm"><?= $value['ipk_lokal'] ?></td>
-                                        <td class="th-sm"><?= $value['ipk_uu'] ?></td>
+                                        <td class="th-sm"><?= number_format($value['ipk'], 2) ?></td>
+                                        <td class="th-sm"><?= number_format($value['ipk_lokal'], 2) ?></td>
+                                        <td class="th-sm"><?= number_format($value['ipk_uu'], 2) ?></td>
                                         <td class="th-sm">
                                             <a title="Lihat File"
                                                 href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $value['rangkuman_nilai']) ?>">
