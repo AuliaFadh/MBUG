@@ -19,12 +19,17 @@
     <link rel="stylesheet" href="<?= base_url('asset/vendor/pickadate/themes/default.date.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/css/skin-2.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('asset/font/inter/inter.css'); ?>">
+   
 </head>
 
 <body>
     <?= $this->include('layout/user-navbar'); ?>
     <?= $this->include('layout/user-sidebar'); ?>
-    <?= $this->renderSection('content'); ?>
+    
+    <div class="content-body">
+    <?= $this->include('components/notification'); ?>
+        <?= $this->renderSection('content'); ?>
+    </div>
     <?= $this->include('layout/footer'); ?>
 
 
@@ -66,7 +71,8 @@
     <script src="<?= base_url('asset/js/plugins-init/pickadate-init.js'); ?>"></script>
     <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
     <script src="<?= base_url('asset/js/sweetalert2.all.min.js'); ?>"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 
 </html>

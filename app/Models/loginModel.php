@@ -16,11 +16,12 @@ class loginModel extends Model
         ->get()->getRowArray();
     }
 
-    public function login_check_u($username, $password)
-    {
-        return $this->db->table('user')
+    public function login_check_u($username)
+{
+    return $this->db->table('user')
         ->join('penerima_beasiswa', 'penerima_beasiswa.npm=user.username', 'left')
-        ->where(array('username' => $username, 'password' => $password))
+        ->where('username', $username)
         ->get()->getRowArray();
-    }
+}
+
 }

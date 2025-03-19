@@ -13,11 +13,12 @@ $routes = Services::routes();
 
 $routes->setDefaultNamespace('App\Controllers');
 // Route untuk admin
-$routes->group('admin', function ($routes) {
-    $routes->get('test', 'Admin::test');
-    $routes->get('login', 'Admin::login_admin');
-    $routes->get('logout', 'Admin::logout_admin');
-    $routes->post('login_check', 'Admin::admin_login_check');
+$routes->get('admin/login', 'Admin::login_admin');
+$routes->get('admin/logout', 'Admin::logout_admin');
+$routes->post('admin/login_check', 'Admin::admin_login_check');
+$routes->group('admin', ['filter' => 'authAdmin'], function ($routes) {
+
+
     $routes->get('profile', 'Admin::profile_admin');
     $routes->post('profile/cedit/(:any)', 'Admin::cedit_profile/$1');
     $routes->get('home', 'Admin::home');
@@ -119,14 +120,16 @@ $routes->group('admin', function ($routes) {
 //____________________________________________________________________________________________________
 
 // Route untuk penerima beasiswa
-$routes->group('user', function ($routes) {
-    $routes->get('login', 'User::user_login');
-    $routes->get('logout', 'User::user_logout',['filter' => 'authJWT']);
-    $routes->post('login_check', 'User::user_login_check');
-    $routes->get('profile', 'User::user_profile',['filter' => 'authJWT']);
+$routes->get('user/login', 'User::user_login');
+$routes->get('user/logout', 'User::user_logout');
+$routes->post('user/login_check', 'User::user_login_check');
+
+$routes->group('user', ['filter' => 'authUser'], function ($routes) {
+
+    $routes->get('profile', 'User::user_profile');
     $routes->get('home', 'User::user_home');
-    $routes->post('profile/cedit/(:any)', 'User::cedit_user_profile/$1',['filter' => 'authJWT']);
-    $routes->post('profile/pass/(:any)', 'User::cedit_password_profile/$1',['filter' => 'authJWT']);
+    $routes->post('profile/cedit/(:any)', 'User::cedit_user_profile/$1');
+    $routes->post('profile/pass/(:any)', 'User::cedit_password_profile/$1');
    
 
     $routes->get('akademik', 'User::user_akademik');

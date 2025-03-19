@@ -51,6 +51,14 @@ class userModel extends Model
     {
         return $this->db->table('user')->where('id_user', $id)->update($data);
     }
+    public function updatePassword($id, $password)
+    {
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // ✅ Hash di model
+    return $this->db->table('user')
+        ->where('id_user', $id)
+        ->update(['password' => $hashedPassword]);
+    }
+
 
     public function DeleteData($data)
     {

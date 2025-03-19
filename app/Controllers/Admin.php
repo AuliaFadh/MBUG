@@ -76,10 +76,7 @@ class Admin extends BaseController
             session()->set('hak_akses', $check['hak_akses']);
 
             return redirect()->to(base_url('/admin/home'));
-        } elseif ($check['hak_akses'] == '0') {
-            session()->setFlashdata('user', 'Akun terdaftar sebagai penerima beasiswa');
-            return redirect()->to(base_url('/user/login'));
-        }
+        } 
     }
 
     public function logout_admin()

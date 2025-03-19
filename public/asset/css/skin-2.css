@@ -667,6 +667,37 @@ span#counter {
   background-color: #C4C4C4;
 }
 
+.toast-custom{
+ 
+    top: 10px !important;
+    right: 10px !important;
+    position: fixed !important;
+
+}
+
+.toast-btn-close-custom{
+  background-color: transparent;
+  color: white;
+  border : none;
+  
+}
+.fade-toast {
+  opacity: 0;
+  transform: translateY(-20px); /* Toast sedikit naik ke atas sebelum muncul */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.show-toast {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ✅ Animasi Fade-out saat ditutup */
+.hide-toast {
+  opacity: 0 !important;
+  transform: translateY(-20px) !important;
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
 
 .container1 {
   display: flex;
@@ -771,6 +802,7 @@ span#counter {
   font-size: 15px;
   font-weight: bold;
 }
+
 
 @media(max-width:640px){
 .logo-beasiswa,.nav-name-account,.label-profile span{

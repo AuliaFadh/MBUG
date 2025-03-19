@@ -25,6 +25,9 @@ class Validation extends BaseConfig
         FormatRules::class,
         FileRules::class,
         CreditCardRules::class,
+        \CodeIgniter\Validation\Rules::class,
+        \App\Validation\MyRules::class,
+
     ];
 
     /**

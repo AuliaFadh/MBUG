@@ -50,25 +50,53 @@ class User extends BaseController
     {
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
-        $check = $this->loginModel->login_check_u($username, $password);        
-        if (is_null($check)) {
+
+        $check = $this->loginModel->login_check_u($username);  
+        
+        if (!$check) {
+            
             session()->setFlashdata('no_data', 'Username atau Password Salah');
             return redirect()->to(base_url('/user/login'));
-        } elseif ($check["hak_akses"] == "0") {
+        }
+        
+        if (!password_verify($password, $check["password"])) {
+            
+            session()->setFlashdata('no_data', 'Username atau Password Salah');
+            return redirect()->to(base_url('/user/login'));
+        }        
+        
+   
+        if ($check["hak_akses"] == "0") {
+            
+            $session = session(); // Memanggil session
             $userData = [
                 'id_user' => $check["id_user"],
                 'username' => $check["username"],
+                'nama_user' => $check["nama"],
                 'hak_akses' => $check["hak_akses"],
                 'status_user' => $check["status_user"],
                 'pp' => $check["ppicture"],
-            ];            
-            $token = JwtHelper::generateToken($userData, 7200);   
-                                           
-            setcookie('token', $token, time() + 7200, "/", "", false, true);
-
+                'islogin' => true,
+            ];
+            $session->set($userData);
             
+            $datalog = [
+                'log_last_login' => $this->logModel->getCurrentDate(),
+                'log_username' => $check["username"],
+            ];
+            $this->logModel->InsertData($datalog); 
+            $datamnj = [
+                'id_user' => $check["id_user"],
+                'username' => $check["username"],
+                'password' => $check["password"],
+                'hak_akses' => $check["hak_akses"],
+                'last_login' => $this->userModel->getCurrentDate(),
+                'status_user' => $check["status_user"],
+            ];
+            $this->userModel->UpdateData($check["id_user"], $datamnj);
+                                   
             return redirect()->to(base_url('/user/home'));
-
+            
         } elseif ($check["hak_akses"] == "1") {
             session()->setFlashdata('admin', 'Akun terdaftar sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
@@ -77,88 +105,61 @@ class User extends BaseController
 
     public function user_logout()
     {
-        setcookie("token", "", time() - 7200, "/", "", false, true);
+        session()->destroy();
         return redirect()->to(base_url('/user/login'));
     }
 
     public function user_home()
     {
-        $jwt = $this->request->getCookie('token');
         
-        $userData = JwtHelper::verifyToken($jwt);
-
-        if ($userData['hak_akses']!="0") {
-            // Token tidak ditemukan, arahkan ke halaman login dengan pesan error
+        if (session()->get('hak_akses') != "0") {
             session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
             return redirect()->to(base_url('/user/login'));
         }
-        if (!$userData) {
-            // Jika token tidak valid atau expired, arahkan ke halaman login
-            session()->setFlashdata("error", "Token tidak valid atau telah expired.");
-            return redirect()->to(base_url('/user/login'));
-        }
+        $sessionData = session()->get();    
+
+        $news = $this->newsModel->AllData();
+        $data = [
+            'title' => 'Dashboard | MBUG',
+            'news' => $news,
         
+        ];
 
-        try{
-
-            $news = $this->newsModel->AllData();
-            $data = [
-                'title' => 'Dashboard | MBUG',
-                'news' => $news,
-            ];
-            
-            return view('user-main/dashboard', $data);
-        } catch(\Exception $e){
-        log_message('error', 'Error saat mengambil data berita: ' . $e->getMessage());
-
-            // Tampilkan error pada halaman user
-            session()->setFlashdata("error", "Terjadi kesalahan saat memuat data berita.");
-            return redirect()->to(base_url('/user/home'));}
-
+        return view('user-main/dashboard', $data);
     }
+
+    
 
     public function  user_profile()
     {
-        $userData = $this->request->getGlobal('userData');
-        if (!$userData) {
-            session()->setFlashdata("belum_login", "Anda Belum Login");
-            return redirect()->to(base_url('/user/login'));
-        }
+        $sessionData = session()->get();
         
-        $uname = $userData['username'];
-        $data = [
-            'title' => 'Profile | MBUG',
-            
-        ];
-
+        $uname = session()->get('username');
         $profile = $this->userModel->getData_username($uname);
         $data = [
             'title' => 'Profile | MBUG',
             'username' => $uname,
-            'status_user' => $userData['status_user'],
-            'pp' => $userData['pp'],
+            'status_user' => $sessionData['status_user'],
+            'pp' => $sessionData['pp'],
             'profile' => $profile,
         ];
 
         return view('user-main/user-profile', $data);
     }
 
+   
+
     public function cedit_user_profile($id_penerima)
     {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
+
 
         if ($this->validate([
             'alamat' => 'required',
             'no_hp' => 'required',
 
         ])) {
-            $penerima = $this->pbModel->DetailData($id_penerima);
-            
+            $penerima = $this->pbModel->DetailData($id_penerima);            
             $pp = $this->pbModel->getPicture($id_penerima);
-
             $foto_pp = $this->request->getFile('file-input');
             if ($foto_pp->getSize() > 0) {
                 if (!is_null($pp)){
@@ -168,9 +169,7 @@ class User extends BaseController
                 $foto_pp->move('asset/img/database/picture/', $nama_pp);
             } else {
                 $nama_pp = $pp;
-            }
-            
-
+            }            
             $data = [
                 'id_penerima' => $id_penerima,
                 'nama' => $penerima->nama,
@@ -187,16 +186,13 @@ class User extends BaseController
 
             $this->pbModel->UpdateData($id_penerima, $data);
             
-            
-
             session()->set([
                 'nama_user' => $penerima->nama, // Update nama di session
                 'pp' => $nama_pp, // Update foto profil di session
             ]);
     
-            
+    
             session()->setFlashdata('berhasil', 'Data berhasil diubah');
-
             return redirect()->to(base_url('/user/profile'));
         } else {
             
@@ -205,37 +201,58 @@ class User extends BaseController
         }
     }
 
+   
     public function cedit_password_profile($uname)
-    {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
+{
+    $penerima = $this->userModel->getData_username($uname);
 
-        if ($this->validate([
-            'password_lama' => 'required|matches[password]',
-            'password_baru' => 'required',
-
-        ])) {
-            $penerima = $this->userModel->getData_username($uname);
-            $data = [
-                'id_user' => $penerima->id_user,
-                'username' => $penerima->username,
-                'password' => $this->request->getPost('password_baru'),
-                'hak_akses' => $penerima->hak_akses,
-                'last_login' => $penerima->last_login,
-                'status_user' => $penerima->status_user,
-            ];
-
-            $this->userModel->UpdateData($penerima->id_user, $data);
-            session()->setFlashdata('pass_berhasil', 'Password berhasil diubah');
-
-            return redirect()->to(base_url('/user/profile'));
-        } else {
-            session()->setFlashdata('pass_gagal', 'Password tidak berhasil diubah');
-            return redirect()->to(base_url('/user/profile'));
-        }
+    if (!$penerima) {
+        session()->setFlashdata('errors', 'User tidak ditemukan.');
+        return redirect()->to(base_url('/user/profile'));
     }
+
+    // Ambil input password lama & baru
+    $passwordLama = $this->request->getPost('password_lama');
+    $passwordBaru = $this->request->getPost('password_baru');
+    if (!password_verify($passwordLama, $penerima->password)) {
+        session()->setFlashdata('errors', 'Password lama salah.');
+        return redirect()->to(base_url('/user/profile'));
+    }
+    // ✅ 1. Validasi input password dengan aturan dan pesan custom
+    $validationRules = [
+        'password_lama' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Password lama harus diisi.'
+            ]
+        ],
+       'password_baru' => [
+        'rules' => 'required|min_length[8]|uppercase|contains_digit|contains_symbol',
+        'errors' => [
+            'required' => 'Password baru harus diisi.',
+            'min_length' => 'Password baru harus minimal 8 karakter.',
+            'uppercase' => 'Password harus mengandung minimal 1 huruf besar.',
+            'contains_digit' => 'Password harus mengandung minimal 1 angka.',
+            'contains_symbol' => 'Password harus mengandung minimal 1 simbol (@$!%*?&).'
+        ]
+    ]
+    ];
+   
+    
+    if (!$this->validate($validationRules)) {
+        session()->setFlashdata('errors', $this->validator->getErrors());
+        
+        return redirect()->to(base_url('/user/profile'))->withInput();
+    }
+
+    // ✅ 2. Cek apakah password lama benar
+    
+    $this->userModel->updatePassword($penerima->id_user, $passwordBaru);
+
+    session()->setFlashdata('success', 'Password berhasil diubah.');
+    return redirect()->to(base_url('/user/profile'));
+}
+
 
     public function user_akademik()
     {
