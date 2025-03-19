@@ -94,7 +94,7 @@ class User extends BaseController
                 'status_user' => $check["status_user"],
             ];
             $this->userModel->UpdateData($check["id_user"], $datamnj);
-                                   
+            session()->setFlashdata('success', 'Selamat datang ' . $check['nama'] . '!');
             return redirect()->to(base_url('/user/home'));
             
         } elseif ($check["hak_akses"] == "1") {
@@ -110,21 +110,13 @@ class User extends BaseController
     }
 
     public function user_home()
-    {
-        
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
+    {               
         $sessionData = session()->get();    
-
         $news = $this->newsModel->AllData();
         $data = [
             'title' => 'Dashboard | MBUG',
             'news' => $news,
-        
         ];
-
         return view('user-main/dashboard', $data);
     }
 
@@ -148,59 +140,75 @@ class User extends BaseController
     }
 
    
-
     public function cedit_user_profile($id_penerima)
     {
-
-
-        if ($this->validate([
-            'alamat' => 'required',
-            'no_hp' => 'required',
-
-        ])) {
-            $penerima = $this->pbModel->DetailData($id_penerima);            
-            $pp = $this->pbModel->getPicture($id_penerima);
-            $foto_pp = $this->request->getFile('file-input');
-            if ($foto_pp->getSize() > 0) {
-                if (!is_null($pp)){
-                    unlink('asset/img/database/picture/' . $pp);
-                }
-                $nama_pp = $foto_pp->getRandomName();
-                $foto_pp->move('asset/img/database/picture/', $nama_pp);
-            } else {
-                $nama_pp = $pp;
-            }            
-            $data = [
-                'id_penerima' => $id_penerima,
-                'nama' => $penerima->nama,
-                'npm' => $penerima->npm,
-                'id_prodi' => $penerima->id_prodi,
-                'alamat' => $this->request->getPost('alamat'),
-                'no_hp' => $this->request->getPost('no_hp'),
-                'ppicture' => $nama_pp,
-                'jenis_kelamin' => $penerima->jenis_kelamin,
-                'tahun_diterima' => $penerima->tahun_diterima,
-                'status_penerima' => $penerima->status_penerima,
-                'keterangan' => $penerima->keterangan,
-            ];
-
-            $this->pbModel->UpdateData($id_penerima, $data);
-            
-            session()->set([
-                'nama_user' => $penerima->nama, // Update nama di session
-                'pp' => $nama_pp, // Update foto profil di session
-            ]);
-    
-    
-            session()->setFlashdata('berhasil', 'Data berhasil diubah');
-            return redirect()->to(base_url('/user/profile'));
-        } else {
-            
-            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
-            return redirect()->to(base_url('/user/profile'));
+        $validationRules = [
+            'alamat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Alamat harus diisi.'
+                ]
+            ],
+            'no_hp' => [
+                'rules' => 'required|numeric|min_length[10]|max_length[15]',
+                'errors' => [
+                    'required' => 'Nomor HP harus diisi.',
+                    'numeric' => 'Nomor HP hanya boleh berisi angka.',
+                    'min_length' => 'Nomor HP minimal 10 digit.',
+                    'max_length' => 'Nomor HP maksimal 15 digit.'
+                ]
+            ],
+            'file-input' => [
+                'rules' => 'max_size[file-input,2048]|is_image[file-input]|mime_in[file-input,image/png,image/jpg,image/jpeg]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar maksimal 2MB.',
+                    'is_image' => 'File harus berupa gambar.',
+                    'mime_in' => 'Format gambar yang diperbolehkan: PNG, JPG, JPEG.'
+                ]
+            ]
+        ];
+        if (!$this->validate($validationRules)) {
+            session()->setFlashdata('errors', $this->validator->getErrors());
+            return redirect()->to(base_url('/user/profile'))->withInput();
         }
+        $penerima = $this->pbModel->DetailData($id_penerima);
+        $pp = $this->pbModel->getPicture($id_penerima);
+        $foto_pp = $this->request->getFile('file-input');
+        if ($foto_pp->isValid() && !$foto_pp->hasMoved()) {
+            if (!is_null($pp)) {
+                unlink('asset/img/database/picture/' . $pp);
+            }
+            $nama_pp = $foto_pp->getRandomName();
+            $foto_pp->move('asset/img/database/picture/', $nama_pp);
+        } else {
+            $nama_pp = $pp;
+        }
+
+        $data = [
+            'id_penerima' => $id_penerima,
+            'nama' => $penerima->nama,
+            'npm' => $penerima->npm,
+            'id_prodi' => $penerima->id_prodi,
+            'alamat' => $this->request->getPost('alamat'),
+            'no_hp' => $this->request->getPost('no_hp'),
+            'ppicture' => $nama_pp,
+            'jenis_kelamin' => $penerima->jenis_kelamin,
+            'tahun_diterima' => $penerima->tahun_diterima,
+            'status_penerima' => $penerima->status_penerima,
+            'keterangan' => $penerima->keterangan,
+        ];
+        $this->pbModel->UpdateData($id_penerima, $data);
+        session()->set([
+            'nama_user' => $penerima->nama, // Update nama di session
+            'pp' => $nama_pp, // Update foto profil di session
+        ]);
+
+        session()->setFlashdata('success', 'Profile berhasil diubah');
+        return redirect()->to(base_url('/user/profile'));
+
     }
 
+  
    
     public function cedit_password_profile($uname)
 {
@@ -256,12 +264,7 @@ class User extends BaseController
 
     public function user_akademik()
     {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
-
-        $la = $this->laModel->AllData();
+              $la = $this->laModel->AllData();
         $data = [
             'title' => 'Akademik | MBUG',
             'la' => $la,
@@ -272,11 +275,6 @@ class User extends BaseController
 
     public function user_add_akademik()
     {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
-
         $jb = $this->jbModel->AllData();                
         $TA = $this->tahunModel->AllData();
         $data = [
@@ -291,57 +289,108 @@ class User extends BaseController
 
     public function user_save_akademik()
     {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
-
-        if ($this->validate([
-            'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
-            'semester' => 'required',
-            'TA' => 'required',
-            
-            'ipk' => 'required',
-            'ipk_lokal' => 'required',
-            'ipk_uu' => 'required',
-            'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
-        ])) {
-            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
-            $nama_rn = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
-            $data = [
-                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
-                'id_penerima' => $this->laModel->getIDp(session()->get('username')),
-                'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->request->getPost('TA'),
-                'ipk' => $this->request->getPost('ipk'),
-                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
-                'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $nama_rn,
-                'konfirmasi_akademik' => 2,
-            ];
-
-            $this->laModel->InsertData($data);
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
-
-            return redirect()->to(base_url('/user/akademik'));
-        } else {
-            $session = session();
-            $session->setFlashdata('input', $this->request->getPost());
-            $jb = $this->jbModel->AllData();  
-            $TA = $this->tahunModel->AllData();   
-
+        // ✅ 1. Validasi Input
+        $validationRules = [
+            'jenis_beasiswa' => [
+                'rules' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+                'errors' => [
+                    'required' => 'Jenis beasiswa harus dipilih.',
+                    'is_not_unique' => 'Jenis beasiswa tidak valid.'
+                ]
+            ],
+            'semester' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Semester harus diisi.'
+                ]
+            ],
+            'TA' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tahun Ajaran harus diisi.'
+                ]
+            ],
+            'ipk' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK harus diisi.',
+                    'decimal' => 'IPK harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_lokal' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK Lokal harus diisi.',
+                    'decimal' => 'IPK Lokal harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK Lokal tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK Lokal tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_uu' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                   'required' => 'IPK UU harus diisi.',
+                    'decimal' => 'IPK UU harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK UU tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK UU tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'rangkuman_nilai' => [
+                'rules' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
+                'errors' => [
+                    'uploaded' => 'File rangkuman nilai harus diunggah.',
+                    'max_size' => 'Ukuran file maksimal 4MB.',
+                    'ext_in' => 'File harus berformat PDF.'
+                ]
+            ]
+        ];
+    
+        if (!$this->validate($validationRules)) {
+            session()->setFlashdata('errors', $this->validator->getErrors());
+            session()->setFlashdata('input', $this->request->getPost());
+    
+            // ✅ Ambil Data untuk Ditampilkan Kembali
+            $jb = $this->jbModel->AllData();
+            $TA = $this->tahunModel->AllData();
+    
             $data = [
                 'title' => 'Form Input Akademik | User',
                 'validation' => \Config\Services::validation(),
-                'input' => $session->getFlashdata('input'),
-                'jenis_beasiswa'=>$jb,
-                'TA'=>$TA,
+                'input' => session()->getFlashdata('input'),
+                'jenis_beasiswa' => $jb,
+                'TA' => $TA,
             ];
-
+    
             return view('user-main/tambah-akademik', $data);
         }
+    
+        // ✅ 2. Ambil & Pindahkan File
+        $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
+        $nama_rn = $rangkuman_nilai->getRandomName();
+        $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
+    
+        // ✅ 3. Simpan ke Database
+        $data = [
+            'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
+            'id_penerima' => $this->laModel->getIDp(session()->get('username')),
+            'semester' => $this->request->getPost('semester'),
+            'tahun_ajaran' => $this->request->getPost('TA'),
+            'ipk' => $this->request->getPost('ipk'),
+            'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+            'ipk_uu' => $this->request->getPost('ipk_uu'),
+            'rangkuman_nilai' => $nama_rn,
+            'konfirmasi_akademik' => 2,
+        ];
+    
+        $this->laModel->InsertData($data);
+    
+        // ✅ 4. Beri Notifikasi & Redirect
+        session()->setFlashdata('success', 'Data berhasil ditambahkan.');
+        return redirect()->to(base_url('/user/akademik'));
     }
+    
 
     public function user_edit_akademik($id_akademik)
     {
@@ -408,7 +457,7 @@ class User extends BaseController
             ];
 
             $this->laModel->UpdateData($id_akademik, $data);
-            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+            session()->setFlashdata('success', 'Data berhasil diubah');
 
             return redirect()->to(base_url('/user/akademik'));
         } else {
@@ -476,7 +525,7 @@ class User extends BaseController
             ];
 
             $this->mbkmModel->InsertData($data);
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+            session()->setFlashdata('success', 'Data berhasil ditambahkan');
 
             return redirect()->to(base_url('/user/mbkm'));
         } else {
@@ -538,7 +587,7 @@ class User extends BaseController
             ];
 
             $this->mbkmModel->UpdateData($id_mbkm, $data);
-            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+            session()->setFlashdata('success', 'Data berhasil diubah');
 
             return redirect()->to(base_url('/user/mbkm'));
         } else {
@@ -628,7 +677,7 @@ class User extends BaseController
             
 
             $this->lpModel->InsertData($data);
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+            session()->setFlashdata('success', 'Data berhasil ditambahkan');
 
             return redirect()->to(base_url('/user/prestasi'));
         } else {
@@ -720,7 +769,7 @@ class User extends BaseController
             ];
 
             $this->lpModel->UpdateData($id_prestasi, $data);
-            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+            session()->setFlashdata('success', 'Data berhasil diubah');
 
             return redirect()->to(base_url('/user/prestasi'));
         } else {
@@ -806,7 +855,7 @@ class User extends BaseController
             ];
 
             $this->kaModel->InsertData($data);            
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+            session()->setFlashdata('success', 'Data berhasil ditambahkan');
 
             return redirect()->to(base_url('/user/keaktifan'));
         } else {
@@ -917,7 +966,7 @@ class User extends BaseController
             ];
 
             $this->kaModel->UpdateData($id_keaktifan, $data);
-            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+            session()->setFlashdata('success', 'Data berhasil diubah');
 
             return redirect()->to(base_url('/user/keaktifan'));
         } else {

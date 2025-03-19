@@ -1,11 +1,8 @@
 <?= $this->extend('layout/user-web-MBUG') ?>
 <?= $this->section('content') ?>
 
-
-
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12">
-
             <form action="/user/profile/cedit/<?= $profile->id_penerima ?>" class="card" method="post"
                 enctype="multipart/form-data">
                 <?= csrf_field() ?>
@@ -15,12 +12,6 @@
                         <h2>Ingin Mengubah data profile mu?</h2>
                     </div>
                 </div>
-
-
-                <!-- Notifikasi -->
-
-
-
 
                 <div class="card-body">
                     <div class="row  d-flex align-items-center">

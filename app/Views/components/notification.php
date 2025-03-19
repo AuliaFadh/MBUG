@@ -37,9 +37,7 @@ $success = session()->getFlashdata('success');
             <?php endforeach;
         endif; ?>
     </div>
-<?php endif; ?>
-
-<script>
+    <script>
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
         var toastEls = document.querySelectorAll('.fade-toast');
@@ -56,4 +54,6 @@ function closeToast(button) {
 }
 </script>
 
-</style>
+<?php endif; ?>
+
+
