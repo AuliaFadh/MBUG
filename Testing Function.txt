@@ -1,3 +1,46 @@
+Tm-work :
+1. ngebuat middleware authentikasi otomatis yang berisi :
+        - setiap user tidak boleh gagal login terus terusan sebanyak lima kali. maka gagal login ke 6 kalinya 
+        akan ditolah oleh controler dan harus tunggu selama 5 detik.
+        - setiap halaman user akan di periksa selama dia login apakah IPadress saat login pertama kali akan sama dengan
+        IPAdress pada session dia. Hal ini mencegah adanya hijacking hacker yang menyamar dengan menggunakan session id 
+        user asli.
+        - setiap user tidak aktif maka akan kembali ke halaman login dan menyatakan bahwa akun anda dinonaktifkan
+2. ngebuat uuid untuk tabel-tabel yang terekpos ke publik :
+        - misal tabel laporan akademik. karena user dapat C,R,U data itu. maka pake uuid sebagai value unik untuk mengakses
+        data tersebut.( ini menciptakan keamanan route atau URL misal /user/akademik/edit/dsakaskflLJJLfk dan lebih aman dibanding dengan
+        /user/akademik/edit/1)
+        - semua laporan yang dibuat oleh user hanya boleh akses oleh user itu sendiri dan admin dengan pengecekan foregn key dengan
+        session('id_penerima') dengan tabel('uuid')
+2. meminimalisir duplikasi data :
+        - user hanya bisa mengisi (update) Laporan akhir dan keaktifkan yang diberikan 8 input. user hanya bisa melanjutkan mengisi laporan
+        jika laporan sebelumnya sudah disetujui.
+        -laporan akhir dan keaktifan akan terbuat otomatis saat admin memasukkan data penerima beasiswa langsung 8 dengan semester yang berurut.
+        - admin tidak bisa menambah laporan akademik dan keaktifan untuk seorang user jika semesternya sudah pernah dibuat.
+        ini mencegah laporan akademik user yang memiliki semesternya sama 
+3. dele
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - KURANG
 o AMAN
 ----------

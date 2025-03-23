@@ -45,6 +45,8 @@ $routes->group('admin', ['filter' => 'authAdmin'], function ($routes) {
     $routes->get('akademik/add', 'Admin::add_akademik');
     $routes->get('akademik/edit/(:any)', 'Admin::edit_akademik/$1');
     $routes->post('akademik/cedit/(:any)', 'Admin::cedit_akademik/$1');
+    // $routes->get('akademik/edit/(:segment)', 'Admin::edit_akademik/$1'); 
+    // $routes->post('akademik/cedit/(:segment)', 'Admin::cedit_akademik/$1');
     $routes->post('akademik/confirm/all', 'Admin::save_confirm_akademik');
     $routes->post('akademik/save', 'Admin::save_akademik');
 
@@ -128,33 +130,33 @@ $routes->group('user', ['filter' => 'authUser'], function ($routes) {
 
     $routes->get('profile', 'User::user_profile');
     $routes->get('home', 'User::user_home');
-    $routes->post('profile/cedit/(:any)', 'User::cedit_user_profile/$1');
-    $routes->post('profile/pass/(:any)', 'User::cedit_password_profile/$1');
+    $routes->post('profile/cedit/(:segment)', 'User::cedit_user_profile/$1');
+    $routes->post('profile/pass/(:segment)', 'User::cedit_password_profile/$1');
    
 
     $routes->get('akademik', 'User::user_akademik');
     $routes->get('akademik/add', 'User::user_add_akademik');
     $routes->post('akademik/save', 'User::user_save_akademik');
-    $routes->get('akademik/edit/(:any)', 'User::user_edit_akademik/$1');
-    $routes->post('akademik/cedit/(:any)', 'User::user_cedit_akademik/$1');
+    $routes->get('akademik/edit/(:segment)', 'User::user_edit_akademik/$1');
+    $routes->post('akademik/cedit/(:segment)', 'User::user_cedit_akademik/$1');
 
     $routes->get('prestasi', 'User::user_prestasi');
     $routes->get('prestasi/add', 'User::user_add_prestasi');
     $routes->post('prestasi/save', 'User::user_save_prestasi');
-    $routes->get('prestasi/edit/(:any)', 'User::user_edit_prestasi/$1');
-    $routes->post('prestasi/cedit/(:any)', 'User::user_cedit_prestasi/$1');
+    $routes->get('prestasi/edit/(:segment)', 'User::user_edit_prestasi/$1');
+    $routes->post('prestasi/cedit/(:segment)', 'User::user_cedit_prestasi/$1');
 
     $routes->get('mbkm', 'User::user_mbkm');
     $routes->get('mbkm/add', 'User::user_add_mbkm');
     $routes->post('mbkm/save', 'User::user_save_mbkm');
-    $routes->get('mbkm/edit/(:any)', 'User::user_edit_mbkm/$1');
-    $routes->post('mbkm/cedit/(:any)', 'User::user_cedit_mbkm/$1');
+    $routes->get('mbkm/edit/(:segment)', 'User::user_edit_mbkm/$1');
+    $routes->post('mbkm/cedit/(:segment)', 'User::user_cedit_mbkm/$1');
 
     $routes->get('keaktifan', 'User::user_keaktifan');
     $routes->get('keaktifan/add', 'User::user_add_keaktifan');
     $routes->post('keaktifan/save', 'User::user_save_keaktifan');
-    $routes->get('keaktifan/edit/(:any)', 'User::user_edit_keaktifan/$1');
-    $routes->post('keaktifan/cedit/(:any)', 'User::user_cedit_keaktifan/$1');
+    $routes->get('keaktifan/edit/(:segment)', 'User::user_edit_keaktifan/$1');
+    $routes->post('keaktifan/cedit/(:segment)', 'User::user_cedit_keaktifan/$1');
 
     $routes->get('panduan', 'User::user_panduan');
 });

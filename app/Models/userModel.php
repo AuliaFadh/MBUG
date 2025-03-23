@@ -30,6 +30,35 @@ class userModel extends Model
     {
         return $this->db->table('user')->where('id_user', $id_user)->get()->getRow();
     }
+    public function DetailDataUUID($uuid_user, $select = '*')
+    {
+        // Jika select default `*`, ambil semua kolom user + nama_prodi
+        if ($select === '*') {
+            $select = 'user.*';
+        } else {
+            // Pisahkan kolom berdasarkan koma
+            $columns = explode(',', $select);
+            $newColumns = [];
+    
+            foreach ($columns as $col) {
+                $col = trim($col); // Hapus spasi
+                // Jika tidak ada titik dalam nama kolom, tambahkan `user.`
+                if (!strpos($col, '.')) {
+                    $col = 'user.' . $col;
+                }
+                $newColumns[] = $col;
+            }
+    
+            // Gabungkan kembali kolom-kolom
+            $select = implode(', ', $newColumns);
+        }
+    
+        return $this->db->table('user')
+            ->select($select)            
+            ->where('user.uuid_user', $uuid_user)
+            ->get()
+            ->getRow();
+    }
 
     public function getData_username($uname)
     {

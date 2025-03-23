@@ -1,6 +1,6 @@
 <?= $this->extend('layout/user-web-MBUG') ?>
 <?= $this->section('content') ?>
-<div class="content-body">
+
     <!-- row -->
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
@@ -146,6 +146,6 @@
             </div>
         </div>
     </div>
-</div>
+
 <script src="<?= base_url('asset/js/custom-search-ta.js') ?>"></script>
 <?= $this->endSection('content') ?>

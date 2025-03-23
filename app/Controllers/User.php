@@ -48,35 +48,46 @@ class User extends BaseController
 
     public function user_login_check()
     {
+        $session = session();
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $check = $this->loginModel->login_check_u($username);  
-        
-        if (!$check) {
-            
-            session()->setFlashdata('no_data', 'Username atau Password Salah');
-            return redirect()->to(base_url('/user/login'));
+        if ($session->has('login_block_time') && time() < $session->get('login_block_time')) {
+            return redirect()->to(base_url('/user/login'))
+                ->with('errors', 'Terlalu banyak percobaan gagal. Coba lagi setelah ' . 
+                    ceil(($session->get('login_block_time') - time()) / 60) . ' detik.');
         }
-        
-        if (!password_verify($password, $check["password"])) {
-            
-            session()->setFlashdata('no_data', 'Username atau Password Salah');
-            return redirect()->to(base_url('/user/login'));
-        }        
+
+        if ($session->get('login_attempts') >= 5) {
+            $session->set('login_block_time', time() + (3)); // Blokir selama 5 menit
+            return redirect()->to(base_url('/user/login'))
+                ->with('errors', 'Terlalu banyak percobaan gagal. Coba lagi dalam beberapa detik.');
+        }
+       
+        $check = $this->loginModel->login_check_u($username);  
+        if (!$check || !password_verify($password, $check["password"])) {
+            $session->set('login_attempts', ($session->get('login_attempts') ?? 0) + 1);
+            return redirect()->to(base_url('/user/login'))->with('errors', 'Username atau Password salah.');
+        }
         
    
         if ($check["hak_akses"] == "0") {
             
-            $session = session(); // Memanggil session
+            $session->remove('login_attempts');
+            $session->remove('login_block_time');
+            $session->regenerate(true);
+
             $userData = [
-                'id_user' => $check["id_user"],
+                'uuid_user' => $check["uuid_user"],
+                'id_penerima'=>$check["id_penerima"],
                 'username' => $check["username"],
                 'nama_user' => $check["nama"],
                 'hak_akses' => $check["hak_akses"],
                 'status_user' => $check["status_user"],
                 'pp' => $check["ppicture"],
                 'islogin' => true,
+                'ip_address' => $this->request->getIPAddress(), // Tambahan proteksi
+                'user_agent' => $this->request->getUserAgent(), // Tambahan proteksi
             ];
             $session->set($userData);
             
@@ -85,21 +96,22 @@ class User extends BaseController
                 'log_username' => $check["username"],
             ];
             $this->logModel->InsertData($datalog); 
+
             $datamnj = [
-                'id_user' => $check["id_user"],
-                'username' => $check["username"],
-                'password' => $check["password"],
-                'hak_akses' => $check["hak_akses"],
                 'last_login' => $this->userModel->getCurrentDate(),
-                'status_user' => $check["status_user"],
             ];
+
             $this->userModel->UpdateData($check["id_user"], $datamnj);
+
             session()->setFlashdata('success', 'Selamat datang ' . $check['nama'] . '!');
             return redirect()->to(base_url('/user/home'));
             
         } elseif ($check["hak_akses"] == "1") {
             session()->setFlashdata('admin', 'Akun terdaftar sebagai Admin');
             return redirect()->to(base_url('/admin/login'));
+        } else {
+            session()->destroy();
+            return redirect()->to(base_url('/user/login'))->with('errors', 'Terjadi kesalahan, silakan coba lagi.');
         }
     }
 
@@ -110,8 +122,7 @@ class User extends BaseController
     }
 
     public function user_home()
-    {               
-        $sessionData = session()->get();    
+    {                         
         $news = $this->newsModel->AllData();
         $data = [
             'title' => 'Dashboard | MBUG',
@@ -126,12 +137,11 @@ class User extends BaseController
     {
         $sessionData = session()->get();
         
-        $uname = session()->get('username');
-        $profile = $this->userModel->getData_username($uname);
+        $uuid_user = session()->get('uuid_user');
+        $profile = $this->pbModel->DetailDataUUID($uuid_user);
         $data = [
             'title' => 'Profile | MBUG',
-            'username' => $uname,
-            'status_user' => $sessionData['status_user'],
+            'uuid_user' => $uuid_user,            
             'pp' => $sessionData['pp'],
             'profile' => $profile,
         ];
@@ -140,8 +150,20 @@ class User extends BaseController
     }
 
    
-    public function cedit_user_profile($id_penerima)
+    public function cedit_user_profile($uuid_pb)
     {
+        $session->session();
+        $id_penerima = $session->get('id_penerima');
+        $penerima = $this->pbModel->DetailDataUUID($uuid_pb,'id_penerima, ppicture');
+        if(!$penerima){
+            session()->setFlashdata('errors', 'profile tidak ditemukan');
+            return redirect()->to(base_url('/user/dashboard'));
+        }
+        if($penerima['id_penerima']!=$id_penerima){
+            return redirect()->to('/user/dashboard')->with('errors', 'Anda tidak memiliki izin.');
+        }
+
+        
         $validationRules = [
             'alamat' => [
                 'rules' => 'required',
@@ -171,8 +193,8 @@ class User extends BaseController
             session()->setFlashdata('errors', $this->validator->getErrors());
             return redirect()->to(base_url('/user/profile'))->withInput();
         }
-        $penerima = $this->pbModel->DetailData($id_penerima);
-        $pp = $this->pbModel->getPicture($id_penerima);
+               
+        $pp = $penerima->ppicture;
         $foto_pp = $this->request->getFile('file-input');
         if ($foto_pp->isValid() && !$foto_pp->hasMoved()) {
             if (!is_null($pp)) {
@@ -184,45 +206,40 @@ class User extends BaseController
             $nama_pp = $pp;
         }
 
-        $data = [
-            'id_penerima' => $id_penerima,
-            'nama' => $penerima->nama,
-            'npm' => $penerima->npm,
-            'id_prodi' => $penerima->id_prodi,
+        $data = [            
             'alamat' => $this->request->getPost('alamat'),
             'no_hp' => $this->request->getPost('no_hp'),
-            'ppicture' => $nama_pp,
-            'jenis_kelamin' => $penerima->jenis_kelamin,
-            'tahun_diterima' => $penerima->tahun_diterima,
-            'status_penerima' => $penerima->status_penerima,
-            'keterangan' => $penerima->keterangan,
+            'ppicture' => $nama_pp,            
         ];
         $this->pbModel->UpdateData($id_penerima, $data);
-        session()->set([
-            'nama_user' => $penerima->nama, // Update nama di session
+        session()->set([            
             'pp' => $nama_pp, // Update foto profil di session
         ]);
-
         session()->setFlashdata('success', 'Profile berhasil diubah');
         return redirect()->to(base_url('/user/profile'));
-
     }
-
+ 
   
    
-    public function cedit_password_profile($uname)
+    public function cedit_password_profile($uuid_user)
 {
-    $penerima = $this->userModel->getData_username($uname);
-
-    if (!$penerima) {
+    $session->session();
+    $uuid_session = $session->get('uuid_user');
+    $account = $this->userModel->DetailDataUUID($uuid_user);
+    if (!$account) {                                   
         session()->setFlashdata('errors', 'User tidak ditemukan.');
         return redirect()->to(base_url('/user/profile'));
     }
+    if($account['uuid_user']!=$uuid_session){
+        return redirect()->to('/user/dashboard')->with('errors', 'Anda tidak memiliki izin.');
+    }
+ 
 
     // Ambil input password lama & baru
     $passwordLama = $this->request->getPost('password_lama');
     $passwordBaru = $this->request->getPost('password_baru');
-    if (!password_verify($passwordLama, $penerima->password)) {
+
+    if (!password_verify($passwordLama, $account->password)) {
         session()->setFlashdata('errors', 'Password lama salah.');
         return redirect()->to(base_url('/user/profile'));
     }
@@ -255,7 +272,7 @@ class User extends BaseController
 
     // ✅ 2. Cek apakah password lama benar
     
-    $this->userModel->updatePassword($penerima->id_user, $passwordBaru);
+    $this->userModel->updatePassword($account->id_user, $passwordBaru);
 
     session()->setFlashdata('success', 'Password berhasil diubah.');
     return redirect()->to(base_url('/user/profile'));
@@ -264,7 +281,7 @@ class User extends BaseController
 
     public function user_akademik()
     {
-              $la = $this->laModel->AllData();
+        $la = $this->laModel->AllData();
         $data = [
             'title' => 'Akademik | MBUG',
             'la' => $la,
@@ -299,15 +316,19 @@ class User extends BaseController
                 ]
             ],
             'semester' => [
-                'rules' => 'required',
+                'rules' => 'required|greater_than_equal_to[0]||less_than_equal_to[4]',
                 'errors' => [
-                    'required' => 'Semester harus diisi.'
+                    'required' => 'Semester harus diisi.',
+                    'greater_than_equal_to' => 'Semester tidak boleh kurang dari 0',
+                    'less_than_equal_to' => 'Semester tidak boleh lebih dari 14'
                 ]
             ],
             'TA' => [
-                'rules' => 'required',
+                'rules' => 'required|regex_match[/^(PTA|ATA) \d{4}\/\d{4}$/]',
                 'errors' => [
-                    'required' => 'Tahun Ajaran harus diisi.'
+                    'required' => 'Tahun Ajaran harus diisi.',
+                    'regex_match' => 'Tahun Ajaran tidak sesuai format'
+                    
                 ]
             ],
             'ipk' => [
@@ -375,6 +396,7 @@ class User extends BaseController
         $data = [
             'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
             'id_penerima' => $this->laModel->getIDp(session()->get('username')),
+            'uuid_la' => bin2hex(random_bytes(16)),
             'semester' => $this->request->getPost('semester'),
             'tahun_ajaran' => $this->request->getPost('TA'),
             'ipk' => $this->request->getPost('ipk'),
@@ -387,17 +409,75 @@ class User extends BaseController
         $this->laModel->InsertData($data);
     
         // ✅ 4. Beri Notifikasi & Redirect
-        session()->setFlashdata('success', 'Data berhasil ditambahkan.');
+        session()->setFlashdata('success', 'Laporan Akademik berhasil ditambahkan.');
         return redirect()->to(base_url('/user/akademik'));
+
+
+        // do {
+        //     try {
+        //         $uuidLA = bin2hex(random_bytes(16)); // Generate UUID unik
+    
+        //         $data = [
+        //             'uuid_la' => $uuidLA,
+        //             'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
+        //             'id_penerima' => $this->laModel->getIDp(session()->get('username')),
+        //             'uuid_la' => bin2hex(random_bytes(16)),
+        //             'semester' => $this->request->getPost('semester'),
+        //             'tahun_ajaran' => $this->request->getPost('TA'),
+        //             'ipk' => $this->request->getPost('ipk'),
+        //             'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+        //             'ipk_uu' => $this->request->getPost('ipk_uu'),
+        //             'rangkuman_nilai' => $nama_rn,
+        //             'konfirmasi_akademik' => 2,
+        //         ];
+    
+        //         $this->laModel->InsertData($data);
+        //         return redirect()->to('/user/akademik')->with('success', 'Data berhasil disimpan.');
+    
+        //     } catch (\Exception $e) {
+        //         // Jika error karena UUID duplikat, generate UUID baru dan coba lagi
+        //         if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+        //             continue; // Coba lagi dengan UUID baru
+        //         } else {
+        //             return redirect()->to('/user/akademik')->with('errors', 'Terjadi kesalahan saat menyimpan data.');
+        //         }
+        //     }
+        // } while (true); // Ulangi hanya jika UUID duplikat
+
+
     }
     
+    public function user_edit_akademik2($uuid_la)
+    {
+        $session = session();
+        $id_penerima = $session->get('id_penerima');
+        
+        $LA =  $this->laModel->DetailData($uuid_la);
+        if(!$LA){
+            session()->setFlashdata('errors', 'Laporan Akademik tidak ditemukan');
+            return redirect()->to(base_url('/user/akademik'));
+        }
+        if($LA['id_penerima']!=$id_penerima){
+            return redirect()->to('/user/dashboard')->with('errors', 'Anda tidak memiliki izin.');
+        }
+        $TA = $this->tahunModel->AllData();
+        $jb = $this->jbModel->AllData();
+
+        $data = [
+            'title' => 'Form edit Akademik | User',
+            'validation' => \Config\Services::validation(),
+            'former' => $LA,
+            'jenis_beasiswa' => $jb,
+            'TA'=>$TA
+        ];
+        
+        return view('user-main/edit-akademik', $data);
+
+    }
 
     public function user_edit_akademik($id_akademik)
     {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
+        $session = session()->get();
                    
         $TA = $this->tahunModel->AllData();
 
@@ -413,12 +493,73 @@ class User extends BaseController
         return view('user-main/edit-akademik', $data);
     }
 
+    public function user_cedit_akademik2($uuid_la)
+    {
+
+    }
     public function user_cedit_akademik($id_akademik)
     {
-        if (session()->get('hak_akses') != "0") {
-            session()->setFlashdata("belum_login", "Anda Belum Login Sebagai User");
-            return redirect()->to(base_url('/user/login'));
-        }
+        $validationRules = [
+            'jenis_beasiswa' => [
+                'rules' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+                'errors' => [
+                    'required' => 'Jenis beasiswa harus dipilih.',
+                    'is_not_unique' => 'Jenis beasiswa tidak valid.'
+                ]
+            ],
+            'semester' => [
+                'rules' => 'required|greater_than_equal_to[0]||less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'Semester harus diisi.',
+                    'greater_than_equal_to' => 'Semester tidak boleh kurang dari 0',
+                    'less_than_equal_to' => 'Semester tidak boleh lebih dari 14'
+                ]
+            ],
+            'TA' => [
+                'rules' => 'required|regex_match[/^(PTA|ATA) \d{4}\/\d{4}$/]',
+                'errors' => [
+                    'required' => 'Tahun Ajaran harus diisi.',
+                    'regex_match' => 'Tahun Ajaran tidak sesuai format'
+                    
+                ]
+            ],
+            'ipk' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK harus diisi.',
+                    'decimal' => 'IPK harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_lokal' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK Lokal harus diisi.',
+                    'decimal' => 'IPK Lokal harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK Lokal tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK Lokal tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_uu' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                   'required' => 'IPK UU harus diisi.',
+                    'decimal' => 'IPK UU harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK UU tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK UU tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'rangkuman_nilai' => [
+                'rules' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
+                'errors' => [
+                    'uploaded' => 'File rangkuman nilai harus diunggah.',
+                    'max_size' => 'Ukuran file maksimal 4MB.',
+                    'ext_in' => 'File harus berformat PDF.'
+                ]
+            ]
+        ];
+        
 
         if ($this->validate([
             'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',

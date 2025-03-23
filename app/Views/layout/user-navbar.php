@@ -7,9 +7,7 @@
 </div>
 
 <div id="main-wrapper">
-    <!--**********************************
-            Nav header start
-        ***********************************-->
+
     <div class="nav-header nav-custome" style="background-color: #C4C4C4;">
         <a href="/user/home" class="brand-logo">
             <img class="logo-abbr" style="width: 100%;" src="https://gunadarma.ac.id/assets/images/logosmall.png" alt="">
@@ -22,13 +20,6 @@
             </div>
         </div>
     </div>
-    <!--**********************************
-            Nav header end
-        ***********************************-->
-
-    <!--**********************************
-            Header startF
-        ***********************************-->
     <div class="header" style="background-color: #C4C4C4; height: 90px;">
         <div class="header-content">
             <nav class="navbar navbar-expand">
@@ -39,7 +30,16 @@
                         <li class="nav-item">
                             <div class="nav-name-account" >
                                 <h4 style="padding: 0;margin:0;"><?= session()->get('nama_user'); ?></h4>
-                                <h5 style="padding: 0;margin:0;text-align: right; color:white ">Penerima Beasiswa</h5>             
+                                <h5 style="padding: 0;margin:0;text-align: right; color:white ">Penerima Beasiswa
+                                <?php if (session()->get('status_user') == '1') {
+                                            $status = '<span class="status-peserta badge badge-rounded badge-primary">Aktif</span>';
+                                        } elseif (session()->get('status_user') == '0') {
+                                            $status = '<span class="status-peserta badge badge-rounded badge-danger">Tidak Aktif</span>';
+                                        } elseif (session()->get('status_user') == '2') {
+                                            $status = '<span class="status-peserta badge badge-rounded badge-success">Lulus<span>';
+                                        }
+                                        ?>
+                                </h5>           
                             </div>
                         </li>
                         
@@ -82,6 +82,3 @@
             </nav>
         </div>
     </div>
-    <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->

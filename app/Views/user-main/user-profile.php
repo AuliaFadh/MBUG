@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <form action="/user/profile/cedit/<?= $profile->id_penerima ?>" class="card" method="post"
+            <form action="/user/profile/cedit/<?= $profile->uuid_pb ?>" class="card" method="post"
                 enctype="multipart/form-data">
                 <?= csrf_field() ?>
 
@@ -36,19 +36,19 @@
                         <div class="identity col-lg-9 col-md-12 col-sm12">
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">NPM</h4>
-                                <h4 class="label-profile"><span>:</span> <?= $profile->npm ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile->npm) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Nama</h4>
-                                <h4 class="label-profile"><span>:</span> <?= $profile->nama ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile->nama) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Program Studi</h4>
-                                <h4 class="label-profile"><span>:</span> <?= $profile->nama_prodi ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile->nama_prodi) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Tahun Penerimaan</h4>
-                                <h4 class="label-profile"><span>:</span> <?= $profile->tahun_diterima ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile->tahun_diterima) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Jenis Kelamin</h4>
@@ -60,7 +60,7 @@
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
 
                                     <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
-                                        <input type="text" name="no_hp" value="<?= $profile->no_hp ?>"
+                                        <input type="text" name="no_hp" value="<?= esc($profile->no_hp) ?>"
                                             class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
                                         <div class="invalid-feedback">
 
@@ -74,7 +74,7 @@
                                     class="container1-up custom-container-form col-lg-8 col-md-12 col-sm-12 no-mg no-pd">
                                     <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
                                         <textarea name="alamat" class="form-control custom-textfield"
-                                            rows="2"><?= $profile->alamat ?></textarea>
+                                            rows="2"><?= esc($profile->alamat) ?></textarea>
                                         <div class="invalid-feedback">
 
                                         </div>
@@ -101,7 +101,7 @@
             <div class="card-body">
 
 
-                <form action="/user/profile/pass/<?= $profile->username ?>" method="post">
+                <form action="/user/profile/pass/<?= $uuid_user ?>" method="post">
                     <?= csrf_field() ?>
                     <div class="container1 custom-container-form col-lg-7 col-md-7 col-sm-7 ">
                         <label class="label-form">Password Lama</label>
@@ -120,8 +120,6 @@
                             <input type="password" name="password_baru"
                                 class="form-control custom-textfield col-lg-7 col-md-7 col-sm-7">
                             <div class=" invalid-feedback">
-
-
                             </div>
                         </div>
                     </div>

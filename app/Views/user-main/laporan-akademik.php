@@ -1,6 +1,6 @@
 <?= $this->extend('layout/user-web-MBUG') ?>
 <?= $this->section('content') ?>
-<div class="content-body">
+
     <!-- row -->
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
@@ -26,19 +26,6 @@
                             <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
-
-                    <!-- Notifikasi -->
-                    <?php if (session()->getFlashdata('berhasil')) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= session()->getFlashdata('berhasil') ?>
-                    </div>
-                    <?php endif; ?>
-
-                    <?php if (session()->getFlashdata('gagal')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= session()->getFlashdata('gagal') ?>
-                    </div>
-                    <?php endif; ?>
 
                     <!-- Tabel -->
                     <div class="card-body">
@@ -102,6 +89,10 @@
                                                 class="btn btn-sm btn-primary">
                                                 <i class="la la-pencil"></i>
                                             </a>
+                                            <!-- <a href="<//?=  base_url('/user/akademik/edit/' . $value['uuid_la']) ?>"
+                                                class="btn btn-sm btn-primary">
+                                                <i class="la la-pencil"></i>
+                                            </a> -->
                                             <?php endif; ?>
                                         </td>
                                     </tr>
@@ -115,5 +106,5 @@
             </div>
         </div>
     </div>
-</div>
+
 <?= $this->endSection('content') ?>
