@@ -1,0 +1,13 @@
+up Securty :
+1. ESC() who need :
+- img
+- $variabel
+- $var['column']
+- a
+
+code example :
+ <td class="th-sm"><strong><?= esc( $no) ?></strong></td>
+ <td class="th-lg"><?= esc( $Data['jenis'] )?></td>
+ <img class="logo-abbr logo-home" src="<?= esc(base_url('asset/img/Home.png'), 'url') ?>" alt="">
+ <a title="<?= esc('Lihat File', 'attr') ?>"
+                                                href="<?= esc(base_url('asset/doc/database/rangkuman_nilai/' . $Data['rangkuman_nilai']), 'url') ?>">

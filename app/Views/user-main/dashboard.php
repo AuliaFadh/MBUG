@@ -47,7 +47,7 @@
                                 $tgl_terbit = date_create_from_format('Y-m-d', $value['tanggal_terbit']);
                                 $tgl_tarik = date_create_from_format('Y-m-d', $value['tanggal_tarik']);
                                 ?>
-                                <p>posted : <?= $tgl_terbit->format('d M Y') ?> - <?= $tgl_tarik->format('d M Y') ?></p>
+                                <p>posted : <?= esc($tgl_terbit->format('d M Y') )?> - <?= esc($tgl_tarik->format('d M Y') )?></p>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-end">
                                 <button class="btn btn-secondary toggle-button col-lg-6 col-md-12 col-sm-12 ">Baca
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="card-body card-body-content" style="display: none;">
-                            <p><?= $value['deskripsi'] ?></p>
+                            <p><?= esc($value['deskripsi'] )?></p>
                         </div>
                     </div>
                 <?php endif; ?>
