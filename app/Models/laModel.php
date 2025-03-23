@@ -8,7 +8,6 @@ class laModel extends Model
 {
     protected $table            = 'laporan_akademik';
     protected $primaryKey       = 'id_akademik';
-
     protected $returnType       = 'array';
     protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai','konf_ket_akademik','konfirmasi_akademik'];
 
@@ -21,12 +20,11 @@ class laModel extends Model
     }
     public function update_konfirmasi_akademik($id, $status,$ket_konf) {
         // Memperbarui status konfirmasi akademik berdasarkan ID yang diberikan
-        $data = [
+        $data = [ 
             'konfirmasi_akademik' => $status,
             'konf_ket_akademik' => $ket_konf
         ];
-        $this->db->table('laporan_akademik')->where('id_akademik', $id)->update($data);
-        
+        $this->db->table('laporan_akademik')->where('id_akademik', $id)->update($data);        
     }
     public function AllData()
     {
@@ -36,6 +34,42 @@ class laModel extends Model
             ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
             ->Get()->getResultArray();
     }
+
+    public function AllData_User_ID($id_penerima, $select = '*')
+    {
+        // Jika select default `*`, ambil semua kolom laporan_akademik + nama_prodi
+        if ($select === '*') {
+            $select = 'laporan_akademik.*, jenis_beasiswa.jenis';
+        } else {
+            // Pisahkan kolom berdasarkan koma
+            $columns = explode(',', $select);
+            $newColumns = [];
+    
+            foreach ($columns as $col) {
+                $col = trim($col); // Hapus spasi
+                // Jika tidak ada titik dalam nama kolom, tambahkan `laporan_akademik.`
+                if (!strpos($col, '.')) {
+                    $col = 'laporan_akademik.' . $col;
+                }
+                $newColumns[] = $col;
+            }
+    
+            // Gabungkan kembali kolom-kolom
+            $select = implode(', ', $newColumns) . ', jenis_beasiswa.id_beasiswa';
+        }
+    
+        return $this->db->table('laporan_akademik')
+            ->select($select)
+            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa', 'left')
+            ->where('laporan_akademik.id_penerima', $id_penerima)
+            ->get()->getResultArray();;
+    }
+    
+
+
+
+
+
 
     public function InsertData($data)
     {

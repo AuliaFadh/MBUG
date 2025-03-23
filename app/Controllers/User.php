@@ -281,13 +281,21 @@ class User extends BaseController
 
     public function user_akademik()
     {
-        $la = $this->laModel->AllData();
-        $data = [
+        $session = session();
+        $id_penerima = $session->get('id_penerima');
+        $listDataLA = $this-laModel->AllData_User_ID($id_penerima);
+
+        if(!$listDataLA){
+            session()->setFlashdata('errors', 'Data tidak ditemukan');
+            return redirect()->to(base_url('/user/dashboard'));
+        }
+           
+        $viewData = [
             'title' => 'Akademik | MBUG',
-            'la' => $la,
+            'listDataLA' => $listDataLA,
         ];
 
-        return view('user-main/laporan-akademik', $data);
+        return view('user-main/laporan-akademik', $viewData);
     }
 
     public function user_add_akademik()
