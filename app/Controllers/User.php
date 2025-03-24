@@ -39,11 +39,11 @@ class User extends BaseController
 
     public function user_login()
     {
-        $data = [
+        $viewData = [
             'title' => 'Login Penerima Beasiswa | MBUG',
         ];
 
-        return view('user-main/user-login', $data);
+        return view('user-main/user-login', $viewData);
     }
 
     public function user_login_check()
@@ -124,11 +124,11 @@ class User extends BaseController
     public function user_home()
     {                         
         $news = $this->newsModel->AllData();
-        $data = [
+        $viewData = [
             'title' => 'Dashboard | MBUG',
             'news' => $news,
         ];
-        return view('user-main/dashboard', $data);
+        return view('user-main/dashboard', $viewData);
     }
 
     
@@ -139,14 +139,14 @@ class User extends BaseController
         
         $uuid_user = session()->get('uuid_user');
         $profile = $this->pbModel->DetailDataUUID($uuid_user);
-        $data = [
+        $viewData = [
             'title' => 'Profile | MBUG',
             'uuid_user' => $uuid_user,            
             'pp' => $sessionData['pp'],
             'profile' => $profile,
         ];
 
-        return view('user-main/user-profile', $data);
+        return view('user-main/user-profile', $viewData);
     }
 
    
@@ -300,16 +300,17 @@ class User extends BaseController
 
     public function user_add_akademik()
     {
-        $jb = $this->jbModel->AllData();                
-        $TA = $this->tahunModel->AllData();
-        $data = [
+
+        $listDataJB = $this->jbModel->AllDataActive_jenis();                
+        $listDataTA = $this->tahunModel->AllData_name();
+        $viewData = [
             'title' => 'Form Input Akademik | User',
             'validation' => \Config\Services::validation(),
-            'jenis_beasiswa' => $jb,
-            'TA'=>$TA,
+            'listDataJB' => $listDataJB,
+            'listDataTA'=> $listDataTA,
         ];
 
-        return view('user-main/tambah-akademik', $data);
+        return view('user-main/tambah-akademik', $viewData);
     }
 
     public function user_save_akademik()
@@ -324,7 +325,7 @@ class User extends BaseController
                 ]
             ],
             'semester' => [
-                'rules' => 'required|greater_than_equal_to[0]||less_than_equal_to[4]',
+                'rules' => 'required|greater_than_equal_to[0]||less_than_equal_to[14]',
                 'errors' => [
                     'required' => 'Semester harus diisi.',
                     'greater_than_equal_to' => 'Semester tidak boleh kurang dari 0',
@@ -379,80 +380,79 @@ class User extends BaseController
         if (!$this->validate($validationRules)) {
             session()->setFlashdata('errors', $this->validator->getErrors());
             session()->setFlashdata('input', $this->request->getPost());
-    
-            // ✅ Ambil Data untuk Ditampilkan Kembali
-            $jb = $this->jbModel->AllData();
-            $TA = $this->tahunModel->AllData();
-    
-            $data = [
+
+            $listDataJB = $this->jbModel->AllDataActive_jenis();                
+            $listDataTA = $this->tahunModel->AllData_name();
+            $viewData = [
                 'title' => 'Form Input Akademik | User',
                 'validation' => \Config\Services::validation(),
                 'input' => session()->getFlashdata('input'),
-                'jenis_beasiswa' => $jb,
-                'TA' => $TA,
-            ];
-    
-            return view('user-main/tambah-akademik', $data);
+                'listDataJB' => $listDataJB,
+                'listDataTA'=> $listDataTA,
+            ];    
+            return view('user-main/tambah-akademik', $viewData);
         }
+
+        $session= session();
+        $id_penerima= $session->get('id_penerima');  
+        $semesterInput = $this->request->getPost('semester');
+        $TAInput = $this->request->getPost('TA');                      
+        $checkLA = $this->laModel->checkSemesterAndTA($id_penerima, $semesterInput, $TAInput);
+        if ($checkLA) {
+            return redirect()->to('/user/akademik')->with(
+                'error',
+                "Laporan Akademik dengan Semester ke-{$semesterInput} atau Tahun Ajaran {$TAInput} sudah ada. Silakan cek kembali."
+            );
+        }
+        $jenisBeasiswa = $this->request->getPost('jenis_beasiswa');    
+        $id_beasiswa = $this->laModel->getIDb($jenisBeasiswa);
+        if (!$id_beasiswa) {  // Jika tidak ditemukan, berikan pesan error
+            return redirect()->to('/user/akademik')->with(
+                'error',
+                "Jenis Beasiswa tidak ditemukan"
+            );
+        }
+
     
         // ✅ 2. Ambil & Pindahkan File
         $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
         $nama_rn = $rangkuman_nilai->getRandomName();
         $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
     
-        // ✅ 3. Simpan ke Database
-        $data = [
-            'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
-            'id_penerima' => $this->laModel->getIDp(session()->get('username')),
-            'uuid_la' => bin2hex(random_bytes(16)),
-            'semester' => $this->request->getPost('semester'),
-            'tahun_ajaran' => $this->request->getPost('TA'),
-            'ipk' => $this->request->getPost('ipk'),
-            'ipk_lokal' => $this->request->getPost('ipk_lokal'),
-            'ipk_uu' => $this->request->getPost('ipk_uu'),
-            'rangkuman_nilai' => $nama_rn,
-            'konfirmasi_akademik' => 2,
-        ];
-    
-        $this->laModel->InsertData($data);
-    
-        // ✅ 4. Beri Notifikasi & Redirect
-        session()->setFlashdata('success', 'Laporan Akademik berhasil ditambahkan.');
-        return redirect()->to(base_url('/user/akademik'));
+        $maxAttempts = 5; // Batasi percobaan maksimal
+        $attempt = 0;
+        do {
+            try {
+                $uuidLA = bin2hex(random_bytes(16)); // Generate UUID unik
 
+                $data = [
+                    'id_beasiswa' => $id_beasiswa,
+                    'id_penerima' => session()->get('id_penerima'),
+                    'uuid_la' => $uuidLA, // Gunakan UUID yang sudah dibuat
+                    'semester' => $semesterInput,
+                    'tahun_ajaran' => $TAInput,
+                    'ipk' => $this->request->getPost('ipk'),
+                    'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+                    'ipk_uu' => $this->request->getPost('ipk_uu'),
+                    'rangkuman_nilai' => $nama_rn,
+                    'konfirmasi_akademik' => 2,
+                ];
 
-        // do {
-        //     try {
-        //         $uuidLA = bin2hex(random_bytes(16)); // Generate UUID unik
-    
-        //         $data = [
-        //             'uuid_la' => $uuidLA,
-        //             'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
-        //             'id_penerima' => $this->laModel->getIDp(session()->get('username')),
-        //             'uuid_la' => bin2hex(random_bytes(16)),
-        //             'semester' => $this->request->getPost('semester'),
-        //             'tahun_ajaran' => $this->request->getPost('TA'),
-        //             'ipk' => $this->request->getPost('ipk'),
-        //             'ipk_lokal' => $this->request->getPost('ipk_lokal'),
-        //             'ipk_uu' => $this->request->getPost('ipk_uu'),
-        //             'rangkuman_nilai' => $nama_rn,
-        //             'konfirmasi_akademik' => 2,
-        //         ];
-    
-        //         $this->laModel->InsertData($data);
-        //         return redirect()->to('/user/akademik')->with('success', 'Data berhasil disimpan.');
-    
-        //     } catch (\Exception $e) {
-        //         // Jika error karena UUID duplikat, generate UUID baru dan coba lagi
-        //         if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
-        //             continue; // Coba lagi dengan UUID baru
-        //         } else {
-        //             return redirect()->to('/user/akademik')->with('errors', 'Terjadi kesalahan saat menyimpan data.');
-        //         }
-        //     }
-        // } while (true); // Ulangi hanya jika UUID duplikat
+                $this->laModel->InsertData($data);
+                return redirect()->to('/user/akademik')->with('success', 'Data berhasil disimpan.');
 
-
+            } catch (\Exception $e) {
+                if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                    $attempt++;
+                    if ($attempt >= $maxAttempts) {
+                        return redirect()->to('/user/akademik')->with('errors', 'Gagal menyimpan data setelah beberapa percobaan.');
+                    }
+                    continue; // Coba lagi dengan UUID baru
+                } else {
+                    return redirect()->to('/user/akademik')->with('errors', 'Terjadi kesalahan saat menyimpan data.');
+                }
+            }
+        } while ($attempt < $maxAttempts);
     }
     
     public function user_edit_akademik2($uuid_la)
@@ -487,7 +487,7 @@ class User extends BaseController
     {
         $session = session()->get();
                    
-        $TA = $this->tahunModel->AllData();
+        $TA = $this->tahunModel->AllDataName();
 
         $jb = $this->jbModel->AllData();
         $data = [

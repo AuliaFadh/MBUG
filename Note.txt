@@ -4,6 +4,7 @@ up Securty :
 - $variabel
 - $var['column']
 - a
+- input value
 
 code example :
  <td class="th-sm"><strong><?= esc( $no) ?></strong></td>
@@ -11,3 +12,7 @@ code example :
  <img class="logo-abbr logo-home" src="<?= esc(base_url('asset/img/Home.png'), 'url') ?>" alt="">
  <a title="<?= esc('Lihat File', 'attr') ?>"
                                                 href="<?= esc(base_url('asset/doc/database/rangkuman_nilai/' . $Data['rangkuman_nilai']), 'url') ?>">
+<input type="text" id="find-jb" name="jenis_beasiswa"
+        value="<?= esc(old('jenis_beasiswa', $input['jenis_beasiswa'] ?? ''), 'attr') ?>"
+        class="form-control custom-textfield <?= $validation->hasError('jenis_beasiswa') ? ' is-invalid is-test' : '' ?>"
+        autofocus>

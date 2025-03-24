@@ -65,6 +65,15 @@ class laModel extends Model
             ->get()->getResultArray();;
     }
     
+    public function checkSemesterAndTA($id_penerima, $semester, $TA)
+    {
+        return $this->where('id_penerima', $id_penerima)
+                    ->groupStart()
+                        ->where('semester', $semester)
+                        ->orWhere('TA', $TA)
+                    ->groupEnd()
+                    ->countAllResults() > 0; // Jika ada data, return true
+    }
 
 
 
@@ -95,12 +104,14 @@ class laModel extends Model
         $this->db->table('laporan_akademik')->where('id_akademik', $data['id_akademik'])->delete($data);
     }
 
-    public function getIDb($data)
-    {
-        $b = $this->db->table('jenis_beasiswa')->where('jenis', $data)->get()->getRow();
-        $b = get_object_vars($b);
-        return $b['id_beasiswa'];
-    }
+    public function getIDb($jenis)
+{
+    return $this->db->table('jenis_beasiswa')
+        ->select('id_beasiswa')  // Ambil hanya kolom yang dibutuhkan
+        ->where('jenis', $jenis)
+        ->get()
+        ->getRow('id_beasiswa'); // Langsung ambil nilai id_beasiswa
+}
 
     public function getIDp($data)
     {

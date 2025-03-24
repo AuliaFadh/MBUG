@@ -6,7 +6,7 @@
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/user/home">
-                        <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png') ?>" alt="">
+                        <img class="logo-abbr logo-home" src="<?= esc( base_url('asset/img/Home.png'),'url') ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/user/akademik">Laporan Akademik</a></li>
                 <li class="breadcrumb-item active"><a href="/user/akadmik/add">Tambah Akademik</a></li>
@@ -28,22 +28,27 @@
                             <?= csrf_field() ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
-                                    <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div name="input-find&fill-jenis_beasiswa"
+                                    class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Jenis Beasiswa</label>
+
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
-                                            <input type="text" id="jb-input"
-                                                class="form-control custom-textfield <?= $validation->hasError('jenis_beasiswa') ? ' is-invalid is-test' : '' ?>"
-                                                id="jenis_beasiswa" name="jenis_beasiswa"
-                                                value="<?= old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : '') ?>">
-                                            <div id="jb-search" class="dropdown-custom col-lg-8 col-md-8 col-sm-7"
+
+                                            <input type="text" id="find-jb" name="jenis_beasiswa"
+                                             value="<?= esc( old('jenis_beasiswa', isset($input['jenis_beasiswa']) ? $input['jenis_beasiswa'] : '') ,'attr')?>"
+                                             class="form-control custom-textfield <?= $validation->hasError('jenis_beasiswa') ? ' is-invalid is-test' : '' ?>"
+                                             autofocus>
+
+                                            <div id="box-find-jb" class="dropdown-custom col-lg-8 col-md-8 col-sm-7"
                                                 style="display: none;">
 
-                                                <?php foreach ($jenis_beasiswa as $key => $value) : ?>
-                                                <a id="jb-data"
-                                                    onclick="fillInputJB('<?= $value['jenis'] ?>')"><?= $value['jenis'] ?></a>
+                                                <?php foreach ($listDataJB as $key => $DataJB) : ?>
+                                                <a id="data-find-jb"
+                                                    onclick="fillFindInput('find-jb','<?= esc($DataJB['jenis'],'js') ?>')">
+                                                    <?= esc($DataJB['jenis']) ?></a>                            
                                                 <?php endforeach; ?>
 
-                                                <span id="jb-noData" style="display: none;">Data tidak ada</span>
+                                                <span id="no-data-find-jb" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('jenis_beasiswa') ?>
@@ -57,30 +62,32 @@
                                             <input type="number" min=1 max=14
                                                 class="form-control custom-textfield <?= $validation->hasError('semester') ? ' is-invalid is-test' : '' ?>"
                                                 id="semester" name="semester"
-                                                value="<?= old('semester', isset($input['semester']) ? $input['semester'] : '') ?>">
+                                                value="<?= esc( old('semester', isset($input['semester']) ? $input['semester'] : ''),'attr') ?>">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('semester') ?>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
+                                    <div name="input-find&fill-TA"
+                                    class="container1  custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Ajaran</label>
                                         <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
 
                                             <input required type="text" id="find-ta"
+                                                value="<?= esc( old('TA', isset($input['TA']) ? $input['TA'] : '') ,'attr')?>"
                                                 class="form-control custom-textfield " name="TA">
+
                                             <div id="box-find-ta" class="dropdown-custom col-lg-9 col-md-9 col-sm-7"
                                                 style="display: none;">
-                                                <?php foreach ($TA as $key => $TAval) : ?>
-                                                <a id="ta-data"
-                                                    onclick="fillInputTA('<?= $TAval['nama_tahun'] ?>')"><?= $TAval['nama_tahun'] ?></a>
+                                                <?php foreach ($listDataTA as $key => $DataTA) : ?>
+                                                <a id="data-find-ta"
+                                                    onclick="fillFindInput('find-ta','<?= esc( $DataTA['nama_tahun'] ,'js')?>')"><?= esc( $DataTA['nama_tahun'] ,'js')?></a>                                                    
                                                 <?php endforeach; ?>
-
                                                 <span id="no-data-find-ta" style="display: none;">Data tidak ada</span>
                                             </div>
                                             <div class="invalid-feedback">
-                                                <?= $validation->getError('nama_tahun') ?>
+                                                <?= $validation->getError('TA') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +98,7 @@
                                             <input min=0 max=4 step=0.01 type="number"
                                                 class="form-control custom-textfield <?= $validation->hasError('ipk') ? ' is-invalid is-test' : '' ?>"
                                                 id="ipk" name="ipk"
-                                                value="<?= old('ipk', isset($input['ipk']) ? $input['ipk'] : '') ?>">
+                                                value="<?= esc( old('ipk', isset($input['ipk']) ? $input['ipk'] : ''),'attr') ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk') ?>
                                             </div>
@@ -104,7 +111,7 @@
                                             <input min=0 max=4 step=0.01 type="number"
                                                 class="form-control custom-textfield <?= $validation->hasError('ipk_lokal') ? ' is-invalid is-test' : '' ?>"
                                                 id="ipk_lokal" name="ipk_lokal"
-                                                value="<?= old('ipk_lokal', isset($input['ipk_lokal']) ? $input['ipk_lokal'] : '') ?>">
+                                                value="<?= esc( old('ipk_lokal', isset($input['ipk_lokal']) ? $input['ipk_lokal'] : ''),'attr') ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk_lokal') ?>
                                             </div>
@@ -117,7 +124,7 @@
                                             <input min=0 max=4 step=0.01 type="number"
                                                 class="form-control custom-textfield <?= $validation->hasError('ipk_uu') ? ' is-invalid is-test' : '' ?>"
                                                 id="ipk_uu" name="ipk_uu"
-                                                value="<?= old('ipk_uu', isset($input['ipk_uu']) ? $input['ipk_uu'] : '') ?>">
+                                                value="<?= esc( old('ipk_uu', isset($input['ipk_uu']) ? $input['ipk_uu'] : ''),'attr') ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('ipk_uu') ?>
                                             </div>
@@ -147,5 +154,32 @@
         </div>
     </div>
 
-<script src="<?= base_url('asset/js/custom-search-ta.js') ?>"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const findta = document.getElementById('find-ta');
+    findta.addEventListener('input', function() {
+        findResult('find-ta');
+    });
+    findta.addEventListener('blur', function() {
+        hideResult('find-ta');
+    });
+
+    const findjb = document.getElementById('find-jb');
+    findjb.addEventListener('input', function() {
+        findResult('find-jb');
+    });
+    findjb.addEventListener('blur', function() {
+        hideResult('find-jb');
+    });
+
+    const findnpm = document.getElementById('find-npm');
+    findnpm.addEventListener('input', function() {
+        findResult('find-npm');
+    });
+    findnpm.addEventListener('blur', function() {
+        hideResult('find-npm');
+    });
+});
+</script>
 <?= $this->endSection('content') ?>

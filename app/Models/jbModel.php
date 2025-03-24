@@ -14,26 +14,31 @@ class jbModel extends Model
 
     public function AllData()
     {
-        return $this->db->table('jenis_beasiswa')->Get()->getResultArray();
+        return $this->query("SELECT * FROM jenis_beasiswa ")->getResultArray();
+    }
+
+    public function AllDataActive_jenis()
+    {      
+        return $this->query("SELECT nama_tahun FROM jenis_beasiswa WHERE status_beasiswa",[1])->getResultArray();
     }
 
     public function InsertData($data)
     {
-        $this->db->table('jenis_beasiswa')->insert(($data));
+        $this->insert(($data));
     }
 
     public function DetailData($id_beasiswa)
-    {
-        return $this->db->table('jenis_beasiswa')->where('id_beasiswa', $id_beasiswa)->get()->getRow();
+    {      
+        return $this->query("SELECT * FROM jenis_beasiswa WHERE id_beasiswa",[$id_beasiswa])->getRow();
     }
 
     public function UpdateData($id, $data)
-    {
-        return $this->db->table('jenis_beasiswa')->where('id_beasiswa', $id)->update($data);
+    {        
+        return $this->update($id, $data);
     }
 
-    public function DeleteData($data)
+    public function DeleteData($id_beasiswa)
     {
-        $this->db->table('jenis_beasiswa')->where('id_beasiswa', $data['id_beasiswa'])->delete($data);
+        return $this->delete($id_beasiswa);
     }
 }

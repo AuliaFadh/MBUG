@@ -17,9 +17,63 @@ class prodiModel extends Model
             ->where('status_prodi',1)->Get()->getResultArray();
     }
 
-    public function AllData()
+
+    public function AllData($select = '*')
     {
-        return $this->db->table('program_studi')->Get()->getResultArray();
+        // Jika select default `*`, ambil semua kolom program_studi
+        if ($select === '*') {
+            $select = 'program_studi.*';
+        } else {
+            // Pisahkan kolom berdasarkan koma
+            $columns = explode(',', $select);
+            $newColumns = [];
+    
+            foreach ($columns as $col) {
+                $col = trim($col); // Hapus spasi
+                // Jika tidak ada titik dalam nama kolom, tambahkan `program_studi.`
+                if (!strpos($col, '.')) {
+                    $col = 'program_studi.' . $col;
+                }
+                $newColumns[] = $col;
+            }
+    
+            // Gabungkan kembali kolom-kolom
+            $select = implode(', ', $newColumns);
+        }
+    
+        return $this->db->table('program_studi')
+            ->select($select)           
+            ->get()->getResultArray();;
+    }
+
+
+    public function AllDataActive($select = '*')
+    {
+        // Jika select default `*`, ambil semua kolom program_studi
+        if ($select === '*') {
+            $select = 'program_studi.*';
+        } else {
+            // Pisahkan kolom berdasarkan koma
+            $columns = explode(',', $select);
+            $newColumns = [];
+    
+            foreach ($columns as $col) {
+                $col = trim($col); // Hapus spasi
+                // Jika tidak ada titik dalam nama kolom, tambahkan `program_studi.`
+                if (!strpos($col, '.')) {
+                    $col = 'program_studi.' . $col;
+                }
+                $newColumns[] = $col;
+            }
+    
+            // Gabungkan kembali kolom-kolom
+            $select = implode(', ', $newColumns);
+        }
+    
+        return $this->db->table('program_studi')
+            ->select($select)
+            ->where('status_prodi',1)           
+            ->get()->getResultArray();;
     }
 
     public function InsertData($data)
