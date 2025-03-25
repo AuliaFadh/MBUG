@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Helpers\JwtHelper;
+
 
 class User extends BaseController
 {
@@ -20,6 +20,7 @@ class User extends BaseController
     protected $logModel;
     protected $prodiModel;
     protected $tahunModel;
+
     public function __construct()
     {
         $this->jbModel = new \App\Models\jbModel();
@@ -36,6 +37,8 @@ class User extends BaseController
         $this->prodiModel = new \App\Models\prodiModel();
         $this->tahunModel = new \App\Models\tahunModel();
     }
+
+    
 
     public function user_login()
     {
@@ -193,30 +196,40 @@ class User extends BaseController
             session()->setFlashdata('errors', $this->validator->getErrors());
             return redirect()->to(base_url('/user/profile'))->withInput();
         }
-               
-        $pp = $penerima->ppicture;
+        $pp = $penerima->ppicture; // Foto lama dari database
         $foto_pp = $this->request->getFile('file-input');
+        
+        // Jika ada file baru yang diunggah, lakukan validasi
         if ($foto_pp->isValid() && !$foto_pp->hasMoved()) {
-            if (!is_null($pp)) {
-                unlink('asset/img/database/picture/' . $pp);
+            // Hapus foto lama jika ada dan file-nya masih tersedia
+            if (!empty($pp) && file_exists(WRITEPATH . 'uploads/images/profile_pictures/' . $pp)) {
+                unlink(WRITEPATH . 'uploads/images/profile_pictures/' . $pp);
             }
+        
+            // Simpan foto baru dengan nama acak
             $nama_pp = $foto_pp->getRandomName();
-            $foto_pp->move('asset/img/database/picture/', $nama_pp);
+            $foto_pp->move(WRITEPATH . 'uploads/images/profile_pictures/', $nama_pp);
         } else {
+            // Jika tidak ada file baru, gunakan foto lama
             $nama_pp = $pp;
         }
-
+        
         $data = [            
             'alamat' => $this->request->getPost('alamat'),
             'no_hp' => $this->request->getPost('no_hp'),
-            'ppicture' => $nama_pp,            
+            'ppicture' => $nama_pp, // Gunakan foto baru jika ada, jika tidak pakai yang lama
         ];
+        
         $this->pbModel->UpdateData($id_penerima, $data);
-        session()->set([            
-            'pp' => $nama_pp, // Update foto profil di session
+        
+        // Update session dengan foto baru atau tetap yang lama
+        session()->set([
+            'pp' => $nama_pp,
         ]);
-        session()->setFlashdata('success', 'Profile berhasil diubah');
-        return redirect()->to(base_url('/user/profile'));
+        
+        session()->setFlashdata('success', 'Profil berhasil diubah');
+        return redirect()->to(base_url('/user/profile'));        
+        
     }
  
   
@@ -416,8 +429,8 @@ class User extends BaseController
     
         // ✅ 2. Ambil & Pindahkan File
         $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
-        $nama_rn = $rangkuman_nilai->getRandomName();
-        $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
+        $nama_rn = time() . '_' . bin2hex(random_bytes(8)) . '.pdf';
+        $rangkuman_nilai->move(WRITEPATH . 'uploads/documents/akademik/rangkuman_nilai', $nama_rn);
     
         $maxAttempts = 5; // Batasi percobaan maksimal
         $attempt = 0;
@@ -426,14 +439,14 @@ class User extends BaseController
                 $uuidLA = bin2hex(random_bytes(16)); // Generate UUID unik
 
                 $data = [
-                    'id_beasiswa' => $id_beasiswa,
-                    'id_penerima' => session()->get('id_penerima'),
+                    'id_beasiswa' => (int) $id_beasiswa,
+                    'id_penerima' => (int)  session()->get('id_penerima'),
                     'uuid_la' => $uuidLA, // Gunakan UUID yang sudah dibuat
-                    'semester' => $semesterInput,
+                    'semester' => (int) $semesterInput,
                     'tahun_ajaran' => $TAInput,
-                    'ipk' => $this->request->getPost('ipk'),
-                    'ipk_lokal' => $this->request->getPost('ipk_lokal'),
-                    'ipk_uu' => $this->request->getPost('ipk_uu'),
+                    'ipk' => (float) $this->request->getPost('ipk'),
+                    'ipk_lokal' => (float) $this->request->getPost('ipk_lokal'),
+                    'ipk_uu' => (float) $this->request->getPost('ipk_uu'),
                     'rangkuman_nilai' => $nama_rn,
                     'konfirmasi_akademik' => 2,
                 ];
@@ -455,51 +468,36 @@ class User extends BaseController
         } while ($attempt < $maxAttempts);
     }
     
-    public function user_edit_akademik2($uuid_la)
+    public function user_edit_akademik($uuid_la)
     {
         $session = session();
         $id_penerima = $session->get('id_penerima');
         
-        $LA =  $this->laModel->DetailData($uuid_la);
-        if(!$LA){
+        $dataLA =  $this->laModel->getData_User_UUID($uuid_la);
+        if(!$dataLA){
             session()->setFlashdata('errors', 'Laporan Akademik tidak ditemukan');
             return redirect()->to(base_url('/user/akademik'));
         }
-        if($LA['id_penerima']!=$id_penerima){
+
+        if($dataLA['id_penerima']!=$id_penerima){
             return redirect()->to('/user/dashboard')->with('errors', 'Anda tidak memiliki izin.');
         }
-        $TA = $this->tahunModel->AllData();
-        $jb = $this->jbModel->AllData();
 
-        $data = [
+        $listDataJB = $this->jbModel->AllDataActive_jenis();                
+        $listDataTA = $this->tahunModel->AllData_name();        
+        $viewData = [
             'title' => 'Form edit Akademik | User',
             'validation' => \Config\Services::validation(),
-            'former' => $LA,
-            'jenis_beasiswa' => $jb,
-            'TA'=>$TA
+            'dataLA' => $dataLA,
+            'listDataJB' => $listDataJB,
+            'listDataTA'=>$$listDataTA
         ];
         
-        return view('user-main/edit-akademik', $data);
+        return view('user-main/edit-akademik', $viewData);
 
     }
 
-    public function user_edit_akademik($id_akademik)
-    {
-        $session = session()->get();
-                   
-        $TA = $this->tahunModel->AllDataName();
-
-        $jb = $this->jbModel->AllData();
-        $data = [
-            'title' => 'Form edit Akademik | User',
-            'validation' => \Config\Services::validation(),
-            'former' => $this->laModel->DetailData($id_akademik),
-            'jenis_beasiswa' => $jb,
-            'TA'=>$TA
-        ];
-        
-        return view('user-main/edit-akademik', $data);
-    }
+    
 
     public function user_cedit_akademik2($uuid_la)
     {

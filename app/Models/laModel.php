@@ -35,6 +35,15 @@ class laModel extends Model
             ->Get()->getResultArray();
     }
 
+    public function getData_User_UUID($uuid_la)
+    {
+        return $this->db->query("SELECT laporan_akademik.*, jenis_beasiswa.jenis 
+            FROM laporan_akademik 
+            LEFT JOIN jenis_beasiswa ON jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa 
+            WHERE laporan_akademik.uuid_la = ?", [$uuid_la])->getRow();
+    }
+
+
     public function AllData_User_ID($id_penerima, $select = '*')
     {
         // Jika select default `*`, ambil semua kolom laporan_akademik + nama_prodi

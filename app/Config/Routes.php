@@ -12,6 +12,13 @@ $routes = Services::routes();
  */
 
 $routes->setDefaultNamespace('App\Controllers');
+// Route file 
+$routes->get('file/profile_picture/(:segment)', 'FileController::profile_picture/$1');
+$routes->get('file/rangkuman_nilai/(:segment)', 'FileController::rangkuman_nilai/$1');
+
+// $routes->get('file/payment_proof/(:segment)', 'FileController::payment_proof/$1');
+// $routes->get('file/download_file/(:segment)', 'FileController::download_file/$1');
+
 // Route untuk admin
 $routes->get('admin/login', 'Admin::login_admin');
 $routes->get('admin/logout', 'Admin::logout_admin');

@@ -44,13 +44,11 @@
                         </li>
                         
                         <li class="nav-item dropdown header-profile">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <?php if (session()->get('pp') == null) : ?>
-                                <img id="profile-img-nav" src="<?= base_url('asset/img/person-icon.png'); ?>" style="height: 50px; width: 50px;" alt="" />
-                                <?php elseif (session()->get('pp') !== null) : ?>
-                                <img id="profile-img-nav" src="<?= base_url('asset/img/database/picture/' . session()->get('pp')); ?>" style="height: 50px; width: 50px;" alt="" />
-                                <?php endif; ?>
-                            </a>
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                            <img id="profile-img-nav"
+                                src="<?= session()->get('pp') ? base_url('user/profile_picture/' . session()->get('pp')) : base_url('asset/img/person-icon.png') ?>"
+                                style="height: 50px; width: 50px;" alt="Foto Profil" />
+                        </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="/user/profile" class="dropdown-item ai-icon">
                                     <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
