@@ -1,6 +1,6 @@
 <?php 
-$errors = session()->getFlashdata('errors');
-$success = session()->getFlashdata('success');
+$errors = session('errors'); 
+$success = session('success'); 
 ?>
 
 <?php if ($errors || $success) : ?>
@@ -15,7 +15,9 @@ $success = session()->getFlashdata('success');
                             <?= esc($error) ?>
                         </div>
                         <button type="button" class="toast-btn-close-custom mx-2" onclick="closeToast(this)"
-                        data-bs-dismiss="toast"><i class="fa fa-times"></i></button>
+                        data-bs-dismiss="toast">
+                        <i class="fa fa-times"></i>
+                    </button>
                     </div>
                 </div>
             <?php endforeach;

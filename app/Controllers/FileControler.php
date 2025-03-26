@@ -36,6 +36,8 @@ class FileController extends Controller
 }
 
 
+
+
     // public function payment_proof($filename)
     // {
     //     $path = WRITEPATH . 'uploads/payment_proofs/' . $filename;

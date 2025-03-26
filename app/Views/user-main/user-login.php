@@ -20,32 +20,24 @@
                                 </h3>
                             </div>
                         </div>
-
-                        <!-- Notifikasi -->
-                        <?php if (session()->getFlashdata('user')) : ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->getFlashdata('user') ?>
-                        </div>
-                        <?php endif; ?>
-
-                        <?php if (session()->getFlashdata('no_data')) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= session()->getFlashdata('no_data') ?>
-                        </div>
-                        <?php endif; ?>
-
-                        <?php if (session()->getFlashdata('belum_login')) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= session()->getFlashdata('belum_login') ?>
-                        </div>
-                        <?php endif; ?>
-
+                        <?php 
+                        $errors = session('errors'); 
+                        if($errors):
+                            $errors = is_array($errors) ? $errors : [$errors];
+                            foreach ($errors as $error) :?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= esc($error)?>
+                                </div>
+                            <?php endforeach?>
+                        <?php endif?>                        
                         <!-- Form input login penerima beasiswa -->
-                        <form action="/user/login_check" class="signin-form" method="post">
+                        <form action="<?= base_url('/user/login_check') ?>" method="post"> 
+                        <?= csrf_field() ?>                       
                             <div class="form-group mb-3">
                                 <label class="label" for="name">Username</label>
                                 <input type="text" name="username" class="form-control" placeholder="Username"
-                                    required>
+                                    required
+                                    value="<?= esc(old('username'),'attr')?>">
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="password">Password</label>
@@ -56,14 +48,7 @@
                                 <button type="submit"
                                     class="form-control btn btn-primary-login rounded submit px-3">Sign In</button>
                             </div>
-                            <div class="form-group d-md-flex">
-                                <div class="w-50 text-left">
-                                    <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                                        <input type="checkbox" checked>
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
+                           
                         </form>
                     </div>
                 </div>

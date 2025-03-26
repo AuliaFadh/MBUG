@@ -5,7 +5,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
             <form action="/user/profile/cedit/<?= $profile->uuid_pb ?>" class="card" method="post"
                 enctype="multipart/form-data">
+
                 <?= csrf_field() ?>
+                <?php $validation_err = session('errors')?>
 
                 <div class="card-header">
                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 justify-content-between">
@@ -17,14 +19,9 @@
                     <div class="row  d-flex align-items-center">
                         <div class="profile-container col-lg-3 col-sm-12 col-md-12">
                             <div class="profile-image ">
-                                <?php if ($profile->ppicture == null) : ?>
-                                <img id="profile-img" src="<?= base_url('asset/img/database/default-profile.jpg') ?>"
-                                    alt="Foto Profil">
-                                <?php elseif ($profile->ppicture !== null) : ?>
                                 <img id="profile-img"
-                                    src="<?= base_url('asset/img/database/picture/' . $profile->ppicture) ?>"
-                                    alt="Foto Profil">
-                                <?php endif; ?>
+                                    src="<?= session()->get('pp') ? base_url('file/profile_picture/' . session()->get('pp')) : base_url('asset/img/person-icon.png') ?>"
+                                alt="Foto Profil" />                                
                                 <div class="upload-overlay">
                                     <label for="file-input"> <i class="fa fa-pencil add-custom"></i> </label>
                                     <input type="file" id="file-input" name="file-input"
@@ -60,8 +57,9 @@
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
 
                                     <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
-                                        <input type="text" name="no_hp" value="<?= esc($profile->no_hp) ?>"
-                                            class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" name="no_hp" value="<?= esc( old('no_hp' ?? $profile->no_hp),'attr') ?>"
+                                            class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4 
+                                            <?= isset($validation_err['no_hp']) ? ' is-invalid is-test' : '' ?>">
                                         <div class="invalid-feedback">
 
                                         </div>

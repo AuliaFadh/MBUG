@@ -46,7 +46,7 @@
                         <li class="nav-item dropdown header-profile">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                             <img id="profile-img-nav"
-                                src="<?= session()->get('pp') ? base_url('user/profile_picture/' . session()->get('pp')) : base_url('asset/img/person-icon.png') ?>"
+                                src="<?= session()->get('pp') ? base_url('file/profile_picture/' . session()->get('pp')) : base_url('asset/img/person-icon.png') ?>"
                                 style="height: 50px; width: 50px;" alt="Foto Profil" />
                         </a>
                             <div class="dropdown-menu dropdown-menu-right">

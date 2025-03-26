@@ -66,12 +66,14 @@ class laModel extends Model
             // Gabungkan kembali kolom-kolom
             $select = implode(', ', $newColumns) . ', jenis_beasiswa.id_beasiswa';
         }
+        $query = $this->db->table('laporan_akademik')
+        ->select($select)
+        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa', 'left')
+        ->where('laporan_akademik.id_penerima', $id_penerima)
+        ->get()
+        ->getResultArray(); // Selalu return array
     
-        return $this->db->table('laporan_akademik')
-            ->select($select)
-            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa', 'left')
-            ->where('laporan_akademik.id_penerima', $id_penerima)
-            ->get()->getResultArray();;
+        return $query ?: [];
     }
     
     public function checkSemesterAndTA($id_penerima, $semester, $TA)

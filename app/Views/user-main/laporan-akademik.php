@@ -50,48 +50,50 @@
                                 </thead>
                             
                                 <tbody>
-                                    <?php $no = 0; ?>
-                                    <?php foreach ($listDataLA as $key => $Data) : ?>          
-                                    <?php $no++; ?>
-                                    <tr <?php if ($Data['konfirmasi_akademik'] == '0') { echo 'style="background-color: #ffdfdf!important;"'; } ?>>
-                                        <td class="th-sm"><strong><?= esc($no) ?></strong></td>
-                                        <td class="th-lg"><?= esc($Data['jenis']) ?></td>
-                                        <td class="th-sm"><?= esc($Data['semester']) ?></td>
-                                        <td class="th-nm"><?= esc($Data['tahun_ajaran']) ?></td>
-                                        <td class="th-sm"><?= esc($Data['ipk']) ?></td>
-                                        <td class="th-sm"><?= esc($Data['ipk_lokal']) ?></td>
-                                        <td class="th-sm"><?= esc($Data['ipk_uu']) ?></td>
-                                        <td class="th-sm">
-                                            <a title="<?= esc('Lihat File', 'attr') ?>"
-                                                href="<?= esc(base_url('asset/doc/database/rangkuman_nilai/' . $Data['rangkuman_nilai']), 'url') ?>">
-                                                <img id="doc-search" class="btn btn-sm btn-success"
-                                                    src="<?= esc(base_url('asset/img/doc-search.png'), 'url') ?>" alt="">
-                                            </a>
-                                        </td>
-                                        <?php 
-                                            if ($Data['konfirmasi_akademik'] == '1') {
-                                                $confirm = '<span class="status_akademik badge badge-rounded badge-success">Disetujui</span>';
-                                            } elseif ($Data['konfirmasi_akademik'] == '0') {
-                                                $confirm = '<span class="status_akademik badge badge-rounded badge-danger">Ditolak</span>';
-                                            } elseif ($Data['konfirmasi_akademik'] == '2') {
-                                                $confirm = '<span class="status_akademik badge badge-rounded badge-warning">Diproses</span>';
-                                            }
-                                        ?>
-                                        <td class="th-sm"><?= $confirm ?></td>
-                                        <td class="th-sm">
-                                            <?php if ($Data['konfirmasi_akademik'] == 1): ?>
-                                                <a href="#" class="btn btn-sm btn-secondary disabled" style="opacity: 0.5;">
-                                                    <i class="la la-pencil"></i>
+                                    <?php if ($listDataLA) : ?>
+                                        <?php $no = 0; ?>
+                                        <?php foreach ($listDataLA as $key => $Data) : ?>          
+                                        <?php $no++; ?>
+                                        <tr <?php if ($Data['konfirmasi_akademik'] == '0') { echo 'style="background-color: #ffdfdf!important;"'; } ?>>
+                                            <td class="th-sm"><strong><?= esc($no) ?></strong></td>
+                                            <td class="th-lg"><?= esc($Data['jenis']) ?></td>
+                                            <td class="th-sm"><?= esc($Data['semester']) ?></td>
+                                            <td class="th-nm"><?= esc($Data['tahun_ajaran']) ?></td>
+                                            <td class="th-sm"><?= esc($Data['ipk']) ?></td>
+                                            <td class="th-sm"><?= esc($Data['ipk_lokal']) ?></td>
+                                            <td class="th-sm"><?= esc($Data['ipk_uu']) ?></td>
+                                            <td class="th-sm">
+                                                <a title="<?= esc('Lihat File', 'attr') ?>"
+                                                    href="<?= esc(base_url('asset/doc/database/rangkuman_nilai/' . $Data['rangkuman_nilai']), 'url') ?>">
+                                                    <img id="doc-search" class="btn btn-sm btn-success"
+                                                        src="<?= esc(base_url('asset/img/doc-search.png'), 'url') ?>" alt="">
                                                 </a>
-                                            <?php else: ?>                                            
-                                                <a href="<?= esc(base_url('/user/akademik/edit/' . $Data['uuid_la']), 'url') ?>"
-                                                    class="btn btn-sm btn-primary">
-                                                    <i class="la la-pencil"></i>
-                                                </a>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
+                                            </td>
+                                            <?php 
+                                                if ($Data['konfirmasi_akademik'] == '1') {
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-success">Disetujui</span>';
+                                                } elseif ($Data['konfirmasi_akademik'] == '0') {
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-danger">Ditolak</span>';
+                                                } elseif ($Data['konfirmasi_akademik'] == '2') {
+                                                    $confirm = '<span class="status_akademik badge badge-rounded badge-warning">Diproses</span>';
+                                                }
+                                            ?>
+                                            <td class="th-sm"><?= $confirm ?></td>
+                                            <td class="th-sm">
+                                                <?php if ($Data['konfirmasi_akademik'] == 1): ?>
+                                                    <a href="#" class="btn btn-sm btn-secondary disabled" style="opacity: 0.5;">
+                                                        <i class="la la-pencil"></i>
+                                                    </a>
+                                                <?php else: ?>                                            
+                                                    <a href="<?= esc(base_url('/user/akademik/edit/' . $Data['uuid_la']), 'url') ?>"
+                                                        class="btn btn-sm btn-primary">
+                                                        <i class="la la-pencil"></i>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif;?>
                                 </tbody>
                             </table>
                         </div>
