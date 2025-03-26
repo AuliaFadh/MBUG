@@ -10,7 +10,7 @@ class userModel extends Model
     protected $primaryKey       = 'id_user';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_user', 'username', 'password', 'hak_akses', 'last_login', 'status_user'];
+    protected $allowedFields    = ['id_user','uuid_user', 'username', 'password', 'hak_akses', 'last_login', 'status_user'];
 
     public function AllData()
     {

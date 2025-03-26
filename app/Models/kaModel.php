@@ -10,7 +10,7 @@ class kaModel extends Model
     protected $primaryKey       = 'id_keaktifan';
 
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_beasiswa', 'id_penerima', 'semester', 'tahun_ajaran', 'krs', 'jumlah_ditagihkan', 'jumlah_potongan', 'blanko_pembayaran', 'bukti_pembayaran','konf_ket_keaktifan','konfirmasi_keaktifan'];
+    protected $allowedFields    = ['id_beasiswa','uuid_lk', 'id_penerima', 'semester', 'tahun_ajaran', 'krs', 'jumlah_ditagihkan', 'jumlah_potongan', 'blanko_pembayaran', 'bukti_pembayaran','konf_ket_keaktifan','konfirmasi_keaktifan'];
 
     public function GetProcessData(){
         return $this->db->table('laporan_keaktifan')
