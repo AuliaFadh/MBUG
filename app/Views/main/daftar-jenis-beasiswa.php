@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin/home">
+                <li class="breadcrumb-item"><a href="<?= base_url('/admin/home')?>">
                         <img class="logo-abbr logo-home" src="<?= base_url('asset/img/Home.png'); ?>" alt="">
                         Dashboard</a></li>
                 <li class="breadcrumb-item active"><a href="/admin/beasiswa">Jenis Beasiswa</a></li>
@@ -25,25 +25,7 @@
                             <button onclick="exportToCSV()" class="btn btn-primary-download-excel">Download CSV</button>
                         </div>
                     </div>
-
-                    <!-- Notifikasi -->
-                    <?php if (session()->getFlashdata('berhasil')) : ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->getFlashdata('berhasil'); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (session()->getFlashdata('gagal')) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= session()->getFlashdata('gagal'); ?>
-                        </div>
-                    <?php endif; ?>
-                    <?php if (session()->getFlashdata('hapus')) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= session()->getFlashdata('hapus'); ?>
-                        </div>
-                    <?php endif; ?>
-
+                    
                     <!-- Tabel -->
                     <div class="card-body">
                     <div name="advance-filter" class="d-flex mb-4 flex-column align-items-end">
@@ -117,25 +99,25 @@
                                 <!-- Loop data  -->
                                 <tbody>
                                     <?php $no = 0; ?>
-                                    <?php foreach ($jb as $key => $value) : ?>
+                                    <?php foreach ($listDataJB as $key => $dataJB) : ?>
                                         <?php $no++; ?>
                                         <tr>
                                             <td class="th-sm"><strong><?= $no; ?></strong></td>
-                                            <td class="th-sm"><?= $value['id_beasiswa']; ?></td>
-                                            <td class="th-nm"><?= $value['jenis']; ?></td>
-                                            <td class="th-nm"><?= $value['asal']; ?></td>
-                                            <td class="th-sm"><?= $value['tahun_penerimaan']; ?></td>
-                                            <?php if ($value['status_beasiswa'] == "1") {
+                                            <td class="th-sm"><?= esc($dataJB['id_beasiswa']) ?></td>
+                                            <td class="th-nm"><?= esc($dataJB['jenis']) ?></td>
+                                            <td class="th-nm"><?= esc($dataJB['asal']) ?></td>
+                                            <td class="th-sm"><?= esc($dataJB['tahun_penerimaan']) ?></td>
+                                            <?php if ($dataJB['status_beasiswa'] == "1") {
                                                 $status = '<span  style="color:white;"class="status_jb badge badge-rounded badge-success">Aktif</span>';
-                                            } else if ($value['status_beasiswa'] == "0") {
+                                            } else if ($dataJB['status_beasiswa'] == "0") {
                                                 $status = '<span class=" status_jb badge badge-rounded badge-danger">Tidak Aktif</span>';
                                             }
                                             ?>
                                             <td class="th-sm"><?= $status; ?></td>
                                             <td class="th-sm">
-                                                <a href="<?= base_url('/admin/beasiswa/edit/' . $value['id_beasiswa']); ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                <a href="<?=  esc(base_url('/admin/beasiswa/edit/' . $dataJB['id_beasiswa']),'url') ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                 <!-- ul ini yng elemen button dari adib, jadi dia confirm boxnya udah keren jadi  -->
-                                                <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_beasiswa(<?= $value['id_beasiswa']; ?>)"><i class="la la-trash-o"></i></button>
+                                                <button class="btn btn-sm btn-danger" onclick="deleteConfirmation_beasiswa(<?= esc( $dataJB['id_beasiswa'] ,'js')?>)"><i class="la la-trash-o"></i></button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

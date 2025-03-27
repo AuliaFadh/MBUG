@@ -11,6 +11,14 @@ class laModel extends Model
     protected $returnType       = 'array';
     protected $allowedFields    = ['id_beasiswa','uuid_la', 'id_penerima', 'semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai','konf_ket_akademik','konfirmasi_akademik'];
 
+    public function AllData()
+    {
+        return $this->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
+            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
+            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
+            ->Get()->getResultArray();
+    }
+
     public function GetProcessData(){
         return $this->db->table('laporan_akademik')
             ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
@@ -18,31 +26,23 @@ class laModel extends Model
             ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
             ->where('konfirmasi_akademik',2)->Get()->getResultArray();
     }
-    public function update_konfirmasi_akademik($id, $status,$ket_konf) {
-        // Memperbarui status konfirmasi akademik berdasarkan ID yang diberikan
-        $data = [ 
-            'konfirmasi_akademik' => $status,
-            'konf_ket_akademik' => $ket_konf
-        ];
-        $this->db->table('laporan_akademik')->where('id_akademik', $id)->update($data);        
-    }
-    public function AllData()
-    {
-        return $this->db->table('laporan_akademik')
-            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
-            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
-            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-            ->Get()->getResultArray();
-    }
 
-    public function getData_User_UUID($uuid_la)
+
+    public function DetailData_uuid($uuid_la)
     {
         return $this->db->query("SELECT laporan_akademik.*, jenis_beasiswa.jenis 
             FROM laporan_akademik 
             LEFT JOIN jenis_beasiswa ON jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa 
-            WHERE laporan_akademik.uuid_la = ?", [$uuid_la])->getRow();
+            WHERE laporan_akademik.uuid_la = ?", [$uuid_la])->getRowArray();
     }
 
+    public function EditDetailData_uuid($uuid_la)
+    {
+        return $this->db->query("SELECT laporan_akademik.id_penerima, laporan_akademik.rangkuman_nilai, laporan_akademik.id_akademik
+            FROM laporan_akademik 
+            LEFT JOIN jenis_beasiswa ON jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa 
+            WHERE laporan_akademik.uuid_la = ?", [$uuid_la])->getRowArray();
+    }
 
     public function AllData_User_ID($id_penerima, $select = '*')
     {
@@ -75,7 +75,8 @@ class laModel extends Model
     
         return $query ?: [];
     }
-    
+
+  
     public function checkSemesterAndTA($id_penerima, $semester, $TA)
     {
         return $this->where('id_penerima', $id_penerima)
@@ -85,15 +86,46 @@ class laModel extends Model
                     ->groupEnd()
                     ->countAllResults() > 0; // Jika ada data, return true
     }
+    
+    public function GetDataSemesterAndTA($id_penerima, $semester, $tahun_ajaran)
+    {
+        return $this->select('laporan_akademik.id_akademik, laporan_akademik.konf_ket_akademik, laporan_akademik.konfirmasi_akademik')
+                    ->where('id_penerima', $id_penerima)
+                    ->groupStart()
+                        ->where('semester', $semester)
+                        ->orWhere('tahun_ajaran', $tahun_ajaran) // Pakai nama kolom yang sesuai di DB
+                    ->groupEnd()
+                    ->get()
+                    ->getResultArray(); // Pastikan getResultArray dipanggil setelah get()
+    }
 
 
+
+
+
+
+    public function update_konfirmasi_akademik($id, $status,$ket_konf) {
+        // Memperbarui status konfirmasi akademik berdasarkan ID yang diberikan
+        $data = [ 
+            'konfirmasi_akademik' => $status,
+            'konf_ket_akademik' => $ket_konf
+        ];
+        $this->db->table('laporan_akademik')->where('id_akademik', $id)->update($data);        
+    }
+    
+
+    
+
+
+   
+  
 
 
 
 
     public function InsertData($data)
     {
-        $this->db->table('laporan_akademik')->insert(($data));
+        $this->insert(($data));
     }
 
     public function DetailData($id_akademik)
@@ -109,6 +141,11 @@ class laModel extends Model
     {
         return $this->db->table('laporan_akademik')->where('id_akademik', $id)->update($data);
     }
+    public function UpdateDataUUID($uuid_la, $data)
+    {
+        return $this->db->table('laporan_akademik')->where('uuid_la', $uuid_la)->update($data);
+    }
+
 
     public function DeleteData($data)
     {
@@ -121,12 +158,12 @@ class laModel extends Model
         ->select('id_beasiswa')  // Ambil hanya kolom yang dibutuhkan
         ->where('jenis', $jenis)
         ->get()
-        ->getRow('id_beasiswa'); // Langsung ambil nilai id_beasiswa
+        ->getRowArray('id_beasiswa'); // Langsung ambil nilai id_beasiswa
 }
 
     public function getIDp($data)
     {
-        $p = $this->db->table('penerima_beasiswa')->where('npm', $data)->get()->getRow();
+        $p = $this->db->table('penerima_beasiswa')->where('npm', $data)->get()->getRowArray();
         $p = get_object_vars($p);
         return $p['id_penerima'];
     }
@@ -139,7 +176,7 @@ class laModel extends Model
 
     public function getDoc($id)
     {
-        $b = $this->db->table('laporan_akademik')->where('id_akademik', $id)->get()->getRow();
+        $b = $this->db->table('laporan_akademik')->where('id_akademik', $id)->get()->getRowArray();
         $b = get_object_vars($b);
         return $b['rangkuman_nilai'];
     }

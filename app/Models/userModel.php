@@ -28,7 +28,7 @@ class userModel extends Model
 
     public function DetailData($id_user)
     {
-        return $this->db->table('user')->where('id_user', $id_user)->get()->getRow();
+        return $this->db->table('user')->where('id_user', $id_user)->get()->getRowArray();
     }
     public function DetailDataUUID($uuid_user, $select = '*')
     {
@@ -57,7 +57,7 @@ class userModel extends Model
             ->select($select)            
             ->where('user.uuid_user', $uuid_user)
             ->get()
-            ->getRow();
+            ->getRowArray();
     }
 
     public function getData_username($uname)
@@ -65,7 +65,7 @@ class userModel extends Model
         return $this->db->table('user')
         ->join('penerima_beasiswa', 'penerima_beasiswa.npm=user.username', 'left')
         ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-        ->where('username', $uname)->get()->getRow();
+        ->where('username', $uname)->get()->getRowArray();
     }
     public function getAllUsersWithProfile()
 {

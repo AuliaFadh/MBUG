@@ -25,7 +25,10 @@
 <body>
     <?= $this->include('layout/navbar'); ?>
     <?= $this->include('layout/sidebar'); ?>
-    <?= $this->renderSection('content'); ?>
+    <div class="content-body">
+    <?= $this->include('components/notification'); ?>
+        <?= $this->renderSection('content'); ?>
+    </div>
     <?= $this->include('layout/footer'); ?>
 
 
@@ -33,11 +36,6 @@
     <!-- Javascript -->
     <script src="<?= base_url('asset/js/pop-up-delete-plugin.js'); ?>"></script>    
     <script src="<?= base_url('asset/js/custom-find-and-fill.js') ?>"></script>    
-    <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/custom-csv-file.js'); ?>"></script>
-    <script src="<?= base_url('asset/js/custom-advance-filter.js'); ?>"></script>
-    
-
     <script src="<?= base_url('asset/vendor/global/global.min.js'); ?>"></script>
     <script src="<?= base_url('asset/js/deznav-init.js'); ?>"></script>
     <script src="<?= base_url('asset/vendor/bootstrap-select/dist/js/bootstrap-select.min.js'); ?>"></script>
@@ -68,9 +66,14 @@
 	<script src="<?= base_url('asset/js/plugins-init/chartjs-init.js'); ?>"></script>
 	<!-- Pickdate -->
     <script src="<?= base_url('asset/js/plugins-init/pickadate-init.js'); ?>"></script>
-    
+
+    <script src="<?= base_url('asset/js/custom-js.js'); ?>"></script>
     <script src="<?= base_url('asset/js/sweetalert2.all.min.js'); ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    <script src="<?= base_url('asset/js/custom-csv-file.js'); ?>"></script>
+    <script src="<?= base_url('asset/js/custom-advance-filter.js'); ?>"></script>
 
 </body>
 

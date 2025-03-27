@@ -54,3 +54,37 @@ INSERT INTO jenis_beasiswa (jenis, asal, tahun_penerimaan, status_beasiswa) VALU
 ('Beasiswa Keterampilan Khusus', 'Universitas Gunadarma', '2023', 1),
 ('Beasiswa Peningkatan Mutu', 'Universitas Gunadarma', '2022', 1),
 ('Beasiswa Prestasi IT Tingkat Lanjut', 'Perusahaan Teknologi XYZ', '2024', 1);
+
+INSERT INTO program_studi (id_prodi, nama_prodi, fakultas_prodi, akreditasi_prodi, jenjang_prodi, status_prodi) VALUES
+(11201, 'S1-Kedokteran', 'Fakultas Kedokteran', 'B', 'S1', 1),
+(11901, 'PR-Pendidikan Profesi Dokter', 'Fakultas Kedokteran', 'C', 'PR', 1),
+(15201, 'S1-Kebidanan', 'Fakultas Ilmu Kesehatan dan Farmasi', 'Baik', 'S1', 1),
+(15901, 'PR-Pendidikan Profesi Bidan', 'Fakultas Ilmu Kesehatan dan Farmasi', 'Baik', 'PR', 1),
+(20201, 'S1-Teknik Elektro', 'Fakultas Teknologi Industri', 'Unggul', 'S1', 1),
+(21201, 'S1-Teknik Mesin', 'Fakultas Teknologi Industri', 'A', 'S1', 1),
+(22201, 'S1-Teknik Sipil', 'Fakultas Teknik Sipil dan Perencanaan', 'Unggul', 'S1', 1),
+(22204, 'S1-Teknik Sipil (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(23201, 'S1-Arsitektur', 'Fakultas Teknik Sipil dan Perencanaan', 'Unggul', 'S1', 1),
+(23202, 'S1-Arsitektur (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(26201, 'S1-Teknik Industri', 'Fakultas Teknologi Industri', 'Unggul', 'S1', 1),
+(48201, 'S1-Farmasi', 'Fakultas Ilmu Kesehatan dan Farmasi', 'Baik Sekali', 'S1', 1),
+(54211, 'S1-Agroteknologi', 'Fakultas Teknologi Industri', 'B', 'S1', 1),
+(55201, 'S1-Informatika', 'Fakultas Teknologi Industri', 'Unggul', 'S1', 1),
+(55210, 'S1-Informatika (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(56201, 'S1-Sistem Komputer', 'Fakultas Ilmu Komputer dan Teknologi Informasi', 'Unggul', 'S1', 1),
+(56401, 'D3-Teknik Komputer', 'Program Diploma', 'Unggul', 'D3', 1),
+(57201, 'S1-Sistem Informasi', 'Fakultas Ilmu Komputer dan Teknologi Informasi', 'Unggul', 'S1', 1),
+(57208, 'S1-Sistem Informasi (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(57401, 'D3-Manajemen Informatika', 'Program Diploma', 'Unggul', 'D3', 1),
+(60202, 'S1-Ekonomi Syariah', 'Fakultas Ekonomi', 'Baik Sekali', 'S1', 1),
+(61201, 'S1-Manajemen', 'Fakultas Ekonomi', 'Unggul', 'S1', 1),
+(61217, 'S1-Manajemen (KPPU)', 'Program Studi Diluar Kampus Utama', 'Baik', 'S1', 1),
+(61404, 'D3-Manajemen Pemasaran', 'Program Diploma', 'Baik Sekali', 'D3', 1),
+(61406, 'D3-Manajemen Keuangan', 'Program Diploma', 'Baik Sekali', 'D3', 1);
+
+
+INSERT INTO program_studi (id_tahun, nama_tahun, semester_tahun,mulai_tahun_ajaran,selesai_tahun_ajaran,queue_tahun) VALUES
+(1,'ATA 2000/2001',1,2000,2001,2000200101)
+
+INSERT INTO user (id_user,uuid_user,username,password,hak_akses,last_login,status_user) VALUES
+(1,'lnjfnljns-dsada','superadmin','$2y$10$Y97r1hv3.Hk5k0ssESUpmO.Eao7EBwherCSqWneH1oHNXZYUk.nvi',1,'2025-03-19',1)

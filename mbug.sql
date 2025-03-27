@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jan 2025 pada 04.35
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Waktu pembuatan: 26 Mar 2025 pada 10.50
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,6 +53,7 @@ INSERT INTO `jenis_beasiswa` (`id_beasiswa`, `jenis`, `asal`, `tahun_penerimaan`
 
 CREATE TABLE `laporan_akademik` (
   `id_akademik` int(10) NOT NULL,
+  `uuid_la` char(36) NOT NULL COMMENT 'Key untuk open public',
   `id_beasiswa` int(3) NOT NULL,
   `id_penerima` int(8) NOT NULL,
   `semester` int(2) NOT NULL,
@@ -69,17 +70,18 @@ CREATE TABLE `laporan_akademik` (
 -- Dumping data untuk tabel `laporan_akademik`
 --
 
-INSERT INTO `laporan_akademik` (`id_akademik`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `ipk`, `ipk_lokal`, `ipk_uu`, `rangkuman_nilai`, `konf_ket_akademik`, `konfirmasi_akademik`) VALUES
-(1, 1, 1, 6, 'ATA 2001/2002', 3.93, 3.91, 4, '1731672840_c53bb3bbf080b6f1bdca.pdf', 'tes', 2),
-(2, 1, 1, 5, 'PTA 2000/2001', 4, 4, 4, '1717600725_64e67d3716770ed67774.pdf', '', 1),
-(4, 1, 4, 4, 'PTA 2004/2005', 3.5, 3, 4, '1731465578_d52cd7bd1f06d3a64220.pdf', 'oke  bener', 1),
-(5, 17, 1, 8, 'ATA 2004/2005', 4, 4, 4, '1731672949_2ced6f01916e848540d7.pdf', 'salah cok', 0),
-(6, 17, 4, 6, 'PTA 2000/2001', 3, 3, 1, '1731499673_6372792a1e52e776dcf9.pdf', '', 2),
-(7, 1, 1, 3, 'PTA 2002/2003', 4, 4, 4, '1731672878_026e6bc3f40ad74eb3e3.pdf', 'coba laho', 2),
-(8, 1, 4, 4, 'PTA 2000/2001', 3, 3, 3, '1731453408_b9d1cd0fa86d1a1b2dc3.pdf', 'd', 1),
-(9, 1, 1, 2, 'PTA 2000/2001', 2, 2, 2, '1731464027_7091cfdcb0f292e1dd39.pdf', 'dsada', 1),
-(10, 17, 4, 4, 'PTA 2000/2001', 4, 4, 4, '1731486369_fe52038b409e8f9b98ff.pdf', NULL, 2),
-(11, 1, 4, 4, 'PTA 2000/2001', 4, 4, 4, '1731488655_55398c93c019a5b996f5.pdf', NULL, 2);
+INSERT INTO `laporan_akademik` (`id_akademik`, `uuid_la`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `ipk`, `ipk_lokal`, `ipk_uu`, `rangkuman_nilai`, `konf_ket_akademik`, `konfirmasi_akademik`) VALUES
+(1, '7b68926b-06bd-11f0-8731-5d35f324d7cb', 1, 1, 6, 'ATA 2001/2002', 3.93, 3.91, 4, '1731672840_c53bb3bbf080b6f1bdca.pdf', 'tes', 2),
+(2, '7b68a136-06bd-11f0-8731-5d35f324d7cb', 1, 1, 5, 'PTA 2000/2001', 4, 4, 4, '1717600725_64e67d3716770ed67774.pdf', '', 1),
+(4, '7b68a1be-06bd-11f0-8731-5d35f324d7cb', 1, 4, 4, 'PTA 2004/2005', 3.5, 3, 4, '1731465578_d52cd7bd1f06d3a64220.pdf', 'oke  bener', 1),
+(5, '7b68a216-06bd-11f0-8731-5d35f324d7cb', 17, 1, 8, 'ATA 2004/2005', 4, 4, 4, '1731672949_2ced6f01916e848540d7.pdf', 'salah cok', 0),
+(6, '7b68a270-06bd-11f0-8731-5d35f324d7cb', 17, 4, 6, 'PTA 2000/2001', 3, 3, 1, '1731499673_6372792a1e52e776dcf9.pdf', '', 2),
+(7, '7b68a39c-06bd-11f0-8731-5d35f324d7cb', 1, 1, 3, 'PTA 2002/2003', 4, 4, 4, '1731672878_026e6bc3f40ad74eb3e3.pdf', 'coba laho', 2),
+(8, '7b68a3f8-06bd-11f0-8731-5d35f324d7cb', 1, 4, 4, 'PTA 2000/2001', 3, 3, 3, '1731453408_b9d1cd0fa86d1a1b2dc3.pdf', 'd', 1),
+(9, '7b68a590-06bd-11f0-8731-5d35f324d7cb', 1, 1, 2, 'PTA 2000/2001', 2, 2, 2, '1731464027_7091cfdcb0f292e1dd39.pdf', 'dsada', 1),
+(10, '7b68a5e3-06bd-11f0-8731-5d35f324d7cb', 17, 4, 4, 'PTA 2000/2001', 4, 4, 4, '1731486369_fe52038b409e8f9b98ff.pdf', NULL, 2),
+(11, '7b68a646-06bd-11f0-8731-5d35f324d7cb', 1, 4, 4, 'PTA 2000/2001', 4, 4, 4, '1731488655_55398c93c019a5b996f5.pdf', NULL, 2),
+(12, '7b68a69d-06bd-11f0-8731-5d35f324d7cb', 17, 4, 1, 'PTA 2001/2002', 2, 3.1, 3.1, '1742382369_80312f955368f856045f.pdf', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -89,6 +91,7 @@ INSERT INTO `laporan_akademik` (`id_akademik`, `id_beasiswa`, `id_penerima`, `se
 
 CREATE TABLE `laporan_keaktifan` (
   `id_keaktifan` int(10) NOT NULL,
+  `uuid_lk` char(36) NOT NULL COMMENT 'Key untuk open public',
   `id_beasiswa` int(3) NOT NULL,
   `id_penerima` int(8) NOT NULL,
   `semester` int(2) NOT NULL,
@@ -106,15 +109,15 @@ CREATE TABLE `laporan_keaktifan` (
 -- Dumping data untuk tabel `laporan_keaktifan`
 --
 
-INSERT INTO `laporan_keaktifan` (`id_keaktifan`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `krs`, `jumlah_ditagihkan`, `jumlah_potongan`, `blanko_pembayaran`, `bukti_pembayaran`, `konf_ket_keaktifan`, `konfirmasi_keaktifan`) VALUES
-(1, 1, 1, 6, 'PTA 2023/2024', '1717601345_d86a9b78658c5572f041.pdf', 11000000, 10000000, '1717601345_6f4dbb06af31b8be4ee1.pdf', '1717601345_4e47edf8aa5281dd078f.pdf', '', 1),
-(2, 17, 4, 6, 'PTA 2022/2023', '1731466031_0480b9458012a3a70f3f.pdf', 8000000, 4000000, '1731466031_6fe12efe7f2e00b2f4f0.pdf', '1731466031_ec2701aee6a54fa1aefe.pdf', '', 2),
-(3, 17, 1, 4, 'ATA 2021/2022', '1692865568_151a7909860328b5c7a2.pdf', 10000000, 6000000, '1692865568_4084607a77ac6a271e42.pdf', '1692865568_aabdcf12683eaa66a763.pdf', NULL, 1),
-(4, 1, 1, 3, 'PTA 2021/2022', '1692865896_e80f30f80d2447665486.pdf', 11680000, 0, '1692865896_3859679e8a0f73abed92.pdf', '1692865896_1c7b18eca5bcf197aac8.pdf', NULL, 2),
-(5, 1, 13, 5, 'PTA 2000/2001', '1731460429_a3c07cdb1bd2eee32725.pdf', 222222, 3333344, '1731460429_d65e4dd1f81832be1d3e.pdf', '1731460429_738b3b68c165150d8f9a.pdf', NULL, 2),
-(6, 1, 4, 2, 'PTA 2000/2001', '1731491870_2860ad2919232c9116bf.pdf', 222222, 12123121, '1731491870_ff40b7363bc0191467c5.pdf', '1731491870_ab593189480b4a7e79a2.pdf', NULL, 2),
-(7, 1, 4, 2, 'PTA 2000/2001', '1731492636_90ce296f72b98cbbf66f.pdf', 22, 222, '1731492636_9d6d1860d414533b737e.pdf', '1731492636_430942d5414a6c54b213.pdf', NULL, 2),
-(8, 17, 1, 2, 'ATA 2001/2002', '1731904233_1a1c168fb124cbc634c4.pdf', 20000, 939218, '1731904233_fda50713b3fedc337e38.pdf', '1731904233_81bd187feb53a990e145.pdf', NULL, 2);
+INSERT INTO `laporan_keaktifan` (`id_keaktifan`, `uuid_lk`, `id_beasiswa`, `id_penerima`, `semester`, `tahun_ajaran`, `krs`, `jumlah_ditagihkan`, `jumlah_potongan`, `blanko_pembayaran`, `bukti_pembayaran`, `konf_ket_keaktifan`, `konfirmasi_keaktifan`) VALUES
+(1, 'ec2198a1-06bd-11f0-8731-5d35f324d7cb', 1, 1, 6, 'PTA 2023/2024', '1717601345_d86a9b78658c5572f041.pdf', 11000000, 10000000, '1717601345_6f4dbb06af31b8be4ee1.pdf', '1717601345_4e47edf8aa5281dd078f.pdf', '', 1),
+(2, 'ec21c12a-06bd-11f0-8731-5d35f324d7cb', 17, 4, 6, 'PTA 2022/2023', '1731466031_0480b9458012a3a70f3f.pdf', 8000000, 400000, '1731466031_6fe12efe7f2e00b2f4f0.pdf', '1731466031_ec2701aee6a54fa1aefe.pdf', '', 2),
+(3, 'ec21c211-06bd-11f0-8731-5d35f324d7cb', 17, 1, 4, 'ATA 2021/2022', '1692865568_151a7909860328b5c7a2.pdf', 10000000, 6000000, '1692865568_4084607a77ac6a271e42.pdf', '1692865568_aabdcf12683eaa66a763.pdf', NULL, 1),
+(4, 'ec21c267-06bd-11f0-8731-5d35f324d7cb', 1, 1, 3, 'PTA 2021/2022', '1692865896_e80f30f80d2447665486.pdf', 11680000, 0, '1692865896_3859679e8a0f73abed92.pdf', '1692865896_1c7b18eca5bcf197aac8.pdf', NULL, 2),
+(5, 'ec21c2b2-06bd-11f0-8731-5d35f324d7cb', 1, 13, 5, 'PTA 2000/2001', '1731460429_a3c07cdb1bd2eee32725.pdf', 222222, 3333344, '1731460429_d65e4dd1f81832be1d3e.pdf', '1731460429_738b3b68c165150d8f9a.pdf', NULL, 2),
+(6, 'ec21c2ff-06bd-11f0-8731-5d35f324d7cb', 1, 4, 2, 'PTA 2000/2001', '1731491870_2860ad2919232c9116bf.pdf', 222222, 12123121, '1731491870_ff40b7363bc0191467c5.pdf', '1731491870_ab593189480b4a7e79a2.pdf', NULL, 2),
+(7, 'ec21c346-06bd-11f0-8731-5d35f324d7cb', 1, 4, 2, 'PTA 2000/2001', '1731492636_90ce296f72b98cbbf66f.pdf', 22, 222, '1731492636_9d6d1860d414533b737e.pdf', '1731492636_430942d5414a6c54b213.pdf', NULL, 2),
+(8, 'ec21c38c-06bd-11f0-8731-5d35f324d7cb', 17, 1, 2, 'ATA 2001/2002', '1731904233_1a1c168fb124cbc634c4.pdf', 20000, 939218, '1731904233_fda50713b3fedc337e38.pdf', '1731904233_81bd187feb53a990e145.pdf', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -124,6 +127,7 @@ INSERT INTO `laporan_keaktifan` (`id_keaktifan`, `id_beasiswa`, `id_penerima`, `
 
 CREATE TABLE `laporan_mbkm` (
   `id_mbkm` int(10) NOT NULL,
+  `uuid_mbkm` char(36) NOT NULL COMMENT 'Key untuk open public',
   `id_beasiswa` int(3) NOT NULL,
   `id_penerima` int(8) NOT NULL,
   `nama_mbkm` varchar(100) NOT NULL,
@@ -138,12 +142,12 @@ CREATE TABLE `laporan_mbkm` (
 -- Dumping data untuk tabel `laporan_mbkm`
 --
 
-INSERT INTO `laporan_mbkm` (`id_mbkm`, `id_beasiswa`, `id_penerima`, `nama_mbkm`, `jenis_mbkm`, `periode`, `keterangan_mbkm`, `konf_ket_mbkm`, `konfirmasi_mbkm`) VALUES
-(1, 1, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2023, 'cek', '', 2),
-(2, 17, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2021, '--', NULL, 1),
-(3, 18, 1, 'Bangkit Academy 2024', 'Studi/Proyek Independen', 2024, 'Lulus Mobile Development Path', '', 1),
-(4, 18, 4, 'VV', 'Studi/Proyek Independen', 2023, 'xxx', 'test', 0),
-(5, 18, 4, 'dddd', 'Pengabdian Mahasiswa kepada Masyarakat', 222, 'dsada', NULL, 2);
+INSERT INTO `laporan_mbkm` (`id_mbkm`, `uuid_mbkm`, `id_beasiswa`, `id_penerima`, `nama_mbkm`, `jenis_mbkm`, `periode`, `keterangan_mbkm`, `konf_ket_mbkm`, `konfirmasi_mbkm`) VALUES
+(1, '11d5292b-06be-11f0-8731-5d35f324d7cb', 1, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2023, 'cek', '', 2),
+(2, '11d53aff-06be-11f0-8731-5d35f324d7cb', 17, 1, 'Bangkit Academy 2023', 'Studi/Proyek Independen', 2021, '--', NULL, 1),
+(3, '11d53b98-06be-11f0-8731-5d35f324d7cb', 18, 1, 'Bangkit Academy 2024', 'Studi/Proyek Independen', 2024, 'Lulus Mobile Development Path', '', 1),
+(4, '11d53bf2-06be-11f0-8731-5d35f324d7cb', 18, 4, 'VV', 'Studi/Proyek Independen', 2023, 'xxx', 'test', 0),
+(5, '11d542ff-06be-11f0-8731-5d35f324d7cb', 18, 4, 'dddd', 'Pengabdian Mahasiswa kepada Masyarakat', 222, 'dsada', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -153,6 +157,7 @@ INSERT INTO `laporan_mbkm` (`id_mbkm`, `id_beasiswa`, `id_penerima`, `nama_mbkm`
 
 CREATE TABLE `laporan_prestasi` (
   `id_prestasi` int(10) NOT NULL,
+  `uuid_lp` char(36) NOT NULL COMMENT 'Key untuk open public',
   `id_beasiswa` int(3) NOT NULL,
   `id_penerima` int(8) NOT NULL,
   `tingkat` varchar(50) NOT NULL,
@@ -173,13 +178,13 @@ CREATE TABLE `laporan_prestasi` (
 -- Dumping data untuk tabel `laporan_prestasi`
 --
 
-INSERT INTO `laporan_prestasi` (`id_prestasi`, `id_beasiswa`, `id_penerima`, `tingkat`, `jenis_prestasi`, `nama_kegiatan`, `capaian`, `tempat`, `tanggal_mulai`, `tanggal_selesai`, `penyelenggara`, `bukti_prestasi`, `publikasi`, `konf_ket_prestasi`, `konfirmasi_prestasi`) VALUES
-(1, 18, 1, 'Internasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2024-10-08', '2024-10-28', 'Google, GoTo, Traveloka', '1731494790_478c9446956c60007b61.pdf', 'https://www.google.com/', 'tes', 2),
-(4, 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Good', 'Rumah', '2024-08-20', '2024-08-31', 'Traveloka', '1731470552_043567d7df0dce02bccf.pdf', 'https://www.google.com/', '', 1),
-(5, 18, 4, 'Provinsi', 0, 'Magang Mandiri', 'Lainnya', 'Rumah', '2024-08-18', '2024-08-19', 'Isa', '1731469872_e99aa155119fbd7ec249.pdf', 'https://www.google.com/', NULL, 2),
-(6, 18, 1, 'Nasional', 0, 'Bangkit Academy 2024', 'Partisipatif', 'Gedung D', '2023-08-23', '2023-08-24', 'Traveloka', '-', 'https://www.google.com/', NULL, 2),
-(7, 1, 1, 'Wilayah', 0, 'd', 'xxx', 'ddd', '2024-11-12', '2024-11-13', 'dd', '1731471014_5bc6c5481f4c0cd12b2e.pdf', 'http://localhost:8080/admin/prestasi/add', NULL, 0),
-(8, 18, 4, 'Internasional', 1, 'dddd', 'Partisipatif', 'dddd', '2024-11-12', '2024-11-14', 'dddd', '1731488741_1f685c1c7f2002607a33.pdf', 'http://localhost:8080/user/prestasi/add', NULL, 2);
+INSERT INTO `laporan_prestasi` (`id_prestasi`, `uuid_lp`, `id_beasiswa`, `id_penerima`, `tingkat`, `jenis_prestasi`, `nama_kegiatan`, `capaian`, `tempat`, `tanggal_mulai`, `tanggal_selesai`, `penyelenggara`, `bukti_prestasi`, `publikasi`, `konf_ket_prestasi`, `konfirmasi_prestasi`) VALUES
+(1, '3403068e-06be-11f0-8731-5d35f324d7cb', 18, 1, 'Internasional', 0, 'Bangkit Academy 2023', 'Partisipatif', 'Rumah', '2024-10-08', '2024-10-28', 'Google, GoTo, Traveloka', '1731494790_478c9446956c60007b61.pdf', 'https://www.google.com/', 'tes', 2),
+(4, '3403135d-06be-11f0-8731-5d35f324d7cb', 1, 1, 'Nasional', 0, 'Bangkit Academy 2023', 'Good', 'Rumah', '2024-08-20', '2024-08-31', 'Traveloka', '1731470552_043567d7df0dce02bccf.pdf', 'https://www.google.com/', '', 1),
+(5, '340313ff-06be-11f0-8731-5d35f324d7cb', 18, 4, 'Provinsi', 0, 'Magang Mandiri', 'Lainnya', 'Rumah', '2024-08-18', '2024-08-19', 'Isa', '1731469872_e99aa155119fbd7ec249.pdf', 'https://www.google.com/', NULL, 2),
+(6, '34031464-06be-11f0-8731-5d35f324d7cb', 18, 1, 'Nasional', 0, 'Bangkit Academy 2024', 'Partisipatif', 'Gedung D', '2023-08-23', '2023-08-24', 'Traveloka', '-', 'https://www.google.com/', NULL, 2),
+(7, '340314c0-06be-11f0-8731-5d35f324d7cb', 1, 1, 'Wilayah', 0, 'd', 'xxx', 'ddd', '2024-11-12', '2024-11-13', 'dd', '1731471014_5bc6c5481f4c0cd12b2e.pdf', 'http://localhost:8080/admin/prestasi/add', NULL, 0),
+(8, '34031512-06be-11f0-8731-5d35f324d7cb', 18, 4, 'Internasional', 1, 'dddd', 'Partisipatif', 'dddd', '2024-11-12', '2024-11-14', 'dddd', '1731488741_1f685c1c7f2002607a33.pdf', 'http://localhost:8080/user/prestasi/add', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -338,7 +343,31 @@ INSERT INTO `log_aktivitas` (`id_log`, `log_last_login`, `log_username`) VALUES
 (117, '2024-11-19 18:57:16', '10120700'),
 (118, '2024-12-24 21:36:27', '10120700'),
 (119, '2025-01-09 14:21:40', '10120700'),
-(120, '2025-01-16 08:53:56', '10120700');
+(120, '2025-01-16 08:53:56', '10120700'),
+(121, '2025-02-06 09:30:00', '10120700'),
+(122, '2025-03-14 07:37:44', '10120700'),
+(123, '2025-03-14 09:19:25', '10120699'),
+(124, '2025-03-14 09:26:01', '10120699'),
+(125, '2025-03-14 09:38:41', '10120699'),
+(126, '2025-03-14 11:10:02', '10120699'),
+(127, '2025-03-14 17:29:50', '10120699'),
+(128, '2025-03-14 17:37:54', '10120699'),
+(129, '2025-03-14 18:06:25', '10120699'),
+(130, '2025-03-17 17:33:37', '10120699'),
+(131, '2025-03-17 17:34:43', '10120699'),
+(132, '2025-03-17 17:35:04', '10120699'),
+(133, '2025-03-17 17:36:57', '10120699'),
+(134, '2025-03-17 17:37:18', '10120699'),
+(135, '2025-03-17 17:40:20', '10120699'),
+(136, '2025-03-17 17:40:30', '10120699'),
+(137, '2025-03-17 17:40:49', '10120699'),
+(138, '2025-03-18 12:08:02', '10120699'),
+(139, '2025-03-18 14:28:43', '10120699'),
+(140, '2025-03-19 07:44:20', '10120699'),
+(141, '2025-03-19 08:49:50', '10120699'),
+(142, '2025-03-19 17:00:48', '10120699'),
+(143, '2025-03-19 17:08:08', '10120699'),
+(144, '2025-03-19 17:18:48', '10120699');
 
 -- --------------------------------------------------------
 
@@ -348,6 +377,7 @@ INSERT INTO `log_aktivitas` (`id_log`, `log_last_login`, `log_username`) VALUES
 
 CREATE TABLE `penerima_beasiswa` (
   `id_penerima` int(8) NOT NULL,
+  `uuid_pb` char(36) NOT NULL COMMENT 'Key untuk open public',
   `nama` varchar(100) NOT NULL,
   `npm` varchar(10) NOT NULL,
   `id_prodi` varchar(50) NOT NULL,
@@ -364,10 +394,10 @@ CREATE TABLE `penerima_beasiswa` (
 -- Dumping data untuk tabel `penerima_beasiswa`
 --
 
-INSERT INTO `penerima_beasiswa` (`id_penerima`, `nama`, `npm`, `id_prodi`, `alamat`, `no_hp`, `ppicture`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
-(1, 'Muhammad Aulia Nur Fadhillah', '10120698', '57201', 'Depok Tiga', '081237275191', '1728608942_6bd2594155544f735ce1.png', 1, 2022, 2, ''),
-(4, 'Isa Tarmana Mustopa', '10120699', '55201', 'sddasfasdas', '081288889999', '1717562096_50311d87853dd230e5ac.jpg', 1, 1981, 1, '-'),
-(13, 'Naufal Nur', '10120701', '20201', 'bandung', '081266778899', NULL, 1, 2024, 1, '');
+INSERT INTO `penerima_beasiswa` (`id_penerima`, `uuid_pb`, `nama`, `npm`, `id_prodi`, `alamat`, `no_hp`, `ppicture`, `jenis_kelamin`, `tahun_diterima`, `status_penerima`, `keterangan`) VALUES
+(1, '615946e9-06be-11f0-8731-5d35f324d7cb', 'Muhammad Aulia Nur Fadhillah', '10120698', '57201', 'Depok Tiga', '081237275191', '1728608942_6bd2594155544f735ce1.png', 1, 2022, 2, ''),
+(4, '6159567e-06be-11f0-8731-5d35f324d7cb', 'Isa Tarmana Mustopa', '10120699', '55201', 'sddasfasdas', '081220952593', '1742380738_fb572edeb5fd15f3e8e6.png', 1, 1981, 1, '-'),
+(13, '6159571c-06be-11f0-8731-5d35f324d7cb', 'Naufal Nur', '10120701', '20201', 'bandung', '081266778899', NULL, 1, 2024, 1, '');
 
 -- --------------------------------------------------------
 
@@ -481,8 +511,9 @@ INSERT INTO `tahun_ajaran` (`id_tahun`, `nama_tahun`, `semester_tahun`, `mulai_t
 
 CREATE TABLE `user` (
   `id_user` int(8) NOT NULL,
+  `uuid_user` char(36) NOT NULL COMMENT 'key untuk open public',
   `username` varchar(10) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
+  `password` varchar(225) DEFAULT NULL,
   `hak_akses` tinyint(1) NOT NULL,
   `last_login` date DEFAULT NULL,
   `status_user` tinyint(1) NOT NULL
@@ -492,12 +523,12 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`, `hak_akses`, `last_login`, `status_user`) VALUES
-(1, '10120698', 'owlowl', 0, '2024-10-11', 1),
-(2, '10120699', '12345678', 0, '2024-11-13', 1),
-(3, '10120700', 'umul', 1, '2025-01-16', 1),
-(8, '19120701', 'kwekkwek', 1, '2023-08-23', 1),
-(9, '10120701', '10120701.beasiswa', 0, '2024-06-05', 1);
+INSERT INTO `user` (`id_user`, `uuid_user`, `username`, `password`, `hak_akses`, `last_login`, `status_user`) VALUES
+(1, '876b1af0-06ba-11f0-8731-5d35f324d7cb', '10120698', 'owlowl', 0, '2024-10-11', 1),
+(2, '876b2dd0-06ba-11f0-8731-5d35f324d7cb', '10120699', '$2y$10$uZhmP5OR8rqEq9ZYA6x5zOOjXDufM9XbPpMidgbxtQsEiIM3PWQ5.', 0, '2025-03-19', 1),
+(3, '876b2e51-06ba-11f0-8731-5d35f324d7cb', '10120700', 'umul', 1, '2025-03-14', 1),
+(8, '876b2e9a-06ba-11f0-8731-5d35f324d7cb', '19120701', 'kwekkwek', 1, '2023-08-23', 1),
+(9, '876b2ed9-06ba-11f0-8731-5d35f324d7cb', '10120701', '10120701.beasiswa', 0, '2024-06-05', 1);
 
 --
 -- Indexes for dumped tables
@@ -507,31 +538,38 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `hak_akses`, `last_login`
 -- Indeks untuk tabel `jenis_beasiswa`
 --
 ALTER TABLE `jenis_beasiswa`
-  ADD PRIMARY KEY (`id_beasiswa`);
+  ADD PRIMARY KEY (`id_beasiswa`),
+  ADD KEY `Nama Beasiswa` (`jenis`),
+  ADD KEY `status` (`status_beasiswa`) USING BTREE;
 
 --
 -- Indeks untuk tabel `laporan_akademik`
 --
 ALTER TABLE `laporan_akademik`
-  ADD PRIMARY KEY (`id_akademik`);
+  ADD PRIMARY KEY (`id_akademik`),
+  ADD UNIQUE KEY `uuid_la` (`uuid_la`) USING BTREE,
+  ADD KEY `id_penerima` (`id_penerima`) USING BTREE;
 
 --
 -- Indeks untuk tabel `laporan_keaktifan`
 --
 ALTER TABLE `laporan_keaktifan`
-  ADD PRIMARY KEY (`id_keaktifan`);
+  ADD PRIMARY KEY (`id_keaktifan`),
+  ADD UNIQUE KEY `uuid_lk` (`uuid_lk`) USING BTREE;
 
 --
 -- Indeks untuk tabel `laporan_mbkm`
 --
 ALTER TABLE `laporan_mbkm`
-  ADD PRIMARY KEY (`id_mbkm`);
+  ADD PRIMARY KEY (`id_mbkm`),
+  ADD UNIQUE KEY `uuid_mbkm` (`uuid_mbkm`) USING BTREE;
 
 --
 -- Indeks untuk tabel `laporan_prestasi`
 --
 ALTER TABLE `laporan_prestasi`
-  ADD PRIMARY KEY (`id_prestasi`);
+  ADD PRIMARY KEY (`id_prestasi`),
+  ADD UNIQUE KEY `uuid_lp` (`uuid_lp`) USING BTREE;
 
 --
 -- Indeks untuk tabel `link_gform`
@@ -551,7 +589,8 @@ ALTER TABLE `log_aktivitas`
 --
 ALTER TABLE `penerima_beasiswa`
   ADD PRIMARY KEY (`id_penerima`),
-  ADD UNIQUE KEY `np` (`npm`);
+  ADD UNIQUE KEY `np` (`npm`),
+  ADD UNIQUE KEY `uuid_pb` (`uuid_pb`) USING BTREE;
 
 --
 -- Indeks untuk tabel `pengumuman`
@@ -580,6 +619,7 @@ ALTER TABLE `tahun_ajaran`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `uuid_user` (`uuid_user`) USING BTREE,
   ADD UNIQUE KEY `uname` (`username`);
 
 --
@@ -596,7 +636,7 @@ ALTER TABLE `jenis_beasiswa`
 -- AUTO_INCREMENT untuk tabel `laporan_akademik`
 --
 ALTER TABLE `laporan_akademik`
-  MODIFY `id_akademik` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_akademik` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `laporan_keaktifan`
@@ -626,7 +666,7 @@ ALTER TABLE `link_gform`
 -- AUTO_INCREMENT untuk tabel `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id_log` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT untuk tabel `penerima_beasiswa`

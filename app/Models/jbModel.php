@@ -27,9 +27,9 @@ class jbModel extends Model
         $this->insert(($data));
     }
 
-    public function DetailData($id_beasiswa)
+    public function DetailData_id($id_beasiswa)
     {      
-        return $this->query("SELECT * FROM jenis_beasiswa WHERE id_beasiswa",[$id_beasiswa])->getRow();
+        return $this->query("SELECT * FROM jenis_beasiswa WHERE id_beasiswa",[$id_beasiswa])->getRowArray();
     }
 
     public function UpdateData($id, $data)
@@ -40,5 +40,11 @@ class jbModel extends Model
     public function DeleteData($id_beasiswa)
     {
         return $this->delete($id_beasiswa);
+    }
+    public function GetID_jb($jenis){
+        return $this->select('jenis_beasiswa.id_beasiswa')
+        ->where('jenis',$jenis)
+        ->get()
+        ->getRowArray('id_beasiswa');
     }
 }

@@ -37,7 +37,7 @@ class pbModel extends Model
     {
         return $this->db->table('penerima_beasiswa')->
         join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-        ->where('id_penerima', $id_penerima)->get()->getRow();
+        ->where('id_penerima', $id_penerima)->get()->getRowArray();
     }
 
     public function DetailDataUUID($uuid_pb, $select = '*')
@@ -68,7 +68,7 @@ class pbModel extends Model
             ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
             ->where('penerima_beasiswa.uuid_pb', $uuid_pb)
             ->get()
-            ->getRow();
+            ->getRowArray();
     }
     
     public function DetailDataID($id_penerima, $select = '*')
@@ -99,7 +99,7 @@ class pbModel extends Model
             ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
             ->where('penerima_beasiswa.id_penerima', $id_penerima)
             ->get()
-            ->getRow();
+            ->getRowArray();
     }
     
 

@@ -29,7 +29,7 @@
                     <ul  class="navbar-nav header-right col-lg-6 d-flex justify-content-end">                     
                         <li class="nav-item">
                             <div class="nav-name-account" >
-                            <h4 style="padding: 0;margin:0;"><?= esc(session()->get('nama_user')) ?></h4>
+                             <h4 style="padding: 0;margin:0;"><?= esc(session()->get('nama_user')) ?></h4>
                                 <h5 style="padding: 0;margin:0;text-align: right; color:white ">Penerima Beasiswa
                                 <?php if (session()->get('status_user') == '1') {
                                             $status = '<span class="status-peserta badge badge-rounded badge-primary">Aktif</span>';

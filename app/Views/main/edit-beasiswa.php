@@ -24,16 +24,19 @@
 
                     <!-- Form Edit Daftar Jenis Beasiswa -->
                     <div class="card-body">
-                        <form action="/admin/beasiswa/cedit/<?= $mhs->id_beasiswa; ?>" method="post">
+                        <form action="<?=esc(base_url('/admin/beasiswa/cedit/'. $listDataJB->id_beasiswa),'url') ?>" method="post">
                             <?= csrf_field(); ?>
+                            <?php $validation_err = session('errors'); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= $mhs->jenis; ?>" type="text" class="form-control custom-textfield <?= ($validation->hasError('jenis')) ? ' is-invalid is-test' : ''; ?>" id="jenis" name="jenis" autofocus>
+                                            <input value="<?= esc( old('jenis' ?? $listDataJB->jenis),'attr') ?>" type="text" 
+                                            class="form-control custom-textfield 
+                                            <?= isset($validation_err['jenis']) ? ' is-invalid is-test' : '' ?>" id="jenis" name="jenis" autofocus>
                                             <div class="invalid-feedback">
-                                                <?= $validation->getError('jenis'); ?>
+                                            <?= $validation_err['jenis'] ?? '' ?>
                                             </div>
                                         </div>
                                     </div>
@@ -41,9 +44,10 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= $mhs->asal; ?>" type="text" class="form-control custom-textfield <?= ($validation->hasError('asal')) ? 'is-invalid' : ''; ?>" id="asal" name="asal">
+                                            <input value="<?= esc( old('asal' ?? $listDataJB->asal),'attr') ?>" type="text" class="form-control custom-textfield 
+                                            <?= isset($validation_err['asal']) ? ' is-invalid is-test' : '' ?>" id="asal" name="asal">
                                             <div class=" invalid-feedback">
-                                                <?= $validation->getError('asal'); ?>
+                                            <?= $validation_err['asal'] ?? '' ?>
                                             </div>
                                         </div>
                                     </div>
@@ -51,19 +55,19 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= $mhs->tahun_penerimaan; ?>" type="number" class="form-control custom-textfield col-lg-2 col-md-3 col-sm-3 <?= ($validation->hasError('tahun')) ? 'is-invalid' : ''; ?>" id="tahun" name="tahun">
+                                            <input value="<?= esc( old('tahun' ?? $listDataJB->tahun),'attr') ?>" type="number" class="form-control custom-textfield col-lg-2 col-md-3 col-sm-3 
+                                            <?= isset($validation_err['tahun']) ? ' is-invalid is-test' : '' ?>" id="tahun" name="tahun">
                                             <div class=" invalid-feedback">
-                                                <?= $validation->getError('tahun'); ?>
+                                            <?= $validation_err['tahun'] ?? '' ?>
                                             </div>
                                         </div>
                                     </div>
-
                                     
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="status" class="label-form">Status</label>
+                                        <label for="status_beasiswa" class="label-form">Status</label>
                                         
-                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="1"<?php echo (isset($mhs->status_beasiswa) && $mhs->status_beasiswa == '1') ? 'checked' : ''; ?>> Aktif<br>
-                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="0"<?php echo (isset($mhs->status_beasiswa) && $mhs->status_beasiswa == '0') ? 'checked' : ''; ?>> Tidak Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="1"  <?= old('status_beasiswa') == '1' ? 'checked' : '' ?>> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="0"  <?= old('status_beasiswa', '0') == '0' ? 'checked' : '' ?>> Tidak Aktif<br>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">

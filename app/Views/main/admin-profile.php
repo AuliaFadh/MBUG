@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="container1">
-                            <h3>Halo, <span id="Nama-Akun"><?= session()->get('username'); ?></span> </h3>
+                            <h3>Halo, <span id="Nama-Akun"><?= esc(session()->get('username') )?></span> </h3>
                         </div>
                     </div>
 
@@ -22,18 +22,7 @@
                                 <h4>Ingin Ubah Password?</h4>
                             </div>
 
-                            <!-- Notifikasi -->
-                            <?php if (session()->getFlashdata('pass_berhasil')) : ?>
-                                <div class="alert alert-success" role="alert">
-                                    <?= session()->getFlashdata('pass_berhasil'); ?>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if (session()->getFlashdata('pass_gagal')) : ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <?= session()->getFlashdata('pass_gagal'); ?>
-                                </div>
-                            <?php endif; ?>
+                        
 
                             <!-- Form ganti password -->
                             <div class="card-body">

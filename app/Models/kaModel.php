@@ -48,7 +48,7 @@ class kaModel extends Model
             ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_keaktifan.id_beasiswa', 'left')
             ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_keaktifan.id_penerima', 'left')
             ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-            ->where('id_keaktifan', $id_keaktifan)->get()->getRow();
+            ->where('id_keaktifan', $id_keaktifan)->get()->getRowArray();
     }
 
     public function UpdateData($id, $data)

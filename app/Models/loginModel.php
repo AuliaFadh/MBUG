@@ -9,10 +9,10 @@ class loginModel extends Model
     protected $table            = 'user';
     protected $primaryKey       = 'id_user';
 
-    public function login_check_a($username, $password)
-    {
-        return $this->db->table('user')
-        ->where(array('username' => $username, 'password' => $password))
+    public function login_check_a($username)
+    {       
+        return $this->db->table('user')        
+        ->where('username', $username)
         ->get()->getRowArray();
     }
 

@@ -7,9 +7,7 @@
 </div>
 
 <div id="main-wrapper">
-    <!--**********************************
-            Nav header start
-        ***********************************-->
+
     <div class="nav-header nav-custome" style="background-color: #C4C4C4;">
         <a href="/admin/home" class="brand-logo">
             <img class="logo-abbr" style="width: 100%;" src="https://gunadarma.ac.id/assets/images/logosmall.png" alt="">
@@ -22,14 +20,7 @@
                 <span class="line"></span><span class="line"></span><span class="line"></span>
             </div>
         </div>
-    </div>
-    <!--**********************************
-            Nav header end
-        ***********************************-->
-
-    <!--**********************************
-            Header startF
-        ***********************************-->
+    </div>   
     <div class="header" style="background-color: #C4C4C4; height: 90px;">
         <div class="header-content">
             <nav class="navbar navbar-expand">
@@ -102,7 +93,7 @@
 
                         <li class="nav-item">
                             <div class="nav-name-account" >
-                                <h4 style="padding: 0;margin:0;"><?= session()->get('username'); ?></h4>
+                                <h4 style="padding: 0;margin:0;"><?= esc(session()->get('username')) ?></h4>
                                 <h5 style="padding: 0;margin:0;text-align: right; color:white ">Admin</h5>
                             
                             
@@ -144,6 +135,3 @@
             </nav>
         </div>
     </div>
-    <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->

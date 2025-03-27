@@ -1,2 +1,15 @@
 - KURANG
 o AMAN
+
+
+Aturan Laporan Akademik User :
+
+1. Satu Laporan akademik adalah satu semester perkuliahan.
+2. Anda tidak dapat menambah laporan akademik saat semester atau tahun ajaran bernilai sama dengan laporan yang sudah dimasukkan. 
+    oleh sebab itu periksa laporan yang sudah dimasukkan dan revisi jika ada kesalahan.
+3. jika ditolak, maka periksa laporan dan edit atau revisi laporan tersebut.
+4. jika terlanjur membuat laporan untuk semester yang belum dilaksanakan atau dokumen yang diperlukan belum dimiliki, 
+    maka diamkan laporan tersebut dan revisi saat semester tersebut dilaksanakan atau dokumen sudah didapatkan.
+5. laporan dengan status diproses akan ditolak otomatis, saat anda mengubah laporan lain menggunakan semester atau tahun ajaran yang sama dengan laporan tersebut.
+6. Tidak dapat merevisi laporan jika semester atau tahun ajaran bernilai sama dengan laporan yang sudah disetujui.
+7. laporan yang disetujui tidak bisa direvisi.

@@ -38,45 +38,93 @@ class Admin extends BaseController
 
     public function login_admin()
     {
-        $data = [
+        $viewData = [
             'title' => 'Login Admin | Admin',
         ];
 
-        return view('main/admin-login', $data);
+        return view('main/admin-login', $viewData);
     }
 
     public function admin_login_check()
     {
+        $session = session();
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $check = $this->loginModel->login_check_a($username, $password);
+        if ($session->has('login_block_time') && time() < $session->get('login_block_time')) {
+            session()->setFlashdata('errors',            
+                ['general' => 'Terlalu banyak percobaan gagal. Coba lagi setelah '
+                .ceil(($session->get('login_block_time') - time())) . ' detik.']
+            );          
+            return redirect()->to(base_url('/admin/login'))->withInput();                    
+        }
 
-        if (is_null($check)) {
-            session()->setFlashdata('no_data', 'Username atau Password Salah');
-            return redirect()->to(base_url('/admin/login'));
-        } elseif ($check['hak_akses'] == '1') {
+        if ($session->get('login_attempts') >= 5) {
+            $session->set('login_block_time', time() + (3)); // Blokir selama 3 detik
+            $session->set('login_attempts', 0); 
+            session()->setFlashdata('errors',             
+                ['general' => 'Terlalu banyak percobaan gagal. Coba lagi dalam beberapa detik.']
+            );
+            return redirect()->to(base_url('/admin/login'))->withInput();            
+        }
+
+        $check = $this->loginModel->login_check_a($username);  
+        if (!$check || !password_verify($password, $check["password"])) {
+            $session->set('login_attempts', ($session->get('login_attempts') ?? 0) + 1);
+            session()->setFlashdata('errors',             
+                ['general' => 'Username atau Password salah.']
+            );
+            return redirect()->to(base_url('/admin/login'))->withInput();                       
+        }
+
+        if ($check["hak_akses"] == "1") {
+            
+            $session->remove('login_attempts');
+            $session->remove('login_block_time');
+            $session->regenerate(true);
+
+            $userData = [
+                'uuid_user' => $check["uuid_user"],                
+                'username' => $check["username"],
+                'nama_user' => $check["nama"],
+                'hak_akses' => $check["hak_akses"],
+                'status_user' => $check["status_user"],                
+                'islogin' => true,
+                'ip_address' => $this->request->getIPAddress(), // Tambahan proteksi
+                'user_agent' => $this->request->getUserAgent(), // Tambahan proteksi
+            ];
+            $session->set($userData);
+            
             $datalog = [
                 'log_last_login' => $this->logModel->getCurrentDate(),
-                'log_username' => $check['username'],
+                'log_username' => $check["username"],
             ];
-            $this->logModel->InsertData($datalog);
+            $this->logModel->InsertData($datalog); 
 
             $datamnj = [
-                'id_user' => $check['id_user'],
-                'username' => $check['username'],
-                'password' => $check['password'],
-                'hak_akses' => $check['hak_akses'],
                 'last_login' => $this->userModel->getCurrentDate(),
-                'status_user' => $check['status_user'],
             ];
-            $this->userModel->UpdateData($check['id_user'], $datamnj);
 
-            session()->set('username', $check['username']);
-            session()->set('hak_akses', $check['hak_akses']);
+            $this->userModel->UpdateData($check["id_user"], $datamnj);
 
-            return redirect()->to(base_url('/admin/home'));
-        } 
+            session()->setFlashdata('success',             
+                ['general' => 'Selamat datang ' . $check['nama'] . '!']
+            );
+            return redirect()->to(base_url('/admin/home'));              
+        } elseif ($check["hak_akses"] == "0") {
+            session()->setFlashdata('errors', ['general' => 'Akun terdaftar sebagai User.']);
+            return redirect()->to(base_url('/user/login'))->withHeaders(['Cache-Control' => 'no-store'])->send();
+            session()->destroy();
+            exit;               
+        } else {
+            session()->setFlashdata('errors', ['general' => 'Terjadi kesalahan, silakan coba lagi.']);
+            return redirect()->to(base_url('/admin/login'))->withHeaders(['Cache-Control' => 'no-store'])->send();
+            session()->destroy();
+            exit;                    
+        }
+
+
+        
     }
 
     public function logout_admin()
@@ -87,113 +135,125 @@ class Admin extends BaseController
 
     public function profile_admin()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
+        $session = session();    
+        $profile = $this->userModel->DetailDataUUID($session->get('uuid_user'));
+        if(!$profile){
+            session()->setFlashdata('errors',             
+                ['general' => 'Profile tidak ditemukan']
+            );
+            return redirect()->to(base_url('/admin/home'));
         }
-
-        $uname = session()->get('username');
-        $profile = $this->userModel->getData_username($uname);
-        $data = [
-            'title' => 'Profile | Admin',
+        $viewData = [
+            'title' => 'Profile | MBUG',          
             'profile' => $profile,
         ];
 
-        return view('main/admin-profile', $data);
+        return view('main/admin-profile', $viewData);
+
     }
 
-    public function cedit_profile($uname)
+    public function cedit_profile($uuid_user)
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
+        $session = session();
+        $uuid_session = $session->get('uuid_user');
+        $account = $this->userModel->DetailDataUUID($uuid_user);
+        if (!$account) {                       
+            session()->setFlashdata('errors',             
+                ['general' => 'User tidak ditemukan.']
+            );
+            return redirect()->to(base_url('/admin/home'));
+        }
+        if($account['uuid_user']!=$uuid_session){
+            session()->setFlashdata('errors',             
+                ['general' => 'Anda tidak memiliki izin.']
+            );            
+            return redirect()->to('/admin/home');
         }
 
-        if (
-            $this->validate([
-                'password_lama' => 'required|matches[password]',
-                'password_baru' => 'required',
-            ])
-        ) {
-            $penerima = $this->userModel->getData_username($uname);
-            $data = [
-                'id_user' => $penerima->id_user,
-                'username' => $penerima->username,
-                'password' => $this->request->getPost('password_baru'),
-                'hak_akses' => $penerima->hak_akses,
-                'last_login' => $penerima->last_login,
-                'status_user' => $penerima->status_user,
-            ];
-
-            $this->userModel->UpdateData($penerima->id_user, $data);
-            session()->setFlashdata('pass_berhasil', 'Password berhasil diubah');
-
-            return redirect()->to(base_url('/admin/profile'));
-        } else {
-            session()->setFlashdata('pass_gagal', 'Password tidak berhasil diubah');
+        $passwordLama = $this->request->getPost('password_lama');
+        if (!password_verify($passwordLama, $account->password)) {
+            session()->setFlashdata('errors',             
+                ['general' => 'Password lama salah.']
+            );
             return redirect()->to(base_url('/admin/profile'));
         }
+
+        $passwordBaru = $this->request->getPost('password_baru');
+        $validationRules = 
+        [
+            'password_lama' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Password lama harus diisi.'
+                ]
+            ],
+            'password_baru' => [
+                'rules' => 'required|min_length[8]|uppercase|contains_digit|contains_symbol',
+                'errors' => [
+                    'required' => 'Password baru harus diisi.',
+                    'min_length' => 'Password baru harus minimal 8 karakter.',
+                    'uppercase' => 'Password harus mengandung minimal 1 huruf besar.',
+                    'contains_digit' => 'Password harus mengandung minimal 1 angka.',
+                    'contains_symbol' => 'Password harus mengandung minimal 1 simbol (@$!%*?&).'
+                ]
+            ]
+        ];
+
+        if (!$this->validate($validationRules)) {
+            session()->setFlashdata('errors', array_merge(
+                ['general' => 'Gagal mengubah password'], 
+                $this->validator->getErrors()
+            ));            
+            return redirect()->to(base_url('/admin/profile'));
+        }
+
+        $this->userModel->updatePassword($account->id_user, $passwordBaru);
+        session()->setFlashdata('success',             
+        ['general' => 'Kata sandi berhasil diubah']
+        );
+        return redirect()->to(base_url('/admin/profile'));
     }
 
     public function home()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
+        
         $news = $this->newsModel->AllData();
-        $data = [
+        $viewData = [
             'title' => 'Dashboard | Admin',
             'news' => $news,
         ];
 
-        return view('main/dashboard', $data);
+        return view('main/dashboard', $viewData);
     }
 
     public function beasiswa()
-    {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
+    {        
 
-        $jb = $this->jbModel->AllData();
+        $listDataJB = $this->jbModel->AllData();
         
-        $data = [
+        $viewData = [
             'title' => 'Jenis Beasiswa | Admin',
-            'jb' => $jb,
+            'listDataJB' => $listDataJB,
         ];
 
-        return view('main/daftar-jenis-beasiswa', $data);
+        return view('main/daftar-jenis-beasiswa', $viewData);
     }
 
     public function add_beasiswa()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
-        $data = [
-            'title' => 'Tambah Beasiswa | Admin',
-            'validation' => \Config\Services::validation(),
+        $viewData = [
+            'title' => 'Tambah Beasiswa | Admin',            
         ];
 
-        return view('/main/tambah-beasiswa', $data);
+        return view('/main/tambah-beasiswa', $viewData);
     }
 
     public function edit_beasiswa($id_beasiswa)
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
+        
         $data = [
-            'title' => 'Form Edit Beasiswa | Admin',
-            'validation' => \Config\Services::validation(),
-            'mhs' => $this->jbModel->DetailData($id_beasiswa),
+            'title' => 'Form Edit Beasiswa | Admin',            
+            'listDataJB' => $this->jbModel->DetailData($id_beasiswa),
         ];
 
         return view('main/edit-beasiswa', $data);
@@ -201,44 +261,110 @@ class Admin extends BaseController
 
     public function cedit_beasiswa($id_beasiswa)
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
+        
+        $validationRules = [
+            'jenis' => [
+                'rules' => 'required|is_unique[jenis_beasiswa.jenis]',
+                'errors' => [
+                    'required' => 'Jenis beasiswa harus diisi.',
+                    'is_unique' => 'Jenis beasiswa adalah Unik'
+                ]
+            ],
+            'asal' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Asal beasiswa harus diisi',                    
+                ]
+            ],
+            'tahun' => [
+                'rules' => 'required|greater_than_equal_to[1981]|integer',
+                'errors' => [
+                    'required' => 'Tahun penerimaan harus diisi.',
+                    'greater_than_equal_to' => 'Tahun penerimaa tidak boleh kurang dari tahun 1981',
+                    'integer'=>'Tahun penerimaan harus integer'
+                    
+                ]
+            ],
+            'status_beasiswa' => [
+                'rules' => 'required|in_list[0,1]',
+                'errors' => [
+                    'required' => 'Status beasiswa harus dipilih.',
+                    'in_list' => 'Status beasiswa hanya pilih Aktif atau Tidak aktif',                    
+                ]
+            ]
+            
+        ];
+
+        if (!$this->validate($validationRules)) {
+            $err_msg = 'Jenis Beasiswa Gagal Ditambahkan';       
+            session()->setFlashdata('errors', array_merge(
+                ['general' => $err_msg], 
+                $this->validator->getErrors()
+            ));
+            return redirect()->to(base_url("/admin/beasiswa/edit/{$id_beasiswa}"))->withInput();                                 
         }
+        $data = [
+            
+            'jenis' => $this->request->getPost('jenis'),
+            'asal' => $this->request->getPost('asal'),
+            'tahun_penerimaan' => $this->request->getPost('tahun'),
+            'status_beasiswa' => $this->request->getPost('status_beasiswa'),
+        ];
 
-        if (
-            $this->validate([
-                'jenis' => 'required',
-                'asal' => 'required',
-                'tahun' => 'required',
-                'status_beasiswa' => 'required',
-            ])
-        ) {
-            $data = [
-                'id_beasiswa' => $id_beasiswa,
-                'jenis' => $this->request->getPost('jenis'),
-                'asal' => $this->request->getPost('asal'),
-                'tahun_penerimaan' => $this->request->getPost('tahun'),
-                'status_beasiswa' => $this->request->getPost('status_beasiswa'),
-            ];
+        $this->jbModel->UpdateData($id_beasiswa, $data);
+        session()->setFlashdata('success',             
+                    ['general' => 'Data berhasil disimpan.']
+                );
+                return redirect()->to(base_url('/admin/beasiswa'));    
 
-            $this->jbModel->UpdateData($id_beasiswa, $data);
-            session()->setFlashdata('berhasil', 'Data berhasil diubah');
 
-            return redirect()->to(base_url('/admin/beasiswa'));
-        } else {
-            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
-            return redirect()->to(base_url('/admin/beasiswa'));
-        }
     }
 
     public function save_beasiswa()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
+        $validationRules = [
+            'jenis' => [
+                'rules' => 'required|is_unique[jenis_beasiswa.jenis]',
+                'errors' => [
+                    'required' => 'Jenis beasiswa harus diisi.',
+                    'is_unique' => 'Jenis beasiswa adalah Unik'
+                ]
+            ],
+            'asal' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Asal beasiswa harus diisi',                    
+                ]
+            ],
+            'tahun' => [
+                'rules' => 'required|greater_than_equal_to[1981]|integer',
+                'errors' => [
+                    'required' => 'Tahun penerimaan harus diisi.',
+                    'greater_than_equal_to' => 'Tahun penerimaa tidak boleh kurang dari tahun 1981',
+                    'integer'=>'Tahun penerimaan harus integer'
+                    
+                ]
+            ],
+            'status_beasiswa' => [
+                'rules' => 'required|in_list[0,1]',
+                'errors' => [
+                    'required' => 'Status beasiswa harus dipilih.',
+                    'in_list' => 'Status beasiswa hanya pilih Aktif atau Tidak aktif',                    
+                ]
+            ]
+            
+        ];
 
+        if (!$this->validate($validationRules)) {
+            $err_msg = 'Jenis Beasiswa Gagal Ditambahkan';       
+            session()->setFlashdata('errors', array_merge(
+                ['general' => $err_msg], 
+                $this->validator->getErrors()
+            ));
+            return redirect()->to(base_url("/admin/beasiswa/edit/{$id_beasiswa}"))->withInput();                                 
+        }
+        
+     
         if (
             $this->validate([
                 'jenis' => 'required|is_unique[jenis_beasiswa.jenis]',
@@ -1296,11 +1422,15 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/login'));
         }
 
+        
+
         $jb = $this->jbModel->AllData();
         $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Form Edit User | Admin',
             'validation' => \Config\Services::validation(),
+
+            $fixedIT
             'former' => $this->userModel->DetailData($id_user),
             'penerima' => $pb,
             'jenis_beasiswa' => $jb,
@@ -1458,6 +1588,7 @@ class Admin extends BaseController
         $data = [
             'title' => 'Form Edit Keaktifan | Admin',
             'validation' => \Config\Services::validation(),
+            $fixedit
             'former' => $this->kaModel->DetailData($id_keaktifan),
             'penerima' => $pb,
             'jenis_beasiswa' => $jb,
