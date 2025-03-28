@@ -34,7 +34,7 @@ class jbModel extends Model
 
     public function UpdateData($id, $data)
     {        
-        return $this->update($id, $data);
+        return $this->where('id_beasiswa',$id)->update($id, $data);
     }
 
     public function DeleteData($id_beasiswa)

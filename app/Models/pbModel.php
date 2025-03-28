@@ -19,6 +19,7 @@ class pbModel extends Model
 
     public function AllData()
     {
+        return $this->select('penerima_beasiswa.*, program_studi.id_prodi, program_studi.nama')
         return $this->db->table('penerima_beasiswa')
         ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
         ->Get()->getResultArray();

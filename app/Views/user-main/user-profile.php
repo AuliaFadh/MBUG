@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <form action="/user/profile/cedit/<?= $profile->uuid_pb ?>" class="card" method="post"
+            <form action="/user/profile/cedit/<?= $profile['uuid_pb ']?>" class="card" method="post"
                 enctype="multipart/form-data">
 
                 <?= csrf_field() ?>
@@ -33,31 +33,31 @@
                         <div class="identity col-lg-9 col-md-12 col-sm12">
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">NPM</h4>
-                                <h4 class="label-profile"><span>:</span> <?= esc($profile->npm) ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile['npm']) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Nama</h4>
-                                <h4 class="label-profile"><span>:</span> <?= esc($profile->nama) ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile['nama']) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Program Studi</h4>
-                                <h4 class="label-profile"><span>:</span> <?= esc($profile->nama_prodi) ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile['nama_prodi']) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Tahun Penerimaan</h4>
-                                <h4 class="label-profile"><span>:</span> <?= esc($profile->tahun_diterima) ?></h4>
+                                <h4 class="label-profile"><span>:</span> <?= esc($profile['tahun_diterima']) ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Jenis Kelamin</h4>
                                 <h4 class="label-profile"><span>:</span>
-                                    <?= $profile->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' ?></h4>
+                                    <?= $profile['jenis_kelamin'] == '1' ? 'Laki-laki' : 'Perempuan' ?></h4>
                             </div>
                             <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                 <h4 class="label-profile">Nomor Telepon</h4>
                                 <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
 
                                     <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
-                                        <input type="text" name="no_hp" value="<?= esc( old('no_hp' ?? $profile->no_hp),'attr') ?>"
+                                        <input type="text" name="no_hp" value="<?= esc( old('no_hp' ?? $profile['no_hp']),'attr') ?>"
                                             class="form-control custom-textfield col-lg-4 col-md-4 col-sm-4 
                                             <?= isset($validation_err['no_hp']) ? ' is-invalid is-test' : '' ?>">
                                         <div class="invalid-feedback">
@@ -72,7 +72,7 @@
                                     class="container1-up custom-container-form col-lg-8 col-md-12 col-sm-12 no-mg no-pd">
                                     <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12 no-mg no-pd">
                                         <textarea name="alamat" class="form-control custom-textfield"
-                                            rows="2"><?= esc($profile->alamat) ?></textarea>
+                                            rows="2"><?= esc($profile['alamat']) ?></textarea>
                                         <div class="invalid-feedback">
 
                                         </div>

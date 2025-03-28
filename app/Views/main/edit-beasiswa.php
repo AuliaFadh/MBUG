@@ -1,6 +1,6 @@
 <?= $this->extend('layout/web-MBUG-admin'); ?>
 <?= $this->section('content') ?>
-<div class="content-body">
+
     <!-- row -->
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
@@ -24,7 +24,7 @@
 
                     <!-- Form Edit Daftar Jenis Beasiswa -->
                     <div class="card-body">
-                        <form action="<?=esc(base_url('/admin/beasiswa/cedit/'. $listDataJB->id_beasiswa),'url') ?>" method="post">
+                        <form action="<?=esc(base_url('/admin/beasiswa/cedit/'. $listDataJB['id_beasiswa']),'url') ?>" method="post">
                             <?= csrf_field(); ?>
                             <?php $validation_err = session('errors'); ?>
                             <div class="row">
@@ -32,7 +32,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="nama" class="label-form">Jenis Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= esc( old('jenis' ?? $listDataJB->jenis),'attr') ?>" type="text" 
+                                            <input value="<?= esc( old('jenis' ?? $listDataJB['jenis']),'attr') ?>" type="text" 
                                             class="form-control custom-textfield 
                                             <?= isset($validation_err['jenis']) ? ' is-invalid is-test' : '' ?>" id="jenis" name="jenis" autofocus>
                                             <div class="invalid-feedback">
@@ -44,7 +44,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="asal" class="label-form">Asal Beasiswa</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= esc( old('asal' ?? $listDataJB->asal),'attr') ?>" type="text" class="form-control custom-textfield 
+                                            <input value="<?= esc( old('asal' ?? $listDataJB['asal']),'attr') ?>" type="text" class="form-control custom-textfield 
                                             <?= isset($validation_err['asal']) ? ' is-invalid is-test' : '' ?>" id="asal" name="asal">
                                             <div class=" invalid-feedback">
                                             <?= $validation_err['asal'] ?? '' ?>
@@ -55,10 +55,10 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input value="<?= esc( old('tahun' ?? $listDataJB->tahun),'attr') ?>" type="number" class="form-control custom-textfield col-lg-2 col-md-3 col-sm-3 
-                                            <?= isset($validation_err['tahun']) ? ' is-invalid is-test' : '' ?>" id="tahun" name="tahun">
+                                            <input value="<?= esc( old('tahun_penerimaan' ?? $listDataJB['tahun_penerimaan']),'attr') ?>" type="number" class="form-control custom-textfield col-lg-2 col-md-3 col-sm-3 
+                                            <?= isset($validation_err['tahun_penerimaan']) ? ' is-invalid is-test' : '' ?>" id="tahun_penerimaan" name="tahun_penerimaan">
                                             <div class=" invalid-feedback">
-                                            <?= $validation_err['tahun'] ?? '' ?>
+                                            <?= $validation_err['tahun_penerimaan'] ?? '' ?>
                                             </div>
                                         </div>
                                     </div>
@@ -66,8 +66,8 @@
                                     <div style="padding-left : 20px" class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status_beasiswa" class="label-form">Status</label>
                                         
-                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="1"  <?= old('status_beasiswa') == '1' ? 'checked' : '' ?>> Aktif<br>
-                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="0"  <?= old('status_beasiswa', '0') == '0' ? 'checked' : '' ?>> Tidak Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="1"  <?= old('status_beasiswa',$listDataJB['status_beasiswa']) == '1' ? 'checked' : '' ?>> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status_beasiswa" value="0"  <?= old('status_beasiswa', $listDataJB['status_beasiswa']) == '0' ? 'checked' : '' ?>> Tidak Aktif<br>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -82,5 +82,5 @@
             </div>
         </div>
     </div>
-</div>
+
 <?= $this->endSection('content') ?>

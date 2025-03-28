@@ -1,6 +1,6 @@
 <?= $this->extend('layout/web-MBUG-admin') ?>
 <?= $this->section('content') ?>
-<div class="content-body">
+
     <!-- row -->
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
@@ -58,14 +58,14 @@
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
-                                        <label for="tahun" class="label-form">Tahun Penerimaan</label>
+                                        <label for="tahun_penerimaan" class="label-form">Tahun Penerimaan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <input min=1981 type="number"
-                                                class="form-control col-lg-2 col-md-3 col-sm-3 custom-textfield <?= isset($validation_err['tahun']) ? ' is-invalid is-test' : '' ?>"
-                                                id="tahun" name="tahun"
-                                                value="<?= esc(old('tahun'), 'attr') ?>">
+                                                class="form-control col-lg-2 col-md-3 col-sm-3 custom-textfield <?= isset($validation_err['tahun_penerimaan']) ? ' is-invalid is-test' : '' ?>"
+                                                id="tahun_penerimaan" name="tahun_penerimaan"
+                                                value="<?= esc(old('tahun_penerimaan'), 'attr') ?>">
                                             <div class=" invalid-feedback">
-                                                <?= $validation_err['tahun'] ?? '' ?>
+                                                <?= $validation_err['tahun_penerimaan'] ?? '' ?>
                                             </div>
                                         </div>
                                     </div>
@@ -73,11 +73,9 @@
                                     <div style="padding-left : 15px"
                                         class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label for="status" class="label-form">Status</label>
-                                        <input type="radio" class="margin-custom" name="status" value="1"
-                                        <?= old('status') == '1' ? 'checked' : '' ?>>
-                                        Aktif<br>
-                                        <input type="radio" class="margin-custom" name="status" value="0"
-                                        <?= old('status', '0') == '0' ? 'checked' : '' ?>> Tidak Aktif<br>
+                                       
+                                        <input type="radio" class="margin-custom" name="status" value="1"  <?= old('status_beasiswa') == '1' ? 'checked' : '' ?>> Aktif<br>
+                                        <input type="radio" class="margin-custom" name="status" value="0"  <?= old('status_beasiswa', '0') == '0' ? 'checked' : '' ?>> Tidak Aktif<br>
                                     </div>
 
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
@@ -94,5 +92,5 @@
             </div>
         </div>
     </div>
-</div>
+
 <?= $this->endSection('content') ?>

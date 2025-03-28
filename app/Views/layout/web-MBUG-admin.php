@@ -26,7 +26,7 @@
     <?= $this->include('layout/navbar'); ?>
     <?= $this->include('layout/sidebar'); ?>
     <div class="content-body">
-    <?= $this->include('components/notification'); ?>
+        <?= $this->include('components/notification'); ?>
         <?= $this->renderSection('content'); ?>
     </div>
     <?= $this->include('layout/footer'); ?>

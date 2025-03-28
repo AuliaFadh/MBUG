@@ -171,7 +171,7 @@ class Admin extends BaseController
         }
 
         $passwordLama = $this->request->getPost('password_lama');
-        if (!password_verify($passwordLama, $account->password)) {
+        if (!password_verify($passwordLama, $account['password'])) {
             session()->setFlashdata('errors',             
                 ['general' => 'Password lama salah.']
             );
@@ -207,7 +207,7 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/profile'));
         }
 
-        $this->userModel->updatePassword($account->id_user, $passwordBaru);
+        $this->userModel->updatePassword($account['id_user'], $passwordBaru);
         session()->setFlashdata('success',             
         ['general' => 'Kata sandi berhasil diubah']
         );
@@ -276,7 +276,7 @@ class Admin extends BaseController
                     'required' => 'Asal beasiswa harus diisi',                    
                 ]
             ],
-            'tahun' => [
+            'tahun_penerimaan' => [
                 'rules' => 'required|greater_than_equal_to[1981]|integer',
                 'errors' => [
                     'required' => 'Tahun penerimaan harus diisi.',
@@ -303,21 +303,18 @@ class Admin extends BaseController
             ));
             return redirect()->to(base_url("/admin/beasiswa/edit/{$id_beasiswa}"))->withInput();                                 
         }
-        $data = [
-            
+        $data = [            
             'jenis' => $this->request->getPost('jenis'),
             'asal' => $this->request->getPost('asal'),
-            'tahun_penerimaan' => $this->request->getPost('tahun'),
+            'tahun_penerimaan' => $this->request->getPost('tahun_penerimaan'),
             'status_beasiswa' => $this->request->getPost('status_beasiswa'),
         ];
 
         $this->jbModel->UpdateData($id_beasiswa, $data);
         session()->setFlashdata('success',             
-                    ['general' => 'Data berhasil disimpan.']
+                    ['general' => 'Jenis Beasiswa berhasil diubah.']
                 );
                 return redirect()->to(base_url('/admin/beasiswa'));    
-
-
     }
 
     public function save_beasiswa()
@@ -336,7 +333,7 @@ class Admin extends BaseController
                     'required' => 'Asal beasiswa harus diisi',                    
                 ]
             ],
-            'tahun' => [
+            'tahun_penerimaan' => [
                 'rules' => 'required|greater_than_equal_to[1981]|integer',
                 'errors' => [
                     'required' => 'Tahun penerimaan harus diisi.',
@@ -361,65 +358,40 @@ class Admin extends BaseController
                 ['general' => $err_msg], 
                 $this->validator->getErrors()
             ));
-            return redirect()->to(base_url("/admin/beasiswa/edit/{$id_beasiswa}"))->withInput();                                 
+            return redirect()->to(base_url("/admin/beasiswa/add"))->withInput();                                 
         }
-        
-     
-        if (
-            $this->validate([
-                'jenis' => 'required|is_unique[jenis_beasiswa.jenis]',
-                'asal' => 'required',
-                'tahun' => 'required',
-            ])
-        ) {
-            $data = [
-                'jenis' => $this->request->getPost('jenis'),
-                'asal' => $this->request->getPost('asal'),
-                'tahun_penerimaan' => $this->request->getPost('tahun'),
-                'status_beasiswa' => $this->request->getPost('status'),
-            ];
+        $data = [
+            'jenis' => $this->request->getPost('jenis'),
+            'asal' => $this->request->getPost('asal'),
+            'tahun_penerimaan' => $this->request->getPost('tahun_penerimaan'),
+            'status_beasiswa' => $this->request->getPost('status_beasiswa'),
+        ];
 
-            $this->jbModel->InsertData($data);
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
-
-            return redirect()->to(base_url('/admin/beasiswa'));
-        } else {
-            $session = session();
-            $session->setFlashdata('input', $this->request->getPost());
-
-            $data = [
-                'title' => 'Tambah Beasiswa | Admin',
-                'validation' => \Config\Services::validation(),
-                'input' => $session->getFlashdata('input'),
-            ];
-
-            return view('main/tambah-beasiswa', $data);
-        }
+        $this->jbModel->InsertData($data);
+        session()->setFlashdata('success', 
+            ['general' => 'Jenis Beasiswa berhasil ditambahkan']
+        );
+        return redirect()->to(base_url("/admin/beasiswa"));            
     }
 
     public function del_beasiswa($id_beasiswa)
-    {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
+    {       
 
         $data = [
             'id_beasiswa' => $id_beasiswa,
         ];
 
         $this->jbModel->DeleteData($data);
-        session()->setFlashdata('hapus', 'Data berhasil dihapus');
-        return redirect()->to(base_url('/admin/beasiswa'));
+        session()->setFlashdata('success',             
+                    ['general' => 'Jenis Beasiswa berhasil dihapus.']
+                );
+                return redirect()->to(base_url('/admin/beasiswa')); 
     }
 
+    // checkpoint
     public function penerima()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
+       
         $pb = $this->pbModel->AllData();
         $data = [
             'title' => 'Daftar Penerima Beasiswa | Admin',

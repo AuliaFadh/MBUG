@@ -1,6 +1,6 @@
 <?= $this->extend('layout/web-MBUG-admin') ?>
 <?= $this->section('content') ?>
-<div class="content-body">
+
     <!-- row -->
     <div class="container-fluid">
         <div class="col-sm-6 p-md-0  mt-2 mt-sm-0 d-flex">
@@ -31,23 +31,6 @@
                         </div>
                     </div>
 
-                    <!-- Notifikasi -->
-                    <?php if (session()->getFlashdata('berhasil')) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= session()->getFlashdata('berhasil') ?>
-                    </div>
-                    <?php endif; ?>
-
-                    <?php if (session()->getFlashdata('gagal')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= session()->getFlashdata('gagal') ?>
-                    </div>
-                    <?php endif; ?>
-                    <?php if (session()->getFlashdata('hapus')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= session()->getFlashdata('hapus') ?>
-                    </div>
-                    <?php endif; ?>
 
                     <!-- Tabel -->
                     <div class="card-body">
@@ -143,39 +126,39 @@
                                 <!-- Loop Data -->
                                 <tbody>
                                     <?php $no = 0; ?>
-                                    <?php foreach ($pb as $key => $value) : ?>
+                                    <?php foreach ($listDataPB as $key => $dataPB) : ?>
                                     <?php $no++; ?>
                                     <tr>
                                         <td class="th-sm"><strong><?= $no ?></strong></td>
-                                        <td class="th-nm"><?= $value['nama'] ?></td>
-                                        <td class="th-sm"><?= $value['npm'] ?></td>
-                                        <td class="th-nm"><?= $value['nama_prodi'] ?></td>
-                                        <td class="th-lg"><?= $value['alamat'] ?></td>
-                                        <td class="th-nm"><?= $value['no_hp'] ?></td>
-                                        <?php if ($value['jenis_kelamin'] == '1') {
+                                        <td class="th-nm"><?= $dataPB['nama'] ?></td>
+                                        <td class="th-sm"><?= $dataPB['npm'] ?></td>
+                                        <td class="th-nm"><?= $dataPB['nama_prodi'] ?></td>
+                                        <td class="th-lg"><?= $dataPB['alamat'] ?></td>
+                                        <td class="th-nm"><?= $dataPB['no_hp'] ?></td>
+                                        <?php if ($dataPB['jenis_kelamin'] == '1') {
                                             $JK = '<span class="">Laki-laki</span>';
-                                        } elseif ($value['jenis_kelamin'] == '0') {
+                                        } elseif ($dataPB['jenis_kelamin'] == '0') {
                                             $JK = '<span class="">Perempuan</span>';
                                         }
                                         ?>
                                         <td class="th-sm"><?= $JK ?></td>
-                                        <td class="th-sm"><?= $value['tahun_diterima'] ?></td>
-                                        <?php if ($value['status_penerima'] == '1') {
+                                        <td class="th-sm"><?= $dataPB['tahun_diterima'] ?></td>
+                                        <?php if ($dataPB['status_penerima'] == '1') {
                                             $status = '<span class="status-peserta badge badge-rounded badge-primary">Aktif</span>';
-                                        } elseif ($value['status_penerima'] == '0') {
+                                        } elseif ($dataPB['status_penerima'] == '0') {
                                             $status = '<span class="status-peserta badge badge-rounded badge-danger">Tidak Aktif</span>';
-                                        } elseif ($value['status_penerima'] == '2') {
+                                        } elseif ($dataPB['status_penerima'] == '2') {
                                             $status = '<span class="status-peserta badge badge-rounded badge-success">Lulus<span>';
                                         }
                                         ?>
                                         <td class="th-sm"><?= $status ?></td>
-                                        <td class="th-nm"><?= $value['keterangan'] ?></td>
+                                        <td class="th-nm"><?= $dataPB['keterangan'] ?></td>
                                         <td class="th-nm">
-                                            <a href="<?= base_url('/admin/penerima/edit/' . $value['id_penerima']) ?>"
+                                            <a href="<?= base_url('/admin/penerima/edit/' . $dataPB['id_penerima']) ?>"
                                                 class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                             <!-- ul ini yng elemen button dari adib, jadi dia confirm boxnya udah keren jadi  -->
                                             <button class="btn btn-sm btn-danger"
-                                                onclick="deleteConfirmation_penerima(<?= $value['id_penerima'] ?>)"><i
+                                                onclick="deleteConfirmation_penerima(<?= $dataPB['id_penerima'] ?>)"><i
                                                     class="la la-trash-o"></i></button>
 
                                         </td>
@@ -189,7 +172,7 @@
             </div>
         </div>
     </div>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
