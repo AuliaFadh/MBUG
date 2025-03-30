@@ -12,19 +12,30 @@ class laModel extends Model
     protected $allowedFields    = ['id_beasiswa','uuid_la', 'id_penerima', 'semester', 'tahun_ajaran', 'ipk', 'ipk_lokal', 'ipk_uu', 'rangkuman_nilai','konf_ket_akademik','konfirmasi_akademik'];
 
     public function AllData()
-    {
-        return $this->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
-            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
-            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-            ->Get()->getResultArray();
-    }
+{
+    return $this
+        ->select('laporan_akademik.*, jenis_beasiswa.jenis, penerima_beasiswa.npm, penerima_beasiswa.nama, program_studi.nama_prodi')
+        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa', 'left')
+        ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima = laporan_akademik.id_penerima', 'left')
+        ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')  
+        ->orderBy('FIELD(konfirmasi_akademik, 2, 0, 1)') 
+        ->orderBy('id_akademik', 'ASC') 
+        ->get()
+        ->getResultArray();    
+}
 
     public function GetProcessData(){
-        return $this->db->table('laporan_akademik')
-            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
-            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
-            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-            ->where('konfirmasi_akademik',2)->Get()->getResultArray();
+        return $this
+        ->select('laporan_akademik.*, jenis_beasiswa.jenis, penerima_beasiswa.npm, penerima_beasiswa.nama, program_studi.nama_prodi')
+        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa', 'left')
+        ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima = laporan_akademik.id_penerima', 'left')
+        ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')  
+        ->where('konfirmasi_akademik',2)
+        ->orderBy('FIELD(konfirmasi_akademik, 2, 0, 1)') 
+        ->orderBy('id_akademik', 'ASC')        
+        ->get()
+        ->getResultArray();   
+        
     }
 
 
@@ -39,9 +50,18 @@ class laModel extends Model
     public function EditDetailData_uuid($uuid_la)
     {
         return $this->db->query("SELECT laporan_akademik.id_penerima, laporan_akademik.rangkuman_nilai, laporan_akademik.id_akademik
-            FROM laporan_akademik 
-            LEFT JOIN jenis_beasiswa ON jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa 
+            FROM laporan_akademik             
             WHERE laporan_akademik.uuid_la = ?", [$uuid_la])->getRowArray();
+    }
+
+    public function AllData_ID_pb($id_penerima){
+        return $this
+            ->select('laporan_akademik.*, jenis_beasiswa.jenis, penerima_beasiswa.npm, penerima_beasiswa.nama, program_studi.nama_prodi')
+            ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
+            ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
+            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
+            ->where('id_penerima',$id_penerima)
+            ->Get()->getResultArray();
     }
 
     public function AllData_User_ID($id_penerima, $select = '*')
@@ -128,14 +148,27 @@ class laModel extends Model
         $this->insert(($data));
     }
 
-    public function DetailData($id_akademik)
+
+    public function DetailData_id($id_akademik)
     {
-        return $this->db->table('laporan_akademik')
-        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_akademik.id_beasiswa', 'left')
-        ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_akademik.id_penerima', 'left')
-        ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-        ->where('id_akademik', $id_akademik)->get()->getRow();
+        return $this
+        ->select('laporan_akademik.*, jenis_beasiswa.jenis, penerima_beasiswa.npm, penerima_beasiswa.nama, program_studi.nama_prodi')
+        ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa = laporan_akademik.id_beasiswa', 'left')
+        ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima = laporan_akademik.id_penerima', 'left')
+        ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')                 
+        ->where('id_akademik', $id_akademik)->get()->getRowArray();
     }
+
+
+    public function EditDetailData_id($id_akademik)
+    {
+        return $this->db->query("SELECT laporan_akademik.id_penerima, laporan_akademik.rangkuman_nilai, laporan_akademik.id_akademik
+            FROM laporan_akademik             
+            WHERE laporan_akademik.id_akademik = ?", [$id_akademik])->getRowArray();
+    }
+
+
+
 
     public function UpdateData($id, $data)
     {

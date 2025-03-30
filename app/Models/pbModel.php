@@ -19,10 +19,10 @@ class pbModel extends Model
 
     public function AllData()
     {
-        return $this->select('penerima_beasiswa.*, program_studi.id_prodi, program_studi.nama')
-        return $this->db->table('penerima_beasiswa')
-        ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-        ->Get()->getResultArray();
+        return $this
+        ->select('penerima_beasiswa.*, program_studi.nama_prodi')
+        ->join('program_studi','program_studi.id_prodi = penerima_beasiswa.id_prodi','left')
+        ->get()->getResultArray();        
     }
 
     public function InsertData($data)
@@ -72,38 +72,24 @@ class pbModel extends Model
             ->getRowArray();
     }
     
-    public function DetailDataID($id_penerima, $select = '*')
-    {
-        // Jika select default `*`, ambil semua kolom penerima_beasiswa + nama_prodi
-        if ($select === '*') {
-            $select = 'penerima_beasiswa.*, program_studi.nama_prodi';
-        } else {
-            // Pisahkan kolom berdasarkan koma
-            $columns = explode(',', $select);
-            $newColumns = [];
-    
-            foreach ($columns as $col) {
-                $col = trim($col); // Hapus spasi
-                // Jika tidak ada titik dalam nama kolom, tambahkan `penerima_beasiswa.`
-                if (!strpos($col, '.')) {
-                    $col = 'penerima_beasiswa.' . $col;
-                }
-                $newColumns[] = $col;
-            }
-    
-            // Gabungkan kembali kolom-kolom
-            $select = implode(', ', $newColumns) . ', program_studi.nama_prodi';
-        }
-    
-        return $this->db->table('penerima_beasiswa')
-            ->select($select)
-            ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
-            ->where('penerima_beasiswa.id_penerima', $id_penerima)
-            ->get()
-            ->getRowArray();
+    public function DetailData_id($id_penerima){
+        return $this
+        ->select('penerima_beasiswa.*, program_studi.nama_prodi')
+        ->join('program_studi','program_studi.id_prodi = penerima_beasiswa.id_prodi','left')
+        ->where('id_penerima',$id_penerima)
+        ->get()
+        ->getRowArray();
     }
-    
 
+    public function GetID_pb($npm)
+    {
+        return $this->select('penerima_beasiswa.id_beasiswa')
+        ->where('npm',$npm)
+        ->get()
+        ->getRowArray('id_beasiswa');
+    }
+
+   
 
     public function UpdateData($id, $data)
     {

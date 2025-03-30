@@ -24,7 +24,7 @@
 
                     <!-- Form Edit Laporan Akademik -->
                     <div class="card-body">
-                        <form action="/admin/akademik/cedit/<?= $former->id_akademik ?>" method="post"
+                        <form action="/admin/akademik/cedit/<?= $dataLA->id_akademik ?>" method="post"
                             enctype="multipart/form-data">
                             <?= csrf_field() ?>
                             <div class="row">
@@ -32,7 +32,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">NPM</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly name="npm" value="<?= $former->npm ?>" type="text"
+                                            <input readonly name="npm" value="<?= $dataLA->npm ?>" type="text"
                                                 class="form-control custom-textfield col-lg-7 col-md-5 col-sm-3">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('npm') ?>
@@ -43,7 +43,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Nama</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly name="nama" value="<?= $former->nama ?>" type="text"
+                                            <input readonly name="nama" value="<?= $dataLA->nama ?>" type="text"
                                                 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('nama') ?>
@@ -54,7 +54,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Program Studi</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
-                                            <input readonly name="prodi" value="<?= $former->nama_prodi ?>"
+                                            <input readonly name="prodi" value="<?= $dataLA->nama_prodi ?>"
                                                 type="text" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('prodi') ?>
@@ -69,7 +69,7 @@
                                         <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
 
                                             <input type="text" id="find-jb" name="jenis_beasiswa"
-                                                value="<?= $former->jenis ?>"
+                                                value="<?= $dataLA->jenis ?>"
                                                 class="form-control custom-textfield <?= $validation->hasError('jenis_beasiswa') ? ' is-invalid is-test' : '' ?>"
                                                 autofocus>
 
@@ -93,7 +93,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">Semester</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-3 col-sm-5">
-                                            <input name="semester" value="<?= $former->semester ?>" type="number" min=1
+                                            <input name="semester" value="<?= $dataLA->semester ?>" type="number" min=1
                                                 max=14 class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('semester') ?>
@@ -108,7 +108,7 @@
                                         <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
 
                                             <input type="text" id="find-ta" name="TA"
-                                                value="<?= $former->tahun_ajaran ?>"
+                                                value="<?= $dataLA->tahun_ajaran ?>"
                                                 class="form-control custom-textfield <?= $validation->hasError('TA') ? ' is-invalid is-test' : '' ?>"
                                                 autofocus>
 
@@ -131,7 +131,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input name="ipk" value="<?= $former->ipk ?>" min=0 max=4 step=0.01
+                                            <input name="ipk" value="<?= $dataLA->ipk ?>" min=0 max=4 step=0.01
                                                 type="number" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('ipk') ?>
@@ -142,7 +142,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK Local</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input name="ipk_lokal" value="<?= $former->ipk_lokal ?>" min=0 max=4
+                                            <input name="ipk_lokal" value="<?= $dataLA->ipk_lokal ?>" min=0 max=4
                                                 step=0.01 type="number" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('ipk_lokal') ?>
@@ -153,7 +153,7 @@
                                     <div class="container1 custom-container-form col-lg-12 col-md-12 col-sm-12 ">
                                         <label class="label-form">IPK UU</label>
                                         <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
-                                            <input name="ipk_uu" value="<?= $former->ipk_uu ?>" min=0 max=4 step=0.01
+                                            <input name="ipk_uu" value="<?= $dataLA->ipk_uu ?>" min=0 max=4 step=0.01
                                                 type="number" class="form-control custom-textfield ">
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('ipk_uu') ?>
@@ -165,7 +165,7 @@
                                         <div class="form-group fallback w-100 ">
                                             <label class="label-form">Rangkuman Nilai</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya"
-                                                href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $former->rangkuman_nilai) ?>"><img
+                                                href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $dataLA->rangkuman_nilai) ?>"><img
                                                     id="doc-search" class="btn btn-sm btn-success"
                                                     src="<?= base_url('asset/img/doc-search.png') ?>"
                                                     alt=""></a>
@@ -180,13 +180,13 @@
                                             <div class="row ">
                                                 <select name="konfirmasi_akademik"
                                                     class="form-control custom-textfield col-lg-7 col-md-7 col-sm-6">
-                                                    <option value="2" <?php if ($former->konfirmasi_akademik == 2) {
+                                                    <option value="2" <?php if ($dataLA->konfirmasi_akademik == 2) {
                                                         echo 'selected';
                                                     } ?>>Diproses</option>
-                                                    <option value="1" <?php if ($former->konfirmasi_akademik == 1) {
+                                                    <option value="1" <?php if ($dataLA->konfirmasi_akademik == 1) {
                                                         echo 'selected';
                                                     } ?>>Disetujui</option>
-                                                    <option value="0" <?php if ($former->konfirmasi_akademik == 0) {
+                                                    <option value="0" <?php if ($dataLA->konfirmasi_akademik == 0) {
                                                         echo 'selected';
                                                     } ?>>Ditolak</option>
                                                 </select>
@@ -197,7 +197,7 @@
                                         <label for="keterangan" class="label-form-txa">Keterangan</label>
                                         <div style="display: block;" class=" col-lg-12 col-md-12 col-sm-12">
                                             <textarea class="form-control custom-textfield " id="keterangan" name="konf_ket_akademik" autofocus=""
-                                                value="" rows="2"><?= $former->konf_ket_akademik ?></textarea>
+                                                value="" rows="2"><?= $dataLA->konf_ket_akademik ?></textarea>
                                             <div class="invalid-feedback">
 
                                             </div>

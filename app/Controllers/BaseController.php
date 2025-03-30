@@ -9,23 +9,11 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-/**
- * Class BaseController
- *
- * BaseController provides a convenient place for loading components
- * and performing functions that are needed by all your controllers.
- * Extend this class in any new controllers:
- *     class Home extends BaseController
- *
- * For security be sure to declare any new methods as protected or private.
- */
+
 abstract class BaseController extends Controller
 {
-    /**
-     * Instance of the main Request object.
-     *
-     * @var CLIRequest|IncomingRequest
-     */
+    protected $session;
+    protected $model;
     protected $request;
 
     /**
@@ -43,9 +31,41 @@ abstract class BaseController extends Controller
      */
     // protected $session;
 
-    /**
-     * Constructor.
-     */
+    public function __construct()
+    {
+        $this->session = session();
+    }
+
+    protected function SaveAndDirect($model, $data, $url,$name='')
+    {
+        if ($model->InsertData($data)) {
+            $this->session->setFlashdata('success',[
+                'general'=> "$name berhasil disimpan."]);
+        } else {
+            log_message('error', 'Insert data gagal: ' . json_encode($data));
+            $this->session->setFlashdata('errors',[
+                'general'=> "$name gagal disimpan. Terjadi kesalahan."]);
+        }
+
+        return redirect()->to(base_url($url));
+    }
+
+    protected function UpdateAndDirect($model, $id,$data, $url,$name='')
+    {
+        if ($model->UpdateData($id,$data)) {
+            $this->session->setFlashdata('success',[
+                'general'=> "$name berhasil diubah."]);
+        } else {
+            log_message('error', 'Insert data gagal: ' . json_encode($data));
+            $this->session->setFlashdata('errors',[
+                'general'=> "$name gagal diubah. Terjadi kesalahan."]);
+        }
+
+        return redirect()->to(base_url($url));
+    }
+
+
+
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Do Not Edit This Line

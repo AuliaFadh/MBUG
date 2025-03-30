@@ -442,11 +442,11 @@ class User extends BaseController
 
         
         $id_beasiswa = $this->jbModel->GetID_jb($this->request->getPost('jenis_beasiswa'));
-        if (!$id_beasiswa) {  // Jika tidak ditemukan, berikan pesan error
-            session()->setFlashdata('errors',             
-            ['general' => 'Jenis Beasiswa tidak ditemukan']
-            );
-            return redirect()->to(base_url('/user/akademik'));            
+        if (!$id_beasiswa) {  
+            session()->setFlashdata('errors', [              
+                'jenis_beasiswa' => 'Jenis Beasiswa Not found!'
+            ]);
+            return redirect()->to(base_url('/user/beasiswa/add'))->withInput();            
         }
     
         // ✅ 2. Ambil & Pindahkan File
@@ -630,11 +630,12 @@ class User extends BaseController
         $TAInput = $this->request->getPost('TA');  
 
         $id_beasiswa = $this->jbModel->GetID_jb($this->request->getPost('jenis'));
-        if(!$id_beasiswa){
-            session()->setFlashdata('errors', 
-                ['general' => 'Jenis Beasiswa tidak ditemukan']              
-            );
-            return redirect()->to(base_url('/user/akademik')); 
+        if(!$id_beasiswa){            
+            session()->setFlashdata('errors', [
+                
+                'jenis_beasiswa' => 'Jenis Beasiswa Not found!'
+            ]);
+            return redirect()->to(base_url("/user/akademik/edit/{$uuid}")); 
         }
 
 
@@ -682,13 +683,9 @@ class User extends BaseController
             'ipk_uu' => $this->request->getPost('ipk_uu'),
             'rangkuman_nilai' => $RNdoc_name,
             'konfirmasi_akademik' => 2,
-        ]; 
+        ];
 
-        $this->laModel->UpdateData_id($dataLA['id_akademik'],$data);
-        session()->setFlashdata('success', 
-        ['general' => "Laporan Akademik Berhasil diubah"]              
-        );
-        return redirect()->to(base_url('/user/akademik'));       
+        $this->UpdateAndDirect($this->$laModel,$dataLA['id_akademik'],$data,'/user/akademik','Laporan Akademik');             
 
     }
 

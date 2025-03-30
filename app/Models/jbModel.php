@@ -27,9 +27,16 @@ class jbModel extends Model
         $this->insert(($data));
     }
 
+
     public function DetailData_id($id_beasiswa)
     {      
         return $this->query("SELECT * FROM jenis_beasiswa WHERE id_beasiswa",[$id_beasiswa])->getRowArray();
+    }
+
+    public function checkDetailData_id($id_beasiswa)
+    {
+        return $this->where('id_beasiswa',$id_beasiswa)
+        ->countAllResult()>0;
     }
 
     public function UpdateData($id, $data)

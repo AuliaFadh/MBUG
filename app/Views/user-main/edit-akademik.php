@@ -26,7 +26,7 @@
 
                 <!-- Form Edit laporan akademik penerima beasiswa -->
                 <div class="card-body">
-                    <form action="<?= esc( base_url('/user/akademik/cedit/').$dataLA->uuid_la) ?>" method="post"
+                    <form action="<?= esc( base_url('/user/akademik/cedit/').$dataLA['uuid_la']) ?>" method="post"
                         enctype="multipart/form-data">
                         <?= csrf_field() ?>
                         <?php $validation_err = session('errors')?>
@@ -37,7 +37,7 @@
                                     <div style="display: block;" class=" col-lg-8 col-md-12 col-sm-12">
 
                                         <input name="jenis_beasiswa"
-                                            value="<?= esc( old('jenis_beasiswa' ?? $dataLA->jenis),'attr') ?>"
+                                            value="<?= esc( old('jenis_beasiswa' ?? $dataLA['jenis']),'attr') ?>"
                                             type="text" id="jb-input"
                                             class="form-control custom-textfield <?= isset($validation_err['jenis_beasiswa']) ? ' is-invalid is-test' : '' ?>">
 
@@ -63,7 +63,7 @@
                                     <label class="label-form">Semester</label>
                                     <div style="display: block;" class=" col-lg-2 col-md-3 col-sm-5">
                                         <input name="semester"
-                                            value="<?= esc( old('semester' ?? $dataLA->semester),'attr') ?>"
+                                            value="<?= esc( old('semester' ?? $dataLA['semester']),'attr') ?>"
                                             type="number" min=1 max=14
                                             class="form-control custom-textfield <?= isset($validation_err['semester']) ? ' is-invalid is-test' : '' ?>">
                                         <div class=" invalid-feedback">
@@ -78,7 +78,7 @@
                                     <div style="display: block;" class=" col-lg-4 col-md-4 col-sm-5">
 
                                         <input required type="text" id="find-ta"
-                                            value="<?= esc( old('tahun_ajaran' ?? $dataLA->tahun_ajaran),'attr') ?>"
+                                            value="<?= esc( old('tahun_ajaran' ?? $dataLA['tahun_ajaran']),'attr') ?>"
                                             class="form-control custom-textfield <?= isset($validation_err['tahun_ajaran']) ? ' is-invalid is-test' : '' ?>"
                                             name="TA">
 
@@ -100,7 +100,7 @@
                                     <label class="label-form">IPK</label>
                                     <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
                                         <input min=0 max=4 name="ipk"
-                                            value="<?= esc( old('ipk' ?? $dataLA->ipk),'attr') ?>" step=0.01
+                                            value="<?= esc( old('ipk' ?? $dataLA['ipk']),'attr') ?>" step=0.01
                                             type="number"
                                             class="form-control custom-textfield <?= isset($validation_err['ipk']) ? ' is-invalid is-test' : '' ?>">
                                         <div class="invalid-feedback">
@@ -113,7 +113,7 @@
                                     <label class="label-form">IPK Lokal</label>
                                     <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
                                         <input min=0 max=4 name="ipk_lokal"
-                                            value="<?= esc( old('ipk_lokal' ?? $dataLA->ipk_lokal),'attr') ?>" step=0.01
+                                            value="<?= esc( old('ipk_lokal' ?? $dataLA['ipk_lokal']),'attr') ?>" step=0.01
                                             type="number"
                                             class="form-control custom-textfield <?= isset($validation_err['ipk_lokal']) ? ' is-invalid is-test' : '' ?>">
                                         <div class="invalid-feedback">
@@ -126,7 +126,7 @@
                                     <label class="label-form">IPK UU</label>
                                     <div style="display: block;" class=" col-lg-2 col-md-4 col-sm-5">
                                         <input min=0 max=4 name="ipk_uu"
-                                            value="<?= esc( old('ipk_uu' ?? $dataLA->ipk_uu),'attr') ?>" step=0.01
+                                            value="<?= esc( old('ipk_uu' ?? $dataLA['ipk_uu']),'attr') ?>" step=0.01
                                             type="number"
                                             class="form-control custom-textfield <?= isset($validation_err['ipk_uu']) ? ' is-invalid is-test' : '' ?>">
                                         <div class="invalid-feedback">
@@ -140,7 +140,7 @@
                                         <label class="label-form"> Rangkuman Nilai(pdf)</label>
                                         <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya"
                                             href="
-                                            <?= esc(base_url('file/rangkuman_nilai/' .$dataLA->rangkuman_nilai),'url') ?>"><img
+                                            <?= esc(base_url('file/rangkuman_nilai/' .$dataLA['rangkuman_nilai']),'url') ?>"><img
                                                 id="doc-search" class="btn btn-sm btn-success"
                                                 src="<?= base_url('asset/img/doc-search.png') ?>" alt=""></a>
                                         <input style="padding-left : 15px;" type="file" name="rangkuman_nilai"

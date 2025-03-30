@@ -130,11 +130,11 @@
                                     <?php $no++; ?>
                                     <tr>
                                         <td class="th-sm"><strong><?= $no ?></strong></td>
-                                        <td class="th-nm"><?= $dataPB['nama'] ?></td>
-                                        <td class="th-sm"><?= $dataPB['npm'] ?></td>
-                                        <td class="th-nm"><?= $dataPB['nama_prodi'] ?></td>
-                                        <td class="th-lg"><?= $dataPB['alamat'] ?></td>
-                                        <td class="th-nm"><?= $dataPB['no_hp'] ?></td>
+                                        <td class="th-nm"><?= esc($dataPB['nama']) ?></td>
+                                        <td class="th-sm"><?= esc($dataPB['npm']) ?></td>
+                                        <td class="th-nm"><?= esc($dataPB['nama_prodi']) ?></td>
+                                        <td class="th-lg"><?= esc($dataPB['alamat']) ?></td>
+                                        <td class="th-nm"><?= esc($dataPB['no_hp']) ?></td>
                                         <?php if ($dataPB['jenis_kelamin'] == '1') {
                                             $JK = '<span class="">Laki-laki</span>';
                                         } elseif ($dataPB['jenis_kelamin'] == '0') {
@@ -142,7 +142,7 @@
                                         }
                                         ?>
                                         <td class="th-sm"><?= $JK ?></td>
-                                        <td class="th-sm"><?= $dataPB['tahun_diterima'] ?></td>
+                                        <td class="th-sm"><?= esc($dataPB['tahun_diterima'] )?></td>
                                         <?php if ($dataPB['status_penerima'] == '1') {
                                             $status = '<span class="status-peserta badge badge-rounded badge-primary">Aktif</span>';
                                         } elseif ($dataPB['status_penerima'] == '0') {

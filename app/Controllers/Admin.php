@@ -38,6 +38,7 @@ class Admin extends BaseController
 
     public function login_admin()
     {
+        // oke
         $viewData = [
             'title' => 'Login Admin | Admin',
         ];
@@ -47,6 +48,7 @@ class Admin extends BaseController
 
     public function admin_login_check()
     {
+        // oke
         $session = session();
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
@@ -129,12 +131,14 @@ class Admin extends BaseController
 
     public function logout_admin()
     {
+        // oke
         session()->destroy();
         return redirect()->to(base_url('/admin/login'));
     }
 
     public function profile_admin()
     {
+        // oke
         $session = session();    
         $profile = $this->userModel->DetailDataUUID($session->get('uuid_user'));
         if(!$profile){
@@ -154,6 +158,7 @@ class Admin extends BaseController
 
     public function cedit_profile($uuid_user)
     {
+        // oke
         $session = session();
         $uuid_session = $session->get('uuid_user');
         $account = $this->userModel->DetailDataUUID($uuid_user);
@@ -207,20 +212,26 @@ class Admin extends BaseController
             return redirect()->to(base_url('/admin/profile'));
         }
 
-        $this->userModel->updatePassword($account['id_user'], $passwordBaru);
-        session()->setFlashdata('success',             
-        ['general' => 'Kata sandi berhasil diubah']
-        );
+        $processingData = $this->userModel->updatePassword($account['id_user'], $passwordBaru);
+
+        if ($processingData) {
+            $this->session->setFlashdata('success',[
+                'general'=> "Kata Sandi berhasil diubah"]);
+        } else {
+            log_message('error', 'Insert data gagal: ' . json_encode($data));
+            $this->session->setFlashdata('errors',[
+                'general'=> "Kata Sandi gagal diubah. Terjadi kesalahan."]);
+        }      
         return redirect()->to(base_url('/admin/profile'));
     }
 
     public function home()
     {
-        
-        $news = $this->newsModel->AllData();
+        // oke
+        $listDataNews = $this->newsModel->AllData();
         $viewData = [
             'title' => 'Dashboard | Admin',
-            'news' => $news,
+            'listDataNews' => $listDataNews,
         ];
 
         return view('main/dashboard', $viewData);
@@ -229,6 +240,7 @@ class Admin extends BaseController
     public function beasiswa()
     {        
 
+        // oke        
         $listDataJB = $this->jbModel->AllData();
         
         $viewData = [
@@ -241,6 +253,7 @@ class Admin extends BaseController
 
     public function add_beasiswa()
     {
+        // oke
         $viewData = [
             'title' => 'Tambah Beasiswa | Admin',            
         ];
@@ -250,10 +263,18 @@ class Admin extends BaseController
 
     public function edit_beasiswa($id_beasiswa)
     {
-        
+        // oke
+        $dataJB = $this->jbModel->DetailData_id($id_beasiswa);   
+        if(!$dataJB){
+            session()->setFlashdata('errors',             
+                ['general' => 'Jenis Beasiswa tidak ditemukan']
+            );
+            return redirect()->to(base_url('/admin/beasiswa'));
+        }
+
         $data = [
             'title' => 'Form Edit Beasiswa | Admin',            
-            'listDataJB' => $this->jbModel->DetailData($id_beasiswa),
+            'dataJB' => $dataJB,
         ];
 
         return view('main/edit-beasiswa', $data);
@@ -261,6 +282,14 @@ class Admin extends BaseController
 
     public function cedit_beasiswa($id_beasiswa)
     {
+        // oke
+        $dataJB = $this->jbModel->checkDetailData_id($id_beasiswa);   
+        if(!$dataJB){
+            session()->setFlashdata('errors',             
+                ['general' => 'Jenis Beasiswa tidak ditemukan']
+            );
+            return redirect()->to(base_url('/admin/beasiswa'));
+        }
         
         $validationRules = [
             'jenis' => [
@@ -296,25 +325,21 @@ class Admin extends BaseController
         ];
 
         if (!$this->validate($validationRules)) {
-            $err_msg = 'Jenis Beasiswa Gagal Ditambahkan';       
+            $err_msg = 'Jenis Beasiswa Gagal Diubah';       
             session()->setFlashdata('errors', array_merge(
                 ['general' => $err_msg], 
                 $this->validator->getErrors()
             ));
             return redirect()->to(base_url("/admin/beasiswa/edit/{$id_beasiswa}"))->withInput();                                 
         }
+
         $data = [            
             'jenis' => $this->request->getPost('jenis'),
             'asal' => $this->request->getPost('asal'),
             'tahun_penerimaan' => $this->request->getPost('tahun_penerimaan'),
             'status_beasiswa' => $this->request->getPost('status_beasiswa'),
         ];
-
-        $this->jbModel->UpdateData($id_beasiswa, $data);
-        session()->setFlashdata('success',             
-                    ['general' => 'Jenis Beasiswa berhasil diubah.']
-                );
-                return redirect()->to(base_url('/admin/beasiswa'));    
+        $this->UpdateAndDirect($this->$jbModel,$id_beasiswa,$data,'/admin/beasiswa','Jenis Beasiswa');
     }
 
     public function save_beasiswa()
@@ -366,16 +391,13 @@ class Admin extends BaseController
             'tahun_penerimaan' => $this->request->getPost('tahun_penerimaan'),
             'status_beasiswa' => $this->request->getPost('status_beasiswa'),
         ];
-
-        $this->jbModel->InsertData($data);
-        session()->setFlashdata('success', 
-            ['general' => 'Jenis Beasiswa berhasil ditambahkan']
-        );
-        return redirect()->to(base_url("/admin/beasiswa"));            
+                     
+        $this->SaveAndDirect($this->jbModel,$data,'/admin/beasiswa','Jenis Beasiswa');
     }
 
     public function del_beasiswa($id_beasiswa)
-    {       
+    {  
+        // oke     
 
         $data = [
             'id_beasiswa' => $id_beasiswa,
@@ -388,59 +410,52 @@ class Admin extends BaseController
                 return redirect()->to(base_url('/admin/beasiswa')); 
     }
 
-    // checkpoint
+   
     public function penerima()
     {
        
-        $pb = $this->pbModel->AllData();
-        $data = [
+        $listDataPB = $this->pbModel->AllData();
+        $viewData = [
             'title' => 'Daftar Penerima Beasiswa | Admin',
-            'pb' => $pb,
+            'listDataPB' => $listDataPB,
         ];
 
-        return view('main/data-penerima-beasiswa', $data);
+        return view('main/data-penerima-beasiswa', $viewData);
     }
 
     public function add_penerima()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
         
-        $PS = $this->prodiModel->AllData();
+        $listDataPS = $this->prodiModel->AllData();
 
-        $data = [
-            'title' => 'Form Input Penerima | Admin',
-            'validation' => \Config\Services::validation(),
-            'prodi' => $PS,
+        $viewData = [
+            'title' => 'Form Input Penerima | Admin',            
+            'listDataPS' => $listDataPS,
         ];
 
-        return view('main/tambah-penerima', $data);
+        return view('main/tambah-penerima', $viewData);
     }
 
     public function edit_penerima($id_penerima)
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
+       $dataPB = $this->PBModel-> DetailData_id($id_penerima);
+       
+        if(!$dataPB){
+            session()->setFlashdata('errors',             
+                ['general' => 'Penerima Beasiswa tidak ditemukan']
+            );
+            return redirect()->to(base_url('/admin/beasiswa'));
         }
-
-        $data = [
-            'title' => 'Form Edit Penerima | Admin',
-            'validation' => \Config\Services::validation(),
-            'mhs' => $this->pbModel->DetailData($id_penerima),
+        $viewData = [
+            'title' => 'Form Edit Penerima | Admin',            
+            'dataPB' => $dataPB,
         ];
 
-        return view('main/edit-penerima', $data);
+        return view('main/edit-penerima', $viewData);
     }
-
+// checkpoint
     public function cedit_penerima($id_penerima)
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
 
         if (
             $this->validate([
@@ -648,58 +663,50 @@ class Admin extends BaseController
 
     public function akademik()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
+        //   oke
 
-        $la = $this->laModel->AllData();
-        $TA = $this->tahunModel->AllData();
-        $DataDiproses = $this->laModel->GetProcessData();
-        $data = [
+        $listDataLA = $this->laModel->AllData();
+        $listDataTA = $this->tahunModel->AllData_name();
+        
+        $viewData = [
             'title' => 'Akademik | Admin',
-            'la' => $la,
-            'TA' => $TA,
-            'DataDiproses' => $DataDiproses,
+            'listDataLA' => $listDataLA,
+            'listDataTA' => $listDataTA,
+            
         ];
 
-        return view('main/laporan-akademik', $data);
+        return view('main/laporan-akademik', $viewData);
     }
 
     public function confirm_akademik()
-    {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
+    {        
+        // oke
 
-        $DataDiproses = $this->laModel->GetProcessData();
-        $TA = $this->tahunModel->AllData();
-        $data = [
+        $listDataLA_processed = $this->laModel->GetProcessData();
+        $listDataTA = $this->tahunModel->AllData_name();
+        $viewData = [
             'title' => 'Konfirmasi Akademik | Admin',
-            'la' => $DataDiproses,
-            'TA' => $TA
+            'listDataLA_processed' => $listDataLA_processed,
+            'listDataTA' => $listDataTA
         ];
 
-        return view('main/confirm-akademik', $data);
+        return view('main/confirm-akademik', $viewData);
     }
 
     public function save_confirm_akademik()
-    {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
-        // Ambil data konfirmasi dan keterangan
+    {       
+        // oke
         $konfirmasi = $this->request->getPost('status_data');
         $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
-        $jumlah_berhasil_dikonfirmasi = 0;
+        $count_success = 0;
+        $count_errors = 0;
 
         // Validasi jika tidak ada data konfirmasi atau keterangan
         if (empty($konfirmasi) || empty($keterangan)) {
-            // Jika tidak ada konfirmasi atau keterangan, arahkan kembali ke halaman akademik dengan pesan error
-            session()->setFlashdata('gagal', 'Tidak ada Data yang Dikonfirmasi');
+            // Jika tidak ada konfirmasi atau keterangan, arahkan kembali ke halaman mbkm dengan pesan error            
+            session()->setFlashdata('errors',             
+            ['general' => "Tidak ada Laporan Akademik yang dikonfirmasi"]
+            );
             return redirect()->to(base_url('/admin/akademik'));
         }
 
@@ -707,34 +714,40 @@ class Admin extends BaseController
         foreach ($konfirmasi as $id => $status) {
             // Cek apakah ada keterangan untuk setiap konfirmasi
             $ket_konf = isset($keterangan[$id]) ? $keterangan[$id] : '-'; // Ambil keterangan yang sesuai
-            $this->laModel->update_konfirmasi_akademik($id, $status, $ket_konf);
-            $jumlah_berhasil_dikonfirmasi++; // Increment jika data berhasil dikonfirmasi
+            
+            $processingData = $this->laModel->update_konfirmasi_akademik($id, $status, $ket_konf);
+            if($processingData){
+                $count_success++;
+            }else{
+                $count_errors++;
+            }
         }
 
-        // Jika data berhasil disimpan, beri notifikasi sukses
+        if($count_success){
+            session()->setFlashdata('success',             
+            ['general' => "{$count_success} Laporan Akademik berhasil dikonfirmasi"]
+            );
+        }
 
-        // Jika ada data yang berhasil dikonfirmasi, beri notifikasi sukses
-        session()->setFlashdata('berhasil', "$jumlah_berhasil_dikonfirmasi data berhasil dikonfirmasi.");
+        if($count_errors){
+            session()->setFlashdata('errors',             
+            ['general' => "{$count_errors} Laporan Akademik gagal dikonfirmasi. Terjadi kesalahan"]
+            );
+        }
 
-        return redirect()->to(base_url('/admin/akademik'));
+        return redirect()->to(base_url('/admin/akademik'));     
     }
 
     public function add_akademik()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
-        $jb = $this->jbModel->AllData();
-        $pb = $this->pbModel->AllData();
-        $TA = $this->tahunModel->AllData();
-        $data = [
-            'title' => 'Form Input Akademik | Admin',
-            'validation' => \Config\Services::validation(),
-            'penerima' => $pb,
-            'jenis_beasiswa' => $jb,
-            'TA' => $TA,
+        // oke
+        
+        $listDataJB = $this->jbModel->AllDataActive_jenis();                
+        $listDataTA = $this->tahunModel->AllData_name();
+        $viewData = [
+            'title' => 'Form Input Akademik | Admin',            
+            'listDataJB' => $listDataJB,
+            'listDataTA'=> $listDataTA,
         ];
 
         return view('main/tambah-akademik', $data);
@@ -742,137 +755,358 @@ class Admin extends BaseController
 
     public function edit_akademik($id_akademik)
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-        $TA = $this->tahunModel->AllData();
-        $jb = $this->jbModel->AllData();
-        $pb = $this->pbModel->AllData();
+        $dataLA =  $this->laModel->DetailData_id($id_akademik);
+        $listDataJB = $this->jbModel->AllDataActive_jenis();                
+        $listDataTA = $this->tahunModel->AllData_name();
         $data = [
-            'title' => 'Form edit Akademik | Admin',
-            'validation' => \Config\Services::validation(),
-            'former' => $this->laModel->DetailData($id_akademik),
-            'penerima' => $pb,
-            'jenis_beasiswa' => $jb,
-            'TA' => $TA,
+            'title' => 'Form edit Akademik | Admin',           
+            'dataLA' => $dataLA,           
+            'listDataJB' => $listDataJB,
+            'listDataTA' => $listDataTA,
         ];
-
         return view('main/edit-akademik', $data);
     }
 
     public function cedit_akademik($id_akademik)
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
+        // oke
+        $dataLA =  $this->laModel->EditDetailData_uuid($id_akademik);
+        if(!$dataLA){
+            session()->setFlashdata('errors',             
+                ['general' => 'Laporan Akademik tidak ditemukan']
+            );
+            return redirect()->to(base_url('/user/akademik'));
         }
 
-        if (
-            $this->validate([
-                'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
-                'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
-                'semester' => 'required',
-                'TA' => 'required',
-                'ipk' => 'required',
-                'ipk_lokal' => 'required',
-                'ipk_uu' => 'required',
-                'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
-            ])
-        ) {
-            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
-            $nama_rn = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
-            $data = [
-                'id_akademik' => $id_akademik,
-                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
-                'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
-                'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->request->getPost('TA'),
-                'ipk' => $this->request->getPost('ipk'),
-                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
-                'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $nama_rn,
-                'konfirmasi_akademik' => 2,
-                'konf_ket_akademik' => $this->request->getPost('konf_ket_akademik'),
+        $validationRules = [
+            'npm'=>[
+                'rules'=> 'required | numeric',
+                'errors'=>[
+                    'required' => 'NPM harus diisi',
+                    'numeric'=>'NPM seharusnya angka'
+                ]
+                ],
+            'jenis_beasiswa' => [
+                'rules' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+                'errors' => [
+                    'required' => 'Jenis beasiswa harus dipilih.',
+                    'is_not_unique' => 'Jenis beasiswa tidak valid.'
+                ]
+            ],
+            'semester' => [
+                'rules' => 'required|greater_than_equal_to[0]||less_than_equal_to[14]',
+                'errors' => [
+                    'required' => 'Semester harus diisi.',
+                    'greater_than_equal_to' => 'Semester tidak boleh kurang dari 0',
+                    'less_than_equal_to' => 'Semester tidak boleh lebih dari 14'
+                ]
+            ],
+            'TA' => [
+                'rules' => 'required|regex_match[/^(PTA|ATA) \d{4}\/\d{4}$/]',
+                'errors' => [
+                    'required' => 'Tahun Ajaran harus diisi.',
+                    'regex_match' => 'Tahun Ajaran tidak sesuai format'
+                    
+                ]
+            ],
+            'ipk' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK harus diisi.',
+                    'decimal' => 'IPK harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_lokal' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK Lokal harus diisi.',
+                    'decimal' => 'IPK Lokal harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK Lokal tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK Lokal tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_uu' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                   'required' => 'IPK UU harus diisi.',
+                    'decimal' => 'IPK UU harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK UU tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK UU tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'rangkuman_nilai' => [
+                'rules' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
+                'errors' => [
+                    'uploaded' => 'File rangkuman nilai harus diunggah.',
+                    'max_size' => 'Ukuran file maksimal 4MB.',
+                    'ext_in' => 'File harus berformat PDF.'
+                ]
+            ],
+            'konfirmasi_akademik'=>[
+                'rules'=> 'required|in_list[0,1,2]',
+                'errors'=>[
+                    'required'=> 'Konfirmasi Akademik harus dipilih',
+                    'in_list'=>'Konfirmasi Akademik hanya pilih Diproses, Distujui, dan Ditolak'
+                ]
+            ]
+
+        ];
+
+        if (!$this->validate($validationRules)) {
+            $err_msg = 'Jenis Beasiswa Gagal Diubah';       
+            session()->setFlashdata('errors', array_merge(
+                ['general' => $err_msg], 
+                $this->validator->getErrors()
+            ));
+            return redirect()->to(base_url("/admin/beasiswa/edit/{$id_akademik}"))->withInput();                                 
+        }
+
+        $npmInput = $this->request->getPost('npm');
+        $id_penerima= $this->pbModel->GetID_pb($npmInput);
+        if(!$id_penerima){
+            $err_msg = 'NPM penerima beasiswa tidak ditemukan';   
+            session()->setFlashdata('errors', [
+                'general' => $err_msg,
+                'npm' => 'NPM Not found!'
+            ]);
+            return redirect()->to(base_url("/admin/beasiswa/edit/{$id_akademik}"))->withInput();
+        }
+
+        $semesterInput = $this->request->getPost('semester');
+        $TAInput = $this->request->getPost('TA'); 
+        $checkLA = $this->laModel->checkSemesterAndTA($id_penerima, $semesterInput, $TAInput);
+        if ($checkLA) {
+            session()->setFlashdata('errors',             
+                ['general' => "
+                Laporan Akademik dengan 
+                Semester ke-{$semesterInput} atau Tahun Ajaran {$TAInput} 
+                untuk NPM {$npmInput} sudah ada. Silakan cek kembali."]
+            );
+            $listDataLA = $this->laModel->AllData_ID_pb($id_penerima);
+            $listDataJB = $this->jbModel->AllDataActive_jenis();                
+            $listDataTA = $this->tahunModel->AllData_name(); 
+            $viewData=[
+                "title" => "Akademik | ${npm}",
+                'listDataLA' => $listDataLA,
+                'listDataTA' => $listDataTA,
+                'listDataJB' => $listDataJB
             ];
-
-            $this->laModel->UpdateData($id_akademik, $data);
-            session()->setFlashdata('berhasil', 'Data berhasil diubah');
-
-            return redirect()->to(base_url('/admin/akademik'));
-        } else {
-            session()->setFlashdata('gagal', 'Data tidak berhasil diubah');
-            return redirect()->to(base_url('/admin/akademik'));
+            return view('main/laporan-akademik', $viewData);            
         }
+
+        $id_beasiswa = $this->jbModel->GetID_jb($this->request->getPost('jenis_beasiswa'));
+        if (!$id_beasiswa) {  
+            $err_msg = 'jenis beasiswa tidak ditemukan';
+            session()->setFlashdata('errors', [
+                
+                'jenis_beasiswa' => 'Jenis Beasiswa Not found!'
+            ]);
+            return redirect()->to(base_url("/admin/beasiswa/edit/{$id_akademik}"))->withInput();            
+        }
+
+        $RNdoc_data = $dataLA['rangkuman_nilai'];
+        $Directory_db = 'uploads/documents/akademik/rangkuman_nilai/';
+        $RNdoc_Input = $this->request->getFile('rangkuman_nilai');
+        if($RNdoc_Input->isValid() && !$RNdoc_Input->hasMoved()){
+            if($RNdoc_data && file_exists(WRITEPATH . $Directory_db ,$RNdoc_data)){
+                unlink(WRITEPATH . $Directory_db . $pp);
+            }
+            $RNdoc_name = time() . '_' . bin2hex(random_bytes(8)) . '.pdf'; ;
+            $RNdoc_Input->move(WRITEPATH . $Directory_db,$RNdoc_name);
+        }else{
+            $RNdoc_name = $RNdoc_data;
+        }
+        $data = [            
+            'id_beasiswa' => $id_beasiswa,
+            'semester' => $semesterInput,
+            'tahun_ajaran' => $TAInput,
+            'ipk' => $this->request->getPost('ipk'),
+            'ipk_lokal' => $this->request->getPost('ipk_lokal'),
+            'ipk_uu' => $this->request->getPost('ipk_uu'),
+            'rangkuman_nilai' => $RNdoc_name,
+            'konfirmasi_akademik' => $this->request->getPost('konfirmasi_akademik'),
+        ]; 
+
+        $this->UpdateAndDirect($this->laModel,$id_akademik,$data,'admin/akademik','Laporan Akademik');
     }
 
     public function save_akademik()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
+        $validationRules = [
+            'npm'=>[
+                'rules'=> 'required | numeric',
+                'errors'=>[
+                    'required' => 'NPM harus diisi',
+                    'numeric'=>'NPM seharusnya angka'
+                ]
+                ],
+            'jenis_beasiswa' => [
+                'rules' => 'required|is_not_unique[jenis_beasiswa.jenis]',
+                'errors' => [
+                    'required' => 'Jenis beasiswa harus dipilih.',
+                    'is_not_unique' => 'Jenis beasiswa tidak valid.'
+                ]
+            ],
+            'semester' => [
+                'rules' => 'required|greater_than_equal_to[0]||less_than_equal_to[14]',
+                'errors' => [
+                    'required' => 'Semester harus diisi.',
+                    'greater_than_equal_to' => 'Semester tidak boleh kurang dari 0',
+                    'less_than_equal_to' => 'Semester tidak boleh lebih dari 14'
+                ]
+            ],
+            'TA' => [
+                'rules' => 'required|regex_match[/^(PTA|ATA) \d{4}\/\d{4}$/]',
+                'errors' => [
+                    'required' => 'Tahun Ajaran harus diisi.',
+                    'regex_match' => 'Tahun Ajaran tidak sesuai format'
+                    
+                ]
+            ],
+            'ipk' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK harus diisi.',
+                    'decimal' => 'IPK harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_lokal' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                    'required' => 'IPK Lokal harus diisi.',
+                    'decimal' => 'IPK Lokal harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK Lokal tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK Lokal tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'ipk_uu' => [
+                'rules' => 'required|decimal|greater_than_equal_to[0]|less_than_equal_to[4]',
+                'errors' => [
+                   'required' => 'IPK UU harus diisi.',
+                    'decimal' => 'IPK UU harus berupa angka desimal.',
+                    'greater_than_equal_to' => 'IPK UU tidak boleh kurang dari 0.00.',
+                    'less_than_equal_to' => 'IPK UU tidak boleh lebih dari 4.00.'
+                ]
+            ],
+            'rangkuman_nilai' => [
+                'rules' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
+                'errors' => [
+                    'uploaded' => 'File rangkuman nilai harus diunggah.',
+                    'max_size' => 'Ukuran file maksimal 4MB.',
+                    'ext_in' => 'File harus berformat PDF.'
+                ]
+                ],
+                'konfirmasi_akademik'=>[
+                'rules'=> 'required|in_list[0,1,2]',
+                'errors'=>[
+                    'required'=> 'Konfirmasi Akademik harus dipilih',
+                    'in_list'=>'Konfirmasi Akademik hanya pilih Diproses, Distujui, dan Ditolak'
+                ]
+                ],
+        ];
+        if (!$this->validate($validationRules)) {
+            $err_msg = 'Jenis Beasiswa Gagal Ditambahkan';       
+            session()->setFlashdata('errors', array_merge(
+                ['general' => $err_msg], 
+                $this->validator->getErrors()
+            ));
+            return redirect()->to(base_url("/admin/beasiswa/add"))->withInput();                                 
+        }
+        $npmInput = $this->request->getPost('npm');
+        $id_penerima= $this->pbModel->GetID_pb($npmInput);
+        if(!$id_penerima){
+            $err_msg = 'NPM penerima beasiswa tidak ditemukan';   
+            session()->setFlashdata('errors', [
+                'general' => $err_msg,
+                'npm' => 'NPM Not found!'
+            ]);
+            return redirect()->to(base_url("/admin/beasiswa/add"))->withInput();
         }
 
-        if (
-            $this->validate([
-                'npm' => 'required|is_not_unique[penerima_beasiswa.npm]',
-                'jenis_beasiswa' => 'required|is_not_unique[jenis_beasiswa.jenis]',
-                'semester' => 'required',
-                'TA' => 'required',
-
-                'ipk' => 'required',
-                'ipk_lokal' => 'required',
-                'ipk_uu' => 'required',
-                'rangkuman_nilai' => 'uploaded[rangkuman_nilai]|max_size[rangkuman_nilai,4096]|ext_in[rangkuman_nilai,pdf]',
-            ])
-        ) {
-            $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
-            $nama_rn = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
-            $data = [
-                'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
-                'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
-                'semester' => $this->request->getPost('semester'),
-                'tahun_ajaran' => $this->request->getPost('TA'),
-                'ipk' => $this->request->getPost('ipk'),
-                'ipk_lokal' => $this->request->getPost('ipk_lokal'),
-                'ipk_uu' => $this->request->getPost('ipk_uu'),
-                'rangkuman_nilai' => $nama_rn,
-                'konfirmasi_akademik' => 2,
+        $semesterInput = $this->request->getPost('semester');
+        $TAInput = $this->request->getPost('TA'); 
+        $checkLA = $this->laModel->checkSemesterAndTA($id_penerima, $semesterInput, $TAInput);
+        if ($checkLA) {
+            session()->setFlashdata('errors',             
+                ['general' => "
+                Laporan Akademik dengan 
+                Semester ke-{$semesterInput} atau Tahun Ajaran {$TAInput} 
+                untuk NPM {$npmInput} sudah ada. Silakan cek kembali."]
+            );
+            $listDataLA = $this->laModel->AllData_ID_pb($id_penerima);
+            $listDataJB = $this->jbModel->AllDataActive_jenis();                
+            $listDataTA = $this->tahunModel->AllData_name(); 
+            $viewData=[
+                "title" => "Akademik | ${npm}",
+                'listDataLA' => $listDataLA,
+                'listDataTA' => $listDataTA,
+                'listDataJB' => $listDataJB
             ];
-
-            $this->laModel->InsertData($data);
-            session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
-
-            return redirect()->to(base_url('/admin/akademik'));
-        } else {
-            $session = session();
-            $session->setFlashdata('input', $this->request->getPost());
-            $TA = $this->tahunModel->AllData();
-            $jb = $this->jbModel->AllData();
-            $pb = $this->pbModel->AllData();
-
-            $data = [
-                'title' => 'Form Input Akademik | Admin',
-                'validation' => \Config\Services::validation(),
-                'input' => $session->getFlashdata('input'),
-                'TA' => $TA,
-                'penerima' => $pb,
-                'jenis_beasiswa' => $jb,
-            ];
-
-            return view('main/tambah-akademik', $data);
+            return view('main/laporan-akademik', $viewData);            
         }
+
+        $id_beasiswa = $this->jbModel->GetID_jb($this->request->getPost('jenis_beasiswa'));
+        if (!$id_beasiswa) {  
+            $err_msg = 'jenis beasiswa tidak ditemukan';
+            session()->setFlashdata('errors', [
+                
+                'jenis_beasiswa' => 'Jenis Beasiswa Not found!'
+            ]);
+            return redirect()->to(base_url('/admin/beasiswa/add'))->withInput();            
+        }
+
+        $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
+        $nama_rn = time() . '_' . bin2hex(random_bytes(8)) . '.pdf';
+        $rangkuman_nilai->move(WRITEPATH . 'uploads/documents/akademik/rangkuman_nilai/', $nama_rn);
+
+        $maxAttempts = 5; // Batasi percobaan maksimal
+        $attempt = 0;
+        do {
+            try {
+                $uuidLA = bin2hex(random_bytes(16)); // Generate UUID unik
+
+                $data = [
+                    'id_penerima' => $id_penerima,
+                    'id_beasiswa' =>  $id_beasiswa,                    
+                    'uuid_la' => $uuidLA, // Gunakan UUID yang sudah dibuat
+                    'semester' =>  $semesterInput,
+                    'tahun_ajaran' => $TAInput,
+                    'ipk' =>  $this->request->getPost('ipk'),
+                    'ipk_lokal' =>  $this->request->getPost('ipk_lokal'),
+                    'ipk_uu' =>  $this->request->getPost('ipk_uu'),
+                    'rangkuman_nilai' => $nama_rn,
+                    'konfirmasi_akademik' => $this->request->getPost('konfirmasi_akademik'),
+                ];                
+                $this->SaveAndDirect($this->laModel,$data,'/admin/akademik','Laporan Akademik');              
+
+            } catch (\Exception $e) {
+                if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                    $attempt++;
+                    if ($attempt >= $maxAttempts) {
+                        session()->setFlashdata('errors',             
+                            ['general' => 'Gagal menyimpan data setelah beberapa percobaan.']
+                        );
+                        return redirect()->to(base_url('/admin/akademik'));                        
+                    }
+                    continue; // Coba lagi dengan UUID baru
+                } else {
+                    session()->setFlashdata('errors',             
+                        ['general' => 'Terjadi kesalahan saat menyimpan data.']
+                    );
+                    return redirect()->to(base_url('/admin/akademik'));                                            
+                }
+            }
+        } while ($attempt < $maxAttempts);
+                                     
     }
 
     public function prestasi()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
+       
         $lp = $this->lpModel->AllData();
 
         $DataDiproses = $this->lpModel->GetProcessData();
@@ -1092,7 +1326,7 @@ class Admin extends BaseController
         // Ambil data konfirmasi dan keterangan
         $konfirmasi = $this->request->getPost('status_data');
         $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
-        $jumlah_berhasil_dikonfirmasi = 0;
+        $count = 0;
 
         // Validasi jika tidak ada data konfirmasi atau keterangan
         if (empty($konfirmasi) || empty($keterangan)) {
@@ -1106,13 +1340,13 @@ class Admin extends BaseController
             // Cek apakah ada keterangan untuk setiap konfirmasi
             $ket_konf = isset($keterangan[$id]) ? $keterangan[$id] : '-'; // Ambil keterangan yang sesuai
             $this->lpModel->update_konfirmasi_prestasi($id, $status, $ket_konf);
-            $jumlah_berhasil_dikonfirmasi++; // Increment jika data berhasil dikonfirmasi
+            $count++; // Increment jika data berhasil dikonfirmasi
         }
 
         // Jika data berhasil disimpan, beri notifikasi sukses
 
         // Jika ada data yang berhasil dikonfirmasi, beri notifikasi sukses
-        session()->setFlashdata('berhasil', "$jumlah_berhasil_dikonfirmasi data berhasil dikonfirmasi.");
+        session()->setFlashdata('berhasil', "$count data berhasil dikonfirmasi.");
 
         return redirect()->to(base_url('/admin/prestasi'));
     }
@@ -1275,20 +1509,18 @@ class Admin extends BaseController
     }
     public function save_confirm_mbkm()
     {
-        if (session()->get('hak_akses') != '1') {
-            session()->setFlashdata('belum_login', 'Anda Belum Login Sebagai Admin');
-            return redirect()->to(base_url('/admin/login'));
-        }
-
         // Ambil data konfirmasi dan keterangan
         $konfirmasi = $this->request->getPost('status_data');
         $keterangan = $this->request->getPost('konfirmasi_keterangan'); // Ambil keterangan
-        $jumlah_berhasil_dikonfirmasi = 0;
+        $count_success = 0;
+        $count_errors = 0;
 
         // Validasi jika tidak ada data konfirmasi atau keterangan
         if (empty($konfirmasi) || empty($keterangan)) {
-            // Jika tidak ada konfirmasi atau keterangan, arahkan kembali ke halaman mbkm dengan pesan error
-            session()->setFlashdata('gagal', 'Tidak ada Data yang Dikonfirmasi');
+            // Jika tidak ada konfirmasi atau keterangan, arahkan kembali ke halaman mbkm dengan pesan error            
+            session()->setFlashdata('errors',             
+            ['general' => "Tidak ada Laporan MBKM yang dikonfirmasi"]
+        )
             return redirect()->to(base_url('/admin/mbkm'));
         }
 
@@ -1296,17 +1528,30 @@ class Admin extends BaseController
         foreach ($konfirmasi as $id => $status) {
             // Cek apakah ada keterangan untuk setiap konfirmasi
             $ket_konf = isset($keterangan[$id]) ? $keterangan[$id] : '-'; // Ambil keterangan yang sesuai
-            $this->mbkmModel->update_konfirmasi_mbkm($id, $status, $ket_konf);
-            $jumlah_berhasil_dikonfirmasi++; // Increment jika data berhasil dikonfirmasi
+            
+            $processingData = $this->mbkmModel->update_konfirmasi_mbkm($id, $status, $ket_konf);
+            if($processingData){
+                $count_success++;
+            }else{
+                $count_errors++;
+            }
+             // Increment jika data berhasil dikonfirmasi
         }
 
-        // Jika data berhasil disimpan, beri notifikasi sukses
+        if($count_success){
+            session()->setFlashdata('success',             
+            ['general' => "{$count_success} Laporan MBKM berhasil dikonfirmasi"]
+        )}
+        if($count_errors){
+            session()->setFlashdata('errors',             
+            ['general' => "{$count_errors} Laporan MBKM gagal dikonfirmasi. Terjadi kesalahan"]
+        )}
+        return redirect()->to(base_url('/admin/mbkm'));     
 
-        // Jika ada data yang berhasil dikonfirmasi, beri notifikasi sukses
-        session()->setFlashdata('berhasil', "$jumlah_berhasil_dikonfirmasi data berhasil dikonfirmasi.");
-
-        return redirect()->to(base_url('/admin/mbkm'));
     }
+    
+      
+    
 
     public function manajemen()
     {
