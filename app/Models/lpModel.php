@@ -31,11 +31,17 @@ class lpModel extends Model
 
     public function AllData()
     {
-        return $this->db->table('laporan_prestasi')
+        return $this
+            ->select('laporan_prestasi.*, jenis_beasiswa.jenis,penerima_beasiswa.npm,penerima_beasiswa.nama,program_studi.nama_prodi')
             ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa=laporan_prestasi.id_beasiswa', 'left')
             ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima=laporan_prestasi.id_penerima', 'left')
             ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
             ->Get()->getResultArray();
+    }
+    public function countProcessedData(){
+        return $this
+        ->where('konfirmasi_prestasi',2)
+        ->countAllResults();
     }
 
     public function InsertData($data)
@@ -43,14 +49,15 @@ class lpModel extends Model
         $this->db->table('laporan_prestasi')->insert(($data));
     }
 
-    public function DetailData($id_prestasi)
+    public function DetailData_id($id_prestasi)
 {
-    return $this->db->table('laporan_prestasi')
+    return $this
+        ->select('laporan_prestasi.*, jenis_beasiswa.jenis, penerima_beasiswa.npm, penerima_beasiswa.nama, program_studi.nama_prodi')
         ->join('jenis_beasiswa', 'jenis_beasiswa.id_beasiswa = laporan_prestasi.id_beasiswa', 'left')
         ->join('penerima_beasiswa', 'penerima_beasiswa.id_penerima = laporan_prestasi.id_penerima', 'left')
         ->join('program_studi', 'program_studi.id_prodi = penerima_beasiswa.id_prodi', 'left')
         ->where('id_prestasi', $id_prestasi)
-        ->get()->getRow();
+        ->get()->getRowArray();
 }
 
     public function UpdateData($id, $data)

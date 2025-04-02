@@ -71,6 +71,17 @@ class pbModel extends Model
             ->get()
             ->getRowArray();
     }
+
+    public function AllDataActive_npm()
+    {      
+        
+        return $this->query("
+        SELECT pb.npm, pb.nama, ps.nama_prodi 
+        FROM penerima_beasiswa pb
+        JOIN program_studi ps ON pb.id_prodi = ps.id_prodi
+        WHERE pb.status_penerima = 1
+    ")->getResultArray();
+    }
     
     public function DetailData_id($id_penerima){
         return $this
