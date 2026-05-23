@@ -1,65 +1,80 @@
-# CodeIgniter 4 Application Starter
+# 🎓 MBUG - Monitoring Beasiswa Universitas Gunadarma
 
-## What is CodeIgniter?
+MBUG adalah aplikasi web berbasis **CodeIgniter 4** yang digunakan untuk melakukan monitoring data beasiswa (seperti KIP-K, Beasiswa LIPI, dll.) di lingkungan Universitas Gunadarma. Aplikasi ini mencakup pencatatan prestasi, laporan keaktifan, laporan akademik (IPK), hingga integrasi Google Form.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## 🛠️ Stack Teknologi
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+Aplikasi ini berjalan menggunakan lingkungan ter-kontainerisasi (Docker) sehingga Anda tidak perlu menginstal PHP atau database MySQL secara lokal di mesin Anda.
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+*   **Framework:** PHP CodeIgniter 4.x
+*   **Database:** MariaDB 10.4 (MySQL compatible)
+*   **Server:** Apache (pada PHP 8.2)
+*   **Runtime Environment:** Docker & Docker Compose
 
-## Installation & updates
+---
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🚀 Cara Menjalankan Project
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+### 📋 Prasyarat
+Pastikan Anda sudah menginstal **Docker Desktop** di komputer Anda:
+*   [Unduh Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-## Setup
+### ⚡ Langkah-Langkah Menjalankan
+1.  **Clone / Buka Project** di editor pilihan Anda (misalnya VS Code).
+2.  **Jalankan Docker Compose**:
+    Buka terminal di root direktori proyek ini, lalu jalankan perintah:
+    ```bash
+    docker compose up -d
+    ```
+    *Perintah ini akan membangun image PHP, membuat kontainer web server & database, serta mengimpor skema database dari `mbug.sql` secara otomatis.*
+3.  **Buka di Browser**:
+    Akses aplikasi melalui URL:
+    👉 **[http://localhost:8080](http://localhost:8080)**
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+---
 
-## Important Change with index.php
+## 🔑 Akun Uji Coba (Credentials)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Gunakan akun berikut yang sudah tersedia di database dummy untuk mencoba fungsionalitas sistem:
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 👤 Admin (Hak Akses: Admin/Staf)
+*   **Username:** `10120700`
+*   **Password:** `umul`
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### 🎓 Mahasiswa (Hak Akses: Penerima Beasiswa)
+| Username | Password | Keterangan |
+| :--- | :--- | :--- |
+| `10120698` | `owlowl` | Muhammad Aulia Nur Fadhillah |
+| `10120699` | `12345678` | Isa Tarmana Mustopa |
+| `10120701` | `10120701.beasiswa` | Naufal Nur |
 
-## Repository Management
+---
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## 📂 Struktur Konfigurasi Docker
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+*   **`Dockerfile`**: Mengonfigurasi Apache, menginstal PHP 8.2, dan mengaktifkan ekstensi wajib CodeIgniter 4 (`intl`, `mysqli`, `gd`, dan rewrite module). Dokumen root diarahkan langsung ke folder `public/`.
+*   **`docker-compose.yml`**:
+    *   **`web`**: Berjalan pada port `8080`. Perubahan kode di lokal akan langsung disinkronkan ke dalam kontainer (live reload/bind mount).
+    *   **`db`**: Berjalan pada port `3306`. Menggunakan volume `db_data` agar data database tidak hilang saat kontainer dimatikan.
+*   **`.env`**: Menyimpan konfigurasi lokal (lingkungan `development`, base URL `http://localhost:8080/`, serta kredensial database kontainer).
 
-## Server Requirements
+---
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+## 💻 Perintah Docker yang Sering Digunakan
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+| Perintah | Deskripsi |
+| :--- | :--- |
+| `docker compose up -d` | Menyalakan aplikasi di latar belakang (detached mode). |
+| `docker compose down` | Mematikan dan menghapus kontainer aplikasi. |
+| `docker compose down -v` | Mematikan aplikasi sekaligus menghapus volume database (jika ingin mereset DB). |
+| `docker compose restart` | Memulai ulang seluruh kontainer. |
+| `docker compose logs -f` | Menampilkan log server secara real-time untuk keperluan debugging. |
+| `docker compose exec web bash` | Masuk ke terminal kontainer web server PHP. |
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+---
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-# MBUG
-# MBUG
-# MBUG
+## 🎨 Desain Figma
+Referensi desain UI/UX proyek ini dapat diakses pada tautan berikut:
+🔗 [Figma Link - Monitoring Beasiswa UG](https://www.figma.com/file/gAPIg48PMj1PeKokLeupfA/MONITORING-BEASISWA-UG?type=design&node-id=0-1&mode=design)

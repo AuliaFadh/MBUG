@@ -1,2 +1,41 @@
-node_modules
+# Dependencies
+/vendor/
+/node_modules/
+
+# CodeIgniter 4 Runtime Files
+/writable/cache/*
+/writable/debugbar/*
+/writable/logs/*
+/writable/session/*
+/writable/uploads/*
+
+# Keep structural files in writable directories
+!/writable/cache/index.html
+!/writable/debugbar/index.html
+!/writable/logs/index.html
+!/writable/session/index.html
+!/writable/uploads/index.html
+
+!/writable/cache/.gitkeep
+!/writable/debugbar/.gitkeep
+!/writable/logs/.gitkeep
+!/writable/session/.gitkeep
+!/writable/uploads/.gitkeep
+
+# Configuration & Environment Files
 .env
+.env.*
+.phpunit.result.cache
+
+# IDEs, Editors & OS Files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
