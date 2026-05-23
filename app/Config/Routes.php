@@ -155,6 +155,9 @@ $routes->group('user', function ($routes) {
     $routes->get('panduan', 'User::user_panduan');
 });
 
+// Secure file routing
+$routes->get('files/view/(:segment)/(:any)', 'FileController::serveFile/$1/$2');
+
 // $routes->setTranslateURIDashes(false);
 // $routes->set404Override();
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps

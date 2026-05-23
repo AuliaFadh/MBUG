@@ -75,7 +75,7 @@
                                                 <td class="th-nm"><?= $value['tahun_ajaran'] ?></td>
                                                 <td class="th-sm">
                                                     <a title="Lihat File"
-                                                        href="<?= base_url('asset/doc/database/krs/' . $value['krs']) ?>">
+                                                        href="<?= base_url('files/view/krs/' . $value['krs']) ?>">
                                                         <img id="doc-search" class="btn btn-sm btn-success"
                                                             src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
                                                     </a>
@@ -84,14 +84,14 @@
                                                 <td class="th-nm"><?= $value['jumlah_potongan'] ?></td>
                                                 <td class="th-sm">
                                                     <a title="Lihat File"
-                                                        href="<?= base_url('asset/doc/database/blanko_pembayaran/' . $value['blanko_pembayaran']) ?>">
+                                                        href="<?= base_url('files/view/blanko_pembayaran/' . $value['blanko_pembayaran']) ?>">
                                                         <img id="doc-search" class="btn btn-sm btn-success"
                                                             src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
                                                     </a>
                                                 </td>
                                                 <td class="th-sm">
                                                     <a title="Lihat File"
-                                                        href="<?= base_url('asset/doc/database/bukti_pembayaran/' . $value['bukti_pembayaran']) ?>">
+                                                        href="<?= base_url('files/view/bukti_pembayaran/' . $value['bukti_pembayaran']) ?>">
                                                         <img id="doc-search" class="btn btn-sm btn-success"
                                                             src="<?= base_url('asset/img/doc-search.png') ?>" alt="">
                                                     </a>

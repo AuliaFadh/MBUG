@@ -155,7 +155,7 @@
                                                     style="height: 50px; width: 50px;" alt="" />
                                                 <?php elseif ($value['ppicture'] !== null) : ?>
                                                 <img id="profile-img-nav"
-                                                    src="<?= base_url('asset/img/database/picture/' . $value['ppicture']); ?>"
+                                                    src="<?= base_url('files/view/picture/' . $value['ppicture']); ?>"
                                                     style="height: 50px; width: 50px;" alt="" />
                                                 <?php endif; ?>
 

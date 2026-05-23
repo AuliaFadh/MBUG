@@ -91,7 +91,7 @@
                                         <div class="form-group row fallback w-100 ">
                                             <label class="label-form">KRS</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya"
-                                                href="<?= base_url('asset/doc/database/krs/' . $former->krs) ?>"><img
+                                                href="<?= base_url('files/view/krs/' . $former->krs) ?>"><img
                                                     id="doc-search" class="btn btn-sm btn-success"
                                                     src="<?= base_url('asset/img/doc-search.png') ?>"
                                                     alt=""></a>
@@ -132,7 +132,7 @@
                                         <div class="form-group row fallback w-100">
                                             <label class="label-form"> Blanko Pembayaran</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya"
-                                                href="<?= base_url('asset/doc/database/blanko_pembayaran/' . $former->blanko_pembayaran) ?>"><img
+                                                href="<?= base_url('files/view/blanko_pembayaran/' . $former->blanko_pembayaran) ?>"><img
                                                     id="doc-search" class="btn btn-sm btn-success"
                                                     src="<?= base_url('asset/img/doc-search.png') ?>"
                                                     alt=""></a>
@@ -145,7 +145,7 @@
                                         <div class="form-group row fallback w-100">
                                             <label class="label-form"> Bukti Pembayaran</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya"
-                                                href="<?= base_url('asset/doc/database/bukti_pembayaran/' . $former->bukti_pembayaran) ?>"><img
+                                                href="<?= base_url('files/view/bukti_pembayaran/' . $former->bukti_pembayaran) ?>"><img
                                                     id="doc-search" class="btn btn-sm btn-success"
                                                     src="<?= base_url('asset/img/doc-search.png') ?>"
                                                     alt=""></a>

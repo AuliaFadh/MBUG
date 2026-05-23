@@ -687,7 +687,7 @@ class Admin extends BaseController
         ) {
             $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
             $nama_rn = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
+            $rangkuman_nilai->move(WRITEPATH . 'uploads/rangkuman_nilai', $nama_rn);
             $data = [
                 'id_akademik' => $id_akademik,
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -734,7 +734,7 @@ class Admin extends BaseController
         ) {
             $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
             $nama_rn = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
+            $rangkuman_nilai->move(WRITEPATH . 'uploads/rangkuman_nilai', $nama_rn);
             $data = [
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp($this->request->getPost('npm')),
@@ -839,7 +839,7 @@ class Admin extends BaseController
 
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
-            $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
+            $bukti_prestasi->move(WRITEPATH . 'uploads/bukti_prestasi', $nama_bp);
             $tanggal_mulai = $this->request->getPost('tanggal-mulai');
             $tanggal_selesai = $this->request->getPost('tanggal-selesai');
             $formatted_mulai = date('d F, Y', strtotime($tanggal_mulai)); // Pastikan format yang diterima valid
@@ -937,7 +937,7 @@ class Admin extends BaseController
 
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
-            $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
+            $bukti_prestasi->move(WRITEPATH . 'uploads/bukti_prestasi', $nama_bp);
             $capaianValue = $this->request->getPost('capaian');
 
             // Jika "Lainnya" dipilih, ambil nilai dari input "other_form"
@@ -1491,15 +1491,15 @@ class Admin extends BaseController
         ) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
-            $krs->move('asset/doc/database/krs', $nama_krs);
+            $krs->move(WRITEPATH . 'uploads/krs', $nama_krs);
 
             $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
             $nama_blanko = $blanko_pembayaran->getRandomName();
-            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+            $blanko_pembayaran->move(WRITEPATH . 'uploads/blanko_pembayaran', $nama_blanko);
 
             $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
             $nama_bukti = $bukti_pembayaran->getRandomName();
-            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+            $bukti_pembayaran->move(WRITEPATH . 'uploads/bukti_pembayaran', $nama_bukti);
 
             $data = [
                 'id_keaktifan' => $id_keaktifan,
@@ -1549,15 +1549,15 @@ class Admin extends BaseController
         ) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
-            $krs->move('asset/doc/database/krs', $nama_krs);
+            $krs->move(WRITEPATH . 'uploads/krs', $nama_krs);
 
             $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
             $nama_blanko = $blanko_pembayaran->getRandomName();
-            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+            $blanko_pembayaran->move(WRITEPATH . 'uploads/blanko_pembayaran', $nama_blanko);
 
             $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
             $nama_bukti = $bukti_pembayaran->getRandomName();
-            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+            $bukti_pembayaran->move(WRITEPATH . 'uploads/bukti_pembayaran', $nama_bukti);
 
             $data = [
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),

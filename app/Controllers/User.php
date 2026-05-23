@@ -144,11 +144,11 @@ class User extends BaseController
 
             $foto_pp = $this->request->getFile('file-input');
             if ($foto_pp->getSize() > 0) {
-                if (!is_null($pp)){
-                    unlink('asset/img/database/picture/' . $pp);
+                if (!is_null($pp) && is_file(WRITEPATH . 'uploads/picture/' . $pp)){
+                    unlink(WRITEPATH . 'uploads/picture/' . $pp);
                 }
                 $nama_pp = $foto_pp->getRandomName();
-                $foto_pp->move('asset/img/database/picture/', $nama_pp);
+                $foto_pp->move(WRITEPATH . 'uploads/picture', $nama_pp);
             } else {
                 $nama_pp = $pp;
             }
@@ -274,7 +274,7 @@ class User extends BaseController
         ])) {
             $rangkuman_nilai = $this->request->getFile('rangkuman_nilai');
             $nama_rn = $rangkuman_nilai->getRandomName();
-            $rangkuman_nilai->move('asset/doc/database/rangkuman_nilai', $nama_rn);
+            $rangkuman_nilai->move(WRITEPATH . 'uploads/rangkuman_nilai', $nama_rn);
             $data = [
                 'id_beasiswa' => $this->laModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->laModel->getIDp(session()->get('username')),
@@ -351,11 +351,11 @@ class User extends BaseController
 
             $doc_rn = $this->request->getFile('rangkuman_nilai');
             if ($doc_rn->getSize() > 0) {
-                if (!is_null($rn)){
-                    unlink('asset/doc/database/rangkuman_nilai/' . $rn);
+                if (!is_null($rn) && is_file(WRITEPATH . 'uploads/rangkuman_nilai/' . $rn)){
+                    unlink(WRITEPATH . 'uploads/rangkuman_nilai/' . $rn);
                 }
                 $nama_rn = $doc_rn->getRandomName();
-                $doc_rn->move('asset/doc/database/rangkuman_nilai/', $nama_rn);
+                $doc_rn->move(WRITEPATH . 'uploads/rangkuman_nilai', $nama_rn);
             } else {
                 $nama_rn = $rn;
             }
@@ -575,7 +575,7 @@ class User extends BaseController
 
             $bukti_prestasi = $this->request->getFile('bukti_prestasi');
             $nama_bp = $bukti_prestasi->getRandomName();
-            $bukti_prestasi->move('asset/doc/database/bukti_prestasi', $nama_bp);
+            $bukti_prestasi->move(WRITEPATH . 'uploads/bukti_prestasi', $nama_bp);
             $data = [
                 'id_beasiswa' => $this->lpModel->getIDb($this->request->getPost('jenis_beasiswa')),
                 'id_penerima' => $this->lpModel->getIDp(session()->get('username')),
@@ -659,11 +659,11 @@ class User extends BaseController
 
             $doc_bp = $this->request->getFile('bukti_prestasi');
             if ($doc_bp->getSize() > 0) {
-                if (!is_null($bp)){
-                    unlink('asset/doc/database/bukti_prestasi/' . $bp);
+                if (!is_null($bp) && is_file(WRITEPATH . 'uploads/bukti_prestasi/' . $bp)){
+                    unlink(WRITEPATH . 'uploads/bukti_prestasi/' . $bp);
                 }
                 $nama_bp = $doc_bp->getRandomName();
-                $doc_bp->move('asset/doc/database/bukti_prestasi/', $nama_bp);
+                $doc_bp->move(WRITEPATH . 'uploads/bukti_prestasi', $nama_bp);
             } else {
                 $nama_bp = $bp;
             }
@@ -748,15 +748,15 @@ class User extends BaseController
         ])) {
             $krs = $this->request->getFile('krs');
             $nama_krs = $krs->getRandomName();
-            $krs->move('asset/doc/database/krs', $nama_krs);
+            $krs->move(WRITEPATH . 'uploads/krs', $nama_krs);
 
             $blanko_pembayaran = $this->request->getFile('blanko_pembayaran');
             $nama_blanko = $blanko_pembayaran->getRandomName();
-            $blanko_pembayaran->move('asset/doc/database/blanko_pembayaran', $nama_blanko);
+            $blanko_pembayaran->move(WRITEPATH . 'uploads/blanko_pembayaran', $nama_blanko);
 
             $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
             $nama_bukti = $bukti_pembayaran->getRandomName();
-            $bukti_pembayaran->move('asset/doc/database/bukti_pembayaran', $nama_bukti);
+            $bukti_pembayaran->move(WRITEPATH . 'uploads/bukti_pembayaran', $nama_bukti);
 
             $data = [
                 'id_beasiswa' => $this->kaModel->getIDb($this->request->getPost('jenis_beasiswa')),
@@ -837,33 +837,33 @@ class User extends BaseController
 
             $doc_krs = $this->request->getFile('krs');
             if ($doc_krs->getSize() > 0) {
-                if (!is_null($krs)){
-                    unlink('asset/doc/database/krs/' . $krs);
+                if (!is_null($krs) && is_file(WRITEPATH . 'uploads/krs/' . $krs)){
+                    unlink(WRITEPATH . 'uploads/krs/' . $krs);
                 }
                 $nama_krs = $doc_krs->getRandomName();
-                $doc_krs->move('asset/doc/database/krs/', $nama_krs);
+                $doc_krs->move(WRITEPATH . 'uploads/krs', $nama_krs);
             } else {
                 $nama_krs = $krs;
             }
 
             $doc_blanko = $this->request->getFile('blanko_pembayaran');
             if ($doc_blanko->getSize() > 0) {
-                if (!is_null($blanko)){
-                    unlink('asset/doc/database/blanko_pembayaran/' . $blanko);
+                if (!is_null($blanko) && is_file(WRITEPATH . 'uploads/blanko_pembayaran/' . $blanko)){
+                    unlink(WRITEPATH . 'uploads/blanko_pembayaran/' . $blanko);
                 }
                 $nama_blanko = $doc_blanko->getRandomName();
-                $doc_blanko->move('asset/doc/database/blanko_pembayaran/', $nama_blanko);
+                $doc_blanko->move(WRITEPATH . 'uploads/blanko_pembayaran', $nama_blanko);
             } else {
                 $nama_blanko = $blanko;
             }
 
             $doc_bukti = $this->request->getFile('bukti_pembayaran');
             if ($doc_bukti->getSize() > 0) {
-                if (!is_null($bukti)){
-                    unlink('asset/doc/database/bukti_pembayaran/' . $bukti);
+                if (!is_null($bukti) && is_file(WRITEPATH . 'uploads/bukti_pembayaran/' . $bukti)){
+                    unlink(WRITEPATH . 'uploads/bukti_pembayaran/' . $bukti);
                 }
                 $nama_bukti = $doc_bukti->getRandomName();
-                $doc_bukti->move('asset/doc/database/bukti_pembayaran/', $nama_bukti);
+                $doc_bukti->move(WRITEPATH . 'uploads/bukti_pembayaran', $nama_bukti);
             } else {
                 $nama_bukti = $bukti;
             }

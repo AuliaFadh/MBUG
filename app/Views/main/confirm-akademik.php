@@ -190,7 +190,7 @@
                                             <td class="th-sm"><?= $value['ipk_uu'] ?></td>
                                             <td class="th-sm">
                                                 <a title="Lihat File"
-                                                    href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $value['rangkuman_nilai']) ?>">
+                                                    href="<?= base_url('files/view/rangkuman_nilai/' . $value['rangkuman_nilai']) ?>">
                                                     <img id="doc-search" class="btn btn-sm btn-success"
                                                         src="<?= base_url('asset/img/doc-search.png') ?>"
                                                         alt="">

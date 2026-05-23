@@ -46,7 +46,7 @@
                                     alt="Foto Profil">
                                 <?php elseif ($profile->ppicture !== null) : ?>
                                 <img id="profile-img"
-                                    src="<?= base_url('asset/img/database/picture/' . $profile->ppicture) ?>"
+                                    src="<?= base_url('files/view/picture/' . $profile->ppicture) ?>"
                                     alt="Foto Profil">
                                 <?php endif; ?>
                                 <div class="upload-overlay">

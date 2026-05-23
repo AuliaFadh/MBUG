@@ -158,7 +158,7 @@
                                         <div class="form-group fallback w-100 ">
                                             <label class="label-form">Bukti Prestasi</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya"
-                                                href="<?= base_url('asset/doc/database/bukti_prestasi/' . $former->bukti_prestasi) ?>"><img
+                                                href="<?= base_url('files/view/bukti_prestasi/' . $former->bukti_prestasi) ?>"><img
                                                     id="doc-search" class="btn btn-sm btn-success"
                                                     src="<?= base_url('asset/img/doc-search.png') ?>"
                                                     alt=""></a>

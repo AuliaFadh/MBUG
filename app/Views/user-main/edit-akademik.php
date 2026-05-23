@@ -128,7 +128,7 @@
                                         <div class="form-group fallback w-100">
                                             <label class="label-form"> Rangkuman Nilai(pdf)</label>
                                             <a style=" margin-left :15px" title="Lihat Dokumen Sebelumnya"
-                                                href="<?= base_url('asset/doc/database/rangkuman_nilai/' . $former->rangkuman_nilai) ?>"><img
+                                                href="<?= base_url('files/view/rangkuman_nilai/' . $former->rangkuman_nilai) ?>"><img
                                                     id="doc-search" class="btn btn-sm btn-success"
                                                     src="<?= base_url('asset/img/doc-search.png') ?>"
                                                     alt=""></a>

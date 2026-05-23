@@ -48,7 +48,7 @@
                                 <?php if (session()->get('pp') == null) : ?>
                                 <img id="profile-img-nav" src="<?= base_url('asset/img/person-icon.png'); ?>" style="height: 50px; width: 50px;" alt="" />
                                 <?php elseif (session()->get('pp') !== null) : ?>
-                                <img id="profile-img-nav" src="<?= base_url('asset/img/database/picture/' . session()->get('pp')); ?>" style="height: 50px; width: 50px;" alt="" />
+                                <img id="profile-img-nav" src="<?= base_url('files/view/picture/' . session()->get('pp')); ?>" style="height: 50px; width: 50px;" alt="" />
                                 <?php endif; ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
